@@ -1,0 +1,17 @@
+.greenw02 {background-color:rgb(31 120 50/0.3)}
+.greenw04{background-color:rgb(31 120 50/0.2)}
+/* .green02{background-color:rgb(248 46 48/0.3)}
+.green04{background-color:rgb(248 46 48/0.2)} */
+.orangew02{background-color:rgb(255 165 0/0.3)}
+.orangew04{background-color:rgb(255 165 0/0.2)}
+
+.wp-block-quote {
+	border-left: 0.25em solid currentColor;
+	margin: 0 0 1.75em 0;
+	padding-left: 1em;
+}
+
+li {
+	list-style-type: disc;
+	margin-left: 1.5em;
+}
