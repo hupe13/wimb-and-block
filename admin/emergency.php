@@ -18,7 +18,11 @@ add_action( 'admin_init', 'wimbblock_emergency_init' );
 
 // Baue Abfrage der Params
 function wimbblock_form_emergency() {
-	$setting = get_option( 'wimbblock_emergency', array( 'on' => '1' ) );
+	$setting = wimbblock_get_option( 'wimbblock_emergency' );
+	if ( $setting === false ) {
+		$setting = array( 'on' => '1' );
+	}
+
 	// var_dump($setting);
 	if ( ! current_user_can( 'manage_options' ) ) {
 		$disabled = ' disabled ';
@@ -26,7 +30,7 @@ function wimbblock_form_emergency() {
 		$disabled = '';
 	}
 
-	$options = wimbblock_get_options();
+	$options = wimbblock_get_options_db();
 	if ( $options['error'] !== '0' ) {
 		$setting['on'] = '0';
 	}

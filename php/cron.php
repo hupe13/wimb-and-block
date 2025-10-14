@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_rotate_table() {
-	$wpdb_options = wimbblock_get_options();
+	$wpdb_options = wimbblock_get_options_db();
 	$yymm         = wp_date( 'ym' );
 	$yymm_last    = wp_date( 'ym', strtotime( '-1 month' ) );
 	global $wimb_datatable;

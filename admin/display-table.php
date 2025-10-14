@@ -18,7 +18,7 @@ function wimbblock_display_table( $table_name ) {
 	$all_rows = isset( $all_rows ) && $all_rows === true ? true : false;
 
 	echo '<form>';
-	echo '<input type="hidden" name="page" value="wimb-and-block" />';
+	echo '<input type="hidden" name="page" value="' . esc_html( WIMB_NAME ) . '" />';
 	echo '<input type="hidden" name="tab" value="table" />';
 	echo '<input type="radio" name="all_rows" value="0" ';
 	checked( ! ( $all_rows === true ) );
@@ -118,7 +118,7 @@ function wimbblock_display_table( $table_name ) {
 
 
 function wimbblock_mgt_table() {
-	$wpdb_options = wimbblock_get_options();
+	$wpdb_options = wimbblock_get_options_db();
 	$table_name   = $wpdb_options['table_name'];
 
 	wp_enqueue_style(

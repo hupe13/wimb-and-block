@@ -57,13 +57,13 @@ function wimbblock_old_agent( $table_name, $software, $version, $id, $browser, $
 }
 
 function wimbblock_unknown_agent( $table_name, $agent, $software, $id ) {
-	$blocking = get_option(
-		'wimbblock_unknown_empty',
-		array(
+	$blocking = wimbblock_get_option( 'wimbblock_unknown_empty' );
+	if ( $blocking === false ) {
+		$blocking = array(
 			'unknown' => '1',
 			'empty'   => '1',
-		)
-	);
+		);
+	}
 	if ( $software === '' && $blocking['empty'] === '1' ) {
 		wimbblock_counter( $table_name, 'block', $id );
 		wimbblock_error_log( 'Blocked - unknown software: ' . $agent );

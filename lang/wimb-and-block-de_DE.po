@@ -1,0 +1,280 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-14 14:41+0000\n"
+"PO-Revision-Date: 2025-10-14 15:47+0000\n"
+"Last-Translator: hupe13\n"
+"Language-Team: Deutsch\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.3.25-nmm1\n"
+"X-Domain: wimb-and-block"
+
+#: admin/settings.php:38
+msgid ""
+"Access to the remote database seems to be working fine. Please resubmit the "
+"form."
+msgstr ""
+"Der Zugriff zur entfernten Datenbank scheint in Ordnung zu sein, bitte sende "
+"das Formular erneut ab."
+
+#: admin/block-unknown-empty.php:68
+msgid "After that, the blocking can continue."
+msgstr ""
+
+#: admin/display-table.php:28
+msgid "all entries"
+msgstr "alle Einträge"
+
+#: admin/blocking.php:14
+msgid "Block browser versions up to version number"
+msgstr "Blockiere Browser-Versionen bis zur Versionsnummer"
+
+#: admin/block-unknown-empty.php:14
+msgid "Block browser with \"unknown\" in the software string"
+msgstr ""
+
+#: admin/block-unknown-empty.php:15
+msgid "Block browsers with an empty entry in the software field"
+msgstr "Blocke Browser mit einem leeren Eintrag im Feld Software"
+
+#: admin.php:111
+msgid "Block browsers, bots and crawlers"
+msgstr ""
+
+#: admin/main-blocking.php:15
+msgid "Blog browsers, bots and crawlers"
+msgstr ""
+
+#. Name of the plugin
+msgid "Browser access control via WhatIsMyBrowser"
+msgstr "Browserzugriffskontrolle mittels WhatIsMyBrowser"
+
+#: admin/block-unknown-empty.php:80
+msgid ""
+"Browsers will be blocked, if the \"simple software string\" contains "
+"\"unknown\" or is empty:"
+msgstr ""
+
+#: admin/blocking.php:64
+msgid ""
+"Browsers will be blocked, if the browser and/or the system is an old one:"
+msgstr ""
+
+#: admin/display-table.php:30
+msgid "Change view"
+msgstr "Wechsle die Ansicht"
+
+#. Description of the plugin
+msgid ""
+"Detects the browser and checks whether it is up to date. Blocks old versions "
+"and suspicious browsers."
+msgstr ""
+
+#: admin/emergency.php:14
+msgid "Emergency - start / stop"
+msgstr ""
+
+#: admin.php:52
+msgid "Emergency button"
+msgstr ""
+
+#: admin/exclude.php:14
+msgid "Exclude these browsers from checking"
+msgstr ""
+
+#: admin/settings.php:108
+msgid ""
+"Get an API key for a <a href=\"https://developers.whatismybrowser.com/api/\">"
+"Basic Application Plan</a>."
+msgstr ""
+
+#: admin.php:102
+msgid "Help"
+msgstr "Hilfe"
+
+#: admin.php:27
+msgid "Help and Options"
+msgstr "Hilfe und Optionen"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://leafext.de/hp/"
+msgstr ""
+
+#. Author of the plugin
+msgid "hupe13"
+msgstr ""
+
+#: admin/emergency.php:57
+msgid "If something does not work as expected, you can stop it here."
+msgstr ""
+
+#: admin/settings.php:84
+msgid ""
+"If the database is local, it is automatically set to \"yes\". For remote "
+"databases, set it to \"yes\" on exactly one WP instance."
+msgstr ""
+
+#: admin/emergency.php:39
+msgid "It is working."
+msgstr ""
+
+#: admin/settings.php:16
+msgid "Local WP database or remote database"
+msgstr ""
+
+#: admin/block-unknown-empty.php:41
+msgid "no"
+msgstr "nein"
+
+#: admin/display-table.php:25
+msgid "only entries from last 2 days"
+msgstr ""
+
+#: admin/settings.php:23
+msgid "Path of log file"
+msgstr "Pfad der Logdatei"
+
+#: admin/settings.php:21
+msgid "Remote database hostname"
+msgstr "Hostname der entfernten Datenbank"
+
+#: admin/settings.php:20
+msgid "Remote database name"
+msgstr "Name der entfernten Datenbank"
+
+#: admin/settings.php:19
+msgid "Remote database password"
+msgstr "Passwort der entfernten Datenbank"
+
+#: admin/settings.php:18
+msgid "Remote database username"
+msgstr "Benutzername der entfernten Datenbank"
+
+#: admin.php:72 admin/main-blocking.php:37
+msgid "Reset"
+msgstr ""
+
+#: admin/settings.php:22
+msgid "Rotate the table on this site"
+msgstr ""
+
+#: admin/block-unknown-empty.php:67
+msgid ""
+"Set the software column to any string without \"unknown\" and set the column "
+"block to 0!"
+msgstr ""
+
+#: admin/settings.php:78
+msgid "Setting:"
+msgstr ""
+
+#: wimb-and-block.php:55 wimb-and-block.php:63
+msgid "Settings"
+msgstr ""
+
+#: admin.php:64 admin.php:107
+msgid "Settings WIMB"
+msgstr ""
+
+#: admin/block-unknown-empty.php:82
+msgid ""
+"Sometimes there are false positive, for example if the browser is from "
+"Mastodon. Then you can exclude these."
+msgstr ""
+
+#: admin/emergency.php:42
+msgid "STOP!"
+msgstr ""
+
+#: admin/settings.php:46
+msgid ""
+"The latter is recommended if you have multiple WordPress instances on the "
+"same server."
+msgstr ""
+
+#: admin/emergency.php:55
+msgid ""
+"The plugin begins its work if the WIMB API Key is set and if the database is "
+"configured and running."
+msgstr ""
+
+#: admin/blocking.php:59
+msgid ""
+"The user agent string of every browser accessing your website the first time "
+"is send to WhatIsMyBrowser and some data will be stored in the table:"
+msgstr ""
+
+#: admin.php:50
+msgid "There is an error in your settings."
+msgstr ""
+
+#: admin/display-table.php:79
+msgid "There was an error:"
+msgstr ""
+
+#: admin/main-blocking.php:92
+msgid "unknown and empty"
+msgstr ""
+
+#: admin/block-unknown-empty.php:79
+msgid "Unknown browsers and empty software strings"
+msgstr ""
+
+#: admin/block-unknown-empty.php:66
+msgid "Use phpmyadmin to change these entries."
+msgstr ""
+
+#: admin/main-blocking.php:88
+msgid "versions control"
+msgstr ""
+
+#: admin.php:15 admin.php:16
+msgid "WIMB and Block"
+msgstr ""
+
+#: admin/settings.php:15
+msgid "WIMB API Key"
+msgstr ""
+
+#: admin.php:80 admin.php:115
+msgid "WIMB Table"
+msgstr ""
+
+#: admin.php:84
+msgid "WIMB Table Management - in development"
+msgstr ""
+
+#: admin/settings.php:17
+msgid "WIMB table name"
+msgstr ""
+
+#: admin.php:26
+msgid "wimb-and-block"
+msgstr ""
+
+#: admin/block-unknown-empty.php:38
+msgid "yes"
+msgstr "ja"
+
+#: admin/block-unknown-empty.php:65
+msgid "You can also stop such blocking as follows:"
+msgstr ""
+
+#. %1$s and %2$s is a link.
+#: admin.php:41 admin/main-blocking.php:22 admin/main-blocking.php:48
+#, php-format
+msgid "You can change this setting on the %1$smain site%2$s."
+msgstr ""
+
+#: admin/settings.php:44
+msgid ""
+"You need a table in a database. This can be a table in the default WordPress "
+"database (local) or in a remote database."
+msgstr ""

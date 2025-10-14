@@ -6,18 +6,17 @@
  */
 
 //
-require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-global $wimb_datatable;
+function wimbblock_table_install( $table_name ) {
 
-$wimbblock_options = wimbblock_get_options();
-
-function wimbblock_table_install( $wimbblock_table ) {
-	global $wimb_datatable;
-	wimbblock_open_wpdb();
-	global $wpdb;
-	$table_name      = $wimbblock_table;
-	$charset_collate = $wimb_datatable->get_charset_collate();
-	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	$wimbblock_options = wimbblock_get_options_db();
+	if ( $wimbblock_options['location'] === 'local' ) {
+		global $wpdb;
+		$charset_collate = $wpdb->get_charset_collate();
+	} else {
+		global $wimb_datatable;
+		wimbblock_open_wpdb();
+		$charset_collate = $wimb_datatable->get_charset_collate();
+	}
 
 	$wimb_sql = "CREATE TABLE {$table_name} (
 		i int(11) NOT NULL auto_increment,
@@ -40,10 +39,12 @@ function wimbblock_table_install( $wimbblock_table ) {
 		UNIQUE KEY browser (browser)
 	) $charset_collate;";
 
-	$wpdb_bak = $wpdb;
-	$wpdb     = $wimb_datatable;
-	$status   = dbDelta( $wimb_sql );
-	$wpdb     = $wpdb_bak;
+	if ( $wimbblock_options['location'] === 'local' ) {
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		$status = dbDelta( $wimb_sql );
+	} else {
+		$status = wimbblock_dbDelta( $wimb_sql );
+	}
 	wimbblock_error_log( 'Created wimb_table: ' . $table_name );
 }
 
@@ -58,7 +59,7 @@ function wimbblock_close_mysqlstat() {
 
 function wimbblock_open_wpdb() {
 	global $wimb_datatable;
-	$wimbblock_options = wimbblock_get_options();
+	$wimbblock_options = wimbblock_get_options_db();
 	if ( $wimbblock_options['location'] === 'local' ) {
 		global $wpdb;
 		$wimb_datatable = $wpdb;
@@ -85,7 +86,7 @@ function wimbblock_counter( $table_name, $counter, $id ) {
 function wimbblock_error_log( $reason ) {
 	$logfile = get_transient( 'wimbblock_logfile' );
 	if ( false === $logfile ) {
-		$options = wimbblock_get_options();
+		$options = wimbblock_get_options_db();
 		if ( isset( $options['logfile'] ) && $options['logfile'] !== '' && $options['logfile'] !== false ) {
 			$logfile = $options['logfile'];
 		} elseif ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {

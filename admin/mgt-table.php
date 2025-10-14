@@ -95,7 +95,7 @@ function wimbblock_create_table( $table_name ) {
 
 
 function wimbblock_selection_table() {
-	$wpdb_options = wimbblock_get_options();
+	$wpdb_options = wimbblock_get_options_db();
 	$table_name   = $wpdb_options['table_name'];
 
 	wp_enqueue_style(

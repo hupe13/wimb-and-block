@@ -8,7 +8,7 @@
 //
 function wimbblock_whatsmybrowser( $user_agent ) {
 	if ( $user_agent !== '' ) {
-		$options = wimbblock_get_options();
+		$options = wimbblock_get_options_db();
 
 		# Where will the request be sent to
 		$url = 'https://api.whatismybrowser.com/api/v2/user_agent_parse';
@@ -145,25 +145,26 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 	}
 
 	if ( (int) $blocked > 0 ) {
-		if ( $software !== '' &&  stripos( $software, 'unknown' ) === false ) {
+		if ( $software !== '' && stripos( $software, 'unknown' ) === false ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			wimbblock_error_log( 'Blocked again - ' . ( $software !== '' ? $software : $agent ) );
 			status_header( 404, 'This webbrowser is blocked' );
 			exit();
 		}
-		$blocking = get_option('wimbblock_unknown_empty',
-			array(
-			'unknown' => '1',
-			'empty'   => '1',
-			)
-		);
+		$blocking = wimbblock_get_option( 'wimbblock_unknown_empty' );
+		if ( $blocking === false ) {
+			$blocking = array(
+				'unknown' => '1',
+				'empty'   => '1',
+			);
+		}
 		if ( $software === '' && $blocking['empty'] === '1' ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			wimbblock_error_log( 'Blocked again - unknown software: ' . $agent );
 			status_header( 404, 'Blocked - unknown software.' );
 			exit();
 		}
-		if ( stripos( $software, 'unknown' ) !== false && $blocking['unknown'] === '1') {
+		if ( stripos( $software, 'unknown' ) !== false && $blocking['unknown'] === '1' ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			wimbblock_error_log( 'Blocked again - unknown webbrowser: ' . $agent . ' * ' . $software );
 			status_header( 404, 'Blocked - unknown webbrowser' );

@@ -53,3 +53,15 @@ function wimbblock_browsers_validate( $params ) {
 	}
 	return false;
 }
+
+function wimbblock_browsers_help() {
+	$text  = '';
+	$text .= __(
+		'The user agent string of every browser accessing your website the first time is send to WhatIsMyBrowser and some data will be stored in the table:',
+		'wimb-and-block'
+	);
+	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/good.jpg" alt="example entries" width="450" ></p>';
+	$text .= __( 'Browsers will be blocked, if the browser and/or the system is an old one:', 'wimb-and-block' );
+	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';
+	return $text;
+}
