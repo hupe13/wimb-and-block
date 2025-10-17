@@ -22,7 +22,7 @@ function wimbblock_textdomain() {
 		load_textdomain( $domain, $path . $mo_file );
 	}
 }
-// add_action( 'plugins_loaded', 'wimbblock_textdomain' );
+add_action( 'plugins_loaded', 'wimbblock_textdomain' );
 
 // Updates from Github
 if ( ! function_exists( 'leafext_updates_from_github' ) ) {

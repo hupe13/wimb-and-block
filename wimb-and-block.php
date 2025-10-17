@@ -4,7 +4,7 @@
  * Plugin URI:        https://leafext.de/hp/
  * Description:       Detects the browser and checks whether it is up to date. Blocks old versions and suspicious browsers.
  * Update URI:        https://github.com/hupe13/wimb-and-block
- * Version:           251014
+ * Version:           251017
  * Requires PHP:      8.3
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
@@ -34,10 +34,29 @@ if ( is_admin() ) {
 	require_once __DIR__ . '/admin/blocking.php';
 	require_once __DIR__ . '/admin/mgt-table.php';
 	require_once __DIR__ . '/admin/emergency.php';
-	require_once __DIR__ . '/admin/main-blocking.php';
-	require_once __DIR__ . '/admin/block-unknown-empty.php';
+	// require_once __DIR__ . '/admin/main-blocking.php';
+	// require_once __DIR__ . '/admin/block-unknown-empty.php';
 	require_once __DIR__ . '/admin/exclude.php';
 }
+
+// Set the initial version of the database schema
+function wimbblock_activate() {
+	add_option( 'wimbblock_db_version', '251011' );
+}
+register_activation_hook( __FILE__, 'wimbblock_activate' );
+
+function wimbblock_update() {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+		$current_version = get_option( 'wimbblock_db_version', '251000' );
+		$new_version     = '251014'; // Update this to your new version
+		if ( version_compare( $current_version, $new_version, '<' ) ) {
+			$options = wimbblock_get_options_db();
+			wimbblock_table_install( $options['table_name'] ); // Call the migration function
+			update_option( 'wimbblock_db_version', $new_version ); // Update the version
+		}
+	}
+}
+add_action( 'plugins_loaded', 'wimbblock_update' );
 
 if (
 	( is_multisite() && is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ||

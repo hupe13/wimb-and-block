@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-14 15:46+0000\n"
+"POT-Creation-Date: 2025-10-17 06:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -22,47 +22,29 @@ msgid ""
 "form."
 msgstr ""
 
-#: admin/block-unknown-empty.php:68
-msgid "After that, the blocking can continue."
-msgstr ""
-
 #: admin/display-table.php:28
 msgid "all entries"
 msgstr ""
 
 #: admin/blocking.php:14
-msgid "Block browser versions up to version number"
-msgstr ""
-
-#: admin/block-unknown-empty.php:14
-msgid "Block browser with \"unknown\" in the software string"
-msgstr ""
-
-#: admin/block-unknown-empty.php:15
-msgid "Block browsers with an empty entry in the software field"
-msgstr ""
-
-#: admin.php:111
-msgid "Block browsers, bots and crawlers"
-msgstr ""
-
-#: admin/main-blocking.php:15
-msgid "Blog browsers, bots and crawlers"
+msgid "Block browser versions smaller than"
 msgstr ""
 
 #. Name of the plugin
 msgid "Browser access control via WhatIsMyBrowser"
 msgstr ""
 
-#: admin/block-unknown-empty.php:80
-msgid ""
-"Browsers will be blocked, if the \"simple software string\" contains "
-"\"unknown\" or is empty:"
-msgstr ""
-
-#: admin/blocking.php:64
+#: admin/blocking.php:68
 msgid ""
 "Browsers will be blocked, if the browser and/or the system is an old one:"
+msgstr ""
+
+#. %1$s is "unknown" and %2$s is "simple software string".
+#: admin/mgt-table.php:92
+#, php-format
+msgid ""
+"By default, all blocked entries with an empty or %1$s in the %2$s (software) "
+"are displayed."
 msgstr ""
 
 #: admin/display-table.php:30
@@ -83,17 +65,25 @@ msgstr ""
 msgid "Emergency button"
 msgstr ""
 
-#: admin/exclude.php:14
+#: admin/display-table.php:25
+msgid "entries from the last 24 hours"
+msgstr ""
+
+#: admin.php:168
+msgid "Exclude these browsers"
+msgstr ""
+
+#: admin/exclude.php:14 admin/exclude.php:60
 msgid "Exclude these browsers from checking"
 msgstr ""
 
-#: admin/settings.php:108
-msgid ""
-"Get an API key for a <a href=\"https://developers.whatismybrowser.com/api/\">"
-"Basic Application Plan</a>."
+#. %s is a link .
+#: admin/settings.php:111
+#, php-format
+msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:102
+#: admin.php:155
 msgid "Help"
 msgstr ""
 
@@ -128,14 +118,6 @@ msgstr ""
 msgid "Local WP database or remote database"
 msgstr ""
 
-#: admin/block-unknown-empty.php:41
-msgid "no"
-msgstr ""
-
-#: admin/display-table.php:25
-msgid "only entries from last 2 days"
-msgstr ""
-
 #: admin/settings.php:23
 msgid "Path of log file"
 msgstr ""
@@ -156,7 +138,7 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:72 admin/main-blocking.php:37
+#: admin.php:72 admin.php:101
 msgid "Reset"
 msgstr ""
 
@@ -164,25 +146,27 @@ msgstr ""
 msgid "Rotate the table on this site"
 msgstr ""
 
-#: admin/block-unknown-empty.php:67
-msgid ""
-"Set the software column to any string without \"unknown\" and set the column "
-"block to 0!"
+#: admin/mgt-table.php:113
+msgid "Search"
+msgstr ""
+
+#: admin/mgt-table.php:72
+msgid "Select to unblock / block"
 msgstr ""
 
 #: admin/settings.php:78
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:55 wimb-and-block.php:63
+#: wimb-and-block.php:74 wimb-and-block.php:82
 msgid "Settings"
 msgstr ""
 
-#: admin.php:64 admin.php:107
+#: admin.php:64 admin.php:160
 msgid "Settings WIMB"
 msgstr ""
 
-#: admin/block-unknown-empty.php:82
+#: admin/exclude.php:61
 msgid ""
 "Sometimes there are false positive, for example if the browser is from "
 "Mastodon. Then you can exclude these."
@@ -214,27 +198,19 @@ msgstr ""
 msgid "There is an error in your settings."
 msgstr ""
 
-#: admin/display-table.php:79
+#: admin/display-table.php:80
 msgid "There was an error:"
 msgstr ""
 
-#: admin/main-blocking.php:92
-msgid "unknown and empty"
+#: admin/mgt-table.php:132
+msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin/block-unknown-empty.php:79
-msgid "Unknown browsers and empty software strings"
+#: admin.php:79 admin.php:172
+msgid "Versions Control"
 msgstr ""
 
-#: admin/block-unknown-empty.php:66
-msgid "Use phpmyadmin to change these entries."
-msgstr ""
-
-#: admin/main-blocking.php:88
-msgid "versions control"
-msgstr ""
-
-#: admin.php:15 admin.php:16
+#: admin.php:15 admin.php:16 admin.php:26
 msgid "WIMB and Block"
 msgstr ""
 
@@ -242,34 +218,26 @@ msgstr ""
 msgid "WIMB API Key"
 msgstr ""
 
-#: admin.php:80 admin.php:115
+#: admin.php:108 admin.php:164
 msgid "WIMB Table"
 msgstr ""
 
-#: admin.php:84
-msgid "WIMB Table Management - in development"
+#: admin.php:112 admin.php:176
+msgid "WIMB Table Management"
 msgstr ""
 
 #: admin/settings.php:17
 msgid "WIMB table name"
 msgstr ""
 
-#: admin.php:26
-msgid "wimb-and-block"
-msgstr ""
-
-#: admin/block-unknown-empty.php:38
-msgid "yes"
-msgstr ""
-
-#: admin/block-unknown-empty.php:65
-msgid "You can also stop such blocking as follows:"
-msgstr ""
-
 #. %1$s and %2$s is a link.
-#: admin.php:41 admin/main-blocking.php:22 admin/main-blocking.php:48
+#: admin.php:41 admin.php:86 admin.php:120
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
+msgstr ""
+
+#: admin/mgt-table.php:89
+msgid "You can search for entries here."
 msgstr ""
 
 #: admin/settings.php:44

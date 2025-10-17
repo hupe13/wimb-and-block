@@ -43,7 +43,7 @@ function wimbblock_get_options_db() {
 // tab=blocking
 function wimbblock_get_default_browsers() {
 	$defaults = array(
-		// https://en.wikipedia.org/wiki/Google_Chrome
+		// https://en.wikipedia.org/wiki/Google_Chrome#Platforms
 		'Chrome'            => 128,
 		// https://en.wikipedia.org/wiki/Microsoft_Edge#New_Edge_release_history
 		// https://www.cvedetails.com/version-list/26/32367/1/Microsoft-Edge.html?order=0

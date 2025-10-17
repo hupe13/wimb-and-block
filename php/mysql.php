@@ -19,7 +19,7 @@ function wimbblock_table_install( $table_name ) {
 	}
 
 	$wimb_sql = "CREATE TABLE {$table_name} (
-		i int(11) NOT NULL auto_increment,
+		i bigint NOT NULL auto_increment,
 		browser varchar(300) NOT NULL,
 		software varchar(70) NOT NULL,
 		system varchar(50) NOT NULL,

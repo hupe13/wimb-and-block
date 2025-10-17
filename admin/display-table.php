@@ -22,7 +22,7 @@ function wimbblock_display_table( $table_name ) {
 	echo '<input type="hidden" name="tab" value="table" />';
 	echo '<input type="radio" name="all_rows" value="0" ';
 	checked( ! ( $all_rows === true ) );
-	echo '> ' . esc_html__( 'only entries from last 2 days', 'wimb-and-block' ) . ' &nbsp;&nbsp; ';
+	echo '> ' . esc_html__( 'entries from the last 24 hours', 'wimb-and-block' ) . ' &nbsp;&nbsp; ';
 	echo '<input type="radio" name="all_rows" value="1" ';
 	checked( $all_rows === true );
 	echo '> ' . esc_html__( 'all entries', 'wimb-and-block' );
@@ -52,10 +52,10 @@ function wimbblock_display_table( $table_name ) {
 	$header    = '<thead>' . $tablehdr . '</thead>';
 
 	if ( $all_rows === false ) {
-		$datetime      = new DateTime( 'yesterday', new DateTimeZone( wp_timezone_string() ) );
-		$selected_date = $datetime->format( 'Y-m-d 00:00:00' );
+		$datetime      = new DateTime( '-24 hours', new DateTimeZone( wp_timezone_string() ) );
+		$selected_date = $datetime->format( 'Y-m-d H:i:s' );
+		// var_dump($selected_date);
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$entries = $wimb_datatable->get_results(
 			$wimb_datatable->prepare(
 				'SELECT * FROM %i WHERE time >= %s ORDER BY time DESC',
@@ -65,7 +65,6 @@ function wimbblock_display_table( $table_name ) {
 			ARRAY_A
 		);
 	} else {
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$entries = $wimb_datatable->get_results(
 			$wimb_datatable->prepare(
 				'SELECT * FROM %i ORDER BY time DESC',
@@ -107,7 +106,7 @@ function wimbblock_display_table( $table_name ) {
 		}
 
 		$table  = '<tr' . $class . '>
-		<td style="text-align: center;">' . join( '</td><td style="text-align: center;">', $row_vals ) . '</td>';
+		<td class="center-text">' . join( '</td><td class="center-text">', $row_vals ) . '</td>';
 		$table .= '</tr>';
 		$rows[] = $table;
 	}
@@ -115,7 +114,6 @@ function wimbblock_display_table( $table_name ) {
 	// Put the table together and output
 	return '<table border=1>' . $header . '<tbody>' . join( $rows ) . '</tbody></table>';
 }
-
 
 function wimbblock_mgt_table() {
 	$wpdb_options = wimbblock_get_options_db();

@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die();
 // Database
 function wimbblock_browsers_init() {
 	add_settings_section( 'wimbblock_browsers', '', '', 'wimbblock_browsers' );
-	add_settings_field( 'wimbblock_browsers', __( 'Block browser versions up to version number', 'wimb-and-block' ), 'wimbblock_browsers_form', 'wimbblock_browsers', 'wimbblock_browsers' );
+	add_settings_field( 'wimbblock_browsers', __( 'Block browser versions smaller than', 'wimb-and-block' ), 'wimbblock_browsers_form', 'wimbblock_browsers', 'wimbblock_browsers' );
 	if ( get_option( 'wimbblock_browsers' ) === false ) {
 		add_option( 'wimbblock_browsers', array() );
 	}
@@ -60,6 +60,10 @@ function wimbblock_browsers_help() {
 		'The user agent string of every browser accessing your website the first time is send to WhatIsMyBrowser and some data will be stored in the table:',
 		'wimb-and-block'
 	);
+	$text .= '<p><table class="width450" border=1>
+ 	 <tr><td class="width280 center-text"><code>browser</code></td>
+	 <td class="width85 center-text"><code>simple software string</code></td>
+	 <td class="width85 center-text"><code>operating system</code></td></tr></table></p>';
 	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/good.jpg" alt="example entries" width="450" ></p>';
 	$text .= __( 'Browsers will be blocked, if the browser and/or the system is an old one:', 'wimb-and-block' );
 	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';

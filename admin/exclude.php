@@ -55,3 +55,9 @@ function wimbblock_exclude_validate( $params ) {
 	}
 	return false;
 }
+
+function wimbblock_exlude_help() {
+	$text  = '<h3>' . __( 'Exclude these browsers from checking', 'wimb-and-block' ) . '</h3>';
+	$text .= '<p>' . __( 'Sometimes there are false positive, for example if the browser is from Mastodon. Then you can exclude these.', 'wimb-and-block' ) . '</p>';
+	echo wp_kses_post( $text );
+}

@@ -23,13 +23,19 @@ add_action( 'admin_menu', 'wimbblock_add_sub_page' );
 
 // Admin page for the plugin
 function wimbblock_admin() {
-	echo '<h2>' . esc_html__( 'wimb-and-block', 'wimb-and-block' ) . '</h2>';
+	wp_enqueue_style(
+		'wimbblock-css',
+		plugins_url( dirname( WIMB_BASENAME ) . '/admin/admin.css' ),
+		array(),
+		1
+	);
+	echo '<h2>' . esc_html__( 'WIMB and Block', 'wimb-and-block' ) . '</h2>';
 	echo '<h3>' . esc_html__( 'Help and Options', 'wimb-and-block' ) . '</h3>';
 
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$active_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ?? 'help' ) );
 
-	echo '<div style="max-width: 1000px;">';
+	echo '<div class="maxwidth1000">';
 	wimbblock_admin_tabs();
 
 	if ( $active_tab === 'settings' ) {
@@ -74,15 +80,68 @@ function wimbblock_admin() {
 		}
 		echo '</form>';
 	} elseif ( strpos( $active_tab, 'blocking' ) !== false ) {
-			wimbblock_blocking_tab( $active_tab );
+		//wimbblock_blocking_tab( $active_tab );
+
+		echo '<h3>' . esc_html( __( 'Versions Control', 'wimb-and-block' ) ) . '</h3>';
+
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) {
+			echo '<p>';
+			echo wp_kses_post(
+				wp_sprintf(
+				/* translators: %1$s and %2$s is a link. */
+					__( 'You can change this setting on the %1$smain site%2$s.', 'wimb-and-block' ),
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=' . $active_tab . '">',
+					'</a>'
+				)
+			);
+			echo '</p>';
+		}
+		echo wp_kses_post( wimbblock_browsers_help() );
+		echo '<form method="post" action="options.php">';
+		settings_fields( 'wimbblock_browsers' );
+		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
+		do_settings_sections( 'wimbblock_browsers' );
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				submit_button();
+				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
+			}
+		}
+		echo '</form>';
+
 	} elseif ( $active_tab === 'table' ) {
 		require_once __DIR__ . '/admin/display-table.php';
 		echo '<h3>' . esc_html( __( 'WIMB Table', 'wimb-and-block' ) ) . '</h3>';
 		wimbblock_mgt_table();
 	} elseif ( $active_tab === 'mgt' ) {
 		require_once __DIR__ . '/admin/mgt-table.php';
-		echo '<h3>' . esc_html( __( 'WIMB Table Management - in development', 'wimb-and-block' ) ) . '</h3>';
+		echo '<h3>' . esc_html( __( 'WIMB Table Management', 'wimb-and-block' ) ) . '</h3>';
 		wimbblock_selection_table();
+	} elseif ( $active_tab === 'exclude' ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) {
+			echo '<p>';
+			echo wp_kses_post(
+				wp_sprintf(
+				/* translators: %1$s and %2$s is a link. */
+					__( 'You can change this setting on the %1$smain site%2$s.', 'wimb-and-block' ),
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=' . $active_tab . '">',
+					'</a>'
+				)
+			);
+			echo '</p>';
+		}
+		wimbblock_exlude_help();
+		echo '<form method="post" action="options.php">';
+		settings_fields( 'wimbblock_exclude' );
+		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
+		do_settings_sections( 'wimbblock_exclude' );
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				submit_button();
+				// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
+			}
+		}
+		echo '</form>';
 	} else {
 		if ( function_exists( 'leafext_updates_from_github' ) ) {
 			leafext_updates_from_github();
@@ -107,17 +166,21 @@ function wimbblock_admin_tabs() {
 		'title' => __( 'Settings WIMB', 'wimb-and-block' ),
 	);
 	$tabs[] = array(
-		'tab'   => 'blocking',
-		'title' => __( 'Block browsers, bots and crawlers', 'wimb-and-block' ),
-	);
-	$tabs[] = array(
 		'tab'   => 'table',
 		'title' => __( 'WIMB Table', 'wimb-and-block' ),
 	);
-	// $tabs[] = array(
-	//  'tab'   => 'mgt',
-	//  'title' => __( 'WIMB Table Management', 'wimb-and-block' ),
-	// );
+	$tabs[] = array(
+		'tab'   => 'exclude',
+		'title' => __( 'Exclude these browsers', 'wimb-and-block' ),
+	);
+	$tabs[] = array(
+		'tab'   => 'blocking',
+		'title' => __( 'Versions Control', 'wimb-and-block' ),
+	);
+	$tabs[] = array(
+		'tab'   => 'mgt',
+		'title' => __( 'WIMB Table Management', 'wimb-and-block' ),
+	);
 
 	foreach ( $tabs as $tab ) {
 		echo '<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=' . $tab['tab'] ) . '" class="nav-tab';

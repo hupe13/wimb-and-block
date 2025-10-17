@@ -81,7 +81,20 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $id ) {
 
 function wimbblock_old_system( $table_name, $system, $id ) {
 	if ( $system !== '' ) {
-		$old_systems = array( 'Vista', 'Windows XP', 'Windows 9', 'Windows CE', 'Windows NT', 'Windows 7', 'Windows 8', 'Windows 2000' );
+		$old_systems = array(
+			'Vista',
+			'Windows XP',
+			'Windows 9',
+			'Windows CE',
+			'Windows NT',
+			'Windows 7',
+			'Windows 8',
+			'Windows 2000',
+			'Sierra',
+			'Mojave',
+			'Big Sur',
+			'Mojave',
+		);
 		// , 'Android ('
 		foreach ( $old_systems as $old_system ) {
 			if ( strpos( $system, $old_system ) !== false ) {

@@ -3,7 +3,7 @@
 Contributors: hupe13   
 Tags: browser, agent, wimb   
 Tested up to: 6.8   
-Stable tag: 251014   
+Stable tag: 251017   
 Requires at least: 6.5   
 Requires PHP: 8.3   
 License: GPLv2 or later   

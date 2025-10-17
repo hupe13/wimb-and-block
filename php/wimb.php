@@ -74,7 +74,6 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 		$system   = $wimb['system'];
 		$version  = $wimb['version'];
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$mgt_code = $wimb_datatable->query(
 			$wimb_datatable->prepare(
 				'INSERT INTO %i ( browser,software,system,version ) VALUES ( %s,%s,%s,%s ) ON DUPLICATE KEY UPDATE i=i ',

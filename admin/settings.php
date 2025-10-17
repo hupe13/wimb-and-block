@@ -105,7 +105,13 @@ function wimbblock_form( $field ) {
 	} else {
 		if ( $field === 'wimb_api' ) {
 			echo '<p>';
-			echo wp_kses_post( __( 'Get an API key for a <a href="https://developers.whatismybrowser.com/api/">Basic Application Plan</a>.', 'wimb-and-block' ) );
+			echo wp_kses_post(
+				sprintf(
+					/* translators: %s is a link . */
+					__( 'Get an API key for a %s.', 'wimb-and-block' ),
+					'<a href="https://developers.whatismybrowser.com/api/">Basic Application Plan</a>'
+				)
+			);
 			echo '</p>';
 		}
 		echo '<input type="text" size="20" name="wimbblock_settings[' . esc_attr( $field ) . ']" ';

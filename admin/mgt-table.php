@@ -1,6 +1,6 @@
 <?php
 /**
- * Table wimb entries
+ * Manage table wimb entries
  *
  * @package wimb-and-block
  **/
@@ -8,7 +8,7 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_create_table( $table_name ) {
+function wimbblock_display_mgt_table( $table_name, $result ) {
 	global $wimb_datatable;
 	if ( is_null( $wimb_datatable ) ) {
 		wimbblock_open_wpdb();
@@ -21,53 +21,33 @@ function wimbblock_create_table( $table_name ) {
 	}
 
 	$where = implode( ' AND ', $command );
-	var_dump( $where );
+	//var_dump( $where );
 
-	$cycle = 'month';
+	$tablehdr = '<thead><tr><th>i</th><th>browser</th><th>software</th><th>block</th><th>unblock/block</th></tr></thead>';
 
-	$tablehdr  = '<tr><th>&nbsp;</th>';
-	$tablehdr .= '<th colspan=4>Browser Software</th>';
-	$tablehdr .= '<th colspan=3>Time</th>';
-	$tablehdr .= '<th colspan=2>this month</th>';
-	$tablehdr .= '<th colspan=2>month before</th>';
-	$tablehdr .= '<th colspan=2>2 months before</th>';
-	$tablehdr .= '<th colspan=2>3 months before</th></tr>';
-	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>yymm</th><th>wimbdate</th>';
-	for ( $i = 1; $i <= 4; $i++ ) {
-		$tablehdr .= '<th>count</th><th>blocked</th>';
+	if ( is_array( $result ) ) {
+		$command = array();
+		foreach ( $result as $key => $value ) {
+			$command[] = $key . " LIKE '%" . $value . "%'";
+		}
+		$query = implode( ' AND ', $command );
+	} else {
+		$query = $where . ' AND ( system = ' . "''" . ' AND block > 0 ) OR software = "*" ';
 	}
-	$tablehdr .= '</tr>';
-	$header    = '<thead>' . $tablehdr . '</thead>';
-
-	// // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	// $entries = $wimb_datatable->get_results(
-	//  $wimb_datatable->prepare(
-	//      'SELECT * FROM %i WHERE %s ORDER BY time DESC',
-	//      $table_name,
-	//      $where
-	//  ),
-	//  ARRAY_A
-	// );
-	//
-	// $wimb_datatable->print_error();
-
 	$entries = $wimb_datatable->get_results(
-		'SELECT * FROM ' . $table_name . ' WHERE ' . $where . ' AND software NOT LIKE "%unknown%" AND block > 0 ORDER BY time DESC'
+		'SELECT i,browser,software,block FROM ' . $table_name . ' WHERE ' . $query . ' ORDER BY time DESC'
 	);
-	// var_dump( $entries );
 
 	// Make the data rows
 	$rows      = array();
 	$alternate = true;
-	$countrow  = 9;
 	foreach ( $entries as $row ) {
 		$row_vals = array();
 		foreach ( $row as $key => $value ) {
 			$row_vals[] = $value;
 		}
 		$class = '';
-		// var_dump($row_vals); wp_die('tot');
-		if ( $row_vals[ $countrow ] === '0' && $row_vals[ $countrow + 2 ] === '0' && $row_vals[ $countrow + 4 ] === '0' && $row_vals[ $countrow + 6 ] === '0' ) {
+		if ( $row_vals[3] === '0' ) {
 			if ( $alternate ) {
 				$alternate = false;
 				$class     = ' class="greenw04"';
@@ -83,28 +63,113 @@ function wimbblock_create_table( $table_name ) {
 			$class     = ' class="orangew02"';
 		}
 
-		$table  = '<tr' . $class . '>
-		<td style="text-align: center;">' . join( '</td><td style="text-align: center;">', $row_vals ) . '</td>';
+		$table  = '<tr' . $class . '><td class="center-text">' . join( '</td><td class="center-text">', $row_vals ) . '</td>';
+		$table .= '<td class="center-text"><input type="checkbox" name="' . $row_vals[0] . '" value="' . $row_vals[3] . '"/></td>';
 		$table .= '</tr>';
 		$rows[] = $table;
 	}
 
-	// Put the table together and output
-	return '<table border=1>' . $header . '<tbody>' . join( $rows ) . '</tbody></table>';
-}
+	$tablebegin = '<fieldset><legend><h3>' . __( 'Select to unblock / block', 'wimb-and-block' ) . ':</h3></legend>';
+	$tableend   = '</fieldset>';
 
+	// Put the table together and output
+	return $tablebegin . '<table border=1>' . $tablehdr . '<tbody>' . join( $rows ) . '</tbody></table>' . $tableend;
+}
 
 function wimbblock_selection_table() {
 	$wpdb_options = wimbblock_get_options_db();
 	$table_name   = $wpdb_options['table_name'];
 
-	wp_enqueue_style(
-		'wimbblock-css',
-		plugins_url( dirname( WIMB_BASENAME ) . '/admin/admin.css' ),
-		array(),
-		1
+	echo esc_html__( 'You can search for entries here.', 'wimb-and-block' ) . ' ';
+	printf(
+		/* translators: %1$s is "unknown" and %2$s is "simple software string". */
+		wp_kses_post( __( 'By default, all blocked entries with an empty or %1$s in the %2$s (software) are displayed.', 'wimb-and-block' ) ),
+		'"unknown"',
+		'<code>simple software string</code>'
 	);
 
-	$allowed_html = wp_kses_allowed_html( 'post' );
-	echo wp_kses( wimbblock_create_table( $table_name ), $allowed_html );
+	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
+	if ( current_user_can( 'manage_options' ) ) {
+		echo '<table class="form-table" role="presentation">';
+		echo '<tr><th scope="row">';
+		echo 'browser';
+		echo '</th><td>';
+		echo '<input type="text" size="15" name="browser" />';
+		echo '</td></tr>';
+		echo '<tr><th scope="row">';
+		echo 'software';
+		echo '</th><td>';
+		echo '<input type="text" size="15" name="software" />';
+		echo '</td></tr>';
+		echo '</table>';
+
+		wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
+		submit_button( __( 'Search', 'wimb-and-block' ), 'primary', 'search' );
+	}
+	echo '</form>';
+
+	$result = wimbblock_handle_form();
+
+	// var_dump($result); //wp_die();
+	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
+	if ( current_user_can( 'manage_options' ) ) {
+		// echo $text;
+		$allowed_html          = wp_kses_allowed_html( 'post' );
+		$allowed_html['input'] = array(
+			'type'  => array(),
+			'name'  => array(),
+			'value' => array(),
+		);
+		echo wp_kses( wimbblock_display_mgt_table( $table_name, $result ), $allowed_html );
+		wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
+		submit_button( __( 'Unblock / block selected entries', 'wimb-and-block' ), 'primary', 'changeblock' );
+	}
+	echo '</form>';
+}
+
+function wimbblock_handle_form() {
+	$text = '';
+	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock_mgt', 'wimbblock_mgt_nonce' ) ) {
+		if ( isset( $_POST['changeblock'] ) ) {
+			$entries = $_POST;
+			unset( $entries['wimbblock_mgt_nonce'] );
+			unset( $entries['_wp_http_referer'] );
+			unset( $entries['changeblock'] );
+
+			$options = wimbblock_get_options_db();
+			global $wimb_datatable;
+			if ( is_null( $wimb_datatable ) ) {
+				wimbblock_open_wpdb();
+			}
+			foreach ( $entries as $i => $block ) {
+				if ( $block === '0' ) {
+					// block the entry
+					$entries = $wimb_datatable->get_results(
+						$wimb_datatable->prepare(
+							'UPDATE %i SET time=time, block=1 WHERE i = %s',
+							$options['table_name'],
+							$i
+						),
+					);
+				} else {
+					// unblock the entry
+					$entries = $wimb_datatable->get_results(
+						$wimb_datatable->prepare(
+							"UPDATE %i SET time=time,software=IF(software LIKE '%unknown%' OR software='','*',software), block=0 WHERE i = %s",
+							$options['table_name'],
+							$i
+						),
+					);
+				}
+			}
+		}
+		if ( isset( $_POST['search'] ) ) {
+			$entries = $_POST;
+			unset( $entries['wimbblock_mgt_nonce'] );
+			unset( $entries['_wp_http_referer'] );
+			unset( $entries['search'] );
+			return $entries;
+		}
+	}
+	return $text;
 }
