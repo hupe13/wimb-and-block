@@ -1,38 +1,44 @@
-# Browser access control via WhatIsMyBrowser
+# Block old browser versions and suspicious browsers
 
 Contributors: hupe13   
-Tags: browser, agent, wimb   
+Tags: block browser, bad bots, blocking, security   
 Tested up to: 6.8   
 Stable tag: 251017   
 Requires at least: 6.5   
 Requires PHP: 8.3   
 License: GPLv2 or later   
 
-Detects the browser and checks whether it is up to date. Blocks old versions and suspicious browsers.
+The plugin detects old and suspicious browsers and denies them access to your website.
 
 ## Description
 
-Detects the browser and checks whether it is up to date. Blocks old versions and suspicious browsers.
+<p>The plugin uses WhatIsMyBrowser.com to get informations about the browser. It detects old and suspicious browsers and denies them access to your website.</p>
+
+<ul>
+
+<li>Get an API key from <a href="https://developers.whatismybrowser.com/api/">What is my browser?</a> for a Basic Application Plan.</li>
+
+<li>You have a limit of 5000 hits / month for Parsing User Agent. Thats why the plugin manages a database table.</li>
+
+<li>The user agent string of every browser accessing your website the first time is send to this service and some data will be stored in this table:
+
+<p><table border="1">
+ 	 <tr><td><code>browser</code></td>
+	 <td><code>simple software string</code></td>
+	 <td><code>operating system</code></td></tr></table></p><p><img src=".wordpress-org/good.jpg" alt="example entries" width="450"></p>Browsers will be blocked, if the browser and/or the system is an old one:<br>Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17<br>
+
+Old systems are all Windows versions before Windows 10, some MacOS and Android versions.<br>
+
+<p><img src=".wordpress-org/old.jpg" alt="example entries" width="450"></p>It will be blocked also if the "simple software string" contains "unknown" or is empty.
+
+<p><img src=".wordpress-org/suspect.jpg" alt="example entries" width="450"></p></li><li>You can configure other browsers too.</li>
+
+<li>Sometimes there are false positive, for example if the browser is from Mastodon. Then you can exclude these from checking.</li>
+
+<li>The plugin checks, if the crawlers are really from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.</li>
+
+</ul>
 
 ## Updates
 
 Please install [leafext-update-github](https://github.com/hupe13/leafext-update-github) to get updates and keep an eye on this repository in case I've made any mistakes.
-
-## Functions
-
-* There is a great tool: [What is my browser?](https://developers.whatismybrowser.com/api/). Get an API key for a Basic Application Plan.
-* You have a limit of 5000 hits / month for Parsing User Agent. Thats why the plugin manages a database table.
-* The user agent string of every browser accessing your website the first time is send to this service and some data will be stored in this table.
-* These data are: the user agent string, a simple software string and the operating system. For example:
-  - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
-  - Chrome 140 on Windows 10
-  - Windows 10
-* The browser will be blocked if an old browser version or operating system is detected.
-* Default: Chrome < 128, Edge < 128, Firefox < 128, Internet Explorer, Netscape (!), Opera < 83, Safari < 17
-* Old systems are all Windows versions before Windows 10.
-* Please inform me, if these defaults are not okay.
-* You can configure other agents too.
-* It will be blocked also if the "simple software string" contains "unknown" or is empty.
-* If it this is not right for a browser, you can exclude it from checking.
-* The plugin checks, if the crawlers are really from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.
-* There is still some work to be done on the plugin. But it is already working.
