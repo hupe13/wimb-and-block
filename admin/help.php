@@ -36,18 +36,18 @@ function wimbblock_help() {
 	 <td class="width85 center-text"><code>simple software string</code></td>
 	 <td class="width85 center-text"><code>operating system</code></td></tr></table></p>';
 	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/good.jpg" alt="example entries" width="450" ></p>';
-	$text .= __( 'Browsers will be blocked, if the browser and/or the system is an old one:', 'wimb-and-block' ) . '<br>';
+	$text .= '<p>' . __( 'Browsers will be blocked, if the browser and/or the system is an old one:', 'wimb-and-block' ) . '<br>';
 	$text .= __( 'Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17', 'wimb-and-block' ) . '<br>' . "\n\r";
-	$text .= __( 'Old systems are all Windows versions before Windows 10, some MacOS and Android versions.', 'wimb-and-block' ) . '<br>' . "\n\r";
+	$text .= __( 'Old systems are all Windows versions before Windows 10, some MacOS and Android versions.', 'wimb-and-block' ) . '</p>' . "\n\r";
 
 	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';
 
-	$text .= sprintf(
+	$text .= '<p>'.sprintf(
 	/* translators: %1$s is "simple software string", %2$s is "unknown" */
 		__( 'It will be blocked also if the %1$s contains %2$s or is empty.', 'wimb-and-block' ),
 		'"simple software string"',
 		'"unknown"'
-	) . "\n\r";
+	) . '</p>'."\n\r";
 	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/suspect.jpg" alt="example entries" width="450" ></p>';
 
 	$text .= '</li>';
