@@ -1,7 +1,7 @@
 # Block old browser versions and suspicious browsers
 
 Contributors: hupe13   
-Tags: block browser, bad bots, blocking, security   
+Tags: bad bots, ban, blocking, security, monitor   
 Tested up to: 6.8   
 Stable tag: 251029   
 Requires at least: 6.5   
