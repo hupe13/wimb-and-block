@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 06:05+0000\n"
+"POT-Creation-Date: 2025-10-29 09:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,6 +16,18 @@ msgstr ""
 "X-Loco-Version: 2.8.0; wp-6.8.3; php-8.3.25-nmm1\n"
 "X-Domain: wimb-and-block"
 
+#: admin/help.php:60
+msgid "About robots.txt"
+msgstr ""
+
+#: admin/robots.php:280
+msgid "Access is allowed - this is correct."
+msgstr ""
+
+#: admin/robots.php:286
+msgid "Access is forbidden - this is correct."
+msgstr ""
+
 #: admin/settings.php:38
 msgid ""
 "Access to the remote database seems to be working fine. Please resubmit the "
@@ -26,42 +38,67 @@ msgstr ""
 msgid "all entries"
 msgstr ""
 
-#: admin/blocking.php:14
+#: admin/always-block.php:14 admin/always-block.php:55
+msgid "Always block browsers with this strings"
+msgstr ""
+
+#: admin/versions.php:14
 msgid "Block browser versions smaller than"
 msgstr ""
 
 #. Name of the plugin
-msgid "Browser access control via WhatIsMyBrowser"
+#: admin.php:32
+msgid "Block old browser versions and suspicious browsers"
 msgstr ""
 
-#: admin/blocking.php:68
+#: admin/versions.php:68 admin/help.php:39
 msgid ""
 "Browsers will be blocked, if the browser and/or the system is an old one:"
 msgstr ""
 
-#. %1$s is "unknown" and %2$s is "simple software string".
-#: admin/mgt-table.php:92
+#. %1$s and %2$s is a link.
+#: admin/mgt-table.php:120
 #, php-format
 msgid ""
-"By default, all blocked entries with an empty or %1$s in the %2$s (software) "
-"are displayed."
+"By default, all entries are displayed, except those browsers from "
+"%1$sVersion Control%2$s."
 msgstr ""
 
 #: admin/display-table.php:30
 msgid "Change view"
 msgstr ""
 
-#. Description of the plugin
+#: admin/robots.php:247
+msgid "Crawling is allowed:"
+msgstr ""
+
+#: admin/robots.php:249
+msgid "Crawling is disabled:"
+msgstr ""
+
+#: admin/help.php:40
 msgid ""
-"Detects the browser and checks whether it is up to date. Blocks old versions "
-"and suspicious browsers."
+"Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, "
+"Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17"
+msgstr ""
+
+#: admin/robots.php:202
+msgid "Delete the rules"
+msgstr ""
+
+#: admin/help.php:11
+msgid "Description"
+msgstr ""
+
+#: admin/robots.php:118
+msgid "Edit .htaccess"
 msgstr ""
 
 #: admin/emergency.php:14
 msgid "Emergency - start / stop"
 msgstr ""
 
-#: admin.php:52
+#: admin.php:58
 msgid "Emergency button"
 msgstr ""
 
@@ -69,26 +106,41 @@ msgstr ""
 msgid "entries from the last 24 hours"
 msgstr ""
 
-#: admin.php:168
-msgid "Exclude these browsers"
+#: admin.php:193
+msgid "Exclude / always block"
 msgstr ""
 
 #: admin/exclude.php:14 admin/exclude.php:60
 msgid "Exclude these browsers from checking"
 msgstr ""
 
+#: admin/robots.php:50
+msgid "Form to handle the entry in .htaccess"
+msgstr ""
+
 #. %s is a link .
-#: admin/settings.php:111
+#: admin/settings.php:116
 #, php-format
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:155
+#. %1$s is What is my browser?. %2$s is Basic Application Plan
+#: admin/help.php:22
+#, php-format
+msgid "Get an API key from %1$s for a %2$s."
+msgstr ""
+
+#: admin.php:180
 msgid "Help"
 msgstr ""
 
-#: admin.php:27
+#: admin.php:33
 msgid "Help and Options"
+msgstr ""
+
+#: admin/settings.php:79
+msgid ""
+"However, this is not recommended, especially when you start using the plugin."
 msgstr ""
 
 #. URI of the plugin
@@ -104,22 +156,49 @@ msgstr ""
 msgid "If something does not work as expected, you can stop it here."
 msgstr ""
 
-#: admin/settings.php:84
+#: admin/settings.php:89
 msgid ""
 "If the database is local, it is automatically set to \"yes\". For remote "
 "databases, set it to \"yes\" on exactly one WP instance."
+msgstr ""
+
+#. is a host.
+#: admin/robots.php:124
+#, php-format
+msgid ""
+"If you do not want to use the form write in your .htaccess in the root "
+"directory of  %s"
 msgstr ""
 
 #: admin/emergency.php:39
 msgid "It is working."
 msgstr ""
 
+#. %1$s is "simple software string", %2$s is "unknown"
+#: admin/help.php:47
+#, php-format
+msgid "It will be blocked also if the %1$s contains %2$s or is empty."
+msgstr ""
+
 #: admin/settings.php:16
 msgid "Local WP database or remote database"
 msgstr ""
 
+#: admin/help.php:41
+msgid ""
+"Old systems are all Windows versions before Windows 10, some MacOS and "
+"Android versions."
+msgstr ""
+
 #: admin/settings.php:23
 msgid "Path of log file"
+msgstr ""
+
+#. %1$s and %2$s is a link.
+#: admin/robots.php:103
+#, php-format
+msgid ""
+"Please check, if you need some flags like %1$s or %2$s or other or nothing."
 msgstr ""
 
 #: admin/settings.php:21
@@ -138,35 +217,59 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:72 admin.php:101
+#: admin.php:78 admin.php:107
 msgid "Reset"
+msgstr ""
+
+#: admin.php:205
+msgid "robots.txt"
 msgstr ""
 
 #: admin/settings.php:22
 msgid "Rotate the table on this site"
 msgstr ""
 
-#: admin/mgt-table.php:113
+#: admin/mgt-table.php:158
 msgid "Search"
 msgstr ""
 
-#: admin/mgt-table.php:72
+#: admin/mgt-table.php:105
 msgid "Select to unblock / block"
 msgstr ""
 
-#: admin/settings.php:78
+#: admin/settings.php:80
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:74 wimb-and-block.php:82
+#: wimb-and-block.php:75 wimb-and-block.php:83
 msgid "Settings"
 msgstr ""
 
-#: admin.php:64 admin.php:160
+#: admin.php:70 admin.php:185
 msgid "Settings WIMB"
 msgstr ""
 
-#: admin/exclude.php:61
+#: admin/robots.php:262 admin/robots.php:292
+msgid "Something is going wrong."
+msgstr ""
+
+#: admin/robots.php:269
+msgid "Something is going wrong. Check your rewrite rules."
+msgstr ""
+
+#: admin/always-block.php:60
+msgid ""
+"Sometimes bad bots have a changing version number, so you can configure a "
+"string to always block them."
+msgstr ""
+
+#: admin/help.php:56
+msgid ""
+"Sometimes there are false positive, for example if the browser is from "
+"Mastodon. Then you can exclude these from checking."
+msgstr ""
+
+#: admin/exclude.php:65
 msgid ""
 "Sometimes there are false positive, for example if the browser is from "
 "Mastodon. Then you can exclude these."
@@ -176,10 +279,24 @@ msgstr ""
 msgid "STOP!"
 msgstr ""
 
+#: admin/robots.php:231
+msgid "Test"
+msgstr ""
+
+#: admin/robots.php:225
+msgid "Test your configuration"
+msgstr ""
+
 #: admin/settings.php:46
 msgid ""
 "The latter is recommended if you have multiple WordPress instances on the "
 "same server."
+msgstr ""
+
+#: admin/settings.php:78
+msgid ""
+"The logging is very verbose. If you have WP_DEBUG enabled, but don't want "
+"the plugin to log anything, set it to /dev/null."
 msgstr ""
 
 #: admin/emergency.php:55
@@ -188,29 +305,79 @@ msgid ""
 "configured and running."
 msgstr ""
 
-#: admin/blocking.php:59
+#: admin/robots.php:55
+msgid "The plugin can modify the .htaccess file."
+msgstr ""
+
+#: admin/robots.php:70
+msgid "The plugin cannot modify the .htaccess file because it is read-only."
+msgstr ""
+
+#: admin/robots.php:140
+msgid ""
+"The plugin cannot modify the .htaccess file in the server's root directory "
+"because the WordPress installation is located in a subdirectory."
+msgstr ""
+
+#: admin/help.php:57
+msgid ""
+"The plugin checks, if the crawlers are really from Google, Bing, Yandex, "
+"Apple, Mojeek, Baidu, Seznam."
+msgstr ""
+
+#. %s is a name of a website
+#: admin/help.php:15
+#, php-format
+msgid ""
+"The plugin uses %s to get informations about the browser. It detects old and "
+"suspicious browsers and denies them access to your website."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"The plugin uses the service of WhatIsMyBrowser.com to detect old and "
+"suspicious browsers and denies them access to your website."
+msgstr ""
+
+#: admin/help.php:32
+msgid ""
+"The user agent string of every browser accessing your website the first time "
+"is send to this service and some data will be stored in this table:"
+msgstr ""
+
+#: admin/versions.php:59
 msgid ""
 "The user agent string of every browser accessing your website the first time "
 "is send to WhatIsMyBrowser and some data will be stored in the table:"
 msgstr ""
 
-#: admin.php:50
+#: admin.php:56
 msgid "There is an error in your settings."
 msgstr ""
 
-#: admin/display-table.php:80
+#: admin/robots.php:197
+msgid ""
+"There is no WordPress function to delete the rules completely. This means "
+"that the comments remain."
+msgstr ""
+
+#: admin/display-table.php:79
 msgid "There was an error:"
 msgstr ""
 
-#: admin/mgt-table.php:132
+#: admin/robots.php:260
+msgid "This is the expected output."
+msgstr ""
+
+#: admin/mgt-table.php:179
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:79 admin.php:172
+#: admin.php:85 admin.php:197
 msgid "Versions Control"
 msgstr ""
 
-#: admin.php:15 admin.php:16 admin.php:26
+#: admin.php:15 admin.php:16
 msgid "WIMB and Block"
 msgstr ""
 
@@ -218,11 +385,11 @@ msgstr ""
 msgid "WIMB API Key"
 msgstr ""
 
-#: admin.php:108 admin.php:164
+#: admin.php:114 admin.php:189
 msgid "WIMB Table"
 msgstr ""
 
-#: admin.php:112 admin.php:176
+#: admin.php:118 admin.php:201
 msgid "WIMB Table Management"
 msgstr ""
 
@@ -230,14 +397,75 @@ msgstr ""
 msgid "WIMB table name"
 msgstr ""
 
+#: admin/robots.php:195
+msgid "Write .htaccess file"
+msgstr ""
+
 #. %1$s and %2$s is a link.
-#: admin.php:41 admin.php:86 admin.php:120
+#: admin/robots.php:94
+#, php-format
+msgid "Write in your .htaccess in the root directory of %s:"
+msgstr ""
+
+#. %1$s and %2$s is a link.
+#: admin.php:47 admin.php:92 admin.php:126
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""
 
-#: admin/mgt-table.php:89
+#: admin/help.php:54
+msgid "You can configure other browsers too."
+msgstr ""
+
+#: admin/robots.php:46 admin/help.php:62
+msgid ""
+"You can configure some rewrite rules, to provide a robots.txt to enable or "
+"to disable crawling for a browser. If crawling is disabled, access to your "
+"website will be blocked for that browser."
+msgstr ""
+
+#. %1$s and %2$s is a link.
+#: admin/robots.php:178
+#, php-format
+msgid "You can do it on %1$sthis site%2$s."
+msgstr ""
+
+#: admin/mgt-table.php:116
 msgid "You can search for entries here."
+msgstr ""
+
+#. %1$s, %2$s and %2$s are column names.
+#: admin/mgt-table.php:130
+#, php-format
+msgid "You can sort the columns %1$s, %2$s and %3$s."
+msgstr ""
+
+#: admin/mgt-table.php:125
+msgid "You can't unblock these either."
+msgstr ""
+
+#: admin/robots.php:40
+msgid ""
+"You do not seem to have your own robots.txt file, so WordPress provides it. "
+"Then you can test the configuration without any changes of the .htaccess."
+msgstr ""
+
+#. %s is 'Parsing User Agent'
+#: admin/help.php:28
+#, php-format
+msgid ""
+"You have a limit of 5000 hits / month for %s. Thats why the plugin manages a "
+"database table."
+msgstr ""
+
+#: admin/robots.php:158
+msgid "You must configure these settings on each of your domains!"
+msgstr ""
+
+#: admin/exclude.php:63 admin/versions.php:72 admin/always-block.php:58
+msgid ""
+"You must configure these settings on each of your websites that use this "
+"database!"
 msgstr ""
 
 #: admin/settings.php:44

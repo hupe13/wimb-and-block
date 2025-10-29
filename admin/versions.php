@@ -55,17 +55,21 @@ function wimbblock_browsers_validate( $params ) {
 }
 
 function wimbblock_browsers_help() {
-	$text  = '';
-	$text .= __(
+	$text    = '';
+	$text   .= __(
 		'The user agent string of every browser accessing your website the first time is send to WhatIsMyBrowser and some data will be stored in the table:',
 		'wimb-and-block'
 	);
-	$text .= '<p><table class="width450" border=1>
+	$text   .= '<p><table class="width450" border=1>
  	 <tr><td class="width280 center-text"><code>browser</code></td>
 	 <td class="width85 center-text"><code>simple software string</code></td>
 	 <td class="width85 center-text"><code>operating system</code></td></tr></table></p>';
-	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/good.jpg" alt="example entries" width="450" ></p>';
-	$text .= __( 'Browsers will be blocked, if the browser and/or the system is an old one:', 'wimb-and-block' );
-	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';
+	$text   .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/good.jpg" alt="example entries" width="450" ></p>';
+	$text   .= __( 'Browsers will be blocked, if the browser and/or the system is an old one:', 'wimb-and-block' );
+	$text   .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';
+	$options = wimbblock_get_options_db();
+	if ( $options['location'] === 'remote' ) {
+		$text .= '<p><div class="notice notice-info">' . __( 'You must configure these settings on each of your websites that use this database!', 'wimb-and-block' ) . '</div></p>';
+	}
 	return $text;
 }

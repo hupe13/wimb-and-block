@@ -29,7 +29,7 @@ function wimbblock_admin() {
 		array(),
 		1
 	);
-	echo '<h2>' . esc_html__( 'WIMB and Block', 'wimb-and-block' ) . '</h2>';
+	echo '<h2>' . esc_html__( 'Block old browser versions and suspicious browsers', 'wimb-and-block' ) . '</h2>';
 	echo '<h3>' . esc_html__( 'Help and Options', 'wimb-and-block' ) . '</h3>';
 
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -130,7 +130,7 @@ function wimbblock_admin() {
 			);
 			echo '</p>';
 		}
-		wimbblock_exlude_help();
+		wimbblock_exclude_help();
 		echo '<form method="post" action="options.php">';
 		settings_fields( 'wimbblock_exclude' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
@@ -142,11 +142,30 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
+
+		wimbblock_always_help();
+		echo '<form method="post" action="options.php">';
+		settings_fields( 'wimbblock_always' );
+		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
+		do_settings_sections( 'wimbblock_always' );
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				submit_button();
+				// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
+			}
+		}
+		echo '</form>';
+
+	} elseif ( $active_tab === 'robots' ) {
+		require_once __DIR__ . '/admin/robots.php';
+		wimbblock_robots_htaccess();
 	} else {
 		if ( function_exists( 'leafext_updates_from_github' ) ) {
 			leafext_updates_from_github();
 		}
-		require_once __DIR__ . '/admin/display-readme.php';
+		//require_once __DIR__ . '/admin/display-readme.php';
+		require_once __DIR__ . '/admin/help.php';
+		echo wp_kses_post( wimbblock_help() );
 	}
 	echo '</div>';
 }
@@ -171,7 +190,7 @@ function wimbblock_admin_tabs() {
 	);
 	$tabs[] = array(
 		'tab'   => 'exclude',
-		'title' => __( 'Exclude these browsers', 'wimb-and-block' ),
+		'title' => __( 'Exclude / always block', 'wimb-and-block' ),
 	);
 	$tabs[] = array(
 		'tab'   => 'blocking',
@@ -180,6 +199,10 @@ function wimbblock_admin_tabs() {
 	$tabs[] = array(
 		'tab'   => 'mgt',
 		'title' => __( 'WIMB Table Management', 'wimb-and-block' ),
+	);
+	$tabs[] = array(
+		'tab'   => 'robots',
+		'title' => __( 'robots.txt', 'wimb-and-block' ),
 	);
 
 	foreach ( $tabs as $tab ) {

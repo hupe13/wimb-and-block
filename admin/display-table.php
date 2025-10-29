@@ -40,11 +40,12 @@ function wimbblock_display_table( $table_name ) {
 	$tablehdr  = '<tr><th>&nbsp;</th>';
 	$tablehdr .= '<th colspan=4>Browser Software</th>';
 	$tablehdr .= '<th colspan=3>Time</th>';
+	$tablehdr .= '<th colspan=1>&nbsp;</th>';
 	$tablehdr .= '<th colspan=2>this month</th>';
 	$tablehdr .= '<th colspan=2>month before</th>';
 	$tablehdr .= '<th colspan=2>2 months before</th>';
 	$tablehdr .= '<th colspan=2>3 months before</th></tr>';
-	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>yymm</th><th>wimbdate</th>';
+	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>yymm</th><th>wimbdate</th><th>robots</th>';
 	for ( $i = 1; $i <= 4; $i++ ) {
 		$tablehdr .= '<th>count</th><th>blocked</th>';
 	}
@@ -81,21 +82,45 @@ function wimbblock_display_table( $table_name ) {
 	// Make the data rows
 	$rows      = array();
 	$alternate = true;
-	$countrow  = 9;
-	foreach ( $entries as $row ) {
-		$row_vals = array();
-		foreach ( $row as $key => $value ) {
-			$row_vals[] = $value;
-		}
+
+	foreach ( $entries as $entry ) {
+		$line = array();
+
+		$line[] = $entry['i'];
+		$line[] = $entry['browser'];
+		$line[] = $entry['software'];
+		$line[] = $entry['system'];
+		$line[] = $entry['version'];
+		$line[] = $entry['time'];
+		$line[] = $entry['yymm'];
+		$line[] = $entry['wimbdate'];
+		$line[] = $entry['robots'];
+		$line[] = $entry['count'];
+		$line[] = $entry['block'];
+		$line[] = $entry['count_1'];
+		$line[] = $entry['block_1'];
+		$line[] = $entry['count_2'];
+		$line[] = $entry['block_2'];
+		$line[] = $entry['count_3'];
+		$line[] = $entry['block_3'];
+
 		$class = '';
 		// var_dump($row_vals); wp_die('tot');
-		if ( $row_vals[ $countrow ] === '0' && $row_vals[ $countrow + 2 ] === '0' && $row_vals[ $countrow + 4 ] === '0' && $row_vals[ $countrow + 6 ] === '0' ) {
+		if ( $entry['block'] === '0' && $entry['block_1'] === '0' && $entry['block_2'] === '0' && $entry['block_3'] === '0' ) {
 			if ( $alternate ) {
 				$alternate = false;
 				$class     = ' class="greenw04"';
 			} else {
 				$alternate = true;
 				$class     = ' class="greenw02"';
+			}
+		} elseif ( $entry['robots'] > 0 && ( $entry['block'] > 1 || $entry['block_1'] > 1 || $entry['block_2'] > 1 || $entry['block_3'] > 1 ) ) {
+			if ( $alternate ) {
+				$alternate = false;
+				$class     = ' class="red04"';
+			} else {
+				$alternate = true;
+				$class     = ' class="red02"';
 			}
 		} elseif ( $alternate ) {
 				$alternate = false;
@@ -106,7 +131,7 @@ function wimbblock_display_table( $table_name ) {
 		}
 
 		$table  = '<tr' . $class . '>
-		<td class="center-text">' . join( '</td><td class="center-text">', $row_vals ) . '</td>';
+		<td class="center-text">' . join( '</td><td class="center-text">', $line ) . '</td>';
 		$table .= '</tr>';
 		$rows[] = $table;
 	}

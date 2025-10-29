@@ -75,10 +75,15 @@ function wimbblock_form( $field ) {
 				$setting = 'WP_DEBUG is false.';
 			}
 		}
+		echo wp_kses_post( __( "The logging is very verbose. If you have WP_DEBUG enabled, but don't want the plugin to log anything, set it to /dev/null.", 'wimb-and-block' ) );
+		echo ' ' . wp_kses_post( __( 'However, this is not recommended, especially when you start using the plugin.', 'wimb-and-block' ) );
 		echo '<p><b>' . esc_html( __( 'Setting:', 'wimb-and-block' ) ) . '</b> ' . esc_html( $setting ) . '</p>';
 		echo '<input type="text" size="80" name="wimbblock_settings[logfile]" ';
-		echo 'placeholder="/path/to/logfile" />';
-
+		if ( $setting === $options['logfile'] ) {
+			echo 'value="' . esc_html( $setting ) . '" />';
+		} else {
+			echo 'placeholder="/path/to/logfile" />';
+		}
 	} elseif ( $field === 'rotate' ) {
 		echo '<p>';
 		esc_html_e( 'If the database is local, it is automatically set to "yes". For remote databases, set it to "yes" on exactly one WP instance.', 'wimb-and-block' );

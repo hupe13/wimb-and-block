@@ -1,9 +1,9 @@
 .greenw02 {background-color:rgb(31 120 50/0.3)}
 .greenw04{background-color:rgb(31 120 50/0.2)}
-/* .green02{background-color:rgb(248 46 48/0.3)}
-.green04{background-color:rgb(248 46 48/0.2)} */
 .orangew02{background-color:rgb(255 165 0/0.3)}
 .orangew04{background-color:rgb(255 165 0/0.2)}
+.red02{background-color:rgb(248 46 48/0.3)}
+.red04{background-color:rgb(248 46 48/0.2)}
 
 .wp-block-quote {
 	border-left: 0.25em solid currentColor;
@@ -31,4 +31,14 @@ li {
 }
 .maxwidth1000 {
 	max-width: 1000px;
+}
+
+#click {
+	cursor: pointer;
+}
+table > thead > tr > th[data-sort=asc] {
+	background-color: #dcdcde;
+}
+table > thead > tr > th[data-sort=desc] {
+	background-color: #dcdcde;
 }

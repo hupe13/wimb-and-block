@@ -1,13 +1,14 @@
 <?php
 /**
- * Plugin Name:       Browser access control via WhatIsMyBrowser
+ * Plugin Name:       Block old browser versions and suspicious browsers
  * Plugin URI:        https://leafext.de/hp/
- * Description:       Detects the browser and checks whether it is up to date. Blocks old versions and suspicious browsers.
+ * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website.
  * Update URI:        https://github.com/hupe13/wimb-and-block
- * Version:           251017
+ * Version:           251029
  * Requires PHP:      8.3
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
+ * Network:           true
  * License:           GPL v2 or later
  *
  * @package wimb-and-block
@@ -26,17 +27,18 @@ require __DIR__ . '/php/dbdelta.php';
 require __DIR__ . '/php/wimb.php';
 require __DIR__ . '/php/old-agents.php';
 require __DIR__ . '/php/faked-crawlers.php';
+require __DIR__ . '/php/robots.php';
+require __DIR__ . '/php/always-block.php';
 require __DIR__ . '/github-wimb-and-block.php';
 
 if ( is_admin() ) {
 	require_once __DIR__ . '/admin.php';
 	require_once __DIR__ . '/admin/settings.php';
-	require_once __DIR__ . '/admin/blocking.php';
+	require_once __DIR__ . '/admin/versions.php';
 	require_once __DIR__ . '/admin/mgt-table.php';
 	require_once __DIR__ . '/admin/emergency.php';
-	// require_once __DIR__ . '/admin/main-blocking.php';
-	// require_once __DIR__ . '/admin/block-unknown-empty.php';
 	require_once __DIR__ . '/admin/exclude.php';
+	require_once __DIR__ . '/admin/always-block.php';
 }
 
 // Set the initial version of the database schema
@@ -47,22 +49,21 @@ register_activation_hook( __FILE__, 'wimbblock_activate' );
 
 function wimbblock_update() {
 	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
-		$current_version = get_option( 'wimbblock_db_version', '251000' );
-		$new_version     = '251014'; // Update this to your new version
-		if ( version_compare( $current_version, $new_version, '<' ) ) {
-			$options = wimbblock_get_options_db();
-			wimbblock_table_install( $options['table_name'] ); // Call the migration function
-			update_option( 'wimbblock_db_version', $new_version ); // Update the version
+		$options = wimbblock_get_options_db();
+		if ( $options['error'] === '0' ) {
+			$current_version = get_option( 'wimbblock_db_version', '251000' );
+			$new_version     = '251020'; // Update this to your new version
+			if ( version_compare( $current_version, $new_version, '<' ) ) {
+				$options = wimbblock_get_options_db();
+				wimbblock_table_install( $options['table_name'] ); // Call the migration function
+				update_option( 'wimbblock_db_version', $new_version ); // Update the version
+			}
 		}
 	}
 }
 add_action( 'plugins_loaded', 'wimbblock_update' );
 
-if (
-	( is_multisite() && is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ||
-	( is_multisite() && ! is_plugin_active_for_network( WIMB_BASENAME ) ) ||
-	! is_multisite()
-) {
+if ( is_main_site() ) {
 	$wimbblock_options = wimbblock_get_options_db();
 	if ( $wimbblock_options['rotate'] === 'yes' ) {
 		require __DIR__ . '/php/cron.php';
@@ -104,7 +105,7 @@ function wimbblock_check_agent() {
 	$excludes = wimbblock_get_option( 'wimbblock_exclude' );
 	if ( $excludes !== false ) {
 		foreach ( $excludes as $exclude ) {
-			if ( strpos( $agent, $exclude ) !== false ) {
+			if ( stripos( $agent, $exclude ) !== false ) {
 				wimbblock_error_log( 'Excluded: ' . $agent . ' * ' . $exclude );
 				return;
 			}
@@ -112,36 +113,48 @@ function wimbblock_check_agent() {
 	}
 
 	$wpdb_options = wimbblock_get_options_db();
-	// var_dump($wpdb_options); wp_die('tot');
-	$table_name = $wpdb_options['table_name'];
+	$table_name   = $wpdb_options['table_name'];
 
 	if (
-	! is_admin()
-	&& $wpdb_options['error'] === '0'
-	&& $wpdb_options['wimb_api'] !== ''
-	&& $ip !== '127.0.0.1'
-	&& $ip !== false
-	&& $user_login === ''
-	&& $agent !== ''
-	&& strpos( $agent, 'WordPress' ) === false
-	&& strpos( $agent, 'WP-URLDetails' ) === false
-	&& strpos( $agent, 'cronBROWSE' ) === false
-	&& strpos( $agent, get_site_url() ) === false
-	&& strpos( $file, 'robots.txt' ) === false
-	&& strpos( $file, 'robots-check' ) === false
-	&& ! is_404()
+		! is_admin()
+		&& $user_login === ''
+		&& $wpdb_options['error'] === '0'
+		&& $wpdb_options['wimb_api'] !== ''
+		&& $ip !== '127.0.0.1'
+		&& $ip !== false
+		&& strpos( $agent, 'WordPress' ) === false
+		&& strpos( $agent, 'WP-URLDetails' ) === false
+		&& strpos( $agent, 'cronBROWSE' ) === false
+		&& strpos( $agent, get_site_url() ) === false
+		&& strpos( $file, 'robots.txt' ) === false
+		&& strpos( $file, 'robots-check' ) === false
+		&& ! is_404()
 	) {
 		global $wimb_datatable;
 		if ( is_null( $wimb_datatable ) ) {
 			wimbblock_open_wpdb();
 		}
+		if ( $agent === '' ) {
+			wimbblock_error_log( 'no agent - blocked: ' . $ip );
+			status_header( 404 );
+			echo 'You have been blocked.';
+			exit();
+		}
 		list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
-		wimbblock_old_system( $table_name, $system, $id );
-		wimbblock_faked_crawler( $agent, $software, $ip );
+		if ( (int) $blocked > 0 ) {
+			wimbblock_counter( $table_name, 'block', $id );
+			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ) );
+			status_header( 404 );
+			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );
+			exit();
+		}
+		wimbblock_always( $table_name, $agent, $blocked, $id, false );
+		wimbblock_old_system( $table_name, $system, $blocked, $id, false );
+		wimbblock_faked_crawler( $agent, $software, $ip, false );
 		if ( $is_crawler === false ) {
-			wimbblock_unknown_agent( $table_name, $agent, $software, $id );
+			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
 			if ( $software !== '' ) {
-				wimbblock_check_modern_browser( $table_name, $software, $version, $system, $id );
+				wimbblock_check_modern_browser( $table_name, $software, $version, $system, $blocked, $id, false );
 			}
 		}
 		wimbblock_counter( $table_name, 'count', $id );

@@ -45,9 +45,6 @@ function wimbblock_get_default_browsers() {
 	$defaults = array(
 		// https://en.wikipedia.org/wiki/Google_Chrome#Platforms
 		'Chrome'            => 128,
-		// https://en.wikipedia.org/wiki/Microsoft_Edge#New_Edge_release_history
-		// https://www.cvedetails.com/version-list/26/32367/1/Microsoft-Edge.html?order=0
-		'Edge'              => 128,
 		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_Mozilla_Firefox
 		'Firefox'           => 128,
 		'Internet Explorer' => 9999,
@@ -93,4 +90,9 @@ function wimbblock_get_all_browsers() {
 function wimbblock_get_exclude() {
 	$wimbblock_exclude = wimbblock_get_option( 'wimbblock_exclude' );
 	return $wimbblock_exclude;
+}
+
+function wimbblock_get_always() {
+	$wimbblock_always = wimbblock_get_option( 'wimbblock_always' );
+	return $wimbblock_always;
 }

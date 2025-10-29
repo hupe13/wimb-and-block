@@ -23,13 +23,14 @@ function wimbblock_rotate_table() {
 				'count_2=count_1, block_2=block_1, ' .
 				'count_1=count, block_1=block, ' .
 				'count=0, block=IF(block > 0, 1, 0), ' .
+				'robots=IF(robots > 0, 1, 0), ' .
 				'yymm=%s WHERE yymm=%s',
 			$wpdb_options['table_name'],
 			$yymm,
 			$yymm_last
 		)
 	);
-		wimbblock_error_log( 'Rotated - wimbblock_rotate_table' );
+	wimbblock_error_log( 'Rotated - wimbblock_rotate_table' );
 }
 add_action( 'wimbblock_rotate_hook', 'wimbblock_rotate_table' );
 

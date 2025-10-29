@@ -29,6 +29,7 @@ function wimbblock_table_install( $table_name ) {
 		wimbdate char(6) NOT NULL DEFAULT date_format(current_timestamp(),'%y%m%d'),
 		count int(11) NOT NULL DEFAULT 0,
 		block int(11) NOT NULL DEFAULT 0,
+		robots int(11) NOT NULL DEFAULT 0,
 		count_1 int(11) NOT NULL DEFAULT 0,
 		block_1 int(11) NOT NULL DEFAULT 0,
 		count_2 int(11) NOT NULL DEFAULT 0,
@@ -89,6 +90,9 @@ function wimbblock_error_log( $reason ) {
 		$options = wimbblock_get_options_db();
 		if ( isset( $options['logfile'] ) && $options['logfile'] !== '' && $options['logfile'] !== false ) {
 			$logfile = $options['logfile'];
+			if ( $logfile === '/dev/null' ) {
+				$logfile = '';
+			}
 		} elseif ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {
 			$logfile = WP_CONTENT_DIR . '/wp-content/debug.log';
 		} elseif ( true === WP_DEBUG ) {
@@ -97,9 +101,6 @@ function wimbblock_error_log( $reason ) {
 			$logfile = '';
 		}
 		set_transient( 'wimbblock_logfile', $logfile, DAY_IN_SECONDS );
-		if ( $logfile !== '' ) {
-			wimbblock_error_log( 'set transients logfile - ' . $logfile );
-		}
 	}
 
 	if ( $logfile !== '' ) {
