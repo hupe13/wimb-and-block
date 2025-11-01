@@ -8,11 +8,11 @@ Requires at least: 6.5
 Requires PHP: 8.3   
 License: GPLv2 or later   
 
-The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website.
+The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
 
 ## Description
 
-<p>The plugin uses WhatIsMyBrowser.com to get informations about the browser. It detects old and suspicious browsers and denies them access to your website.</p>
+<p>The plugin uses WhatIsMyBrowser.com to get informations about the browser. It detects old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.</p>
 <ul>
 <li>Get an API key from <a href="https://developers.whatismybrowser.com/api/">What is my browser?</a> for a Basic Application Plan.</li>
 <li>You have a limit of 5000 hits / month for Parsing User Agent. Thats why the plugin manages a database table.</li>
