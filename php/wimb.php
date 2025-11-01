@@ -87,7 +87,7 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 
 		wimbblock_error_log( 'Inserted agent: ' . $agent . ' * ' . $mgt_code . ' * ' . $wimb_datatable->insert_id );
 
-		$blocked = 0;
+		$blocked = '0';
 		$id      = $wimb_datatable->insert_id;
 
 	} else {

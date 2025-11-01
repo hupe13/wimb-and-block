@@ -159,26 +159,28 @@ function wimbblock_selection_table() {
 	}
 	echo '</form>';
 
-	$result = wimbblock_handle_form();
+	if ( $wpdb_options['error'] === '0' ) {
+		$result = wimbblock_handle_form();
 
-	// var_dump($result); //wp_die();
-	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
-	if ( current_user_can( 'manage_options' ) ) {
-		$allowed_html          = wp_kses_allowed_html( 'post' );
-		$allowed_html['input'] = array(
-			'type'  => array(),
-			'name'  => array(),
-			'value' => array(),
-		);
-		$allowed_html['th']    = array(
-			'onclick' => array(),
-			'id'      => array(),
-		);
-		echo wp_kses( wimbblock_display_mgt_table( $table_name, $result ), $allowed_html );
-		wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
-		submit_button( __( 'Unblock / block selected entries', 'wimb-and-block' ), 'primary', 'changeblock' );
+		// var_dump($result); //wp_die();
+		echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
+		if ( current_user_can( 'manage_options' ) ) {
+			$allowed_html          = wp_kses_allowed_html( 'post' );
+			$allowed_html['input'] = array(
+				'type'  => array(),
+				'name'  => array(),
+				'value' => array(),
+			);
+			$allowed_html['th']    = array(
+				'onclick' => array(),
+				'id'      => array(),
+			);
+			echo wp_kses( wimbblock_display_mgt_table( $table_name, $result ), $allowed_html );
+			wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
+			submit_button( __( 'Unblock / block selected entries', 'wimb-and-block' ), 'primary', 'changeblock' );
+		}
+		echo '</form>';
 	}
-	echo '</form>';
 }
 
 function wimbblock_handle_form() {

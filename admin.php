@@ -67,6 +67,14 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
+		echo '<form method="post" action="options.php">';
+		settings_fields( 'wimbblock_settings_deleting' );
+		do_settings_sections( 'wimbblock_settings_deleting' );
+		if ( current_user_can( 'manage_options' ) ) {
+			wp_nonce_field( 'wimbblock_deleting', 'wimbblock_deleting_nonce' );
+			submit_button();
+		}
+		echo '</form>';
 		echo '<h3>' . esc_html( __( 'Settings WIMB', 'wimb-and-block' ) ) . '</h3>';
 		echo '<form method="post" action="options.php">';
 		settings_fields( 'wimbblock_settings' );

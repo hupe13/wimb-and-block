@@ -68,15 +68,26 @@ function wimbblock_form( $field ) {
 		} else {
 			$value = '';
 			if ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {
-				$setting = 'WP_CONTENT_DIR/wp-content/debug.log';
-			} elseif ( true === WP_DEBUG ) {
-				$setting = WP_DEBUG_LOG . ' (WP_DEBUG_LOG)';
+				$setting = 'WP_CONTENT_DIR/debug.log';
+			} elseif ( true === WP_DEBUG && WP_DEBUG_LOG !== false ) {
+				global $wp_filesystem;
+				if ( ! function_exists( 'WP_Filesystem' ) ) {
+					require_once ABSPATH . 'wp-admin/includes/file.php';
+				}
+				WP_Filesystem();
+				if ( $wp_filesystem->exists( WP_DEBUG_LOG ) && $wp_filesystem->is_writable( WP_DEBUG_LOG ) ) {
+					$setting = WP_DEBUG_LOG;
+				} else {
+					$setting = '';
+				}
 			} else {
 				$setting = 'WP_DEBUG is false.';
 			}
 		}
-		echo wp_kses_post( __( "The logging is very verbose. If you have WP_DEBUG enabled, but don't want the plugin to log anything, set it to /dev/null.", 'wimb-and-block' ) );
-		echo ' ' . wp_kses_post( __( 'However, this is not recommended, especially when you start using the plugin.', 'wimb-and-block' ) );
+
+		echo wp_kses_post( __( "The logging is very verbose. If you have WP_DEBUG set to true, but don't want the plugin to log anything, set it to /dev/null.", 'wimb-and-block' ) );
+		// echo ' ' . wp_kses_post( __( 'However, this is not recommended, especially when you start using the plugin.', 'wimb-and-block' ) );
+		echo '<br>' . wp_kses_post( __( 'You should make sure that the log file does not become too large. It is best to set up a cron job that rotates the log file every day.', 'wimb-and-block' ) );
 		echo '<p><b>' . esc_html( __( 'Setting:', 'wimb-and-block' ) ) . '</b> ' . esc_html( $setting ) . '</p>';
 		echo '<input type="text" size="80" name="wimbblock_settings[logfile]" ';
 		if ( $setting === $options['logfile'] ) {
@@ -130,17 +141,15 @@ function wimbblock_validate( $options ) {
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock', 'wimbblock_nonce' ) ) {
 		// wimbblock_error_log( 'Sanitize and validate' );
 		if ( isset( $_POST['submit'] ) ) {
-
+			delete_transient( 'wimbblock_logfile' );
 			if ( $options['error'] === '1' ) {
 				$options['error'] = '3';
 			}
-
 			if ( $options['logfile'] !== '' ) {
 				if ( ! file_exists( dirname( $options['logfile'] ) ) ) {
 					$options['logfile'] = '';
 				}
 			}
-			delete_transient( 'wimbblock_logfile' );
 
 			if ( $options['wimb_api'] === '' ) {
 				add_settings_error(

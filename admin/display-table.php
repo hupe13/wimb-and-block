@@ -10,6 +10,9 @@ defined( 'ABSPATH' ) || die();
 
 function wimbblock_display_table( $table_name ) {
 
+	require_once __DIR__ . '/statistics-all.php';
+	require_once __DIR__ . '/statistics24.php';
+
 	$all_rows = filter_input(
 		INPUT_GET,
 		'all_rows',
@@ -143,14 +146,16 @@ function wimbblock_display_table( $table_name ) {
 function wimbblock_mgt_table() {
 	$wpdb_options = wimbblock_get_options_db();
 	$table_name   = $wpdb_options['table_name'];
+	if ( $wpdb_options['error'] === '0' ) {
 
-	wp_enqueue_style(
-		'wimbblock-css',
-		plugins_url( dirname( WIMB_BASENAME ) . '/admin/admin.css' ),
-		array(),
-		1
-	);
+		wp_enqueue_style(
+			'wimbblock-css',
+			plugins_url( dirname( WIMB_BASENAME ) . '/admin/admin.css' ),
+			array(),
+			1
+		);
 
-	$allowed_html = wp_kses_allowed_html( 'post' );
-	echo wp_kses( wimbblock_display_table( $table_name ), $allowed_html );
+		$allowed_html = wp_kses_allowed_html( 'post' );
+		echo wp_kses( wimbblock_display_table( $table_name ), $allowed_html );
+	}
 }

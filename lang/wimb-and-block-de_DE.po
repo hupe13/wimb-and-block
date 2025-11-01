@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-14 14:41+0000\n"
-"PO-Revision-Date: 2025-10-29 09:06+0000\n"
+"PO-Revision-Date: 2025-11-01 18:30+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -14,6 +14,45 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.8.0; wp-6.8.3; php-8.3.25-nmm1\n"
 "X-Domain: wimb-and-block"
+
+#. translators:%s are numbers
+#: admin/statistics24.php:98
+#, php-format
+msgid ""
+"%1$s browsers accessed the website(s) for the first time, of which %2$s were "
+"blocked."
+msgstr ""
+"%1$s Browser haben zum ersten Mal auf die Website(s) zugegriffen, davon "
+"wurden %2$s geblockt."
+
+#. translators:%s are numbers
+#: admin/statistics24.php:107
+#, php-format
+msgid ""
+"%s browsers accessed robots.txt at some point, so not necessarily within the "
+"last 24 hours."
+msgstr ""
+"%s Browser haben irgendwann mal auf robots.txt zugegriffen, also nicht "
+"unbedingt innerhalb der letzten 24 Stunden."
+
+#. translators:%s are numbers
+#: admin/statistics-all.php:68
+#, php-format
+msgid "%s browsers accessed robots.txt."
+msgstr "%s Browser haben auf robots.txt zugegriffen."
+
+#. translators:%s are numbers
+#: admin/statistics24.php:115
+#, php-format
+msgid "%s did not respect robots.txt within the last 24 hours."
+msgstr ""
+"%s haben die robots.txt innerhalb der letzten 24 Stunden nicht respektiert."
+
+#. translators:%s are numbers
+#: admin/statistics-all.php:76
+#, php-format
+msgid "%s did not respect robots.txt."
+msgstr "%s haben die robots.txt nicht respektiert."
 
 #: admin/help.php:60
 msgid "About robots.txt"
@@ -35,7 +74,7 @@ msgstr ""
 "Der Zugriff zur entfernten Datenbank scheint in Ordnung zu sein, bitte sende "
 "das Formular erneut ab."
 
-#: admin/display-table.php:28
+#: admin/display-table.php:31
 msgid "all entries"
 msgstr "alle Einträge"
 
@@ -69,7 +108,7 @@ msgstr ""
 "Standardmäßig werden alle Einträge angezeigt, mit Ausnahme der Browser aus "
 "der %1$sVersionskontrolle%2$s."
 
-#: admin/display-table.php:30
+#: admin/display-table.php:33
 msgid "Change view"
 msgstr "Wechsle die Ansicht"
 
@@ -88,6 +127,10 @@ msgid ""
 msgstr ""
 "Standard: Chrome und Chrome basierte Browser &lt; 128, Firefox &lt; 128, "
 "Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17"
+
+#: admin/deleting.php:14
+msgid "Delete all plugin settings when deleting the plugin?"
+msgstr "Alle Einstellungen des Plugins beim Löschen des Plugins löschen?"
 
 #: admin/robots.php:202
 msgid "Delete the rules"
@@ -109,11 +152,11 @@ msgstr "Notfall - Start / Stopp"
 msgid "Emergency button"
 msgstr "Notschalter"
 
-#: admin/display-table.php:25
+#: admin/display-table.php:28
 msgid "entries from the last 24 hours"
 msgstr "Einträge der letzten 24 Stunden"
 
-#: admin.php:193
+#: admin.php:201
 msgid "Exclude / always block"
 msgstr "Ausschließen / immer blocken"
 
@@ -126,7 +169,7 @@ msgid "Form to handle the entry in .htaccess"
 msgstr "Formular zur Bearbeitung des Eintrags in .htaccess"
 
 #. %s is a link .
-#: admin/settings.php:116
+#: admin/settings.php:127
 #, php-format
 msgid "Get an API key for a %s."
 msgstr "Hol dir einen API-Schlüssel für einen %s."
@@ -138,23 +181,13 @@ msgstr "Hol dir einen API-Schlüssel für einen %s."
 msgid "Get an API key from %1$s for a %2$s."
 msgstr "Hol dir einen API-Schlüssel von %1$s für einen %2$s."
 
-#: admin.php:180
+#: admin.php:188
 msgid "Help"
 msgstr "Hilfe"
 
 #: admin.php:33
 msgid "Help and Options"
 msgstr "Hilfe und Optionen"
-
-#: admin/settings.php:79
-#| msgid ""
-#| "However, this is not recommended, especially when you start using the "
-#| "plugin. "
-msgid ""
-"However, this is not recommended, especially when you start using the plugin."
-msgstr ""
-"Dies ist jedoch nicht empfehlenswert, insbesondere wenn du gerade erst "
-"beginnst, das Plugin zu verwenden."
 
 #. URI of the plugin
 #. Author URI of the plugin
@@ -170,13 +203,17 @@ msgid "If something does not work as expected, you can stop it here."
 msgstr ""
 "Wenn irgendwas nicht wie erwartet funktioniert, kannst du es hier stoppen."
 
-#: admin/settings.php:89
+#: admin/settings.php:100
 msgid ""
 "If the database is local, it is automatically set to \"yes\". For remote "
 "databases, set it to \"yes\" on exactly one WP instance."
 msgstr ""
 "Wenn die Datenbank lokal ist, wird es automatisch auf „ja“ gesetzt. Ist es "
 "eine entfernte Datenbank, setze es auf genau einer WP-Instanz auf „ja“."
+
+#: admin/deleting.php:28
+msgid "If the database is local, the table will also be deleted."
+msgstr "Wenn die Datenbank lokal ist, wird auch die Tabelle gelöscht."
 
 #. is a host.
 #: admin/robots.php:124
@@ -187,6 +224,19 @@ msgid ""
 msgstr ""
 "Wenn du das Formular nicht verwenden möchtest, schreibe in die .htaccess im "
 "Stammverzeichnis von %s"
+
+#. translators:%s are numbers
+#: admin/statistics24.php:89
+#, php-format
+#| msgid ""
+#| "In the last 24 hours, there were %1$s different browsers, of which %2$s "
+#| "were blocked and %3$s not."
+msgid ""
+"In the last 24 hours, there were %1$s different browsers, of which %2$s were "
+"blocked."
+msgstr ""
+"In den letzten 24 Stunden gab es %1$s verschiedene Browser, von denen %2$s "
+"geblockt wurden."
 
 #: admin/emergency.php:39
 msgid "It is working."
@@ -201,6 +251,10 @@ msgstr "Er wird ebenfalls geblockt, wenn %1$s %2$s enthält oder leer ist."
 #: admin/settings.php:16
 msgid "Local WP database or remote database"
 msgstr "Lokale WP-Datenbank oder entfernte Datenbank "
+
+#: admin/deleting.php:34
+msgid "no"
+msgstr "nein"
 
 #: admin/help.php:41
 msgid ""
@@ -239,11 +293,11 @@ msgstr "Passwort der entfernten Datenbank"
 msgid "Remote database username"
 msgstr "Benutzername der entfernten Datenbank"
 
-#: admin.php:78 admin.php:107
+#: admin.php:86 admin.php:115
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:205
+#: admin.php:213
 msgid "robots.txt"
 msgstr "robots.txt"
 
@@ -259,15 +313,15 @@ msgstr "Suche"
 msgid "Select to unblock / block"
 msgstr "Zum Entsperren / Sperren auswählen"
 
-#: admin/settings.php:80
+#: admin/settings.php:91
 msgid "Setting:"
 msgstr "Einstellung:"
 
-#: wimb-and-block.php:75 wimb-and-block.php:83
+#: wimb-and-block.php:76 wimb-and-block.php:84
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin.php:70 admin.php:185
+#: admin.php:78 admin.php:193
 msgid "Settings WIMB"
 msgstr "Einstellungen für WIMB"
 
@@ -324,13 +378,16 @@ msgstr ""
 "Letzteres wird empfohlen, wenn du mehrere WordPress-Instanzen auf demselben "
 "Server hast."
 
-#: admin/settings.php:78
+#: admin/settings.php:88
+#| msgid ""
+#| "The logging is very verbose. If you have WP_DEBUG enabled, but don't want "
+#| "the plugin to log anything, set it to /dev/null."
 msgid ""
-"The logging is very verbose. If you have WP_DEBUG enabled, but don't want "
-"the plugin to log anything, set it to /dev/null."
+"The logging is very verbose. If you have WP_DEBUG set to true, but don't "
+"want the plugin to log anything, set it to /dev/null."
 msgstr ""
-"Das Logging ist sehr ausführlich. Wenn du WP_DEBUG aktiviert hast, aber "
-"nicht möchtest, dass das Plugin etwas loggt, setze es auf /dev/null."
+"Das Logging ist sehr ausführlich. Wenn du WP_DEBUG auf true gesetzt hast, "
+"aber nicht möchtest, dass das Plugin etwas loggt, setze es auf /dev/null."
 
 #: admin/emergency.php:55
 msgid ""
@@ -422,19 +479,25 @@ msgstr ""
 "Es gibt keine WordPress-Funktion, um die Regeln vollständig zu löschen. Das "
 "bedeutet, dass die Kommentare erhalten bleiben."
 
-#: admin/display-table.php:79
+#: admin/display-table.php:82
 msgid "There was an error:"
 msgstr "Es gab einen Fehler:"
+
+#. translators:%s are numbers
+#: admin/statistics-all.php:59
+#, php-format
+msgid "There were %1$s different browsers, of which %2$s were blocked."
+msgstr "Es gibt %1$s verschiedene Browser, von denen %2$s geblockt wurden."
 
 #: admin/robots.php:260
 msgid "This is the expected output."
 msgstr "Das ist die erwartete Ausgabe."
 
-#: admin/mgt-table.php:179
+#: admin/mgt-table.php:180
 msgid "Unblock / block selected entries"
 msgstr "Ausgewählte Einträge entsperren / sperren"
 
-#: admin.php:85 admin.php:197
+#: admin.php:93 admin.php:205
 #| msgid "Versions control"
 msgid "Versions Control"
 msgstr "Versionskontrolle"
@@ -447,11 +510,11 @@ msgstr "WIMB und Block"
 msgid "WIMB API Key"
 msgstr "WIMB-API-Schlüssel"
 
-#: admin.php:114 admin.php:189
+#: admin.php:122 admin.php:197
 msgid "WIMB Table"
 msgstr "WIMB Tabelle"
 
-#: admin.php:118 admin.php:201
+#: admin.php:126 admin.php:209
 msgid "WIMB Table Management"
 msgstr "Verwaltung der WIMB Tabelle"
 
@@ -469,8 +532,12 @@ msgstr "Schreibe das .htaccess-File"
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr "Schreibe in die .htaccess im Stammverzeichnis von %s:"
 
+#: admin/deleting.php:31
+msgid "yes"
+msgstr "ja"
+
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:92 admin.php:126
+#: admin.php:47 admin.php:100 admin.php:134
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr "Du kannst diese Einstellungen auf der %1$sHauptseite%2$s ändern."
@@ -488,7 +555,7 @@ msgstr ""
 "Du kannst Rewrite-Regeln konfigurieren, um eine robots.txt bereitzustellen, "
 "mit der das Crawling für einen Browser erlaubt oder verboten wird. Wenn das "
 "Crawling verboten ist, wird der Zugriff auf die Website für diesen Browser "
-"blockiert."
+"geblockt."
 
 #. %1$s and %2$s is a link.
 #: admin/robots.php:178
@@ -549,3 +616,15 @@ msgid ""
 msgstr ""
 "Du benötigst eine Tabelle in einer Datenbank. Dies kann eine Tabelle in der "
 "Standard-WordPress-Datenbank (lokal) oder in einer entfernten Datenbank sein."
+
+#: admin/settings.php:90
+#| msgid ""
+#| "If you log, you should make sure that the log file does not become too "
+#| "large. It is best to set up a cron job that rotates the log file every "
+#| "day."
+msgid ""
+"You should make sure that the log file does not become too large. It is best "
+"to set up a cron job that rotates the log file every day."
+msgstr ""
+"Du solltest darauf achten, dass die Logdatei nicht zu groß wird. Richte am "
+"besten einen Cronjob ein, welcher die Logdatei rotiert."

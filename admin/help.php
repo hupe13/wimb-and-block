@@ -42,12 +42,12 @@ function wimbblock_help() {
 
 	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';
 
-	$text .= '<p>'.sprintf(
+	$text .= '<p>' . sprintf(
 	/* translators: %1$s is "simple software string", %2$s is "unknown" */
 		__( 'It will be blocked also if the %1$s contains %2$s or is empty.', 'wimb-and-block' ),
 		'"simple software string"',
 		'"unknown"'
-	) . '</p>'."\n\r";
+	) . '</p>' . "\n\r";
 	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/suspect.jpg" alt="example entries" width="450" ></p>';
 
 	$text .= '</li>';

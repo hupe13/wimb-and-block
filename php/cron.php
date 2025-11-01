@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die();
 function wimbblock_rotate_table() {
 	$wpdb_options = wimbblock_get_options_db();
 	$yymm         = wp_date( 'ym' );
-	$yymm_last    = wp_date( 'ym', strtotime( '-1 month' ) );
+	$yymm_last    = wp_date( 'ym', strtotime( 'first day of previous month' ) );
 	global $wimb_datatable;
 	if ( is_null( $wimb_datatable ) ) {
 		wimbblock_open_wpdb();

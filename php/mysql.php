@@ -94,15 +94,23 @@ function wimbblock_error_log( $reason ) {
 				$logfile = '';
 			}
 		} elseif ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {
-			$logfile = WP_CONTENT_DIR . '/wp-content/debug.log';
-		} elseif ( true === WP_DEBUG ) {
-			$logfile = WP_DEBUG_LOG;
+			$logfile = WP_CONTENT_DIR . '/debug.log';
+		} elseif ( true === WP_DEBUG && WP_DEBUG_LOG !== false ) {
+			global $wp_filesystem;
+			if ( ! function_exists( 'WP_Filesystem' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/file.php';
+			}
+			WP_Filesystem();
+			if ( $wp_filesystem->exists( WP_DEBUG_LOG ) && $wp_filesystem->is_writable( WP_DEBUG_LOG ) ) {
+				$logfile = WP_DEBUG_LOG;
+			} else {
+				$logfile = '';
+			}
 		} else {
 			$logfile = '';
 		}
 		set_transient( 'wimbblock_logfile', $logfile, DAY_IN_SECONDS );
 	}
-
 	if ( $logfile !== '' ) {
 		$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
