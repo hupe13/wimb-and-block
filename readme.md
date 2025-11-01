@@ -34,7 +34,6 @@ Old systems are all Windows versions before Windows 10, some MacOS and Android v
 ### Logging
 
 * The logging is very verbose. Please check the logs and the WIMB table regularly.
-* To do: log level
 
 ## Updates
 
