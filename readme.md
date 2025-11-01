@@ -8,7 +8,7 @@ Requires at least: 6.5
 Requires PHP: 8.3   
 License: GPLv2 or later   
 
-The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
+With help of WhatIsMyBrowser the plugin detects old and suspicious agents and denies them access. A special robots.txt prevents crawling by bad bots.
 
 ## Description
 
