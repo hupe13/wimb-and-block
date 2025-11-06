@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 18:28+0000\n"
+"POT-Creation-Date: 2025-11-06 08:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -25,6 +25,12 @@ msgid ""
 msgstr ""
 
 #. translators:%s are numbers
+#: admin/statistics-all.php:75 admin/statistics24.php:115
+#, php-format
+msgid "%s are not allowed to crawl."
+msgstr ""
+
+#. translators:%s are numbers
 #: admin/statistics24.php:107
 #, php-format
 msgid ""
@@ -33,21 +39,9 @@ msgid ""
 msgstr ""
 
 #. translators:%s are numbers
-#: admin/statistics-all.php:68
+#: admin/statistics-all.php:67
 #, php-format
 msgid "%s browsers accessed robots.txt."
-msgstr ""
-
-#. translators:%s are numbers
-#: admin/statistics24.php:115
-#, php-format
-msgid "%s did not respect robots.txt within the last 24 hours."
-msgstr ""
-
-#. translators:%s are numbers
-#: admin/statistics-all.php:76
-#, php-format
-msgid "%s did not respect robots.txt."
 msgstr ""
 
 #: admin/help.php:60
@@ -62,7 +56,7 @@ msgstr ""
 msgid "Access is forbidden - this is correct."
 msgstr ""
 
-#: admin/settings.php:38
+#: admin/settings.php:37
 msgid ""
 "Access to the remote database seems to be working fine. Please resubmit the "
 "form."
@@ -91,7 +85,7 @@ msgid ""
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/mgt-table.php:120
+#: admin/mgt-table.php:121
 #, php-format
 msgid ""
 "By default, all entries are displayed, except those browsers from "
@@ -144,7 +138,7 @@ msgstr ""
 msgid "entries from the last 24 hours"
 msgstr ""
 
-#: admin.php:201
+#: admin.php:216
 msgid "Exclude / always block"
 msgstr ""
 
@@ -157,7 +151,7 @@ msgid "Form to handle the entry in .htaccess"
 msgstr ""
 
 #. %s is a link .
-#: admin/settings.php:127
+#: admin/settings.php:91
 #, php-format
 msgid "Get an API key for a %s."
 msgstr ""
@@ -168,7 +162,7 @@ msgstr ""
 msgid "Get an API key from %1$s for a %2$s."
 msgstr ""
 
-#: admin.php:188
+#: admin.php:203
 msgid "Help"
 msgstr ""
 
@@ -189,7 +183,7 @@ msgstr ""
 msgid "If something does not work as expected, you can stop it here."
 msgstr ""
 
-#: admin/settings.php:100
+#: admin/settings.php:64
 msgid ""
 "If the database is local, it is automatically set to \"yes\". For remote "
 "databases, set it to \"yes\" on exactly one WP instance."
@@ -229,7 +223,29 @@ msgstr ""
 msgid "Local WP database or remote database"
 msgstr ""
 
-#: admin/deleting.php:34
+#: php/wimb-options.php:129
+msgid ""
+"Log when the browser accesses your website for the first time and an old "
+"version is detected or it is unknown or suspicious."
+msgstr ""
+
+#: php/wimb-options.php:117
+msgid "Log when the browser gets a robots.txt to allow crawling."
+msgstr ""
+
+#: php/wimb-options.php:123
+msgid "Log when the browser gets a robots.txt to disable crawling."
+msgstr ""
+
+#: php/wimb-options.php:111
+msgid "Log when the browser is excluded from checking."
+msgstr ""
+
+#: admin.php:171 admin.php:212
+msgid "Logging"
+msgstr ""
+
+#: admin/logging.php:46 admin/deleting.php:34
 msgid "no"
 msgstr ""
 
@@ -239,7 +255,13 @@ msgid ""
 "Android versions."
 msgstr ""
 
-#: admin/settings.php:23
+#: php/wimb-options.php:105
+msgid ""
+"Once it has been detected that the browser is being blocked, it will be "
+"blocked later without any explanation."
+msgstr ""
+
+#: admin/logfile.php:14
 msgid "Path of log file"
 msgstr ""
 
@@ -266,11 +288,11 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:86 admin.php:115
+#: admin.php:86 admin.php:115 admin/logging.php:85 admin/logging.php:101
 msgid "Reset"
 msgstr ""
 
-#: admin.php:213
+#: admin.php:232
 msgid "robots.txt"
 msgstr ""
 
@@ -278,23 +300,23 @@ msgstr ""
 msgid "Rotate the table on this site"
 msgstr ""
 
-#: admin/mgt-table.php:158
+#: admin/mgt-table.php:149
 msgid "Search"
 msgstr ""
 
-#: admin/mgt-table.php:105
+#: admin/mgt-table.php:106
 msgid "Select to unblock / block"
 msgstr ""
 
-#: admin/settings.php:91
+#: admin/logfile.php:58
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:76 wimb-and-block.php:84
+#: wimb-and-block.php:78 wimb-and-block.php:86
 msgid "Settings"
 msgstr ""
 
-#: admin.php:78 admin.php:193
+#: admin.php:78 admin.php:208
 msgid "Settings WIMB"
 msgstr ""
 
@@ -336,13 +358,13 @@ msgstr ""
 msgid "Test your configuration"
 msgstr ""
 
-#: admin/settings.php:46
+#: admin/settings.php:45
 msgid ""
 "The latter is recommended if you have multiple WordPress instances on the "
 "same server."
 msgstr ""
 
-#: admin/settings.php:88
+#: admin/logfile.php:56
 msgid ""
 "The logging is very verbose. If you have WP_DEBUG set to true, but don't "
 "want the plugin to log anything, set it to /dev/null."
@@ -385,7 +407,9 @@ msgstr ""
 #. Description of the plugin
 msgid ""
 "The plugin uses the service of WhatIsMyBrowser.com to detect old and "
-"suspicious browsers and denies them access to your website."
+"suspicious browsers and denies them access to your website. It provides a "
+"robots.txt file to prohibit crawling and blocks crawlers if they do so "
+"anyway."
 msgstr ""
 
 #: admin/help.php:32
@@ -400,6 +424,14 @@ msgid ""
 "is send to WhatIsMyBrowser and some data will be stored in the table:"
 msgstr ""
 
+#. %s are browsers
+#: admin/versions.php:76
+#, php-format
+msgid ""
+"The versions of %1$s and %2$s also affect browsers with their code base, for "
+"example %3$s, %4$s, %5$s, %6$s, %7$s."
+msgstr ""
+
 #: admin.php:56
 msgid "There is an error in your settings."
 msgstr ""
@@ -410,12 +442,12 @@ msgid ""
 "that the comments remain."
 msgstr ""
 
-#: admin/display-table.php:82
+#: admin/display-table.php:88
 msgid "There was an error:"
 msgstr ""
 
 #. translators:%s are numbers
-#: admin/statistics-all.php:59
+#: admin/statistics-all.php:58
 #, php-format
 msgid "There were %1$s different browsers, of which %2$s were blocked."
 msgstr ""
@@ -424,11 +456,11 @@ msgstr ""
 msgid "This is the expected output."
 msgstr ""
 
-#: admin/mgt-table.php:180
+#: admin/mgt-table.php:182
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:93 admin.php:205
+#: admin.php:93 admin.php:220
 msgid "Versions Control"
 msgstr ""
 
@@ -440,11 +472,11 @@ msgstr ""
 msgid "WIMB API Key"
 msgstr ""
 
-#: admin.php:122 admin.php:197
+#: admin.php:122 admin.php:224
 msgid "WIMB Table"
 msgstr ""
 
-#: admin.php:126 admin.php:209
+#: admin.php:126 admin.php:228
 msgid "WIMB Table Management"
 msgstr ""
 
@@ -462,12 +494,12 @@ msgstr ""
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr ""
 
-#: admin/deleting.php:31
+#: admin/logging.php:43 admin/deleting.php:31
 msgid "yes"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:100 admin.php:134
+#: admin.php:47 admin.php:100 admin.php:134 admin.php:177
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""
@@ -489,17 +521,17 @@ msgstr ""
 msgid "You can do it on %1$sthis site%2$s."
 msgstr ""
 
-#: admin/mgt-table.php:116
+#: admin/mgt-table.php:117
 msgid "You can search for entries here."
 msgstr ""
 
-#. %1$s, %2$s and %2$s are column names.
-#: admin/mgt-table.php:130
+#. %1$s, %2$s and %3$s are column names.
+#: admin/mgt-table.php:160
 #, php-format
-msgid "You can sort the columns %1$s, %2$s and %3$s."
+msgid "You can sort the columns %1$s, %2$s, %3$s and %4$s."
 msgstr ""
 
-#: admin/mgt-table.php:125
+#: admin/mgt-table.php:126
 msgid "You can't unblock these either."
 msgstr ""
 
@@ -521,19 +553,20 @@ msgstr ""
 msgid "You must configure these settings on each of your domains!"
 msgstr ""
 
-#: admin/exclude.php:63 admin/versions.php:72 admin/always-block.php:58
+#: admin/exclude.php:63 admin/logging.php:71 admin/versions.php:72
+#: admin/always-block.php:58
 msgid ""
 "You must configure these settings on each of your websites that use this "
 "database!"
 msgstr ""
 
-#: admin/settings.php:44
+#: admin/settings.php:43
 msgid ""
 "You need a table in a database. This can be a table in the default WordPress "
 "database (local) or in a remote database."
 msgstr ""
 
-#: admin/settings.php:90
+#: admin/logfile.php:57
 msgid ""
 "You should make sure that the log file does not become too large. It is best "
 "to set up a cron job that rotates the log file every day."

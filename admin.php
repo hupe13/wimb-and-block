@@ -67,14 +67,7 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
-		echo '<form method="post" action="options.php">';
-		settings_fields( 'wimbblock_settings_deleting' );
-		do_settings_sections( 'wimbblock_settings_deleting' );
-		if ( current_user_can( 'manage_options' ) ) {
-			wp_nonce_field( 'wimbblock_deleting', 'wimbblock_deleting_nonce' );
-			submit_button();
-		}
-		echo '</form>';
+		echo '<hr class="adminhrule">';
 		echo '<h3>' . esc_html( __( 'Settings WIMB', 'wimb-and-block' ) ) . '</h3>';
 		echo '<form method="post" action="options.php">';
 		settings_fields( 'wimbblock_settings' );
@@ -84,6 +77,18 @@ function wimbblock_admin() {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
+			}
+		}
+		echo '</form>';
+		echo '<hr class="adminhrule">';
+		echo '<form method="post" action="options.php">';
+		settings_fields( 'wimbblock_settings_deleting' );
+		do_settings_sections( 'wimbblock_settings_deleting' );
+		$wimbblock_options = wimbblock_get_options_db();
+		if ( $wimbblock_options['error'] === '0' ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				wp_nonce_field( 'wimbblock_deleting', 'wimbblock_deleting_nonce' );
+				submit_button();
 			}
 		}
 		echo '</form>';
@@ -150,7 +155,7 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
-
+		echo '<hr class="adminhrule">';
 		wimbblock_always_help();
 		echo '<form method="post" action="options.php">';
 		settings_fields( 'wimbblock_always' );
@@ -167,6 +172,21 @@ function wimbblock_admin() {
 	} elseif ( $active_tab === 'robots' ) {
 		require_once __DIR__ . '/admin/robots.php';
 		wimbblock_robots_htaccess();
+	} elseif ( $active_tab === 'logging' ) {
+			echo '<h2>' . wp_kses_post( __( 'Logging', 'wimb-and-block' ) ) . '</h2>';
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) {
+			echo '<p>';
+			echo wp_kses_post(
+				wp_sprintf(
+				/* translators: %1$s and %2$s is a link. */
+					__( 'You can change this setting on the %1$smain site%2$s.', 'wimb-and-block' ),
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=' . $active_tab . '">',
+					'</a>'
+				)
+			);
+			echo '</p>';
+		}
+		wimbblock_log_admin_page();
 	} else {
 		if ( function_exists( 'leafext_updates_from_github' ) ) {
 			leafext_updates_from_github();
@@ -193,8 +213,8 @@ function wimbblock_admin_tabs() {
 		'title' => __( 'Settings WIMB', 'wimb-and-block' ),
 	);
 	$tabs[] = array(
-		'tab'   => 'table',
-		'title' => __( 'WIMB Table', 'wimb-and-block' ),
+		'tab'   => 'logging',
+		'title' => __( 'Logging', 'wimb-and-block' ),
 	);
 	$tabs[] = array(
 		'tab'   => 'exclude',
@@ -203,6 +223,10 @@ function wimbblock_admin_tabs() {
 	$tabs[] = array(
 		'tab'   => 'blocking',
 		'title' => __( 'Versions Control', 'wimb-and-block' ),
+	);
+	$tabs[] = array(
+		'tab'   => 'table',
+		'title' => __( 'WIMB Table', 'wimb-and-block' ),
 	);
 	$tabs[] = array(
 		'tab'   => 'mgt',

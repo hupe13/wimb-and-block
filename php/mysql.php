@@ -84,34 +84,36 @@ function wimbblock_counter( $table_name, $counter, $id ) {
 	);
 }
 
-function wimbblock_error_log( $reason ) {
+function wimbblock_error_log( $reason, $loglevel = true ) {
 	$logfile = get_transient( 'wimbblock_logfile' );
 	if ( false === $logfile ) {
-		$options = wimbblock_get_options_db();
-		if ( isset( $options['logfile'] ) && $options['logfile'] !== '' && $options['logfile'] !== false ) {
-			$logfile = $options['logfile'];
-			if ( $logfile === '/dev/null' ) {
-				$logfile = '';
+		$logfile           = '';
+		$wimbblock_logfile = wimbblock_get_option( 'wimbblock_logfile' );
+		if ( isset( $wimbblock_logfile ) && $wimbblock_logfile !== '' && $wimbblock_logfile !== false ) {
+			$logfile = $wimbblock_logfile;
+		}
+		if ( $logfile === '' ) {
+			if ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {
+				$logfile = WP_CONTENT_DIR . '/debug.log';
+			} elseif ( true === WP_DEBUG && WP_DEBUG_LOG !== false ) {
+				global $wp_filesystem;
+				if ( ! function_exists( 'WP_Filesystem' ) ) {
+					require_once ABSPATH . 'wp-admin/includes/file.php';
+				}
+				WP_Filesystem();
+				if ( $wp_filesystem->exists( WP_DEBUG_LOG ) && $wp_filesystem->is_writable( WP_DEBUG_LOG ) ) {
+					$logfile = WP_DEBUG_LOG;
+				} else {
+					$logfile = '';
+				}
 			}
-		} elseif ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {
-			$logfile = WP_CONTENT_DIR . '/debug.log';
-		} elseif ( true === WP_DEBUG && WP_DEBUG_LOG !== false ) {
-			global $wp_filesystem;
-			if ( ! function_exists( 'WP_Filesystem' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/file.php';
-			}
-			WP_Filesystem();
-			if ( $wp_filesystem->exists( WP_DEBUG_LOG ) && $wp_filesystem->is_writable( WP_DEBUG_LOG ) ) {
-				$logfile = WP_DEBUG_LOG;
-			} else {
-				$logfile = '';
-			}
-		} else {
+		}
+		if ( $logfile === '/dev/null' ) {
 			$logfile = '';
 		}
 		set_transient( 'wimbblock_logfile', $logfile, DAY_IN_SECONDS );
 	}
-	if ( $logfile !== '' ) {
+	if ( $logfile !== '' && $loglevel !== false ) {
 		$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 		error_log( '[' . current_time( 'mysql' ) . '] ' . get_site_url() . ' - wimb - ' . $ip . ': ' . $reason . "\r\n", 3, $logfile );

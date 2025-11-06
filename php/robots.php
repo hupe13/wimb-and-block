@@ -20,6 +20,7 @@ function wimbblock_get_robots_txt( $posts ) {
 	$wimbblock_robots_slug = 'robots-check'; // URL slug of the robots.txt fake page
 	$ip                    = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
 	$agent                 = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
+	$agent                 = trim( $agent, '"\' ' );
 	global $is_crawler;
 	$is_crawler = false;
 
@@ -39,7 +40,8 @@ function wimbblock_get_robots_txt( $posts ) {
 	) {
 		if ( ( strtolower( $wp->request ) === $wimbblock_robots_slug || strtolower( $wp->request ) === 'robots.txt' ) ) {
 			if ( $agent === '' ) {
-				wimbblock_error_log( 'robots forbidden - no agent: ' . $ip );
+				$logging = wimbblock_get_option( 'wimbblock_log' );
+				wimbblock_error_log( 'robots forbidden - no agent: ' . $ip, $logging['robotsforbidden'] );
 				header( 'Content-Type: text/plain; charset=UTF-8' );
 				echo "User-agent: *\r\n" .
 				'Disallow: /' . "\r\n";
@@ -48,7 +50,8 @@ function wimbblock_get_robots_txt( $posts ) {
 			list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
 			if ( (int) $blocked > 0 ) {
 				wimbblock_counter( $table_name, 'robots', $id );
-				wimbblock_error_log( 'robots.txt forbidden: ' . ( $software !== '' ? $software : $agent ) );
+				$logging = wimbblock_get_option( 'wimbblock_log' );
+				wimbblock_error_log( 'robots.txt forbidden: ' . ( $software !== '' ? $software : $agent ), $logging['robotsforbidden'] );
 				header( 'Content-Type: text/plain; charset=UTF-8' );
 				echo "User-agent: *\r\n" .
 				'Disallow: /' . "\r\n";
@@ -64,7 +67,8 @@ function wimbblock_get_robots_txt( $posts ) {
 					wimbblock_check_modern_browser( $table_name, $software, $version, $system, $blocked, $id, true );
 				}
 			}
-			wimbblock_error_log( 'robots.txt okay: ' . ( $software !== '' ? $software : $agent ) );
+			$logging = wimbblock_get_option( 'wimbblock_log' );
+			wimbblock_error_log( 'robots.txt okay: ' . ( $software !== '' ? $software : $agent ), $logging['robotsokay'] );
 			wimbblock_counter( $table_name, 'robots', $id );
 			// Default 'WordPress/' . get_bloginfo( 'version' ) . ‘; ‘ . get_bloginfo( 'url' ).
 			$http_host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ?? '' ) );

@@ -24,6 +24,7 @@ function wimbblock_uninstall_delete_options() {
 	foreach ( $option_names as $key => $value ) {
 		delete_option( $value['option_name'] );
 	}
+	delete_transient( 'wimbblock_logfile' );
 }
 
 global $wpdb;
@@ -56,9 +57,13 @@ if ( is_main_site() ) {
 	if ( ( ! ( isset( $should_delete['on'] ) && $should_delete['on'] === '0' ) ) && $should_delete !== false ) {
 		$local = $wpdb_options['location'];
 		if ( $local === 'local' ) {
-			$wpdb->prepare(
-				'DROP TABLE IF EXISTS %i',
-				$table_name
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query(
+				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+					'DROP TABLE IF EXISTS %i',
+					$table_name
+				)
 			);
 		}
 	}

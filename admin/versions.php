@@ -71,5 +71,16 @@ function wimbblock_browsers_help() {
 	if ( $options['location'] === 'remote' ) {
 		$text .= '<p><div class="notice notice-info">' . __( 'You must configure these settings on each of your websites that use this database!', 'wimb-and-block' ) . '</div></p>';
 	}
+	$text .= wp_sprintf(
+		/* Translators: %s are browsers*/
+		__( 'The versions of %1$s and %2$s also affect browsers with their code base, for example %3$s, %4$s, %5$s, %6$s, %7$s.', 'wimb-and-block' ),
+		'Chrome',
+		'Firefox',
+		'Chromium',
+		'Opera',
+		'Brave',
+		'Iceweasel',
+		'Fennec'
+	);
 	return $text;
 }

@@ -96,3 +96,57 @@ function wimbblock_get_always() {
 	$wimbblock_always = wimbblock_get_option( 'wimbblock_always' );
 	return $wimbblock_always;
 }
+
+function wimbblock_logging_levels() {
+	$params = array(
+		array(
+			'param'   => 'blockagain',
+			'desc'    => 'Blocked again',
+			'help'    => __( 'Once it has been detected that the browser is being blocked, it will be blocked later without any explanation.', 'wimb-and-block' ),
+			'default' => true,
+		),
+		array(
+			'param'   => 'excluded',
+			'desc'    => 'Excluded',
+			'help'    => __( 'Log when the browser is excluded from checking.', 'wimb-and-block' ),
+			'default' => true,
+		),
+		array(
+			'param'   => 'robotsokay',
+			'desc'    => 'robots.txt okay',
+			'help'    => __( 'Log when the browser gets a robots.txt to allow crawling.', 'wimb-and-block' ),
+			'default' => true,
+		),
+		array(
+			'param'   => 'robotsforbidden',
+			'desc'    => 'robots.txt forbidden',
+			'help'    => __( 'Log when the browser gets a robots.txt to disable crawling.', 'wimb-and-block' ),
+			'default' => true,
+		),
+		array(
+			'param'   => 'oldagents',
+			'desc'    => 'Old and unknown agents',
+			'help'    => __( 'Log when the browser accesses your website for the first time and an old version is detected or it is unknown or suspicious.', 'wimb-and-block' ),
+			'default' => true,
+		),
+	);
+	return $params;
+}
+
+function wimbblock_logging_levels_settings() {
+	$params   = wimbblock_logging_levels();
+	$defaults = array();
+	foreach ( $params as $param ) {
+		$defaults[ $param['param'] ] = $param['default'];
+	}
+	$settings = wimbblock_get_option( 'wimbblock_log' );
+	$options  = array();
+	foreach ( $defaults as $key => $default ) {
+		if ( isset( $settings[ $key ] ) ) {
+			$options[ $key ] = $settings[ $key ];
+		} else {
+			$options[ $key ] = $default;
+		}
+	}
+	return $options;
+}

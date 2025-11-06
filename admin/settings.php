@@ -20,7 +20,6 @@ function wimbblock_init() {
 	add_settings_field( 'wimbblock_settings[db_name]', __( 'Remote database name', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'db_name' );
 	add_settings_field( 'wimbblock_settings[db_host]', __( 'Remote database hostname', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'db_host' );
 	add_settings_field( 'wimbblock_settings[rotate]', __( 'Rotate the table on this site', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'rotate' );
-	add_settings_field( 'wimbblock_settings[logfile]', __( 'Path of log file', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'logfile' );
 	if ( get_option( 'wimbblock_settings' ) === false ) {
 		add_option( 'wimbblock_settings', array() );
 	}
@@ -60,41 +59,6 @@ function wimbblock_form( $field ) {
 			echo 'value="' . esc_attr( $location ) . '">' . esc_attr( $location ) . '</option>' . "\r\n";
 		}
 		echo '</select>' . "\r\n";
-	} elseif ( $field === 'logfile' ) {
-		// var_dump($options);
-		if ( isset( $options['logfile'] ) && $options['logfile'] !== '' && $options['logfile'] !== false ) {
-			$value   = ' value="' . sanitize_text_field( $options['logfile'] ) . '" ';
-			$setting = $options['logfile'];
-		} else {
-			$value = '';
-			if ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {
-				$setting = 'WP_CONTENT_DIR/debug.log';
-			} elseif ( true === WP_DEBUG && WP_DEBUG_LOG !== false ) {
-				global $wp_filesystem;
-				if ( ! function_exists( 'WP_Filesystem' ) ) {
-					require_once ABSPATH . 'wp-admin/includes/file.php';
-				}
-				WP_Filesystem();
-				if ( $wp_filesystem->exists( WP_DEBUG_LOG ) && $wp_filesystem->is_writable( WP_DEBUG_LOG ) ) {
-					$setting = WP_DEBUG_LOG;
-				} else {
-					$setting = '';
-				}
-			} else {
-				$setting = 'WP_DEBUG is false.';
-			}
-		}
-
-		echo wp_kses_post( __( "The logging is very verbose. If you have WP_DEBUG set to true, but don't want the plugin to log anything, set it to /dev/null.", 'wimb-and-block' ) );
-		// echo ' ' . wp_kses_post( __( 'However, this is not recommended, especially when you start using the plugin.', 'wimb-and-block' ) );
-		echo '<br>' . wp_kses_post( __( 'You should make sure that the log file does not become too large. It is best to set up a cron job that rotates the log file every day.', 'wimb-and-block' ) );
-		echo '<p><b>' . esc_html( __( 'Setting:', 'wimb-and-block' ) ) . '</b> ' . esc_html( $setting ) . '</p>';
-		echo '<input type="text" size="80" name="wimbblock_settings[logfile]" ';
-		if ( $setting === $options['logfile'] ) {
-			echo 'value="' . esc_html( $setting ) . '" />';
-		} else {
-			echo 'placeholder="/path/to/logfile" />';
-		}
 	} elseif ( $field === 'rotate' ) {
 		echo '<p>';
 		esc_html_e( 'If the database is local, it is automatically set to "yes". For remote databases, set it to "yes" on exactly one WP instance.', 'wimb-and-block' );
@@ -141,16 +105,9 @@ function wimbblock_validate( $options ) {
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock', 'wimbblock_nonce' ) ) {
 		// wimbblock_error_log( 'Sanitize and validate' );
 		if ( isset( $_POST['submit'] ) ) {
-			delete_transient( 'wimbblock_logfile' );
 			if ( $options['error'] === '1' ) {
 				$options['error'] = '3';
 			}
-			if ( $options['logfile'] !== '' ) {
-				if ( ! file_exists( dirname( $options['logfile'] ) ) ) {
-					$options['logfile'] = '';
-				}
-			}
-
 			if ( $options['wimb_api'] === '' ) {
 				add_settings_error(
 					'wimbblock_settings',
@@ -171,7 +128,6 @@ function wimbblock_validate( $options ) {
 					'db_password' => '',
 					'db_name'     => '',
 					'db_host'     => '',
-					'logfile'     => $options['logfile'],
 					'rotate'      => 'yes',
 					'error'       => '0',
 				);
@@ -246,7 +202,6 @@ function wimbblock_validate( $options ) {
 		}
 		if ( isset( $_POST['delete'] ) ) {
 			delete_option( 'wimbblock_settings' );
-			delete_transient( 'wimbblock_logfile' );
 		}
 	}
 	return false;

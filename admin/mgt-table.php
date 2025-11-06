@@ -48,12 +48,13 @@ function wimbblock_display_mgt_table( $table_name, $result ) {
 	}
 	$crawlers = implode( ' AND ', $command );
 
-	$chrome = " AND browser NOT like '%Chrome/%' ";
+	$derivates = " AND browser NOT like '%Chrome/%' AND browser NOT like '%Firefox/%' ";
 
 	$tablehdr = '<thead><tr><th>i</th>
 	<th id="click" onclick="onColumnHeaderClicked(event)">browser</th>
 	<th id="click" onclick="onColumnHeaderClicked(event)">software</th>
 	<th id="click" onclick="onColumnHeaderClicked(event)">system</th>
+	<th id="click" onclick="onColumnHeaderClicked(event)">time</th>
 	<th>block</th>
 	<th>unblock/block</th></tr></thead>';
 
@@ -65,10 +66,10 @@ function wimbblock_display_mgt_table( $table_name, $result ) {
 		}
 		$query = implode( ' AND ', $command );
 	} else {
-		$query = $where . ' AND ' . $crawlers . $chrome;
+		$query = $where . ' AND ' . $crawlers . $derivates;
 	}
 	$entries = $wimb_datatable->get_results(
-		'SELECT i,browser,software,system,block FROM ' . $table_name . ' WHERE ' . $query . ' ORDER BY software, browser ASC'
+		'SELECT i,browser,software,system,time,block FROM ' . $table_name . ' WHERE ' . $query . ' ORDER BY software, browser ASC'
 	);
 
 	// Make the data rows
@@ -80,7 +81,7 @@ function wimbblock_display_mgt_table( $table_name, $result ) {
 			$row_vals[] = $value;
 		}
 		$class = '';
-		if ( $row_vals[4] === '0' ) {
+		if ( $row_vals[5] === '0' ) {
 			if ( $alternate ) {
 				$alternate = false;
 				$class     = ' class="greenw04"';
@@ -124,16 +125,6 @@ function wimbblock_selection_table() {
 	);
 	echo ' ' . esc_html( __( "You can't unblock these either.", 'wimb-and-block' ) ) . '<br>';
 
-	printf(
-		wp_kses_post(
-			/* translators: %1$s, %2$s and %2$s are column names. */
-			esc_html__( 'You can sort the columns %1$s, %2$s and %3$s.', 'wimb-and-block' ),
-		),
-		'<code>browser</code>',
-		'<code>software</code>',
-		'<code>system</code>'
-	);
-
 	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
 	if ( current_user_can( 'manage_options' ) ) {
 		echo '<table class="form-table" role="presentation">';
@@ -161,8 +152,19 @@ function wimbblock_selection_table() {
 
 	if ( $wpdb_options['error'] === '0' ) {
 		$result = wimbblock_handle_form();
-
 		// var_dump($result); //wp_die();
+
+		printf(
+			wp_kses_post(
+				/* translators: %1$s, %2$s and %3$s are column names. */
+				esc_html__( 'You can sort the columns %1$s, %2$s, %3$s and %4$s.', 'wimb-and-block' ),
+			),
+			'<code>browser</code>',
+			'<code>software</code>',
+			'<code>system</code>',
+			'<code>time</code>'
+		);
+
 		echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
 		if ( current_user_can( 'manage_options' ) ) {
 			$allowed_html          = wp_kses_allowed_html( 'post' );

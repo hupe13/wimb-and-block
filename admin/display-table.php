@@ -40,15 +40,21 @@ function wimbblock_display_table( $table_name ) {
 
 	$cycle = 'month';
 
+	$colgroups = '
+	<colgroup>
+		<col /><col /><col /><col /><col /><col /><col /><col class="grey"/><col /><col  class="grey"/><col /><col  class="grey"/><col /><col  class="grey"/><col /><col  class="grey"/>
+  </colgroup>';
+
 	$tablehdr  = '<tr><th>&nbsp;</th>';
 	$tablehdr .= '<th colspan=4>Browser Software</th>';
-	$tablehdr .= '<th colspan=3>Time</th>';
+	$tablehdr .= '<th colspan=2>Time</th>';
 	$tablehdr .= '<th colspan=1>&nbsp;</th>';
 	$tablehdr .= '<th colspan=2>this month</th>';
 	$tablehdr .= '<th colspan=2>month before</th>';
 	$tablehdr .= '<th colspan=2>2 months before</th>';
 	$tablehdr .= '<th colspan=2>3 months before</th></tr>';
-	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>yymm</th><th>wimbdate</th><th>robots</th>';
+	$tablehdr .= $colgroups;
+	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>wimbdate</th><th>robots</th>';
 	for ( $i = 1; $i <= 4; $i++ ) {
 		$tablehdr .= '<th>count</th><th>blocked</th>';
 	}
@@ -95,7 +101,6 @@ function wimbblock_display_table( $table_name ) {
 		$line[] = $entry['system'];
 		$line[] = $entry['version'];
 		$line[] = $entry['time'];
-		$line[] = $entry['yymm'];
 		$line[] = $entry['wimbdate'];
 		$line[] = $entry['robots'];
 		$line[] = $entry['count'];

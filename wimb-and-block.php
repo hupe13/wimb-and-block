@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       Block old browser versions and suspicious browsers
  * Plugin URI:        https://leafext.de/hp/
- * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website.  It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
+ * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
  * Update URI:        https://github.com/hupe13/wimb-and-block
- * Version:           251101
+ * Version:           251106
  * Requires PHP:      8.3
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
@@ -40,6 +40,8 @@ if ( is_admin() ) {
 	require_once __DIR__ . '/admin/exclude.php';
 	require_once __DIR__ . '/admin/always-block.php';
 	require_once __DIR__ . '/admin/deleting.php';
+	require_once __DIR__ . '/admin/logging.php';
+	require_once __DIR__ . '/admin/logfile.php';
 }
 
 // Set the initial version of the database schema
@@ -100,6 +102,7 @@ function wimbblock_check_agent() {
 	$is_crawler = false;
 
 	$agent = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
+	$agent = trim( $agent, '"\' ' );
 	$ip    = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
 	$file  = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) );
 
@@ -107,7 +110,8 @@ function wimbblock_check_agent() {
 	if ( $excludes !== false ) {
 		foreach ( $excludes as $exclude ) {
 			if ( stripos( $agent, $exclude ) !== false ) {
-				wimbblock_error_log( 'Excluded: ' . $agent . ' * ' . $exclude );
+				$logging = wimbblock_get_option( 'wimbblock_log' );
+				wimbblock_error_log( 'Excluded: ' . $agent . ' * ' . $exclude, $logging['excluded'] );
 				return;
 			}
 		}
@@ -141,16 +145,11 @@ function wimbblock_check_agent() {
 			echo 'You have been blocked.';
 			exit();
 		}
-		if ( strpos( $agent, "'" ) !== false ) {
-			wimbblock_error_log( 'agent with forbidden char - blocked: ' . $ip );
-			status_header( 404 );
-			echo 'You have been blocked.';
-			exit();
-		}
 		list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'block', $id );
-			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ) );
+			$logging = wimbblock_logging_levels_settings();
+			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ), $logging['blockagain'] );
 			status_header( 404 );
 			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );
 			exit();

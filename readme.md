@@ -3,7 +3,7 @@
 Contributors: hupe13   
 Tags: bad bots, ban, blocking, security, monitor   
 Tested up to: 6.8   
-Stable tag: 251101   
+Stable tag: 251106   
 Requires at least: 6.5   
 Requires PHP: 8.3   
 License: GPLv2 or later   
@@ -33,7 +33,7 @@ Old systems are all Windows versions before Windows 10, some MacOS and Android v
 
 ### Logging
 
-* The logging is very verbose. Please check the logs and the WIMB table regularly.
+* The logging can be very verbose. Please check the logs and the WIMB table regularly.
 
 ## Updates
 

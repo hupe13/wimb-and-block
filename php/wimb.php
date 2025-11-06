@@ -98,49 +98,6 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 		$blocked  = $browser[0]['block'];
 		$id       = $browser[0]['i'];
 
-		if (
-			( $browser[0]['wimbdate'] === '' || $browser[0]['wimbdate'] < $yymm . '00' )
-			&&
-			( $software === '' || stripos( $software, 'unknown' ) !== false )
-			) {
-			wimbblock_error_log( 'Need check: ' . $agent . ' ' . $browser[0]['wimbdate'] );
-			$wimb     = wimbblock_whatsmybrowser( $agent );
-			$software = $wimb['software'];
-			$system   = $wimb['system'];
-			$version  = $wimb['version'];
-			if ( $software !== $browser[0]['software'] ||
-			$system !== $browser[0]['system'] ||
-			$version !== $browser[0]['version']
-			) {
-				$mgt_code = $wimb_datatable->query(
-					$wimb_datatable->prepare(
-						'UPDATE %i SET software = %s, system = %s, version = %s, wimbdate = %s WHERE i = %s',
-						$table_name,
-						$software,
-						$system,
-						$version,
-						wp_date( 'ymd' ),
-						$id
-					),
-				);
-
-				$changelog = ' - '
-				. $software . ' - ' . $browser[0]['software'] . ' - '
-				. $system . ' - ' . $browser[0]['system'] . ' - '
-				. $version . ' - ' . $wimb['version'];
-				wimbblock_error_log( 'Entry updated: ' . $agent . $changelog );
-			} else {
-				$mgt_code = $wimb_datatable->query(
-					$wimb_datatable->prepare(
-						'UPDATE %i SET wimbdate = %s WHERE i = %s',
-						$table_name,
-						wp_date( 'ymd' ),
-						$id
-					),
-				);
-				wimbblock_error_log( 'Entry checked: ' . $agent );
-			}
-		}
 	}
 	return array( $software, $system, $version, $blocked, $id );
 }

@@ -5,13 +5,15 @@
 .red02{background-color:rgb(248 46 48/0.3)}
 .red04{background-color:rgb(248 46 48/0.2)}
 
+.grey {background-color: rgba(128,128,128,.17)}
+
 .wp-block-quote {
 	border-left: 0.25em solid currentColor;
 	margin: 0 0 1.75em 0;
 	padding-left: 1em;
 }
 
-li {
+.adminli {
 	list-style-type: disc;
 	margin-left: 1.5em;
 }
@@ -41,4 +43,9 @@ table > thead > tr > th[data-sort=asc] {
 }
 table > thead > tr > th[data-sort=desc] {
 	background-color: #dcdcde;
+}
+
+.adminhrule {
+	height: 1.5px;
+	background-color: #c3c4c7;
 }

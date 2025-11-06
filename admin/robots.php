@@ -158,7 +158,7 @@ function wimbblock_hint_multisite() {
 			$text .= __( 'You must configure these settings on each of your domains!', 'wimb-and-block' );
 			$text .= '<ul>';
 			foreach ( $domains as $blog_id => $domain ) {
-				$text .= '<li><a href="' . get_site_url( $blog_id ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=robots">' . $domain . '</a></li>';
+				$text .= '<li class="adminli"><a href="' . get_site_url( $blog_id ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=robots">' . $domain . '</a></li>';
 			}
 			$text .= '</ul></div></p>';
 		}
