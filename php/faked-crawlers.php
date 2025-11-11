@@ -7,7 +7,7 @@
 
 //
 function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
-	global $is_crawler;
+	global $wimbblock_is_crawler;
 
 	// https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers?hl=de
 	if ( $software !== '' ) {
@@ -27,7 +27,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 					exit;
 				}
 			}
-			$is_crawler = 'Google';
+			$wimbblock_is_crawler = 'Google';
 		}
 
 		//BingBot
@@ -47,7 +47,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 					exit;
 				}
 			}
-			$is_crawler = 'BingBot';
+			$wimbblock_is_crawler = 'BingBot';
 		}
 	}
 
@@ -69,7 +69,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 				exit;
 			}
 		}
-		$is_crawler = 'Yandex';
+		$wimbblock_is_crawler = 'Yandex';
 	}
 
 	//Applebot
@@ -89,7 +89,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 				exit;
 			}
 		}
-		$is_crawler = 'Applebot';
+		$wimbblock_is_crawler = 'Applebot';
 	}
 
 	//https://www.mojeek.com/
@@ -109,7 +109,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 				exit;
 			}
 		}
-		$is_crawler = 'MojeekBot';
+		$wimbblock_is_crawler = 'MojeekBot';
 	}
 
 	// https://help.baidu.com/question?prod_id=99&class=476&id=3001
@@ -130,7 +130,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 				exit;
 			}
 		}
-		$is_crawler = 'Baiduspider';
+		$wimbblock_is_crawler = 'Baiduspider';
 	}
 
 	//seznam 240126
@@ -151,6 +151,6 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 				exit;
 			}
 		}
-		$is_crawler = 'SeznamBot';
+		$wimbblock_is_crawler = 'SeznamBot';
 	}
 }

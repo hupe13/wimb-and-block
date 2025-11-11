@@ -2,8 +2,8 @@
 
 Contributors: hupe13   
 Tags: bad bots, ban, blocking, security, monitor   
-Tested up to: 6.8   
-Stable tag: 251106   
+Tested up to: 6.9   
+Stable tag: 251111   
 Requires at least: 6.5   
 Requires PHP: 8.3   
 License: GPLv2 or later   
@@ -37,4 +37,4 @@ Old systems are all Windows versions before Windows 10, some MacOS and Android v
 
 ## Updates
 
-Please install [leafext-update-github](https://github.com/hupe13/leafext-update-github) to get updates and keep an eye on this repository in case I've made any mistakes.
+Please install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc) to get updates and keep an eye on this repository in case I've made any mistakes.

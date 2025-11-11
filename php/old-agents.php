@@ -12,7 +12,7 @@ function wimbblock_check_modern_browser( $table_name, $software, $version, $syst
 		wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $key, $value, false );
 	}
 
-	// Browsers like Chromium / Chrome / Brave and others
+	// Browsers like Chromium / Chrome / Brave / Edge / and others
 	// Iceweasel, Fennec, and other Firefox derivates
 	if ( $software !== '' ) {
 		$derivates = array( 'Chrome', 'Firefox' );
@@ -46,6 +46,32 @@ function wimbblock_check_modern_browser( $table_name, $software, $version, $syst
 						}
 					}
 				}
+			}
+		}
+	}
+
+	// modern Opera are Chromium based
+	// SELECT * FROM `wimb` WHERE `browser` NOT LIKE '%Chrome/%' AND `software` LIKE '%Opera%' ORDER BY `software` ASC
+	if ( $software !== '' ) {
+		if ( strpos( $software, 'Opera' ) !== false && strpos( $agent, 'Chrome/' ) === false ) {
+			if ( $robots === false ) {
+				wimbblock_counter( $table_name, 'block', $id );
+				$logging = wimbblock_get_option( 'wimbblock_log' );
+				wimbblock_error_log( 'Blocked - old Opera: ' . $software . ' * ' . $agent . ' * ' . $version, $logging['oldagents'] );
+				status_header( 404 );
+				echo 'Please use a modern webbrowser to access this website';
+				exit();
+			} else {
+				if ( $blocked === '0' ) {
+					wimbblock_counter( $table_name, 'block', $id );
+				}
+				wimbblock_counter( $table_name, 'robots', $id );
+				$logging = wimbblock_get_option( 'wimbblock_log' );
+				wimbblock_error_log( 'robots.txt old Opera forbidden: ' . $agent, $logging['robotsforbidden'] );
+				header( 'Content-Type: text/plain; charset=UTF-8' );
+				echo "User-agent: *\r\n" .
+				'Disallow: /' . "\r\n";
+				exit;
 			}
 		}
 	}

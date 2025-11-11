@@ -8,7 +8,7 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_display_table( $table_name ) {
+function wimbblock_display_table( $wimbblock_table_name ) {
 
 	require_once __DIR__ . '/statistics-all.php';
 	require_once __DIR__ . '/statistics24.php';
@@ -69,7 +69,7 @@ function wimbblock_display_table( $table_name ) {
 		$entries = $wimb_datatable->get_results(
 			$wimb_datatable->prepare(
 				'SELECT * FROM %i WHERE time >= %s ORDER BY time DESC',
-				$table_name,
+				$wimbblock_table_name,
 				$selected_date
 			),
 			ARRAY_A
@@ -78,7 +78,7 @@ function wimbblock_display_table( $table_name ) {
 		$entries = $wimb_datatable->get_results(
 			$wimb_datatable->prepare(
 				'SELECT * FROM %i ORDER BY time DESC',
-				$table_name
+				$wimbblock_table_name
 			),
 			ARRAY_A
 		);
@@ -149,9 +149,9 @@ function wimbblock_display_table( $table_name ) {
 }
 
 function wimbblock_mgt_table() {
-	$wpdb_options = wimbblock_get_options_db();
-	$table_name   = $wpdb_options['table_name'];
-	if ( $wpdb_options['error'] === '0' ) {
+	$wimbblock_wpdb_options = wimbblock_get_options_db();
+	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
+	if ( $wimbblock_wpdb_options['error'] === '0' ) {
 
 		wp_enqueue_style(
 			'wimbblock-css',
@@ -161,6 +161,6 @@ function wimbblock_mgt_table() {
 		);
 
 		$allowed_html = wp_kses_allowed_html( 'post' );
-		echo wp_kses( wimbblock_display_table( $table_name ), $allowed_html );
+		echo wp_kses( wimbblock_display_table( $wimbblock_table_name ), $allowed_html );
 	}
 }

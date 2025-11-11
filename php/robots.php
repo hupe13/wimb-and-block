@@ -21,8 +21,8 @@ function wimbblock_get_robots_txt( $posts ) {
 	$ip                    = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
 	$agent                 = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
 	$agent                 = trim( $agent, '"\' ' );
-	global $is_crawler;
-	$is_crawler = false;
+	global $wimbblock_is_crawler;
+	$wimbblock_is_crawler = false;
 
 	if (
 		! is_admin()
@@ -61,7 +61,7 @@ function wimbblock_get_robots_txt( $posts ) {
 			wimbblock_old_system( $table_name, $system, $blocked, $id, true );
 
 			wimbblock_faked_crawler( $agent, $software, $ip, true );
-			if ( $is_crawler === false ) {
+			if ( $wimbblock_is_crawler === false ) {
 				wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, true );
 				if ( $software !== '' ) {
 					wimbblock_check_modern_browser( $table_name, $software, $version, $system, $blocked, $id, true );

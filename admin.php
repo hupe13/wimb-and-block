@@ -73,6 +73,10 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_settings' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_settings' );
+		$wimbblock_options = wimbblock_get_option( 'wimbblock_settings' );
+		if ( $wimbblock_options === false || count( $wimbblock_options ) === 0 ) {
+			echo wp_kses_post( __( 'Please submit the form twice if you are configuring a remote database and it does not yet exist.', 'wimb-and-block' ) );
+		}
 		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
@@ -188,10 +192,9 @@ function wimbblock_admin() {
 		}
 		wimbblock_log_admin_page();
 	} else {
-		if ( function_exists( 'leafext_updates_from_github' ) ) {
-			leafext_updates_from_github();
+		if ( function_exists( 'wimbblock_updates_from_github' ) ) {
+			wimbblock_updates_from_github();
 		}
-		//require_once __DIR__ . '/admin/display-readme.php';
 		require_once __DIR__ . '/admin/help.php';
 		echo wp_kses_post( wimbblock_help() );
 	}
@@ -207,35 +210,60 @@ function wimbblock_admin_tabs() {
 	echo $active_tab === 'help' ? ' nav-tab-active' : '';
 	echo '">' . esc_html__( 'Help', 'wimb-and-block' ) . '</a>' . "\n";
 
-	$tabs   = array();
-	$tabs[] = array(
-		'tab'   => 'settings',
-		'title' => __( 'Settings WIMB', 'wimb-and-block' ),
-	);
-	$tabs[] = array(
-		'tab'   => 'logging',
-		'title' => __( 'Logging', 'wimb-and-block' ),
-	);
-	$tabs[] = array(
-		'tab'   => 'exclude',
-		'title' => __( 'Exclude / always block', 'wimb-and-block' ),
-	);
-	$tabs[] = array(
-		'tab'   => 'blocking',
-		'title' => __( 'Versions Control', 'wimb-and-block' ),
-	);
-	$tabs[] = array(
-		'tab'   => 'table',
-		'title' => __( 'WIMB Table', 'wimb-and-block' ),
-	);
-	$tabs[] = array(
-		'tab'   => 'mgt',
-		'title' => __( 'WIMB Table Management', 'wimb-and-block' ),
-	);
-	$tabs[] = array(
-		'tab'   => 'robots',
-		'title' => __( 'robots.txt', 'wimb-and-block' ),
-	);
+	$tabs = array();
+
+	$wimbblock_wpdb_options = wimbblock_get_options_db();
+	if ( $wimbblock_wpdb_options['error'] === '0' ) {
+		$tabs[] = array(
+			'tab'   => 'table',
+			'title' => __( 'WIMB Table', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'mgt',
+			'title' => __( 'WIMB Table Management', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'exclude',
+			'title' => __( 'Exclude / always block', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'blocking',
+			'title' => __( 'Versions Control', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'settings',
+			'title' => __( 'Settings WIMB', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'logging',
+			'title' => __( 'Logging', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'robots',
+			'title' => __( 'robots.txt', 'wimb-and-block' ),
+		);
+	} else {
+		$tabs[] = array(
+			'tab'   => 'settings',
+			'title' => __( 'Settings WIMB', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'logging',
+			'title' => __( 'Logging', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'exclude',
+			'title' => __( 'Exclude / always block', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'blocking',
+			'title' => __( 'Versions Control', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'robots',
+			'title' => __( 'robots.txt', 'wimb-and-block' ),
+		);
+	}
 
 	foreach ( $tabs as $tab ) {
 		echo '<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=' . $tab['tab'] ) . '" class="nav-tab';

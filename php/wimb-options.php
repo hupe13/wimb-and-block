@@ -49,8 +49,9 @@ function wimbblock_get_default_browsers() {
 		'Firefox'           => 128,
 		'Internet Explorer' => 9999,
 		'Netscape'          => 9999,
-		// https://en.wikipedia.org/wiki/History_of_the_Opera_web_browser
-		'Opera'             => 83,
+		// /https://en.wikipedia.org/wiki/History_of_the_Opera_web_browser
+		// Opera is Chromium based, all other Opera are old.
+		// 'Opera'             => 83,
 		// https://developer.apple.com/documentation/safari-release-notes
 		'Safari'            => 17,
 	);

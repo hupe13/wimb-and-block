@@ -35,6 +35,6 @@ function wimbblock_rotate_table() {
 add_action( 'wimbblock_rotate_hook', 'wimbblock_rotate_table' );
 
 if ( ! wp_next_scheduled( 'wimbblock_rotate_hook' ) ) {
-	$datetime = new DateTime( 'tomorrow 00.05.00', new DateTimeZone( wp_timezone_string() ) );
-	wp_schedule_event( $datetime->getTimestamp(), 'daily', 'wimbblock_rotate_hook' );
+	$wimbblock_datetime = new DateTime( 'tomorrow 00.05.00', new DateTimeZone( wp_timezone_string() ) );
+	wp_schedule_event( $wimbblock_datetime->getTimestamp(), 'daily', 'wimbblock_rotate_hook' );
 }

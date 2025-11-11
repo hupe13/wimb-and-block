@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-14 14:41+0000\n"
-"PO-Revision-Date: 2025-11-06 08:52+0000\n"
+"PO-Revision-Date: 2025-11-08 14:17+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -149,7 +149,7 @@ msgstr "Notschalter"
 msgid "entries from the last 24 hours"
 msgstr "Einträge der letzten 24 Stunden"
 
-#: admin.php:216
+#: admin.php:224
 msgid "Exclude / always block"
 msgstr "Ausschließen / immer blocken"
 
@@ -174,7 +174,7 @@ msgstr "Hol dir einen API-Schlüssel für einen %s."
 msgid "Get an API key from %1$s for a %2$s."
 msgstr "Hol dir einen API-Schlüssel von %1$s für einen %2$s."
 
-#: admin.php:203
+#: admin.php:211
 msgid "Help"
 msgstr "Hilfe"
 
@@ -245,7 +245,7 @@ msgstr "Er wird ebenfalls geblockt, wenn %1$s %2$s enthält oder leer ist."
 msgid "Local WP database or remote database"
 msgstr "Lokale WP-Datenbank oder entfernte Datenbank "
 
-#: php/wimb-options.php:129
+#: php/wimb-options.php:130
 msgid ""
 "Log when the browser accesses your website for the first time and an old "
 "version is detected or it is unknown or suspicious."
@@ -253,21 +253,21 @@ msgstr ""
 "Logge, wenn der Browser zum ersten Mal auf deine Website zugreift und eine "
 "alte Version erkannt wird oder diese unbekannt oder verdächtig ist."
 
-#: php/wimb-options.php:117
+#: php/wimb-options.php:118
 msgid "Log when the browser gets a robots.txt to allow crawling."
 msgstr ""
 "Logge, wenn der Browser eine robots.txt erhält, die das Crawling erlaubt."
 
-#: php/wimb-options.php:123
+#: php/wimb-options.php:124
 msgid "Log when the browser gets a robots.txt to disable crawling."
 msgstr ""
 "Logge, wenn der Browser eine robots.txt erhält, die das Crawling verbietet."
 
-#: php/wimb-options.php:111
+#: php/wimb-options.php:112
 msgid "Log when the browser is excluded from checking."
 msgstr "Logge, wenn der Browser von der Überprüfung ausgeschlossen ist."
 
-#: admin.php:171 admin.php:212
+#: admin.php:180 admin.php:220
 msgid "Logging"
 msgstr "Logging"
 
@@ -283,7 +283,7 @@ msgstr ""
 "Alte Systeme sind alle Windows-Versionen vor Windows 10, einige MacOS- und "
 "Android-Versionen."
 
-#: php/wimb-options.php:105
+#: php/wimb-options.php:106
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
 "blocked later without any explanation."
@@ -304,6 +304,14 @@ msgstr ""
 "Bitte überprüfe, ob du Flags wie %1$s oder %2$s oder andere oder gar keine "
 "benötigst."
 
+#: admin.php:78
+msgid ""
+"Please submit the form twice if you are configuring a remote database and it "
+"does not yet exist."
+msgstr ""
+"Bitte sende das Formular 2x ab, wenn du eine entfernte Datenbank "
+"konfigurierst und sie noch nicht existiert."
+
 #: admin/settings.php:21
 msgid "Remote database hostname"
 msgstr "Hostname der entfernten Datenbank"
@@ -320,11 +328,11 @@ msgstr "Passwort der entfernten Datenbank"
 msgid "Remote database username"
 msgstr "Benutzername der entfernten Datenbank"
 
-#: admin.php:86 admin.php:115 admin/logging.php:85 admin/logging.php:101
+#: admin.php:83 admin.php:124 admin/logging.php:101
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:232
+#: admin.php:240
 msgid "robots.txt"
 msgstr "robots.txt"
 
@@ -348,7 +356,7 @@ msgstr "Einstellung:"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin.php:78 admin.php:208
+#: admin.php:71 admin.php:216
 msgid "Settings WIMB"
 msgstr "Einstellungen für WIMB"
 
@@ -546,7 +554,7 @@ msgstr "Das ist die erwartete Ausgabe."
 msgid "Unblock / block selected entries"
 msgstr "Ausgewählte Einträge entsperren / sperren"
 
-#: admin.php:93 admin.php:220
+#: admin.php:102 admin.php:228
 #| msgid "Versions control"
 msgid "Versions Control"
 msgstr "Versionskontrolle"
@@ -559,11 +567,11 @@ msgstr "WIMB und Block"
 msgid "WIMB API Key"
 msgstr "WIMB-API-Schlüssel"
 
-#: admin.php:122 admin.php:224
+#: admin.php:131 admin.php:232
 msgid "WIMB Table"
 msgstr "WIMB Tabelle"
 
-#: admin.php:126 admin.php:228
+#: admin.php:135 admin.php:236
 msgid "WIMB Table Management"
 msgstr "Verwaltung der WIMB Tabelle"
 
@@ -586,7 +594,7 @@ msgid "yes"
 msgstr "ja"
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:100 admin.php:134 admin.php:177
+#: admin.php:47 admin.php:109 admin.php:143 admin.php:186
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr "Du kannst diese Einstellungen auf der %1$sHauptseite%2$s ändern."

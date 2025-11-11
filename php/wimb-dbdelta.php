@@ -1,6 +1,6 @@
 <?php
 /**
- * Functions for dbdelta
+ * Functions for dbdelta, adapted from original to $wimb_datatable
  *
  * @package wimb-and-block
  */
@@ -43,7 +43,7 @@ function wimbblock_dbDelta( $queries = '', $execute = true ) { // phpcs:ignore W
 	 *
 	 * @param string[] $queries An array of dbDelta SQL queries.
 	 */
-	$queries = apply_filters( 'dbdelta_queries', $queries );
+	// $queries = apply_filters( 'dbdelta_queries', $queries );
 
 	$cqueries   = array(); // Creation queries.
 	$iqueries   = array(); // Insertion queries.
@@ -82,7 +82,7 @@ function wimbblock_dbDelta( $queries = '', $execute = true ) { // phpcs:ignore W
 	 *
 	 * @param string[] $cqueries An array of dbDelta create SQL queries.
 	 */
-	$cqueries = apply_filters( 'dbdelta_create_queries', $cqueries );
+	// $cqueries = apply_filters( 'dbdelta_create_queries', $cqueries );
 
 	/**
 	 * Filters the dbDelta SQL queries for inserting or updating.
@@ -93,7 +93,7 @@ function wimbblock_dbDelta( $queries = '', $execute = true ) { // phpcs:ignore W
 	 *
 	 * @param string[] $iqueries An array of dbDelta insert or update SQL queries.
 	 */
-	$iqueries = apply_filters( 'dbdelta_insert_queries', $iqueries );
+	// $iqueries = apply_filters( 'dbdelta_insert_queries', $iqueries );
 
 	$text_fields = array( 'tinytext', 'text', 'mediumtext', 'longtext' );
 	$blob_fields = array( 'tinyblob', 'blob', 'mediumblob', 'longblob' );

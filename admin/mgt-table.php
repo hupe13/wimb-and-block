@@ -8,7 +8,7 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_display_mgt_table( $table_name, $result ) {
+function wimbblock_display_mgt_table( $wimbblock_table_name, $result ) {
 	wp_enqueue_script(
 		'sort_table_js',
 		plugins_url(
@@ -69,7 +69,7 @@ function wimbblock_display_mgt_table( $table_name, $result ) {
 		$query = $where . ' AND ' . $crawlers . $derivates;
 	}
 	$entries = $wimb_datatable->get_results(
-		'SELECT i,browser,software,system,time,block FROM ' . $table_name . ' WHERE ' . $query . ' ORDER BY software, browser ASC'
+		'SELECT i,browser,software,system,time,block FROM ' . $wimbblock_table_name . ' WHERE ' . $query . ' ORDER BY software, browser ASC'
 	);
 
 	// Make the data rows
@@ -111,8 +111,8 @@ function wimbblock_display_mgt_table( $table_name, $result ) {
 }
 
 function wimbblock_selection_table() {
-	$wpdb_options = wimbblock_get_options_db();
-	$table_name   = $wpdb_options['table_name'];
+	$wimbblock_wpdb_options = wimbblock_get_options_db();
+	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
 
 	echo esc_html__( 'You can search for entries here.', 'wimb-and-block' ) . ' ';
 	printf(
@@ -150,7 +150,7 @@ function wimbblock_selection_table() {
 	}
 	echo '</form>';
 
-	if ( $wpdb_options['error'] === '0' ) {
+	if ( $wimbblock_wpdb_options['error'] === '0' ) {
 		$result = wimbblock_handle_form();
 		// var_dump($result); //wp_die();
 
@@ -177,7 +177,7 @@ function wimbblock_selection_table() {
 				'onclick' => array(),
 				'id'      => array(),
 			);
-			echo wp_kses( wimbblock_display_mgt_table( $table_name, $result ), $allowed_html );
+			echo wp_kses( wimbblock_display_mgt_table( $wimbblock_table_name, $result ), $allowed_html );
 			wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
 			submit_button( __( 'Unblock / block selected entries', 'wimb-and-block' ), 'primary', 'changeblock' );
 		}

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-06 08:51+0000\n"
+"POT-Creation-Date: 2025-11-08 14:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "entries from the last 24 hours"
 msgstr ""
 
-#: admin.php:216
+#: admin.php:224
 msgid "Exclude / always block"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Get an API key from %1$s for a %2$s."
 msgstr ""
 
-#: admin.php:203
+#: admin.php:211
 msgid "Help"
 msgstr ""
 
@@ -223,25 +223,25 @@ msgstr ""
 msgid "Local WP database or remote database"
 msgstr ""
 
-#: php/wimb-options.php:129
+#: php/wimb-options.php:130
 msgid ""
 "Log when the browser accesses your website for the first time and an old "
 "version is detected or it is unknown or suspicious."
 msgstr ""
 
-#: php/wimb-options.php:117
+#: php/wimb-options.php:118
 msgid "Log when the browser gets a robots.txt to allow crawling."
 msgstr ""
 
-#: php/wimb-options.php:123
+#: php/wimb-options.php:124
 msgid "Log when the browser gets a robots.txt to disable crawling."
 msgstr ""
 
-#: php/wimb-options.php:111
+#: php/wimb-options.php:112
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:171 admin.php:212
+#: admin.php:180 admin.php:220
 msgid "Logging"
 msgstr ""
 
@@ -255,7 +255,7 @@ msgid ""
 "Android versions."
 msgstr ""
 
-#: php/wimb-options.php:105
+#: php/wimb-options.php:106
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
 "blocked later without any explanation."
@@ -270,6 +270,12 @@ msgstr ""
 #, php-format
 msgid ""
 "Please check, if you need some flags like %1$s or %2$s or other or nothing."
+msgstr ""
+
+#: admin.php:78
+msgid ""
+"Please submit the form twice if you are configuring a remote database and it "
+"does not yet exist."
 msgstr ""
 
 #: admin/settings.php:21
@@ -288,11 +294,11 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:86 admin.php:115 admin/logging.php:85 admin/logging.php:101
+#: admin.php:83 admin.php:124 admin/logging.php:101
 msgid "Reset"
 msgstr ""
 
-#: admin.php:232
+#: admin.php:240
 msgid "robots.txt"
 msgstr ""
 
@@ -316,7 +322,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: admin.php:78 admin.php:208
+#: admin.php:71 admin.php:216
 msgid "Settings WIMB"
 msgstr ""
 
@@ -460,7 +466,7 @@ msgstr ""
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:93 admin.php:220
+#: admin.php:102 admin.php:228
 msgid "Versions Control"
 msgstr ""
 
@@ -472,11 +478,11 @@ msgstr ""
 msgid "WIMB API Key"
 msgstr ""
 
-#: admin.php:122 admin.php:224
+#: admin.php:131 admin.php:232
 msgid "WIMB Table"
 msgstr ""
 
-#: admin.php:126 admin.php:228
+#: admin.php:135 admin.php:236
 msgid "WIMB Table Management"
 msgstr ""
 
@@ -499,7 +505,7 @@ msgid "yes"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:100 admin.php:134 admin.php:177
+#: admin.php:47 admin.php:109 admin.php:143 admin.php:186
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""

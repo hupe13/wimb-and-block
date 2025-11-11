@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name:       Block old browser versions and suspicious browsers
- * Plugin URI:        https://leafext.de/hp/
+ * Plugin URI:        https://leafext.de/hp/wimb/
  * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
  * Update URI:        https://github.com/hupe13/wimb-and-block
- * Version:           251106
+ * Version:           251111
  * Requires PHP:      8.3
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
@@ -23,13 +23,12 @@ define( 'WIMB_NAME', basename( WIMB_DIR ) ); // wimb-and-block
 
 require __DIR__ . '/php/wimb-options.php';
 require __DIR__ . '/php/mysql.php';
-require __DIR__ . '/php/dbdelta.php';
+require __DIR__ . '/php/wimb-dbdelta.php';
 require __DIR__ . '/php/wimb.php';
 require __DIR__ . '/php/old-agents.php';
 require __DIR__ . '/php/faked-crawlers.php';
 require __DIR__ . '/php/robots.php';
 require __DIR__ . '/php/always-block.php';
-require __DIR__ . '/github-wimb-and-block.php';
 
 if ( is_admin() ) {
 	require_once __DIR__ . '/admin.php';
@@ -42,6 +41,7 @@ if ( is_admin() ) {
 	require_once __DIR__ . '/admin/deleting.php';
 	require_once __DIR__ . '/admin/logging.php';
 	require_once __DIR__ . '/admin/logfile.php';
+	require_once __DIR__ . '/github-wimb-and-block.php';
 }
 
 // Set the initial version of the database schema
@@ -98,8 +98,8 @@ function wimbblock_check_agent() {
 	}
 	global $user_login;
 	global $wimbblock_software;
-	global $is_crawler;
-	$is_crawler = false;
+	global $wimbblock_is_crawler;
+	$wimbblock_is_crawler = false;
 
 	$agent = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
 	$agent = trim( $agent, '"\' ' );
@@ -157,7 +157,7 @@ function wimbblock_check_agent() {
 		wimbblock_always( $table_name, $agent, $blocked, $id, false );
 		wimbblock_old_system( $table_name, $system, $blocked, $id, false );
 		wimbblock_faked_crawler( $agent, $software, $ip, false );
-		if ( $is_crawler === false ) {
+		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
 			if ( $software !== '' ) {
 				wimbblock_check_modern_browser( $table_name, $software, $version, $system, $blocked, $id, false );
