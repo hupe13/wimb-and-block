@@ -73,6 +73,7 @@ function wimbblock_check_agent() {
 	if (
 		! is_admin()
 		&& $user_login === ''
+		&& $ip !== '127.0.0.1'
 		&& strpos( $agent, 'WordPress/Private' ) === false
 		&& boolval( preg_match( '#WordPress/.+' . get_home_url() . '#', $agent ) ) === false
 		&& strpos( $agent, 'WP-URLDetails' ) === false
