@@ -28,9 +28,19 @@ function wimbblock_check_robots_txt( $posts ) {
 	&& ( strtolower( $wp->request ) === 'robots-check' || strtolower( $wp->request ) === 'robots.txt' )
 	) {
 
-		$ip    = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
-		$agent = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
-		$agent = trim( $agent, '"\' ' );
+		$ip        = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
+		$agent     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
+		$agent     = trim( $agent, '"\' ' );
+		$server_ip = sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ?? '' ) );
+
+		if ( $ip === $server_ip && $agent !== 'wimb-and-block test agent' ) {
+			// wimbblock_error_log( 'Server Task: ' . $agent );
+			wimbblock_get_robots_txt();
+		}
+
+		if ( $ip === '127.0.0.1' && $agent !== 'wimb-and-block test agent' ) {
+			wimbblock_get_robots_txt();
+		}
 
 		if ( $agent === '' ) {
 			wimbblock_error_log( 'robots no agent - blocked: ' . $ip );
