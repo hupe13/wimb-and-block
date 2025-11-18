@@ -98,7 +98,7 @@ function wimbblock_display_mgt_table( $wimbblock_table_name, $result ) {
 		}
 
 		$table  = '<tr' . $class . '><td class="center-text">' . join( '</td>' . "\n\r" . '<td class="center-text">', $row_vals ) . '</td>';
-		$table .= '<td class="center-text"><input type="checkbox" name="' . $row_vals[0] . '" value="' . $row_vals[4] . '"/></td>';
+		$table .= '<td class="center-text"><input type="checkbox" name="' . $row_vals[0] . '" value="' . $row_vals[5] . '"/></td>';
 		$table .= '</tr>';
 		$rows[] = $table;
 	}
@@ -189,17 +189,19 @@ function wimbblock_handle_form() {
 	$text = '';
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock_mgt', 'wimbblock_mgt_nonce' ) ) {
 		if ( isset( $_POST['changeblock'] ) ) {
+
 			$entries = $_POST;
 			unset( $entries['wimbblock_mgt_nonce'] );
 			unset( $entries['_wp_http_referer'] );
 			unset( $entries['changeblock'] );
-			// var_dump($entries); wp_die('tot');
+			// echo '<pre>';var_dump($entries);echo '</pre>';wp_die('tot');
 			$options = wimbblock_get_options_db();
 			global $wimb_datatable;
 			if ( is_null( $wimb_datatable ) ) {
 				wimbblock_open_wpdb();
 			}
 			foreach ( $entries as $i => $block ) {
+				//echo '<pre>';var_dump($i,$block);echo '</pre>';
 				if ( $block === '0' ) {
 					// block the entry
 					$entries = $wimb_datatable->get_results(
@@ -221,6 +223,7 @@ function wimbblock_handle_form() {
 				}
 			}
 		}
+		// wp_die("tot");
 		if ( isset( $_POST['search'] ) ) {
 			$entries = $_POST;
 			unset( $entries['wimbblock_mgt_nonce'] );
