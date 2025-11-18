@@ -20,7 +20,7 @@ function wimbblock_help() {
 	$text .= '<li class="adminli">' . sprintf(
 	/* translators: %1$s is What is my browser?. %2$s is Basic Application Plan */
 		__( 'Get an API key from %1$s for a %2$s.', 'wimb-and-block' ),
-		'<a href="https://developers.whatismybrowser.com/api/">What is my browser?</a>',
+		'<a href="https://developers.whatismybrowser.com/api/signup/?plan=basic">What is my browser?</a>',
 		'Basic Application Plan'
 	) . '</li>' . "\n\r";
 	$text .= '<li class="adminli">' . sprintf(

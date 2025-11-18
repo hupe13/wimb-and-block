@@ -20,7 +20,7 @@ add_action( 'admin_init', 'wimbblock_emergency_init' );
 function wimbblock_form_emergency() {
 	$setting = wimbblock_get_option( 'wimbblock_emergency' );
 	if ( $setting === false ) {
-		$setting = array( 'on' => '1' );
+		$setting = '1';
 	}
 
 	// var_dump($setting);
@@ -32,13 +32,13 @@ function wimbblock_form_emergency() {
 
 	$options = wimbblock_get_options_db();
 	if ( $options['error'] !== '0' ) {
-		$setting['on'] = '0';
+		$setting = '0';
 	}
-	echo '<input ' . esc_attr( $disabled ) . ' type="radio" name="wimbblock_emergency[on]" value="1" ';
-	checked( ! ( isset( $setting['on'] ) && $setting['on'] === '0' ) );
+	echo '<input ' . esc_attr( $disabled ) . ' type="radio" name="wimbblock_emergency" value="1" ';
+	checked( $setting !== '0' );
 	echo '> ' . esc_html__( 'It is working.', 'wimb-and-block' ) . ' &nbsp;&nbsp; ';
-	echo '<input ' . esc_attr( $disabled ) . ' type="radio" name="wimbblock_emergency[on]" value="0" ';
-	checked( isset( $setting['on'] ) && $setting['on'] === '0' );
+	echo '<input ' . esc_attr( $disabled ) . ' type="radio" name="wimbblock_emergency" value="0" ';
+	checked( $setting === '0' );
 	echo '> ' . esc_html__( 'STOP!', 'wimb-and-block' );
 }
 

@@ -27,17 +27,28 @@ function wimbblock_robots_htaccess() {
 	$site       = wp_parse_url( get_home_url() );
 	$serverroot = $site['host'];
 	echo '<h3>robots.txt - ' . wp_kses_post( $serverroot ) . '</h3>';
-	if ( ! isset( $site['path'] ) ) {
-		global $wp_filesystem;
+	$wpdb_options = wimbblock_get_options_db();
+	if ( $wpdb_options['error'] !== '0' || $wpdb_options['wimb_api'] === '' ) {
+		echo wp_kses_post(
+			wp_sprintf(
+				/* translators: %1$s is "robots.txt", %2$s and %3$s is a link. */
+				__( 'You can set up and test your configuration for %1$s once you have configured the %2$ssettings%3$s for WIMB and the database.', 'wimb-and-block' ),
+				'robots.txt',
+				'<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=settings' ) . '">',
+				'</a>'
+			)
+		);
+	} elseif ( ! isset( $site['path'] ) ) {
+			global $wp_filesystem;
 		if ( ! function_exists( 'WP_Filesystem' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/file.php';
+			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
-		WP_Filesystem();
+			WP_Filesystem();
 		if ( $wp_filesystem->exists( ABSPATH . '.htaccess' ) && $wp_filesystem->is_writable( ABSPATH . '.htaccess' ) ) {
 			if ( ! $wp_filesystem->exists( ABSPATH . 'robots.txt' ) ) {
 				echo '<p>' .
 				wp_kses_post(
-					__( 'You do not seem to have your own robots.txt file, so WordPress provides it. Then you can test the configuration without any changes of the .htaccess.', 'wimb-and-block' )
+					__( 'You do not seem to have your own robots.txt file, so WordPress provides it. Therefore you can test the configuration without any changes of the .htaccess.', 'wimb-and-block' )
 				) . '</p>';
 				wimbblock_htaccess_display_config_form();
 				wimbblock_htaccess_handle_config_form();
@@ -47,22 +58,22 @@ function wimbblock_robots_htaccess() {
 				);
 				echo wp_kses_post(
 					'<h4>' .
-					__( 'Form to handle the entry in .htaccess', 'wimb-and-block' )
-					. '</h4>'
+						__( 'Form to handle the entry in .htaccess', 'wimb-and-block' )
+						. '</h4>'
 				);
-				echo '<p>' .
-				wp_kses_post(
-					__(
-						'The plugin can modify the .htaccess file.',
-						'wimb-and-block'
-					)
-				) . '</p>';
+					echo '<p>' .
+					wp_kses_post(
+						__(
+							'The plugin can modify the .htaccess file.',
+							'wimb-and-block'
+						)
+					) . '</p>';
 
-				wimbblock_display_htaccess_form();
-				wimbblock_handle_htaccess_form();
-				wimbblock_edit_rules_htaccess( true );
-				wimbblock_htaccess_display_config_form();
-				wimbblock_htaccess_handle_config_form();
+					wimbblock_display_htaccess_form();
+					wimbblock_handle_htaccess_form();
+					wimbblock_edit_rules_htaccess( true );
+					wimbblock_htaccess_display_config_form();
+					wimbblock_htaccess_handle_config_form();
 			}
 		} else {
 			echo '<p>' .
@@ -239,7 +250,7 @@ function wimbblock_htaccess_handle_config_form() {
 			$site       = wp_parse_url( get_home_url() );
 			$serverroot = $site['host'];
 			$path       = isset( $site['path'] ) ? $site['path'] : '';
-			$urls       = array( 'https://' . $serverroot . '/robots.txt', 'https://' . $serverroot . $path . '/robots-check/' );
+			$urls       = array( $site['scheme'] . '://' . $serverroot . '/robots.txt', $site['scheme'] . '://' . $serverroot . $path . '/robots-check/' );
 			$this_agent = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
 			$agents     = array( $this_agent, 'wimb-and-block test agent' );
 			foreach ( $agents as $agent ) {
@@ -273,7 +284,7 @@ function wimbblock_htaccess_handle_config_form() {
 				$url = trailingslashit( get_home_url() );
 				echo '<h4>' . wp_kses_post( $url ) . '</h4>';
 				$response = wp_remote_get( $url, array( 'user-agent' => $agent ) );
-				if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
+				if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 && $agent !== 'wimb-and-block test agent' ) {
 					echo '<p>';
 					echo wp_kses_post( wp_remote_retrieve_response_code( $response ) );
 					echo ' - ';

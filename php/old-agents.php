@@ -28,7 +28,7 @@ function wimbblock_check_modern_browser( $table_name, $software, $version, $syst
 						if ( $robots === false ) {
 							wimbblock_counter( $table_name, 'block', $id );
 							$logging = wimbblock_get_option( 'wimbblock_log' );
-							wimbblock_error_log( 'Blocked - old ' . $derivate . ' like browser: ' . $software . ' * ' . $agent . ' * ' . $version, $logging['oldagents'] );
+							wimbblock_error_log( 'Blocked - old ' . $derivate . ' like browser: ' . $software . ' * ' . $agent . ' * ' . $version, $logging['oldagents'] ?? true );
 							status_header( 404 );
 							echo 'Please use a modern webbrowser to access this website';
 							exit();
@@ -38,7 +38,7 @@ function wimbblock_check_modern_browser( $table_name, $software, $version, $syst
 							}
 							wimbblock_counter( $table_name, 'robots', $id );
 							$logging = wimbblock_get_option( 'wimbblock_log' );
-							wimbblock_error_log( 'robots.txt old ' . $derivate . ' like forbidden: ' . $agent, $logging['robotsforbidden'] );
+							wimbblock_error_log( 'robots.txt old ' . $derivate . ' like forbidden: ' . $agent, $logging['robotsforbidden'] ?? true );
 							header( 'Content-Type: text/plain; charset=UTF-8' );
 							echo "User-agent: *\r\n" .
 							'Disallow: /' . "\r\n";
@@ -57,7 +57,7 @@ function wimbblock_check_modern_browser( $table_name, $software, $version, $syst
 			if ( $robots === false ) {
 				wimbblock_counter( $table_name, 'block', $id );
 				$logging = wimbblock_get_option( 'wimbblock_log' );
-				wimbblock_error_log( 'Blocked - old Opera: ' . $software . ' * ' . $agent . ' * ' . $version, $logging['oldagents'] );
+				wimbblock_error_log( 'Blocked - old Opera: ' . $software . ' * ' . $agent . ' * ' . $version, $logging['oldagents'] ?? true );
 				status_header( 404 );
 				echo 'Please use a modern webbrowser to access this website';
 				exit();
@@ -67,7 +67,7 @@ function wimbblock_check_modern_browser( $table_name, $software, $version, $syst
 				}
 				wimbblock_counter( $table_name, 'robots', $id );
 				$logging = wimbblock_get_option( 'wimbblock_log' );
-				wimbblock_error_log( 'robots.txt old Opera forbidden: ' . $agent, $logging['robotsforbidden'] );
+				wimbblock_error_log( 'robots.txt old Opera forbidden: ' . $agent, $logging['robotsforbidden'] ?? true );
 				header( 'Content-Type: text/plain; charset=UTF-8' );
 				echo "User-agent: *\r\n" .
 				'Disallow: /' . "\r\n";
@@ -85,7 +85,7 @@ function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $
 					if ( $robots === false ) {
 						wimbblock_counter( $table_name, 'block', $id );
 						$logging = wimbblock_get_option( 'wimbblock_log' );
-						wimbblock_error_log( 'Blocked - old browser: ' . $browser . ' * ' . $software . ' * ' . $version, $logging['oldagents'] );
+						wimbblock_error_log( 'Blocked - old browser: ' . $browser . ' * ' . $software . ' * ' . $version, $logging['oldagents'] ?? true );
 						status_header( 404 );
 						echo 'Please use a modern webbrowser to access this website';
 						exit();
@@ -95,7 +95,7 @@ function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $
 						}
 						wimbblock_counter( $table_name, 'robots', $id );
 						$logging = wimbblock_get_option( 'wimbblock_log' );
-						wimbblock_error_log( 'robots.txt old browser forbidden: ' . $browser . ' * ' . $software . ' * ' . $version, $logging['robotsforbidden'] );
+						wimbblock_error_log( 'robots.txt old browser forbidden: ' . $browser . ' * ' . $software . ' * ' . $version, $logging['robotsforbidden'] ?? true );
 						header( 'Content-Type: text/plain; charset=UTF-8' );
 						echo "User-agent: *\r\n" .
 						'Disallow: /' . "\r\n";
@@ -112,7 +112,7 @@ function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $
 						if ( $robots === false ) {
 							wimbblock_counter( $table_name, 'block', $id );
 							$logging = wimbblock_get_option( 'wimbblock_log' );
-							wimbblock_error_log( 'Blocked - old browser: ' . $browser . ' * ' . $software, $logging['oldagents'] );
+							wimbblock_error_log( 'Blocked - old browser: ' . $browser . ' * ' . $software, $logging['oldagents'] ?? true );
 							status_header( 404 );
 							echo 'Please use a modern webbrowser to access this website';
 							exit();
@@ -122,7 +122,7 @@ function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $
 							}
 							wimbblock_counter( $table_name, 'robots', $id );
 							$logging = wimbblock_get_option( 'wimbblock_log' );
-							wimbblock_error_log( 'robots.txt old browser forbidden: ' . $browser . ' * ' . $software, $logging['robotsforbidden'] );
+							wimbblock_error_log( 'robots.txt old browser forbidden: ' . $browser . ' * ' . $software, $logging['robotsforbidden'] ?? true );
 							header( 'Content-Type: text/plain; charset=UTF-8' );
 							echo "User-agent: *\r\n" .
 							'Disallow: /' . "\r\n";
@@ -140,7 +140,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 		if ( $robots === false ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			$logging = wimbblock_get_option( 'wimbblock_log' );
-			wimbblock_error_log( 'Blocked - unknown software: ' . $agent, $logging['oldagents'] );
+			wimbblock_error_log( 'Blocked - unknown software: ' . $agent, $logging['oldagents'] ?? true );
 			status_header( 404 );
 			echo 'Blocked - unknown software: ' . esc_html( $agent );
 			exit();
@@ -150,7 +150,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 			}
 			wimbblock_counter( $table_name, 'robots', $id );
 			$logging = wimbblock_get_option( 'wimbblock_log' );
-			wimbblock_error_log( 'robots.txt unknown software forbidden: ' . $agent, $logging['robotsforbidden'] );
+			wimbblock_error_log( 'robots.txt unknown software forbidden: ' . $agent, $logging['robotsforbidden'] ?? true );
 			header( 'Content-Type: text/plain; charset=UTF-8' );
 			echo "User-agent: *\r\n" .
 			'Disallow: /' . "\r\n";
@@ -162,7 +162,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 		if ( $robots === false ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			$logging = wimbblock_get_option( 'wimbblock_log' );
-			wimbblock_error_log( 'Blocked - unknown webbrowser: ' . $agent . ' * ' . $software, $logging['oldagents'] );
+			wimbblock_error_log( 'Blocked - unknown webbrowser: ' . $agent . ' * ' . $software, $logging['oldagents'] ?? true );
 			status_header( 404 );
 			echo 'Blocked - unknown webbrowser';
 			exit();
@@ -172,7 +172,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 			}
 			wimbblock_counter( $table_name, 'robots', $id );
 			$logging = wimbblock_get_option( 'wimbblock_log' );
-			wimbblock_error_log( 'robots.txt unknown webbrowser forbidden: ' . $agent . ' * ' . $software, $logging['robotsforbidden'] );
+			wimbblock_error_log( 'robots.txt unknown webbrowser forbidden: ' . $agent . ' * ' . $software, $logging['robotsforbidden'] ?? true );
 			header( 'Content-Type: text/plain; charset=UTF-8' );
 			echo "User-agent: *\r\n" .
 			'Disallow: /' . "\r\n";
@@ -214,7 +214,7 @@ function wimbblock_old_system( $table_name, $system, $blocked, $id, $robots ) {
 				if ( $robots === false ) {
 					wimbblock_counter( $table_name, 'block', $id );
 					$logging = wimbblock_get_option( 'wimbblock_log' );
-					wimbblock_error_log( 'Blocked - old system: ' . $system, $logging['oldagents'] );
+					wimbblock_error_log( 'Blocked - old system: ' . $system, $logging['oldagents'] ?? true );
 					status_header( 404 );
 					echo 'Please use a modern operating system to access this website';
 					exit();
@@ -224,7 +224,7 @@ function wimbblock_old_system( $table_name, $system, $blocked, $id, $robots ) {
 					}
 					wimbblock_counter( $table_name, 'robots', $id );
 					$logging = wimbblock_get_option( 'wimbblock_log' );
-					wimbblock_error_log( 'robots.txt old system forbidden: ' . $agent, $logging['robotsforbidden'] );
+					wimbblock_error_log( 'robots.txt old system forbidden: ' . $agent, $logging['robotsforbidden'] ?? true );
 					header( 'Content-Type: text/plain; charset=UTF-8' );
 					echo "User-agent: *\r\n" .
 					'Disallow: /' . "\r\n";

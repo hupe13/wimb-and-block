@@ -12,8 +12,8 @@ defined( 'ABSPATH' ) || die();
  * For translating
  */
 function wimbblock_textdomain() {
-	if ( file_exists( WIMB_DIR . '/lang/wimb-and-block-' . get_locale() . '.mo' ) ) {
-		$mofile = WIMB_DIR . '/lang/wimb-and-block-' . get_locale() . '.mo';
+	if ( file_exists( __DIR__ . '/lang/wimb-and-block-' . get_locale() . '.mo' ) ) {
+		$mofile = __DIR__ . '/lang/wimb-and-block-' . get_locale() . '.mo';
 		load_textdomain( 'wimb-and-block', $mofile );
 	}
 }

@@ -1,9 +1,9 @@
 # Block old browser versions and suspicious browsers
 
 Contributors: hupe13   
-Tags: bad bots, ban, blocking, security, monitor   
+Tags: bad bots, ban, blocking, security, robots.txt   
 Tested up to: 6.9   
-Stable tag: 251111   
+Stable tag: 251118   
 Requires at least: 6.5   
 Requires PHP: 8.3   
 License: GPLv2 or later   

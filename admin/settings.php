@@ -89,7 +89,7 @@ function wimbblock_form( $field ) {
 				sprintf(
 					/* translators: %s is a link . */
 					__( 'Get an API key for a %s.', 'wimb-and-block' ),
-					'<a href="https://developers.whatismybrowser.com/api/">Basic Application Plan</a>'
+					'<a href="https://developers.whatismybrowser.com/api/signup/?plan=basic">Basic Application Plan</a>'
 				)
 			);
 			echo '</p>';

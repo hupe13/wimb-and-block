@@ -68,6 +68,7 @@ function wimbblock_admin() {
 		}
 		echo '</form>';
 		echo '<hr class="adminhrule">';
+
 		echo '<h3>' . esc_html( __( 'Settings WIMB', 'wimb-and-block' ) ) . '</h3>';
 		echo '<form method="post" action="options.php">';
 		settings_fields( 'wimbblock_settings' );
