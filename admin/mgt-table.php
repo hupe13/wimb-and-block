@@ -8,7 +8,7 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_display_mgt_table( $wimbblock_table_name, $result ) {
+function wimbblock_display_mgt_table( $wimbblock_table_name, $entries ) {
 	wp_enqueue_script(
 		'sort_table_js',
 		plugins_url(
@@ -58,19 +58,12 @@ function wimbblock_display_mgt_table( $wimbblock_table_name, $result ) {
 	<th>block</th>
 	<th>unblock/block</th></tr></thead>';
 
-	if ( is_array( $result ) ) {
-
-		$command = array();
-		foreach ( $result as $key => $value ) {
-			$command[] = $key . " LIKE '%" . $value . "%'";
-		}
-		$query = implode( ' AND ', $command );
-	} else {
-		$query = $where . ' AND ' . $crawlers . $derivates;
+	if ( ! is_array( $entries ) ) {
+		$query   = $where . ' AND ' . $crawlers . $derivates;
+		$entries = $wimb_datatable->get_results(
+			'SELECT i,browser,software,system,time,block FROM ' . $wimbblock_table_name . ' WHERE ' . $query . ' ORDER BY software, browser ASC'
+		);
 	}
-	$entries = $wimb_datatable->get_results(
-		'SELECT i,browser,software,system,time,block FROM ' . $wimbblock_table_name . ' WHERE ' . $query . ' ORDER BY software, browser ASC'
-	);
 
 	// Make the data rows
 	$rows      = array();
@@ -123,7 +116,7 @@ function wimbblock_selection_table() {
 		'<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=blocking' ) . '">',
 		'</a>'
 	);
-	echo ' ' . esc_html( __( "You can't unblock these either.", 'wimb-and-block' ) ) . '<br>';
+	echo ' ' . esc_html( __( 'If you want to block/unblock them, search for them.', 'wimb-and-block' ) ) . '<br>';
 
 	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
 	if ( current_user_can( 'manage_options' ) ) {
@@ -152,7 +145,6 @@ function wimbblock_selection_table() {
 
 	if ( $wimbblock_wpdb_options['error'] === '0' ) {
 		$result = wimbblock_handle_form();
-		// var_dump($result); //wp_die();
 
 		printf(
 			wp_kses_post(
@@ -186,22 +178,21 @@ function wimbblock_selection_table() {
 }
 
 function wimbblock_handle_form() {
-	$text = '';
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock_mgt', 'wimbblock_mgt_nonce' ) ) {
+		$options = wimbblock_get_options_db();
+		global $wimb_datatable;
+		if ( is_null( $wimb_datatable ) ) {
+			wimbblock_open_wpdb();
+		}
 		if ( isset( $_POST['changeblock'] ) ) {
-
 			$entries = $_POST;
 			unset( $entries['wimbblock_mgt_nonce'] );
 			unset( $entries['_wp_http_referer'] );
 			unset( $entries['changeblock'] );
 			// echo '<pre>';var_dump($entries);echo '</pre>';wp_die('tot');
-			$options = wimbblock_get_options_db();
-			global $wimb_datatable;
-			if ( is_null( $wimb_datatable ) ) {
-				wimbblock_open_wpdb();
-			}
+
+			$command = array();
 			foreach ( $entries as $i => $block ) {
-				//echo '<pre>';var_dump($i,$block);echo '</pre>';
 				if ( $block === '0' ) {
 					// block the entry
 					$entries = $wimb_datatable->get_results(
@@ -221,7 +212,17 @@ function wimbblock_handle_form() {
 						),
 					);
 				}
+				$command[] = "i='" . $i . "'";
 			}
+			$query = implode( ' OR ', $command );
+
+			$entries = $wimb_datatable->get_results(
+				$wimb_datatable->prepare(
+					'SELECT i,browser,software,system,time,block FROM %i WHERE ' . $query,
+					$options['table_name'],
+				),
+			);
+			return $entries;
 		}
 		// wp_die("tot");
 		if ( isset( $_POST['search'] ) ) {
@@ -229,8 +230,28 @@ function wimbblock_handle_form() {
 			unset( $entries['wimbblock_mgt_nonce'] );
 			unset( $entries['_wp_http_referer'] );
 			unset( $entries['search'] );
-			return $entries;
+
+			$command = array();
+			foreach ( $entries as $key => $value ) {
+				// escape: %d (integer), %f (float), %s (string), %i (identifier, e.g. table/field names)
+				$to_escapes = array( 'd', 'f', 's', 'i' );
+				foreach ( $to_escapes as $to_escape ) {
+					if ( str_starts_with( strtolower( $value ), $to_escape ) ) {
+						$value = '%' . $value;
+					}
+				}
+				$command[] = $key . " LIKE '%" . $value . "%' ";
+			}
+			$query = implode( ' AND ', $command );
+			// var_dump( $query );
+			$results = $wimb_datatable->get_results(
+				$wimb_datatable->prepare(
+					'SELECT i,browser,software,system,time,block FROM %i WHERE ' . $query . ' ORDER BY software, browser ASC',
+					$options['table_name'],
+				),
+			);
+			// var_dump( $results );
+			return $results;
 		}
 	}
-	return $text;
 }

@@ -3,7 +3,7 @@
 Contributors: hupe13   
 Tags: bad bots, ban, blocking, security, robots.txt   
 Tested up to: 6.9   
-Stable tag: 251118   
+Stable tag: 251119   
 Requires at least: 6.5   
 Requires PHP: 8.3   
 License: GPLv2 or later   
@@ -34,6 +34,12 @@ Old systems are all Windows versions before Windows 10, some MacOS and Android v
 ### Logging
 
 * The logging can be very verbose. Please check the logs and the WIMB table regularly.
+
+## Screenshots
+
+1. Database settings: <br>![Database settings](.wordpress-org/screenshot-3.png)
+2. Access attempts from the same IP address blocked within 15 seconds: <br>![Access attempts from the same IP address blocked within 15 seconds](.wordpress-org/screenshot-1.png)
+3. Exclude these browsers from checking / Always block browsers with this strings: <br>![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-2.png)
 
 ## Updates
 

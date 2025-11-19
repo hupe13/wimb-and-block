@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-16 13:04+0000\n"
+"POT-Creation-Date: 2025-11-19 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -48,11 +48,11 @@ msgstr ""
 msgid "About robots.txt"
 msgstr ""
 
-#: admin/robots.php:290
+#: admin/robots.php:291
 msgid "Access is allowed - this is correct."
 msgstr ""
 
-#: admin/robots.php:296
+#: admin/robots.php:297
 msgid "Access is forbidden - this is correct."
 msgstr ""
 
@@ -96,11 +96,11 @@ msgstr ""
 msgid "Change view"
 msgstr ""
 
-#: admin/robots.php:257
+#: admin/robots.php:258
 msgid "Crawling is allowed:"
 msgstr ""
 
-#: admin/robots.php:259
+#: admin/robots.php:260
 msgid "Crawling is disabled:"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Delete all plugin settings when deleting the plugin?"
 msgstr ""
 
-#: admin/robots.php:212
+#: admin/robots.php:213
 msgid "Delete the rules"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: admin/robots.php:128
+#: admin/robots.php:129
 msgid "Edit .htaccess"
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Exclude these browsers from checking"
 msgstr ""
 
-#: admin/robots.php:60
+#: admin/robots.php:61
 msgid "Form to handle the entry in .htaccess"
 msgstr ""
 
@@ -197,11 +197,15 @@ msgid "If the database is local, the table will also be deleted."
 msgstr ""
 
 #. is a host.
-#: admin/robots.php:134
+#: admin/robots.php:135
 #, php-format
 msgid ""
 "If you do not want to use the form write in your .htaccess in the root "
 "directory of  %s"
+msgstr ""
+
+#: admin/mgt-table.php:126
+msgid "If you want to block/unblock them, search for them."
 msgstr ""
 
 #. translators:%s are numbers
@@ -269,7 +273,7 @@ msgid "Path of log file"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:113
+#: admin/robots.php:114
 #, php-format
 msgid ""
 "Please check, if you need some flags like %1$s or %2$s or other or nothing."
@@ -321,7 +325,7 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:79 wimb-and-block.php:87
+#: wimb-and-block.php:78 wimb-and-block.php:86
 msgid "Settings"
 msgstr ""
 
@@ -329,11 +333,11 @@ msgstr ""
 msgid "Settings WIMB"
 msgstr ""
 
-#: admin/robots.php:272 admin/robots.php:302
+#: admin/robots.php:273 admin/robots.php:303
 msgid "Something is going wrong."
 msgstr ""
 
-#: admin/robots.php:279
+#: admin/robots.php:280
 msgid "Something is going wrong. Check your rewrite rules."
 msgstr ""
 
@@ -359,11 +363,11 @@ msgstr ""
 msgid "STOP!"
 msgstr ""
 
-#: admin/robots.php:241
+#: admin/robots.php:242
 msgid "Test"
 msgstr ""
 
-#: admin/robots.php:235
+#: admin/robots.php:236
 msgid "Test your configuration"
 msgstr ""
 
@@ -385,15 +389,15 @@ msgid ""
 "configured and running."
 msgstr ""
 
-#: admin/robots.php:65
+#: admin/robots.php:66
 msgid "The plugin can modify the .htaccess file."
 msgstr ""
 
-#: admin/robots.php:80
+#: admin/robots.php:81
 msgid "The plugin cannot modify the .htaccess file because it is read-only."
 msgstr ""
 
-#: admin/robots.php:150
+#: admin/robots.php:151
 msgid ""
 "The plugin cannot modify the .htaccess file in the server's root directory "
 "because the WordPress installation is located in a subdirectory."
@@ -445,7 +449,7 @@ msgstr ""
 msgid "There is an error in your settings."
 msgstr ""
 
-#: admin/robots.php:207
+#: admin/robots.php:208
 msgid ""
 "There is no WordPress function to delete the rules completely. This means "
 "that the comments remain."
@@ -461,7 +465,7 @@ msgstr ""
 msgid "There were %1$s different browsers, of which %2$s were blocked."
 msgstr ""
 
-#: admin/robots.php:270
+#: admin/robots.php:271
 msgid "This is the expected output."
 msgstr ""
 
@@ -493,12 +497,12 @@ msgstr ""
 msgid "WIMB table name"
 msgstr ""
 
-#: admin/robots.php:205
+#: admin/robots.php:206
 msgid "Write .htaccess file"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:104
+#: admin/robots.php:105
 #, php-format
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr ""
@@ -517,7 +521,7 @@ msgstr ""
 msgid "You can configure other browsers too."
 msgstr ""
 
-#: admin/robots.php:56 admin/help.php:62
+#: admin/robots.php:57 admin/help.php:62
 msgid ""
 "You can configure some rewrite rules, to provide a robots.txt to enable or "
 "to disable crawling for a browser. If crawling is disabled, access to your "
@@ -525,7 +529,7 @@ msgid ""
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:188
+#: admin/robots.php:189
 #, php-format
 msgid "You can do it on %1$sthis site%2$s."
 msgstr ""
@@ -534,7 +538,8 @@ msgstr ""
 msgid "You can search for entries here."
 msgstr ""
 
-#: admin/robots.php:34
+#. %1$s is "robots.txt", %2$s and %3$s is a link.
+#: admin/robots.php:35
 #, php-format
 msgid ""
 "You can set up and test your configuration for %1$s once you have configured "
@@ -547,11 +552,7 @@ msgstr ""
 msgid "You can sort the columns %1$s, %2$s, %3$s and %4$s."
 msgstr ""
 
-#: admin/mgt-table.php:126
-msgid "You can't unblock these either."
-msgstr ""
-
-#: admin/robots.php:50
+#: admin/robots.php:51
 msgid ""
 "You do not seem to have your own robots.txt file, so WordPress provides it. "
 "Therefore you can test the configuration without any changes of the ."
@@ -566,7 +567,7 @@ msgid ""
 "database table."
 msgstr ""
 
-#: admin/robots.php:168
+#: admin/robots.php:169
 msgid "You must configure these settings on each of your domains!"
 msgstr ""
 

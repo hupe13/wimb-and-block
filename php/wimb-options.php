@@ -53,7 +53,11 @@ function wimbblock_get_default_browsers() {
 		// Opera is Chromium based, all other Opera are old.
 		// 'Opera'             => 83,
 		// https://developer.apple.com/documentation/safari-release-notes
+		// https://theapplewiki.com/wiki/Safari
 		'Safari'            => 17,
+		// https://en.wikipedia.org/wiki/Microsoft_Edge#New_Edge_release_history
+		// https://www.cvedetails.com/version-list/26/32367/1/Microsoft-Edge.html?order=0
+		'Edge'              => 128,
 	);
 	return $defaults;
 }
