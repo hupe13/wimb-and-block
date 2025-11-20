@@ -38,12 +38,12 @@ function wimbblock_robots_htaccess() {
 				'</a>'
 			)
 		);
-	} elseif ( ! isset( $site['path'] ) ) {
-			global $wp_filesystem;
+	} elseif ( ! isset( $site['path'] ) && get_home_path() === ABSPATH ) {
+		global $wp_filesystem;
 		if ( ! function_exists( 'WP_Filesystem' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
-			WP_Filesystem();
+		WP_Filesystem();
 		if ( $wp_filesystem->exists( ABSPATH . '.htaccess' ) && $wp_filesystem->is_writable( ABSPATH . '.htaccess' ) ) {
 			if ( ! $wp_filesystem->exists( ABSPATH . 'robots.txt' ) ) {
 				echo '<p>' .
@@ -58,22 +58,25 @@ function wimbblock_robots_htaccess() {
 				);
 				echo wp_kses_post(
 					'<h4>' .
-						__( 'Form to handle the entry in .htaccess', 'wimb-and-block' )
-						. '</h4>'
-				);
-					echo '<p>' .
-					wp_kses_post(
 						__(
-							'The plugin can modify the .htaccess file.',
+							'Form to handle the entry in .htaccess',
 							'wimb-and-block'
 						)
-					) . '</p>';
+						. '</h4>'
+				);
+				echo '<p>' .
+				wp_kses_post(
+					__(
+						'The plugin can modify the .htaccess file.',
+						'wimb-and-block'
+					)
+				) . '</p>';
 
-					wimbblock_display_htaccess_form();
-					wimbblock_handle_htaccess_form();
-					wimbblock_edit_rules_htaccess( true );
-					wimbblock_htaccess_display_config_form();
-					wimbblock_htaccess_handle_config_form();
+				wimbblock_display_htaccess_form();
+				wimbblock_handle_htaccess_form();
+				wimbblock_edit_rules_htaccess( true );
+				wimbblock_htaccess_display_config_form();
+				wimbblock_htaccess_handle_config_form();
 			}
 		} else {
 			echo '<p>' .
@@ -98,6 +101,7 @@ function wimbblock_robots_htaccess() {
 
 function wimbblock_htaccess_subdir_help() {
 	$site      = wp_parse_url( get_home_url() );
+	$path      = isset( $site['path'] ) ? $site['path'] : '';
 	$codestyle = ' class="language-coffeescript"';
 	$text      = '<p>';
 	$text     .= wp_sprintf(
@@ -107,7 +111,7 @@ function wimbblock_htaccess_subdir_help() {
 	);
 	$text .= '</p>';
 	$text .= '<pre' . $codestyle . '><code' . $codestyle . '>RewriteCond %{HTTP_USER_AGENT} !WordPress [NC]
-RewriteRule ^robots.txt$ ' . $site['path'] . '/robots-check/ [flags]</code></pre>';
+RewriteRule ^robots.txt$ ' . $path . '/robots-check/ [flags]</code></pre>';
 	$text .= '<p>';
 	$text .= wp_sprintf(
 	/* translators: %1$s and %2$s is a link. */
@@ -150,6 +154,14 @@ function wimbblock_test_subdir() {
 		wp_kses_post(
 			__(
 				"The plugin cannot modify the .htaccess file in the server's root directory because the WordPress installation is located in a subdirectory.",
+				'wimb-and-block'
+			)
+		) . '</p>';
+	} else {
+		echo '<p>' .
+		wp_kses_post(
+			__(
+				'The plugin cannot detect your server configuration.',
 				'wimb-and-block'
 			)
 		) . '</p>';
