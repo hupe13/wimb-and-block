@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 09:09+0000\n"
+"POT-Creation-Date: 2025-11-21 21:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -48,11 +48,11 @@ msgstr ""
 msgid "About robots.txt"
 msgstr ""
 
-#: admin/robots.php:291
+#: admin/robots.php:303
 msgid "Access is allowed - this is correct."
 msgstr ""
 
-#: admin/robots.php:297
+#: admin/robots.php:309
 msgid "Access is forbidden - this is correct."
 msgstr ""
 
@@ -85,7 +85,7 @@ msgid ""
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/mgt-table.php:121
+#: admin/mgt-table.php:114
 #, php-format
 msgid ""
 "By default, all entries are displayed, except those browsers from "
@@ -96,11 +96,11 @@ msgstr ""
 msgid "Change view"
 msgstr ""
 
-#: admin/robots.php:258
+#: admin/robots.php:270
 msgid "Crawling is allowed:"
 msgstr ""
 
-#: admin/robots.php:260
+#: admin/robots.php:272
 msgid "Crawling is disabled:"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Delete all plugin settings when deleting the plugin?"
 msgstr ""
 
-#: admin/robots.php:213
+#: admin/robots.php:225
 msgid "Delete the rules"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: admin/robots.php:129
+#: admin/robots.php:133
 msgid "Edit .htaccess"
 msgstr ""
 
@@ -170,6 +170,13 @@ msgstr ""
 msgid "Help and Options"
 msgstr ""
 
+#: admin/log-anonym.php:54
+msgid ""
+"However, logging only occurs when an agent is detected that meets the "
+"criteria listed below or when the agent accesses your website for the first "
+"time."
+msgstr ""
+
 #. Author URI of the plugin
 msgid "https://leafext.de/hp/"
 msgstr ""
@@ -180,6 +187,24 @@ msgstr ""
 
 #. Author of the plugin
 msgid "hupe13"
+msgstr ""
+
+#: admin/logging.php:135
+msgid "if an agent is always blocked (on its first visit)"
+msgstr ""
+
+#: admin/logging.php:133
+msgid "if an agent is inserted in table (on its first visit)"
+msgstr ""
+
+#: admin/logging.php:141
+msgid ""
+"if an IP uses an agent without authorization (for example an agent string "
+"from Google)"
+msgstr ""
+
+#: admin/logging.php:137
+msgid "if no agent is given"
 msgstr ""
 
 #: admin/emergency.php:57
@@ -196,15 +221,19 @@ msgstr ""
 msgid "If the database is local, the table will also be deleted."
 msgstr ""
 
+#: admin/logging.php:129
+msgid "if the plugin creates its table, local or remote"
+msgstr ""
+
 #. is a host.
-#: admin/robots.php:135
+#: admin/robots.php:139
 #, php-format
 msgid ""
 "If you do not want to use the form write in your .htaccess in the root "
 "directory of  %s"
 msgstr ""
 
-#: admin/mgt-table.php:126
+#: admin/mgt-table.php:119
 msgid "If you want to block/unblock them, search for them."
 msgstr ""
 
@@ -214,6 +243,10 @@ msgstr ""
 msgid ""
 "In the last 24 hours, there were %1$s different browsers, of which %2$s were "
 "blocked."
+msgstr ""
+
+#: admin/log-anonym.php:11
+msgid "IP anonymization"
 msgstr ""
 
 #: admin/emergency.php:39
@@ -230,21 +263,21 @@ msgstr ""
 msgid "Local WP database or remote database"
 msgstr ""
 
-#: php/wimb-options.php:130
+#: php/wimb-options.php:134
 msgid ""
 "Log when the browser accesses your website for the first time and an old "
 "version is detected or it is unknown or suspicious."
 msgstr ""
 
-#: php/wimb-options.php:118
+#: php/wimb-options.php:122
 msgid "Log when the browser gets a robots.txt to allow crawling."
 msgstr ""
 
-#: php/wimb-options.php:124
+#: php/wimb-options.php:128
 msgid "Log when the browser gets a robots.txt to disable crawling."
 msgstr ""
 
-#: php/wimb-options.php:112
+#: php/wimb-options.php:116
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
@@ -262,7 +295,7 @@ msgid ""
 "Android versions."
 msgstr ""
 
-#: php/wimb-options.php:106
+#: php/wimb-options.php:110
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
 "blocked later without any explanation."
@@ -273,7 +306,7 @@ msgid "Path of log file"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:114
+#: admin/robots.php:118
 #, php-format
 msgid ""
 "Please check, if you need some flags like %1$s or %2$s or other or nothing."
@@ -283,6 +316,10 @@ msgstr ""
 msgid ""
 "Please submit the form twice if you are configuring a remote database and it "
 "does not yet exist."
+msgstr ""
+
+#: admin/logging.php:131
+msgid "plugins cron jobs"
 msgstr ""
 
 #: admin/settings.php:21
@@ -301,7 +338,7 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:84 admin.php:125 admin/logging.php:101
+#: admin.php:84 admin.php:125 admin/logging.php:120
 msgid "Reset"
 msgstr ""
 
@@ -313,11 +350,11 @@ msgstr ""
 msgid "Rotate the table on this site"
 msgstr ""
 
-#: admin/mgt-table.php:149
+#: admin/mgt-table.php:142
 msgid "Search"
 msgstr ""
 
-#: admin/mgt-table.php:106
+#: admin/mgt-table.php:99
 msgid "Select to unblock / block"
 msgstr ""
 
@@ -325,7 +362,7 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:78 wimb-and-block.php:86
+#: wimb-and-block.php:79 wimb-and-block.php:87
 msgid "Settings"
 msgstr ""
 
@@ -333,11 +370,11 @@ msgstr ""
 msgid "Settings WIMB"
 msgstr ""
 
-#: admin/robots.php:273 admin/robots.php:303
+#: admin/robots.php:285 admin/robots.php:315
 msgid "Something is going wrong."
 msgstr ""
 
-#: admin/robots.php:280
+#: admin/robots.php:292
 msgid "Something is going wrong. Check your rewrite rules."
 msgstr ""
 
@@ -363,12 +400,24 @@ msgstr ""
 msgid "STOP!"
 msgstr ""
 
-#: admin/robots.php:242
+#: admin/robots.php:254
 msgid "Test"
 msgstr ""
 
-#: admin/robots.php:236
+#: admin/robots.php:248
 msgid "Test your configuration"
+msgstr ""
+
+#: php/wimb-options.php:171
+msgid "The full IP is logged. (default)"
+msgstr ""
+
+#: php/wimb-options.php:163
+msgid "The IP address is not logged."
+msgstr ""
+
+#: php/wimb-options.php:167
+msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
 #: admin/settings.php:45
@@ -389,15 +438,19 @@ msgid ""
 "configured and running."
 msgstr ""
 
-#: admin/robots.php:66
+#: admin/robots.php:69
 msgid "The plugin can modify the .htaccess file."
 msgstr ""
 
-#: admin/robots.php:81
+#: admin/robots.php:163
+msgid "The plugin cannot detect your server configuration."
+msgstr ""
+
+#: admin/robots.php:84
 msgid "The plugin cannot modify the .htaccess file because it is read-only."
 msgstr ""
 
-#: admin/robots.php:151
+#: admin/robots.php:155
 msgid ""
 "The plugin cannot modify the .htaccess file in the server's root directory "
 "because the WordPress installation is located in a subdirectory."
@@ -449,7 +502,7 @@ msgstr ""
 msgid "There is an error in your settings."
 msgstr ""
 
-#: admin/robots.php:208
+#: admin/robots.php:220
 msgid ""
 "There is no WordPress function to delete the rules completely. This means "
 "that the comments remain."
@@ -465,16 +518,28 @@ msgstr ""
 msgid "There were %1$s different browsers, of which %2$s were blocked."
 msgstr ""
 
-#: admin/robots.php:271
+#: admin/log-anonym.php:50
+msgid "This could potentially be a problem in the context of the GDPR."
+msgstr ""
+
+#: admin/logging.php:127
+msgid "This is always logged:"
+msgstr ""
+
+#: admin/robots.php:283
 msgid "This is the expected output."
 msgstr ""
 
-#: admin/mgt-table.php:182
+#: admin/mgt-table.php:174
 msgid "Unblock / block selected entries"
 msgstr ""
 
 #: admin.php:103 admin.php:232 admin.php:261
 msgid "Versions Control"
+msgstr ""
+
+#: admin/log-anonym.php:49
+msgid "When logging, the IP address is also logged."
 msgstr ""
 
 #: admin.php:15 admin.php:16
@@ -497,12 +562,12 @@ msgstr ""
 msgid "WIMB table name"
 msgstr ""
 
-#: admin/robots.php:206
+#: admin/robots.php:218
 msgid "Write .htaccess file"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:105
+#: admin/robots.php:109
 #, php-format
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr ""
@@ -529,12 +594,12 @@ msgid ""
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:189
+#: admin/robots.php:201
 #, php-format
 msgid "You can do it on %1$sthis site%2$s."
 msgstr ""
 
-#: admin/mgt-table.php:117
+#: admin/mgt-table.php:110
 msgid "You can search for entries here."
 msgstr ""
 
@@ -547,7 +612,7 @@ msgid ""
 msgstr ""
 
 #. %1$s, %2$s and %3$s are column names.
-#: admin/mgt-table.php:160
+#: admin/mgt-table.php:152
 #, php-format
 msgid "You can sort the columns %1$s, %2$s, %3$s and %4$s."
 msgstr ""
@@ -567,7 +632,7 @@ msgid ""
 "database table."
 msgstr ""
 
-#: admin/robots.php:169
+#: admin/robots.php:181
 msgid "You must configure these settings on each of your domains!"
 msgstr ""
 

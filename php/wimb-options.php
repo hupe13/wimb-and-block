@@ -155,3 +155,30 @@ function wimbblock_logging_levels_settings() {
 	}
 	return $options;
 }
+
+function wimbblock_anon_log() {
+	$logip = array(
+		array(
+			'log'  => 'nolog',
+			'help' => __( 'The IP address is not logged.', 'wimb-and-block' ),
+		),
+		array(
+			'log'  => 'two',
+			'help' => __( 'The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0', 'wimb-and-block' ),
+		),
+		array(
+			'log'  => 'all',
+			'help' => __( 'The full IP is logged. (default)', 'wimb-and-block' ),
+		),
+	);
+	return $logip;
+}
+
+function wimbblock_anon_settings() {
+	// $logips   = wimbblock_anon_log();
+	$setting = wimbblock_get_option( 'wimbblock_anon' );
+	if ( $setting === false ) {
+		$setting = 'all';
+	}
+	return $setting;
+}

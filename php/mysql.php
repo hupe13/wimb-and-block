@@ -114,8 +114,23 @@ function wimbblock_error_log( $reason, $loglevel = true ) {
 		set_transient( 'wimbblock_logfile', $logfile, DAY_IN_SECONDS );
 	}
 	if ( $logfile !== '' && $loglevel !== false ) {
-		$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
+		$anon = wimbblock_anon_settings();
+		if ( $anon === 'nolog' ) {
+			$ip = '';
+		} else {
+			$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
+			if ( $anon === 'two' ) {
+				$octets = explode( '.', $ip );
+				if ( count( $octets ) == 4 ) {
+					$octets[3] = '0';
+					$octets[2] = '0';
+					$ip        = implode( '.', $octets ) . ': ';
+				}
+			} else {
+				$ip .= ': ';
+			}
+		}
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-		error_log( '[' . current_time( 'mysql' ) . '] ' . get_site_url() . ' - wimb - ' . $ip . ': ' . $reason . "\r\n", 3, $logfile );
+		error_log( '[' . current_time( 'mysql' ) . '] ' . get_site_url() . ' - wimb - ' . $ip . $reason . "\r\n", 3, $logfile );
 	}
 }

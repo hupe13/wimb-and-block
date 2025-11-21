@@ -86,7 +86,26 @@ function wimbblock_log_admin_page() {
 		}
 	}
 	echo '</form>';
+
 	echo '<hr class="adminhrule">';
+	if ( current_user_can( 'manage_options' ) ) {
+		echo '<form method="post" action="options.php">';
+	} else {
+		echo '<form>';
+	}
+	settings_fields( 'wimbblock_anon_settings' );
+	do_settings_sections( 'wimbblock_anon_settings' );
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+		if ( current_user_can( 'manage_options' ) ) {
+			wp_nonce_field( 'wimbblock_anon', 'wimbblock_anon_nonce' );
+			submit_button();
+			// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
+		}
+	}
+	echo '</form>';
+
+	echo '<hr class="adminhrule">';
+	echo wp_kses_post( wimbblock_what_log_help() );
 	if ( current_user_can( 'manage_options' ) ) {
 		echo '<form method="post" action="options.php">';
 	} else {
@@ -102,4 +121,24 @@ function wimbblock_log_admin_page() {
 		}
 	}
 	echo '</form>';
+}
+
+function wimbblock_what_log_help() {
+	$text  = '<h3>' . __( 'This is always logged:', 'wimb-and-block' ) . '</h3>';
+	$text .= '<ul><li class="adminli">';
+	$text .= __( 'if the plugin creates its table, local or remote', 'wimb-and-block' );
+	$text .= '</li><li class="adminli">';
+	$text .= __( 'plugins cron jobs', 'wimb-and-block' );
+	$text .= '</li><li class="adminli">';
+	$text .= __( 'if an agent is inserted in table (on its first visit)', 'wimb-and-block' );
+	$text .= '</li><li class="adminli">';
+	$text .= __( 'if an agent is always blocked (on its first visit)', 'wimb-and-block' );
+	$text .= '</li><li class="adminli">';
+	$text .= __( 'if no agent is given', 'wimb-and-block' );
+	// $text .= '</li><li class="adminli">';
+	// $text .= __( 'if no IP ?', 'wimb-and-block' );
+	$text .= '</li><li class="adminli">';
+	$text .= __( 'if an IP uses an agent without authorization (for example an agent string from Google)', 'wimb-and-block' );
+	$text .= '</li></ul>';
+	return $text;
 }

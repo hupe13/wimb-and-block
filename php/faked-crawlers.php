@@ -15,7 +15,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 			$hostname = gethostbyaddr( $ip );
 			if ( ! ( str_contains( $hostname, 'googlebot.com' ) || str_contains( $hostname, 'google.com' ) ) ) {
 				if ( $robots === false ) {
-					wimbblock_error_log( 'Faked Googlebot: ' . $hostname );
+					wimbblock_error_log( 'Faked Googlebot: ' . $agent . ' * ' . $hostname );
 					status_header( 404 );
 					echo 'You are not from Google';
 					exit();
@@ -35,7 +35,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 			$hostname = gethostbyaddr( $ip );
 			if ( ! str_contains( $hostname, 'search.msn.com' ) ) {
 				if ( $robots === false ) {
-					wimbblock_error_log( 'Faked BingBot: ' . $hostname );
+					wimbblock_error_log( 'Faked BingBot: ' . $agent . ' * ' . $hostname );
 					status_header( 404 );
 					echo 'You are not from Bing';
 					exit();
@@ -57,7 +57,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! ( str_contains( $hostname, 'yandex.ru' ) || str_contains( $hostname, 'yandex.net' ) || str_contains( $hostname, 'yandex.com' ) ) ) {
 			if ( $robots === false ) {
-				wimbblock_error_log( 'Faked Yandex: ' . $hostname );
+				wimbblock_error_log( 'Faked Yandex: ' . $agent . ' * ' . $hostname );
 				status_header( 404 );
 				echo 'You are not from Yandex';
 				exit();
@@ -77,7 +77,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! str_contains( $hostname, 'applebot.apple.com' ) ) {
 			if ( $robots === false ) {
-				wimbblock_error_log( 'Faked Applebot: ' . $hostname );
+				wimbblock_error_log( 'Faked Applebot: ' . $agent . ' * ' . $hostname );
 				status_header( 404 );
 				echo 'You are not from Apple';
 				exit();
@@ -97,7 +97,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! str_contains( $hostname, 'mojeek.com' ) ) {
 			if ( $robots === false ) {
-				wimbblock_error_log( 'Faked MojeekBot: ' . $hostname );
+				wimbblock_error_log( 'Faked MojeekBot: ' . $agent . ' * ' . $hostname );
 				status_header( 404 );
 				echo 'You are not from Mojeek';
 				exit();
@@ -118,7 +118,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! ( str_contains( $hostname, 'baidu.com' ) || str_contains( $hostname, 'baidu.jp' ) ) ) {
 			if ( $robots === false ) {
-				wimbblock_error_log( 'Faked Baiduspider: ' . $hostname );
+				wimbblock_error_log( 'Faked Baiduspider: ' . $agent . ' * ' . $hostname );
 				status_header( 404 );
 				echo 'You are not from baidu';
 				exit();
@@ -139,7 +139,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! ( str_contains( $hostname, 'fulltextrobot' ) && str_contains( $hostname, 'seznam.cz' ) ) ) {
 			if ( $robots === false ) {
-				wimbblock_error_log( 'Faked SeznamBot: ' . $hostname );
+				wimbblock_error_log( 'Faked SeznamBot: ' . $agent . ' * ' . $hostname );
 				status_header( 404 );
 				echo 'You are not from seznam';
 				exit();
