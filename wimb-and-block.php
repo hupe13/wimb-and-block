@@ -4,8 +4,10 @@
  * Plugin URI:        https://leafext.de/hp/wimb/
  * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
  * Update URI:        https://github.com/hupe13/wimb-and-block
- * Version:           251121
- * Requires PHP:      8.3
+ * Version:           251122
+ * Tested up to:      6.9
+ * Requires at least: 6.3
+ * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
  * Network:           true

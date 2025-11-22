@@ -3,9 +3,9 @@
 Contributors: hupe13   
 Tags: bad bots, ban, blocking, security, robots.txt   
 Tested up to: 6.9   
-Stable tag: 251121   
-Requires at least: 6.5   
-Requires PHP: 8.3   
+Stable tag: 251122   
+Requires at least: 6.3   
+Requires PHP: 8.1   
 License: GPLv2 or later   
 
 With help of WhatIsMyBrowser the plugin detects old and suspicious agents and denies them access. A special robots.txt prevents crawling by bad bots.
@@ -42,6 +42,9 @@ Old systems are all Windows versions before Windows 10, some MacOS and Android v
 3. Exclude these browsers from checking / Always block browsers with this strings <br>![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-3.png)
 4. robots.txt settings <br>![robots.txt settings](.wordpress-org/screenshot-4.png)
 
-## Updates
+## Installation
+
+* Install the plugin in the usual way.
+* Go to Settings - WIMB and Block - and get documentation and settings options.
 
 Please install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc) to get updates and keep an eye on this repository in case I've made any mistakes.
