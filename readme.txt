@@ -16,7 +16,7 @@ The plugin uses WhatIsMyBrowser.com to get informations about the browser. It de
 
 - Get an API key from <a href="https://developers.whatismybrowser.com/api/">What is my browser?</a> for a Basic Application Plan.
 - You have a limit of 5000 hits / month for Parsing User Agent. Thats why the plugin manages a database table.
-- The user agent string of every browser accessing your website the first time is send to this service and some data will be stored in this table:
+- The user agent string of every browser accessing your website the first time is send to this service and some data will be stored in this table.
 - Browsers will be blocked, if the browser and/or the system is an old one:<br>Default: Chrome and Chrome based browsers < 128, Firefox < 128, Internet Explorer, Netscape (!), Opera < 83, Safari < 17
 - Old systems are all Windows versions before Windows 10, some MacOS and Android versions.
 - It will be blocked also if the "simple software string" contains "unknown" or is empty.

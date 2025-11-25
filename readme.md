@@ -38,7 +38,7 @@ Old systems are all Windows versions before Windows 10, some MacOS and Android v
 ## Screenshots
 
 1. Database settings <br>![Database settings](.wordpress-org/screenshot-1.png)
-2. Access attempts from the same IP address are blocked within 15 seconds (this can also be more quickly) <br>![Access attempts from the same IP address are blocked within 15 seconds (this can also be more quickly)](.wordpress-org/screenshot-2.png)
+2. Access attempts from the same IP address are blocked within 4 seconds (this can also be more quickly) <br>![Access attempts from the same IP address are blocked within 4 seconds (this can also be more quickly)](.wordpress-org/screenshot-2.png)
 3. Exclude these browsers from checking / Always block browsers with this strings <br>![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-3.png)
 4. robots.txt settings <br>![robots.txt settings](.wordpress-org/screenshot-4.png)
 
