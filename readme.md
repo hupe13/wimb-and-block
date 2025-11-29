@@ -3,42 +3,61 @@
 Contributors: hupe13   
 Tags: bad bots, ban, blocking, security, robots.txt   
 Tested up to: 6.9   
-Stable tag: 251122   
+Stable tag: 251129   
 Requires at least: 6.3   
 Requires PHP: 8.1   
 License: GPLv2 or later   
 
-With help of WhatIsMyBrowser the plugin detects old and suspicious agents and denies them access. A special robots.txt prevents crawling by bad bots.
+With the help of WhatIsMyBrowser the plugin detects old and bad agents and denies them access. A special robots.txt denies crawling by bad bots.
 
 ## Description
 
-<p>The plugin uses WhatIsMyBrowser.com to get informations about the browser. It detects old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.</p>
+<p>
+Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
+</p>
+
+<p>
+The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v2/user_agent_parse">https://api.whatismybrowser.com/api/v2/user_agent_parse</a> to obtain following information about the User Agent:
+
+* Software Name & Version
+* Operating System Name & Version
+</p>
+
+<p>
+<a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>.
+</p>
+
+### HowTo
+
 <ul>
-<li>Get an API key from <a href="https://developers.whatismybrowser.com/api/">What is my browser?</a> for a Basic Application Plan.</li>
-<li>You have a limit of 5000 hits / month for Parsing User Agent. Thats why the plugin manages a database table.</li>
-<li>The user agent string of every browser accessing your website the first time is send to this service and some data will be stored in this table:
-<p><img src="pict/header.jpg" alt="header" width="450">
-<img src="pict/good.jpg" alt="example entries" width="450"></p>
-Browsers will be blocked, if the browser and/or the system is an old one:<br>Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17<br>
-Old systems are all Windows versions before Windows 10, some MacOS and Android versions.<br>
-<p><img src="pict/old.jpg" alt="example entries" width="450"></p>It will be blocked also if the "simple software string" contains "unknown" or is empty.
-<p><img src="pict/suspect.jpg" alt="example entries" width="450"></p></li><li>You can configure other browsers too.</li>
-<li>Sometimes there are false positive, for example if the browser is from Mastodon. Then you can exclude these from checking.</li>
-<li>The plugin checks, if the crawlers are really from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.</li>
+<li>Go to <a href="https://developers.whatismybrowser.com/api/pricing/">What is my browser?</a> and sign up to the WhatIsMyBrowser.com API for a Basic (free) Application Plan.</li>
+<li>You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.</li>
+<li>The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table:
+<p><img src="pict/header.jpg" alt="header" width="450"><br>
+<img src="pict/good.jpg" alt="example entries" width="450"></p></li>
+<li>Browsers are blocked if the browser and/or system are outdated:<br>
+Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17<br>
+Old systems are all Windows versions prior to Windows 10, some MacOS and Android versions.<br>
+<p><img src="pict/old.jpg" alt="example entries" width="450"></p></li>
+<li>It will be blocked also if the "simple software string" contains "unknown" or is empty.
+<p><img src="pict/suspect.jpg" alt="example entries" width="450"></p></li>
+<li>You can also set up other browsers.</li>
+<li>Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.</li>
+<li>The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.</li>
 </ul>
 
 ### About robots.txt
 
-* You can configure some rewrite rules, to provide a robots.txt to enable or to disable crawling for a browser. If crawling is disabled, access to your website will be blocked for that browser.
+* You can configure some rewrite rules to provide a robots.txt file that can allow or deny crawling for a browser. If crawling is denied, access to your website will be blocked for that browser.
 
 ### Logging
 
-* The logging can be very verbose. Please check the logs and the WIMB table regularly.
+* The logging can be very detailed. Please check the logs and the WIMB table regularly.
 
 ## Screenshots
 
 1. Database settings <br>![Database settings](.wordpress-org/screenshot-1.png)
-2. Access attempts from the same IP address are blocked within 4 seconds (this can also be more quickly) <br>![Access attempts from the same IP address are blocked within 4 seconds (this can also be more quickly)](.wordpress-org/screenshot-2.png)
+2. Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly). <br>![Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly).](.wordpress-org/screenshot-2.png)
 3. Exclude these browsers from checking / Always block browsers with this strings <br>![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-3.png)
 4. robots.txt settings <br>![robots.txt settings](.wordpress-org/screenshot-4.png)
 

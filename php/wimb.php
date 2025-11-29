@@ -61,8 +61,9 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 
 	$browser = $wimb_datatable->get_results(
 		$wimb_datatable->prepare(
-			"SELECT * FROM %i WHERE browser = '" . $agent . "' ORDER BY time DESC",
-			$table_name
+			'SELECT * FROM %i WHERE browser = %s ORDER BY time DESC',
+			$table_name,
+			$agent
 		),
 		ARRAY_A
 	);

@@ -78,8 +78,11 @@ function wimbblock_counter( $table_name, $counter, $id ) {
 	global $wimb_datatable;
 	$entry = $wimb_datatable->query(
 		$wimb_datatable->prepare(
-			'UPDATE %i SET ' . $counter . ' = ' . $counter . " + 1 WHERE i = '" . $id . "'",
-			$table_name
+			'UPDATE %i SET %i = %i + 1 WHERE i = %s',
+			$table_name,
+			$counter,
+			$counter,
+			$id
 		)
 	);
 }
@@ -121,7 +124,7 @@ function wimbblock_error_log( $reason, $loglevel = true ) {
 			$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
 			if ( $anon === 'two' ) {
 				$octets = explode( '.', $ip );
-				if ( count( $octets ) == 4 ) {
+				if ( count( $octets ) === 4 ) {
 					$octets[3] = '0';
 					$octets[2] = '0';
 					$ip        = implode( '.', $octets ) . ': ';

@@ -3,34 +3,45 @@
 Contributors: hupe13
 Tags: bad bots, ban, blocking, security, robots.txt
 Tested up to: 6.9
-Stable tag: 251122
+Stable tag: 251129
 Requires at least: 6.3
 Requires PHP: 8.1
 License: GPLv2 or later
 
-With help of WhatIsMyBrowser the plugin detects old and suspicious agents and denies them access. A special robots.txt prevents crawling by bad bots.
+With the help of WhatIsMyBrowser the plugin detects old and bad agents and denies them access. A special robots.txt denies crawling by bad bots.
 
 == Description ==
 
-The plugin uses WhatIsMyBrowser.com to get informations about the browser. It detects old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
+Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
 
-- Get an API key from <a href="https://developers.whatismybrowser.com/api/">What is my browser?</a> for a Basic Application Plan.
-- You have a limit of 5000 hits / month for Parsing User Agent. Thats why the plugin manages a database table.
-- The user agent string of every browser accessing your website the first time is send to this service and some data will be stored in this table.
-- Browsers will be blocked, if the browser and/or the system is an old one:<br>Default: Chrome and Chrome based browsers < 128, Firefox < 128, Internet Explorer, Netscape (!), Opera < 83, Safari < 17
-- Old systems are all Windows versions before Windows 10, some MacOS and Android versions.
+The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v2/user_agent_parse">https://api.whatismybrowser.com/api/v2/user_agent_parse</a> to obtain following information about the User Agent:
+
+* Software Name & Version
+* Operating System Name & Version
+
+<a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>.
+</p>
+
+=== HowTo
+
+- Go to <a href="https://developers.whatismybrowser.com/api/pricing/">What is my browser?</a> and sign up to the WhatIsMyBrowser.com API for a Basic (free) Application Plan.
+- You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.
+- The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table:
+- Browsers are blocked if the browser and/or system are outdated:<br>
+Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17<br>
+Old systems are all Windows versions prior to Windows 10, some MacOS and Android versions.<br>
 - It will be blocked also if the "simple software string" contains "unknown" or is empty.
-- You can configure other browsers too.
-- Sometimes there are false positive, for example if the browser is from Mastodon. Then you can exclude these from checking.
-- The plugin checks, if the crawlers are really from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.
+- You can also set up other browsers.
+- Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
+- The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.
 
 = About robots.txt =
 
-- You can configure some rewrite rules, to provide a robots.txt to enable or to disable crawling for a browser. If crawling is disabled, access to your website will be blocked for that browser.
+- You can configure some rewrite rules to provide a robots.txt file that can allow or deny crawling for a browser. If crawling is denied, access to your website will be blocked for that browser.
 
 = Logging =
 
-- The logging can be very verbose. Please check the logs and the WIMB table regularly.
+- The logging can be very detailed. Please check the logs and the WIMB table regularly.
 
 == Installation ==
 
