@@ -4,7 +4,7 @@
  * Plugin URI:        https://leafext.de/hp/wimb/
  * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
  * Update URI:        https://github.com/hupe13/wimb-and-block
- * Version:           251122
+ * Version:           251201
  * Tested up to:      6.9
  * Requires at least: 6.3
  * Requires PHP:      8.1
@@ -19,8 +19,8 @@
 // Direktzugriff auf diese Datei verhindern:
 defined( 'ABSPATH' ) || die();
 
-define( 'WIMB_BASENAME', plugin_basename( __FILE__ ) ); // wimb-and-block/wimb-and-block.php
-define( 'WIMB_NAME', basename( __DIR__ ) ); // wimb-and-block
+define( 'WIMBBLOCK_BASENAME', plugin_basename( __FILE__ ) ); // wimb-and-block/wimb-and-block.php
+define( 'WIMBBLOCK_NAME', basename( __DIR__ ) ); // wimb-and-block
 
 require_once __DIR__ . '/php/wimb-options.php';
 require_once __DIR__ . '/php/mysql.php';
@@ -54,7 +54,7 @@ function wimbblock_activate() {
 register_activation_hook( __FILE__, 'wimbblock_activate' );
 
 function wimbblock_update() {
-	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 		$options = wimbblock_get_options_db();
 		if ( $options['error'] === '0' ) {
 			$current_version = get_option( 'wimbblock_db_version', '251000' );
@@ -78,15 +78,15 @@ if ( is_main_site() ) {
 
 // Add settings to plugin page
 function wimbblock_add_action_links( $actions ) {
-	$actions[] = '<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMB_NAME ) . '">' . esc_html__( 'Settings', 'wimb-and-block' ) . '</a>';
+	$actions[] = '<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMBBLOCK_NAME ) . '">' . esc_html__( 'Settings', 'wimb-and-block' ) . '</a>';
 	return $actions;
 }
-add_filter( 'plugin_action_links_' . WIMB_BASENAME, 'wimbblock_add_action_links' );
+add_filter( 'plugin_action_links_' . WIMBBLOCK_BASENAME, 'wimbblock_add_action_links' );
 
 // Add settings to network plugin page
 function wimbblock_network_add_action_links( $actions, $plugin ) {
-	if ( $plugin === WIMB_BASENAME ) {
-		$actions[] = '<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMB_NAME ) . '">' . esc_html__( 'Settings', 'wimb-and-block' ) . '</a>';
+	if ( $plugin === WIMBBLOCK_BASENAME ) {
+		$actions[] = '<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMBBLOCK_NAME ) . '">' . esc_html__( 'Settings', 'wimb-and-block' ) . '</a>';
 	}
 	return $actions;
 }

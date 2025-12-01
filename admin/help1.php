@@ -1,0 +1,65 @@
+<?php
+/**
+ * Functions help
+ *
+ * @package wimb-and-block
+ */
+
+//
+function wimbblock_help() {
+	$text  = '';
+	$text .= '<h2>' . __( 'Description', 'wimb-and-block' ) . '</h2>' . "\n\r";
+	$text .= '<p>' .
+	sprintf(
+	/* translators: %s is a name of a website */
+		__( 'The plugin uses %s to get informations about the browser. It detects old and suspicious browsers and denies them access to your website.', 'wimb-and-block' ),
+		'WhatIsMyBrowser.com'
+	) . '</p>' . "\n\r";
+
+	$text .= '<ul>' . "\n\r";
+	$text .= '<li class="adminli">' . sprintf(
+	/* translators: %1$s is What is my browser?. %2$s is Basic Application Plan */
+		__( 'Go to  %1$s and sign up to the WhatIsMyBrowser.com API for a %2$s.', 'wimb-and-block' ),
+		'<a href="https://developers.whatismybrowser.com/api/signup/?plan=basic">What is my browser?</a>',
+		'Basic (free) Application Plan'
+	) . '</li>' . "\n\r";
+	$text .= '<li class="adminli">' . sprintf(
+	/* translators: %s is 'Parsing User Agent' */
+		__( 'You have a limit of 5000 hits / month for %s. Thats why the plugin manages a database table.', 'wimb-and-block' ),
+		'Parsing User Agent'
+	)
+	. '</li>' . "\n\r";
+	$text .= '<li class="adminli">' . __( 'The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table:', 'wimb-and-block' ) . "\n\r";
+
+	$text .= '<p><table class="width450" border=1>
+ 	 <tr><td class="width280 center-text"><code>browser</code></td>
+	 <td class="width85 center-text"><code>simple software string</code></td>
+	 <td class="width85 center-text"><code>operating system</code></td></tr></table></p>';
+	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/good.jpg" alt="example entries" width="450" ></p>';
+	$text .= '<p>' . __( 'Browsers will be blocked, if the browser and/or the system are outdated:', 'wimb-and-block' ) . '<br>';
+	$text .= __( 'Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17', 'wimb-and-block' ) . '<br>' . "\n\r";
+	$text .= __( 'Old systems are all Windows versions prior to Windows 10, some MacOS and Android versions.', 'wimb-and-block' ) . '</p>' . "\n\r";
+
+	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';
+
+	$text .= '<p>' . sprintf(
+	/* translators: %1$s is "simple software string", %2$s is "unknown" */
+		__( 'It will be blocked also if the %1$s contains %2$s or is empty.', 'wimb-and-block' ),
+		'"simple software string"',
+		'"unknown"'
+	) . '</p>' . "\n\r";
+	$text .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/suspect.jpg" alt="example entries" width="450" ></p>';
+
+	$text .= '</li>';
+	$text .= '<li class="adminli">' . __( 'You can also set up other browsers.', 'wimb-and-block' ) . '</li>' . "\n\r";
+
+	$text .= '<li class="adminli">' . __( 'Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.', 'wimb-and-block' ) . '</li>' . "\n\r";
+	$text .= '<li class="adminli">' . __( 'The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.', 'wimb-and-block' ) . '</li>' . "\n\r";
+	$text .= '</ul>' . "\n\r";
+
+	$text .= '<h3>' . __( 'About robots.txt', 'wimb-and-block' ) . '</h3>';
+	$text .= '<ul><li class="adminli">';
+	$text .= __( 'You can configure some rewrite rules to provide a robots.txt file that can allow or deny crawling for a browser. If crawling is denied, access to your website will be blocked for that browser.', 'wimb-and-block' );
+	$text .= '</li></ul>';
+	return $text;
+}

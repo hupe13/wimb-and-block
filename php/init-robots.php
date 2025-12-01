@@ -9,7 +9,8 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_get_robots_txt() {
-	$http_host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ?? '' ) );
+	$site      = wp_parse_url( get_home_url() );
+	$http_host = $site['host'];
 	$response  = wp_remote_get( 'https://' . $http_host . '/robots.txt' );
 	if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
 		header( 'Content-Type: text/plain; charset=UTF-8' );

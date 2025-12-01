@@ -10,13 +10,13 @@ defined( 'ABSPATH' ) || die();
 
 wp_enqueue_style(
 	'prism-css',
-	plugins_url( dirname( WIMB_BASENAME ) . '/pkg/prism/prism.css' ),
+	plugins_url( dirname( WIMBBLOCK_BASENAME ) . '/pkg/prism/prism.css' ),
 	array(),
 	1
 );
 wp_enqueue_script(
 	'prism-js',
-	plugins_url( dirname( WIMB_BASENAME ) . '/pkg/prism/prism.js' ),
+	plugins_url( dirname( WIMBBLOCK_BASENAME ) . '/pkg/prism/prism.js' ),
 	array(),
 	'1',
 	true
@@ -34,7 +34,7 @@ function wimbblock_robots_htaccess() {
 				/* translators: %1$s is "robots.txt", %2$s and %3$s is a link. */
 				__( 'You can set up and test your configuration for %1$s once you have configured the %2$ssettings%3$s for WIMB and the database.', 'wimb-and-block' ),
 				'robots.txt',
-				'<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=settings' ) . '">',
+				'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=settings' ) . '">',
 				'</a>'
 			)
 		);
@@ -181,7 +181,7 @@ function wimbblock_hint_multisite() {
 			$text .= __( 'You must configure these settings on each of your domains!', 'wimb-and-block' );
 			$text .= '<ul>';
 			foreach ( $domains as $blog_id => $domain ) {
-				$text .= '<li class="adminli"><a href="' . get_site_url( $blog_id ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=robots">' . $domain . '</a></li>';
+				$text .= '<li class="adminli"><a href="' . get_site_url( $blog_id ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=robots">' . $domain . '</a></li>';
 			}
 			$text .= '</ul></div></p>';
 		}
@@ -199,7 +199,7 @@ function wimbblock_goto_robots_site() {
 					wp_sprintf(
 						/* translators: %1$s and %2$s is a link. */
 						__( 'You can do it on %1$sthis site%2$s.', 'wimb-and-block' ),
-						'<a href="' . get_site_url( $multisite->blog_id ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=robots">',
+						'<a href="' . get_site_url( $multisite->blog_id ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=robots">',
 						'</a>'
 					)
 				);
@@ -212,7 +212,7 @@ function wimbblock_goto_robots_site() {
 }
 
 function wimbblock_display_htaccess_form() {
-	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=robots">';
+	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=robots">';
 	if ( current_user_can( 'manage_options' ) ) {
 		wp_nonce_field( 'wimbblock_robots', 'wimbblock_robots_nonce' );
 		submit_button( __( 'Write .htaccess file', 'wimb-and-block' ), 'primary', 'htaccess' );
@@ -248,7 +248,7 @@ function wimbblock_htaccess_display_config_form() {
 		__( 'Test your configuration', 'wimb-and-block' )
 		. '</h4>'
 	);
-	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=robots">';
+	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=robots">';
 	if ( current_user_can( 'manage_options' ) ) {
 		wp_nonce_field( 'wimbblock_robots', 'wimbblock_robots_nonce' );
 		submit_button( __( 'Test', 'wimb-and-block' ), 'primary', 'test' );

@@ -12,7 +12,7 @@ function wimbblock_display_mgt_table( $wimbblock_table_name, $entries ) {
 	wp_enqueue_script(
 		'sort_table_js',
 		plugins_url(
-			WIMB_NAME . '/admin/sort-table.js'
+			WIMBBLOCK_NAME . '/admin/sort-table.js'
 		),
 		array(),
 		'1',
@@ -113,12 +113,12 @@ function wimbblock_selection_table() {
 			/* translators: %1$s and %2$s is a link. */
 			__( 'By default, all entries are displayed, except those browsers from %1$sVersion Control%2$s.', 'wimb-and-block' )
 		),
-		'<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=blocking' ) . '">',
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=blocking' ) . '">',
 		'</a>'
 	);
 	echo ' ' . esc_html( __( 'If you want to block/unblock them, search for them.', 'wimb-and-block' ) ) . '<br>';
 
-	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
+	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=mgt">';
 	if ( current_user_can( 'manage_options' ) ) {
 		echo '<table class="form-table" role="presentation">';
 		echo '<tr><th scope="row">';
@@ -157,7 +157,7 @@ function wimbblock_selection_table() {
 			'<code>time</code>'
 		);
 
-		echo '<form method="post" action="options-general.php?page=' . esc_html( WIMB_NAME ) . '&tab=mgt">';
+		echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=mgt">';
 		if ( current_user_can( 'manage_options' ) ) {
 			$allowed_html          = wp_kses_allowed_html( 'post' );
 			$allowed_html['input'] = array(

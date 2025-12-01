@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die();
 function wimbblock_get_option( $option ) {
 	$wimbblock_option = get_option( $option );
 	if ( is_multisite() && ! is_main_site() ) {
-		if ( is_plugin_active_for_network( WIMB_BASENAME ) ) {
+		if ( is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			$wimbblock_option = get_blog_option( get_main_site_id(), $option );
 		}
 	}

@@ -15,7 +15,7 @@ function wimbblock_add_sub_page() {
 		__( 'WIMB and Block', 'wimb-and-block' ),
 		__( 'WIMB and Block', 'wimb-and-block' ),
 		'manage_options',
-		WIMB_NAME,
+		WIMBBLOCK_NAME,
 		'wimbblock_admin',
 	);
 }
@@ -25,7 +25,7 @@ add_action( 'admin_menu', 'wimbblock_add_sub_page' );
 function wimbblock_admin() {
 	wp_enqueue_style(
 		'wimbblock-css',
-		plugins_url( dirname( WIMB_BASENAME ) . '/admin/admin.css' ),
+		plugins_url( dirname( WIMBBLOCK_BASENAME ) . '/admin/admin.css' ),
 		array(),
 		1
 	);
@@ -39,13 +39,13 @@ function wimbblock_admin() {
 	wimbblock_admin_tabs();
 
 	if ( $active_tab === 'settings' ) {
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(
 					/* translators: %1$s and %2$s is a link. */
 					__( 'You can change this setting on the %1$smain site%2$s.', 'wimb-and-block' ),
-					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=' . $active_tab . '">',
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
 					'</a>'
 				)
 			);
@@ -61,7 +61,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_emergency' );
 		wp_nonce_field( 'wimbblock_emergency', 'wimbblock_emergency_nonce' );
 		do_settings_sections( 'wimbblock_emergency' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 			}
@@ -78,7 +78,7 @@ function wimbblock_admin() {
 		if ( $wimbblock_options === false || count( $wimbblock_options ) === 0 ) {
 			echo wp_kses_post( __( 'Please submit the form twice if you are configuring a remote database and it does not yet exist.', 'wimb-and-block' ) );
 		}
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -102,13 +102,13 @@ function wimbblock_admin() {
 
 		echo '<h3>' . esc_html( __( 'Versions Control', 'wimb-and-block' ) ) . '</h3>';
 
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(
 				/* translators: %1$s and %2$s is a link. */
 					__( 'You can change this setting on the %1$smain site%2$s.', 'wimb-and-block' ),
-					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=' . $active_tab . '">',
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
 					'</a>'
 				)
 			);
@@ -119,7 +119,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_browsers' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_browsers' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -136,13 +136,13 @@ function wimbblock_admin() {
 		echo '<h3>' . esc_html( __( 'WIMB Table Management', 'wimb-and-block' ) ) . '</h3>';
 		wimbblock_selection_table();
 	} elseif ( $active_tab === 'exclude' ) {
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(
 				/* translators: %1$s and %2$s is a link. */
 					__( 'You can change this setting on the %1$smain site%2$s.', 'wimb-and-block' ),
-					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=' . $active_tab . '">',
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
 					'</a>'
 				)
 			);
@@ -153,7 +153,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_exclude' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_exclude' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -166,7 +166,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_always' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_always' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -179,13 +179,13 @@ function wimbblock_admin() {
 		wimbblock_robots_htaccess();
 	} elseif ( $active_tab === 'logging' ) {
 			echo '<h2>' . wp_kses_post( __( 'Logging', 'wimb-and-block' ) ) . '</h2>';
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(
 				/* translators: %1$s and %2$s is a link. */
 					__( 'You can change this setting on the %1$smain site%2$s.', 'wimb-and-block' ),
-					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMB_NAME . '&tab=' . $active_tab . '">',
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
 					'</a>'
 				)
 			);
@@ -207,7 +207,7 @@ function wimbblock_admin_tabs() {
 	$active_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ?? 'help' ) );
 
 	echo '<h3 class="nav-tab-wrapper">';
-	echo '<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=help' ) . '" class="nav-tab';
+	echo '<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=help' ) . '" class="nav-tab';
 	echo $active_tab === 'help' ? ' nav-tab-active' : '';
 	echo '">' . esc_html__( 'Help', 'wimb-and-block' ) . '</a>' . "\n";
 
@@ -267,7 +267,7 @@ function wimbblock_admin_tabs() {
 	}
 
 	foreach ( $tabs as $tab ) {
-		echo '<a href="' . esc_url( '?page=' . WIMB_NAME . '&tab=' . $tab['tab'] ) . '" class="nav-tab';
+		echo '<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=' . $tab['tab'] ) . '" class="nav-tab';
 		$active = ( $active_tab === $tab['tab'] ) ? ' nav-tab-active' : '';
 		if ( isset( $tab['strpos'] ) ) {
 			if ( strpos( $active_tab, $tab['strpos'] ) !== false ) {

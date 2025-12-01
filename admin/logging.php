@@ -78,7 +78,7 @@ function wimbblock_log_admin_page() {
 	settings_fields( 'wimbblock_settings_logfile' );
 	do_settings_sections( 'wimbblock_settings_logfile' );
 
-	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 		if ( current_user_can( 'manage_options' ) ) {
 			wp_nonce_field( 'wimbblock_log', 'wimbblock_logfile_nonce' );
 			submit_button();
@@ -95,7 +95,7 @@ function wimbblock_log_admin_page() {
 	}
 	settings_fields( 'wimbblock_anon_settings' );
 	do_settings_sections( 'wimbblock_anon_settings' );
-	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 		if ( current_user_can( 'manage_options' ) ) {
 			wp_nonce_field( 'wimbblock_anon', 'wimbblock_anon_nonce' );
 			submit_button();
@@ -113,7 +113,7 @@ function wimbblock_log_admin_page() {
 	}
 	settings_fields( 'wimbblock_log_settings' );
 	do_settings_sections( 'wimbblock_log_settings' );
-	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMB_BASENAME ) ) ) {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 		if ( current_user_can( 'manage_options' ) ) {
 			wp_nonce_field( 'wimbblock_log', 'wimbblock_log_nonce' );
 			submit_button();

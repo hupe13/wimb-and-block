@@ -21,7 +21,7 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 	$all_rows = isset( $all_rows ) && $all_rows === true ? true : false;
 
 	echo '<form>';
-	echo '<input type="hidden" name="page" value="' . esc_html( WIMB_NAME ) . '" />';
+	echo '<input type="hidden" name="page" value="' . esc_html( WIMBBLOCK_NAME ) . '" />';
 	echo '<input type="hidden" name="tab" value="table" />';
 	echo '<input type="radio" name="all_rows" value="0" ';
 	checked( ! ( $all_rows === true ) );
@@ -155,7 +155,7 @@ function wimbblock_mgt_table() {
 
 		wp_enqueue_style(
 			'wimbblock-css',
-			plugins_url( dirname( WIMB_BASENAME ) . '/admin/admin.css' ),
+			plugins_url( dirname( WIMBBLOCK_BASENAME ) . '/admin/admin.css' ),
 			array(),
 			1
 		);

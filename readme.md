@@ -3,12 +3,12 @@
 Contributors: hupe13   
 Tags: bad bots, ban, blocking, security, robots.txt   
 Tested up to: 6.9   
-Stable tag: 251129   
+Stable tag: 251201   
 Requires at least: 6.3   
 Requires PHP: 8.1   
 License: GPLv2 or later   
 
-With the help of WhatIsMyBrowser the plugin detects old and bad agents and denies them access. A special robots.txt denies crawling by bad bots.
+With the help of WhatIsMyBrowser the plugin detects old and bad browsers and denies them access. A special robots.txt denies crawling by bad bots.
 
 ## Description
 
@@ -18,13 +18,18 @@ Every time your web browser makes a request to a website, it sends a HTTP Header
 
 <p>
 The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v2/user_agent_parse">https://api.whatismybrowser.com/api/v2/user_agent_parse</a> to obtain following information about the User Agent:
-
-* Software Name & Version
-* Operating System Name & Version
+<ul>
+<li> Software Name & Version
+<li> Operating System Name & Version
+</ul>
 </p>
 
 <p>
-<a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>.
+<a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>
+</p>
+
+<p>
+With this information, the plugin attempts to detect old and bad browsers and denies them access to your website.
 </p>
 
 ### HowTo
@@ -33,14 +38,17 @@ The plugin sends with an API the User Agent string of every browser that accesse
 <li>Go to <a href="https://developers.whatismybrowser.com/api/pricing/">What is my browser?</a> and sign up to the WhatIsMyBrowser.com API for a Basic (free) Application Plan.</li>
 <li>You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.</li>
 <li>The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table:
-<p><img src="pict/header.jpg" alt="header" width="450"><br>
-<img src="pict/good.jpg" alt="example entries" width="450"></p></li>
+<p><img src=".wordpress-org/header.jpg" alt="header" width="450"><br>
+<img src=".wordpress-org/good.jpg" alt="example entries" width="450"></p></li>
+
 <li>Browsers are blocked if the browser and/or system are outdated:<br>
 Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17<br>
 Old systems are all Windows versions prior to Windows 10, some MacOS and Android versions.<br>
-<p><img src="pict/old.jpg" alt="example entries" width="450"></p></li>
+<p><img src=".wordpress-org/old.jpg" alt="example entries" width="450"></p></li>
+
 <li>It will be blocked also if the "simple software string" contains "unknown" or is empty.
-<p><img src="pict/suspect.jpg" alt="example entries" width="450"></p></li>
+<p><img src=".wordpress-org/suspect.jpg" alt="example entries" width="450"></p></li>
+
 <li>You can also set up other browsers.</li>
 <li>Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.</li>
 <li>The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.</li>
@@ -57,9 +65,9 @@ Old systems are all Windows versions prior to Windows 10, some MacOS and Android
 ## Screenshots
 
 1. Database settings <br>![Database settings](.wordpress-org/screenshot-1.png)
-2. Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly). <br>![Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly).](.wordpress-org/screenshot-2.png)
-3. Exclude these browsers from checking / Always block browsers with this strings <br>![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-3.png)
-4. robots.txt settings <br>![robots.txt settings](.wordpress-org/screenshot-4.png)
+2. Exclude these browsers from checking / Always block browsers with this strings <br>![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-2.png)
+3. robots.txt settings <br>![robots.txt settings](.wordpress-org/screenshot-3.png)
+4. Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly). <br>![Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly).](.wordpress-org/screenshot-4.png)
 
 ## Installation
 
