@@ -181,7 +181,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 	}
 }
 
-function wimbblock_old_system( $table_name, $system, $blocked, $id, $robots ) {
+function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $robots ) {
 	if ( $system !== '' ) {
 		$old_systems = array(
 			'Vista',
