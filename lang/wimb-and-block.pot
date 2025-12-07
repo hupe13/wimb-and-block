@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-01 20:04+0000\n"
+"POT-Creation-Date: 2025-12-07 19:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -44,10 +44,6 @@ msgstr ""
 msgid "%s browsers accessed robots.txt."
 msgstr ""
 
-#: admin/help1.php:60
-msgid "About robots.txt"
-msgstr ""
-
 #: admin/robots.php:303
 msgid "Access is allowed - this is correct."
 msgstr ""
@@ -79,11 +75,6 @@ msgstr ""
 msgid "Block old browser versions and suspicious browsers"
 msgstr ""
 
-#: admin/help1.php:39
-msgid ""
-"Browsers will be blocked, if the browser and/or the system are outdated:"
-msgstr ""
-
 #: admin/versions.php:68
 msgid ""
 "Browsers will be blocked, if the browser and/or the system is an old one:"
@@ -109,22 +100,12 @@ msgstr ""
 msgid "Crawling is disabled:"
 msgstr ""
 
-#: admin/help1.php:40
-msgid ""
-"Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, "
-"Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17"
-msgstr ""
-
 #: admin/deleting.php:14
 msgid "Delete all plugin settings when deleting the plugin?"
 msgstr ""
 
 #: admin/robots.php:225
 msgid "Delete the rules"
-msgstr ""
-
-#: admin/help1.php:11
-msgid "Description"
 msgstr ""
 
 #: admin/robots.php:133
@@ -159,12 +140,6 @@ msgstr ""
 #: admin/settings.php:91
 #, php-format
 msgid "Get an API key for a %s."
-msgstr ""
-
-#. %1$s is What is my browser?. %2$s is Basic Application Plan
-#: admin/help1.php:22
-#, php-format
-msgid "Go to  %1$s and sign up to the WhatIsMyBrowser.com API for a %2$s."
 msgstr ""
 
 #: admin.php:212
@@ -258,12 +233,6 @@ msgstr ""
 msgid "It is working."
 msgstr ""
 
-#. %1$s is "simple software string", %2$s is "unknown"
-#: admin/help1.php:47
-#, php-format
-msgid "It will be blocked also if the %1$s contains %2$s or is empty."
-msgstr ""
-
 #: admin/settings.php:16
 msgid "Local WP database or remote database"
 msgstr ""
@@ -294,12 +263,6 @@ msgstr ""
 msgid "no"
 msgstr ""
 
-#: admin/help1.php:41
-msgid ""
-"Old systems are all Windows versions prior to Windows 10, some MacOS and "
-"Android versions."
-msgstr ""
-
 #: php/wimb-options.php:110
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
@@ -325,10 +288,6 @@ msgstr ""
 
 #: admin/logging.php:131
 msgid "plugins cron jobs"
-msgstr ""
-
-#: admin/help.php:17
-msgid "Readme / Documentation"
 msgstr ""
 
 #: admin/settings.php:21
@@ -399,12 +358,6 @@ msgid ""
 "Mastodon. Then you can exclude these."
 msgstr ""
 
-#: admin/help1.php:56
-msgid ""
-"Sometimes there are false positive, for example, if the browser is from "
-"Mastodon. In this case, you can exclude it from the check."
-msgstr ""
-
 #: admin/emergency.php:42
 msgid "STOP!"
 msgstr ""
@@ -465,20 +418,6 @@ msgid ""
 "because the WordPress installation is located in a subdirectory."
 msgstr ""
 
-#: admin/help1.php:57
-msgid ""
-"The plugin checks whether the crawlers really originate from Google, Bing, "
-"Yandex, Apple, Mojeek, Baidu, Seznam."
-msgstr ""
-
-#. %s is a name of a website
-#: admin/help1.php:15
-#, php-format
-msgid ""
-"The plugin uses %s to get informations about the browser. It detects old and "
-"suspicious browsers and denies them access to your website."
-msgstr ""
-
 #. Description of the plugin
 msgid ""
 "The plugin uses the service of WhatIsMyBrowser.com to detect old and "
@@ -491,12 +430,6 @@ msgstr ""
 msgid ""
 "The user agent string of every browser accessing your website the first time "
 "is send to WhatIsMyBrowser and some data will be stored in the table:"
-msgstr ""
-
-#: admin/help1.php:32
-msgid ""
-"The user agent string of every browser that accesses your website for the "
-"first time is sent to this service, and the information is stored a table:"
 msgstr ""
 
 #. %s are browsers
@@ -585,21 +518,10 @@ msgstr ""
 msgid "yes"
 msgstr ""
 
-#: admin/help1.php:54
-msgid "You can also set up other browsers."
-msgstr ""
-
 #. %1$s and %2$s is a link.
 #: admin.php:47 admin.php:110 admin.php:144 admin.php:187
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
-msgstr ""
-
-#: admin/help1.php:62
-msgid ""
-"You can configure some rewrite rules to provide a robots.txt file that can "
-"allow or deny crawling for a browser. If crawling is denied, access to your "
-"website will be blocked for that browser."
 msgstr ""
 
 #: admin/robots.php:57
@@ -638,14 +560,6 @@ msgid ""
 "You do not seem to have your own robots.txt file, so WordPress provides it. "
 "Therefore you can test the configuration without any changes of the ."
 "htaccess."
-msgstr ""
-
-#. %s is 'Parsing User Agent'
-#: admin/help1.php:28
-#, php-format
-msgid ""
-"You have a limit of 5000 hits / month for %s. Thats why the plugin manages a "
-"database table."
 msgstr ""
 
 #: admin/robots.php:181

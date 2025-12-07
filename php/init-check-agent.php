@@ -67,19 +67,21 @@ function wimbblock_check_agent() {
 	global $wimbblock_is_crawler;
 	$wimbblock_is_crawler = false;
 
-	$file       = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) );
+	$uri        = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) );
 	$table_name = $wpdb_options['table_name'];
 
 	if (
 		! is_admin()
 		&& $user_login === ''
+		&& ! wp_doing_ajax()
 		&& $ip !== '127.0.0.1'
+		&& '/favicon.ico' !== $uri
 		&& strpos( $agent, 'WordPress/Private' ) === false
 		&& boolval( preg_match( '#WordPress/.+' . get_home_url() . '#', $agent ) ) === false
 		&& strpos( $agent, 'WP-URLDetails' ) === false
 		&& strpos( $agent, 'cronBROWSE' ) === false
-		&& strpos( $file, 'robots.txt' ) === false
-		&& strpos( $file, 'robots-check' ) === false
+		&& strpos( $uri, 'robots.txt' ) === false
+		&& strpos( $uri, 'robots-check' ) === false
 		&& ! is_404()
 	) {
 		global $wimb_datatable;

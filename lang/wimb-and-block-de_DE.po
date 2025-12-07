@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-14 14:41+0000\n"
-"PO-Revision-Date: 2025-12-01 20:11+0000\n"
+"PO-Revision-Date: 2025-12-07 19:48+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.3.25-nmm1\n"
+"X-Loco-Version: 2.8.0; wp-6.9; php-8.3.25-nmm1\n"
 "X-Domain: wimb-and-block"
 
 #. translators:%s are numbers
@@ -47,10 +47,6 @@ msgstr ""
 msgid "%s browsers accessed robots.txt."
 msgstr "%s Browser haben auf robots.txt zugegriffen."
 
-#: admin/help1.php:60
-msgid "About robots.txt"
-msgstr "Über die robots.txt"
-
 #: admin/robots.php:303
 msgid "Access is allowed - this is correct."
 msgstr "Zugriff is erlaubt - das ist richtig."
@@ -84,12 +80,6 @@ msgstr "Blocke Browser-Versionen, die kleiner sind als "
 msgid "Block old browser versions and suspicious browsers"
 msgstr "Blocke alte Browser-Versionen und verdächtige Browser"
 
-#: admin/help1.php:39
-msgid ""
-"Browsers will be blocked, if the browser and/or the system are outdated:"
-msgstr ""
-"Browser werden geblockt, wenn der Browser und/oder das System veraltet sind:"
-
 #: admin/versions.php:68
 msgid ""
 "Browsers will be blocked, if the browser and/or the system is an old one:"
@@ -119,14 +109,6 @@ msgstr "Das Crawling ist erlaubt:"
 msgid "Crawling is disabled:"
 msgstr "Das Crawling ist verboten:"
 
-#: admin/help1.php:40
-msgid ""
-"Default: Chrome and Chrome based browsers &lt; 128, Firefox &lt; 128, "
-"Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17"
-msgstr ""
-"Standard: Chrome und Chrome basierte Browser &lt; 128, Firefox &lt; 128, "
-"Internet Explorer, Netscape (!), Opera &lt; 83, Safari &lt; 17"
-
 #: admin/deleting.php:14
 msgid "Delete all plugin settings when deleting the plugin?"
 msgstr "Alle Einstellungen des Plugins beim Löschen des Plugins löschen?"
@@ -134,10 +116,6 @@ msgstr "Alle Einstellungen des Plugins beim Löschen des Plugins löschen?"
 #: admin/robots.php:225
 msgid "Delete the rules"
 msgstr "Lösche die Regeln"
-
-#: admin/help1.php:11
-msgid "Description"
-msgstr "Beschreibung"
 
 #: admin/robots.php:133
 msgid "Edit .htaccess"
@@ -172,14 +150,6 @@ msgstr "Formular zur Bearbeitung des Eintrags in .htaccess"
 #, php-format
 msgid "Get an API key for a %s."
 msgstr "Hol dir einen API-Schlüssel für einen %s."
-
-#. %1$s is What is my browser?. %2$s is Basic Application Plan
-#: admin/help1.php:22
-#, php-format
-msgid "Go to  %1$s and sign up to the WhatIsMyBrowser.com API for a %2$s."
-msgstr ""
-"Gehe zu  %1$s und registriere dich bei WhatIsMyBrowser.com-API für einen "
-"%2$s."
 
 #: admin.php:212
 msgid "Help"
@@ -291,12 +261,6 @@ msgstr "IP Anonymisierung"
 msgid "It is working."
 msgstr "Es ist in Betrieb."
 
-#. %1$s is "simple software string", %2$s is "unknown"
-#: admin/help1.php:47
-#, php-format
-msgid "It will be blocked also if the %1$s contains %2$s or is empty."
-msgstr "Er wird ebenfalls geblockt, wenn %1$s %2$s enthält oder leer ist."
-
 #: admin/settings.php:16
 msgid "Local WP database or remote database"
 msgstr "Lokale WP-Datenbank oder entfernte Datenbank "
@@ -331,17 +295,6 @@ msgstr "Logging"
 msgid "no"
 msgstr "nein"
 
-#: admin/help1.php:41
-#| msgid ""
-#| "Old systems are all Windows versions before Windows 10, some MacOS and "
-#| "Android versions."
-msgid ""
-"Old systems are all Windows versions prior to Windows 10, some MacOS and "
-"Android versions."
-msgstr ""
-"Alte Systeme sind alle Windows-Versionen vor Windows 10, einige MacOS- und "
-"Android-Versionen."
-
 #: php/wimb-options.php:110
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
@@ -374,10 +327,6 @@ msgstr ""
 #: admin/logging.php:131
 msgid "plugins cron jobs"
 msgstr "Cronjobs des Plugins"
-
-#: admin/help.php:17
-msgid "Readme / Documentation"
-msgstr "Liesmich / Dokumentation"
 
 #: admin/settings.php:21
 msgid "Remote database hostname"
@@ -451,17 +400,6 @@ msgid ""
 msgstr ""
 "Manchmal gibt es falsche Positive, beispielsweise wenn der Browser von "
 "Mastodon stammt. Diese kannst du dann ausschließen."
-
-#: admin/help1.php:56
-#| msgid ""
-#| "Sometimes there are false positive, for example if the browser is from "
-#| "Mastodon. Then you can exclude these from checking."
-msgid ""
-"Sometimes there are false positive, for example, if the browser is from "
-"Mastodon. In this case, you can exclude it from the check."
-msgstr ""
-"Manchmal gibt es falsche Positive, beispielsweise wenn der Browser von "
-"Mastodon stammt. Dann kannst du diese von der Überprüfung ausschließen."
 
 #: admin/emergency.php:42
 msgid "STOP!"
@@ -539,28 +477,6 @@ msgstr ""
 "ändern, da sich die WordPress-Installation in einem Unterverzeichnis "
 "befindet."
 
-#: admin/help1.php:57
-#| msgid ""
-#| "The plugin checks, if the crawlers are really from Google, Bing, Yandex, "
-#| "Apple, Mojeek, Baidu, Seznam."
-msgid ""
-"The plugin checks whether the crawlers really originate from Google, Bing, "
-"Yandex, Apple, Mojeek, Baidu, Seznam."
-msgstr ""
-"Das Plugin überprüft, ob die Crawler tatsächlich von Google, Bing, Yandex, "
-"Apple, Mojeek, Baidu oder Seznam stammen."
-
-#. %s is a name of a website
-#: admin/help1.php:15
-#, php-format
-msgid ""
-"The plugin uses %s to get informations about the browser. It detects old and "
-"suspicious browsers and denies them access to your website."
-msgstr ""
-"Das Plugin verwendet %s, um Informationen über den Browser abzurufen. Es "
-"erkennt alte und verdächtige Browser und verweigert ihnen den Zugriff auf "
-"deine Website."
-
 #. Description of the plugin
 #| msgid ""
 #| "The plugin uses the service of WhatIsMyBrowser.com to detect old and "
@@ -586,15 +502,6 @@ msgstr ""
 "Die Benutzeragentenzeichenfolge jedes Browsers, der zum ersten Mal auf deine "
 "Website zugreift, wird an WhatIsMyBrowser gesendet, und einige Daten werden "
 "in der Tabelle gespeichert:"
-
-#: admin/help1.php:32
-msgid ""
-"The user agent string of every browser that accesses your website for the "
-"first time is sent to this service, and the information is stored a table:"
-msgstr ""
-"Die User-Agent-Zeichenfolge jedes Browsers, der zum ersten Mal auf deine "
-"Website zugreift, wird an diesen Dienst gesendet, und die Informationen "
-"werden in einer Tabelle gespeichert:"
 
 #. %s are browsers
 #: admin/versions.php:76
@@ -696,26 +603,11 @@ msgstr "Schreibe in die .htaccess im Stammverzeichnis von %s:"
 msgid "yes"
 msgstr "ja"
 
-#: admin/help1.php:54
-msgid "You can also set up other browsers."
-msgstr "Du kannst auch andere Browser einrichten."
-
 #. %1$s and %2$s is a link.
 #: admin.php:47 admin.php:110 admin.php:144 admin.php:187
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr "Du kannst diese Einstellungen auf der %1$sHauptseite%2$s ändern."
-
-#: admin/help1.php:62
-msgid ""
-"You can configure some rewrite rules to provide a robots.txt file that can "
-"allow or deny crawling for a browser. If crawling is denied, access to your "
-"website will be blocked for that browser."
-msgstr ""
-"Du kannst einige Umschreibungsregeln konfigurieren, um eine robots.txt-Datei "
-"bereitzustellen, die das Crawling für einen Browser zulässt oder verbietet. "
-"Wenn das Crawling verboten ist, wird der Zugriff auf deine Website für "
-"diesen Browser geblockt."
 
 #: admin/robots.php:57
 msgid ""
@@ -768,16 +660,6 @@ msgstr ""
 "Du scheinst keine eigene robots.txt-Datei zu haben, deshalb stellt WordPress "
 "diese zur Verfügung. Daher kannst du die Konfiguration ohne Änderungen an "
 "der .htaccess testen."
-
-#. %s is 'Parsing User Agent'
-#: admin/help1.php:28
-#, php-format
-msgid ""
-"You have a limit of 5000 hits / month for %s. Thats why the plugin manages a "
-"database table."
-msgstr ""
-"Du hast ein Limit von 5000 Zugriffen pro Monat für %s. Aus diesem Grund "
-"verwaltet das Plugin eine Datenbanktabelle."
 
 #: admin/robots.php:181
 msgid "You must configure these settings on each of your domains!"
