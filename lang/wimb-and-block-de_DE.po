@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-14 14:41+0000\n"
-"PO-Revision-Date: 2025-12-07 19:48+0000\n"
+"PO-Revision-Date: 2025-12-11 21:11+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -133,7 +133,7 @@ msgstr "Notschalter"
 msgid "entries from the last 24 hours"
 msgstr "Einträge der letzten 24 Stunden"
 
-#: admin.php:228 admin.php:257
+#: admin.php:229 admin.php:258
 msgid "Exclude / always block"
 msgstr "Ausschließen / immer blocken"
 
@@ -151,7 +151,7 @@ msgstr "Formular zur Bearbeitung des Eintrags in .htaccess"
 msgid "Get an API key for a %s."
 msgstr "Hol dir einen API-Schlüssel für einen %s."
 
-#: admin.php:212
+#: admin.php:213
 msgid "Help"
 msgstr "Hilfe"
 
@@ -287,7 +287,7 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr "Logge, wenn der Browser von der Überprüfung ausgeschlossen ist."
 
-#: admin.php:181 admin.php:240 admin.php:253
+#: admin.php:181 admin.php:241 admin.php:254
 msgid "Logging"
 msgstr "Logging"
 
@@ -348,7 +348,7 @@ msgstr "Benutzername der entfernten Datenbank"
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:244 admin.php:265
+#: admin.php:245 admin.php:266
 msgid "robots.txt"
 msgstr "robots.txt"
 
@@ -368,11 +368,11 @@ msgstr "Zum Entsperren / Sperren auswählen"
 msgid "Setting:"
 msgstr "Einstellung:"
 
-#: wimb-and-block.php:81 wimb-and-block.php:89
+#: wimb-and-block.php:80 wimb-and-block.php:88
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin.php:72 admin.php:236 admin.php:249
+#: admin.php:72 admin.php:237 admin.php:250
 msgid "Settings WIMB"
 msgstr "Einstellungen für WIMB"
 
@@ -416,6 +416,10 @@ msgstr "Teste deine Konfiguration"
 #: php/wimb-options.php:171
 msgid "The full IP is logged. (default)"
 msgstr "Die vollständige IP-Adresse wird geloggt. (Standard)"
+
+#: admin/help.php:21
+msgid "The information could not be retrieved."
+msgstr "Die Informationen konnten nicht abgerufen werden."
 
 #: php/wimb-options.php:163
 msgid "The IP address is not logged."
@@ -559,7 +563,7 @@ msgstr "Das ist die erwartete Ausgabe."
 msgid "Unblock / block selected entries"
 msgstr "Ausgewählte Einträge entsperren / sperren"
 
-#: admin.php:103 admin.php:232 admin.php:261
+#: admin.php:103 admin.php:233 admin.php:262
 #| msgid "Versions control"
 msgid "Versions Control"
 msgstr "Versionskontrolle"
@@ -577,11 +581,11 @@ msgstr "WIMB und Block"
 msgid "WIMB API Key"
 msgstr "WIMB-API-Schlüssel"
 
-#: admin.php:132 admin.php:220
+#: admin.php:132 admin.php:221
 msgid "WIMB Table"
 msgstr "WIMB Tabelle"
 
-#: admin.php:136 admin.php:224
+#: admin.php:136 admin.php:225
 msgid "WIMB Table Management"
 msgstr "Verwaltung der WIMB Tabelle"
 

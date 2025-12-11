@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad bots, ban, blocking, security, robots.txt
 Tested up to: 6.9
-Stable tag: 251211
+Stable tag: 1.0
 Requires at least: 6.3
 Requires PHP: 8.1
 License: GPLv2 or later
@@ -44,6 +44,13 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 * The logging can be very detailed. Please check the logs and the WIMB table regularly.
 
+## Screenshots
+
+1. Database settings <br />![Database settings](.wordpress-org/screenshot-1.png)
+2. Exclude these browsers from checking / Always block browsers with this strings <br />![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-2.png)
+3. robots.txt settings <br />![robots.txt settings](.wordpress-org/screenshot-3.png)
+4. Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly). <br />![Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly).](.wordpress-org/screenshot-4.png)
+
 == Installation ==
 
 * Install the plugin in the usual way.
@@ -51,8 +58,6 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 == Changelog ==
 
-= 251211 =
+= 1.0.1 / 251211 =
 
 * readme.txt and documentation
-
-Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc</a> to get updates and keep an eye on this repository in case I've made any mistakes.

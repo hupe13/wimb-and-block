@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-07 19:47+0000\n"
+"POT-Creation-Date: 2025-12-11 21:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -124,7 +124,7 @@ msgstr ""
 msgid "entries from the last 24 hours"
 msgstr ""
 
-#: admin.php:228 admin.php:257
+#: admin.php:229 admin.php:258
 msgid "Exclude / always block"
 msgstr ""
 
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:212
+#: admin.php:213
 msgid "Help"
 msgstr ""
 
@@ -255,7 +255,7 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:181 admin.php:240 admin.php:253
+#: admin.php:181 admin.php:241 admin.php:254
 msgid "Logging"
 msgstr ""
 
@@ -310,7 +310,7 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: admin.php:244 admin.php:265
+#: admin.php:245 admin.php:266
 msgid "robots.txt"
 msgstr ""
 
@@ -330,11 +330,11 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:81 wimb-and-block.php:89
+#: wimb-and-block.php:80 wimb-and-block.php:88
 msgid "Settings"
 msgstr ""
 
-#: admin.php:72 admin.php:236 admin.php:249
+#: admin.php:72 admin.php:237 admin.php:250
 msgid "Settings WIMB"
 msgstr ""
 
@@ -372,6 +372,10 @@ msgstr ""
 
 #: php/wimb-options.php:171
 msgid "The full IP is logged. (default)"
+msgstr ""
+
+#: admin/help.php:21
+msgid "The information could not be retrieved."
 msgstr ""
 
 #: php/wimb-options.php:163
@@ -476,7 +480,7 @@ msgstr ""
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:103 admin.php:232 admin.php:261
+#: admin.php:103 admin.php:233 admin.php:262
 msgid "Versions Control"
 msgstr ""
 
@@ -492,11 +496,11 @@ msgstr ""
 msgid "WIMB API Key"
 msgstr ""
 
-#: admin.php:132 admin.php:220
+#: admin.php:132 admin.php:221
 msgid "WIMB Table"
 msgstr ""
 
-#: admin.php:136 admin.php:224
+#: admin.php:136 admin.php:225
 msgid "WIMB Table Management"
 msgstr ""
 

@@ -12,12 +12,10 @@ defined( 'ABSPATH' ) || die();
  * For translating
  */
 function wimbblock_textdomain() {
-	if ( file_exists( __DIR__ . '/lang/wimb-and-block-' . get_locale() . '.mo' ) ) {
-		$mofile = __DIR__ . '/lang/wimb-and-block-' . get_locale() . '.mo';
-		load_textdomain( 'wimb-and-block', $mofile );
-	}
+	load_plugin_textdomain( 'wimb-and-block', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
+	load_plugin_textdomain( 'wimb-and-block-readme', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
 }
-add_action( 'plugins_loaded', 'wimbblock_textdomain' );
+add_action( 'init', 'wimbblock_textdomain' );
 
 // Updates from Github
 function wimbblock_updates_from_github() {
