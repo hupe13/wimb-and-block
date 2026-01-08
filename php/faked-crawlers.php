@@ -5,6 +5,9 @@
  * @package wimb-and-block
  */
 
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
+
 //
 function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 	global $wimbblock_is_crawler;

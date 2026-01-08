@@ -19,26 +19,14 @@ add_action( 'init', 'wimbblock_textdomain' );
 
 // Updates from Github
 function wimbblock_updates_from_github() {
-	$name             = 'Updates created by hupe13 hosted on GitHub';
-	$ghu_url          = 'https://github.com/hupe13/ghu-update-puc';
-	$ghu_php_old      = 'leafext-update-github.php';
-	$ghu_settings_old = 'admin.php?page=github-settings">Github settings</a>';
-	$ghu_php          = 'ghu-update-puc.php';
-	$ghu_settings     = 'options-general.php?page=ghu-update-puc">Github Update PUC</a>';
-	$settings_page    = '';
+	$name          = 'Updates by hupe13 hosted on GitHub';
+	$ghu_url       = 'https://github.com/hupe13/ghu-update-puc';
+	$ghu_php       = 'ghu-update-puc.php';
+	$ghu_settings  = 'options-general.php?page=ghu-update-puc">Github Update PUC</a>';
+	$settings_page = '';
 	echo '<h2>' . wp_kses_post( 'Updates in WordPress way' ) . '</h2>';
 	if ( is_multisite() ) {
 		if ( strpos(
-			implode(
-				',',
-				array_keys(
-					get_site_option( 'active_sitewide_plugins', array() )
-				)
-			),
-			$ghu_php_old
-		) !== false ) {
-			$settings_page = $ghu_settings_old;
-		} elseif ( strpos(
 			implode(
 				',',
 				array_keys(
@@ -67,14 +55,6 @@ function wimbblock_updates_from_github() {
 	} else {
 		// Single site
 		if ( strpos(
-			implode(
-				',',
-				get_option( 'active_plugins', array() )
-			),
-			$ghu_php_old
-		) !== false ) {
-			$settings_page = $ghu_settings_old;
-		} elseif ( strpos(
 			implode(
 				',',
 				get_option( 'active_plugins', array() )

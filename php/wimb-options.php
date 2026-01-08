@@ -44,33 +44,60 @@ function wimbblock_get_options_db() {
 function wimbblock_get_default_browsers() {
 	$defaults = array(
 		// https://en.wikipedia.org/wiki/Google_Chrome#Platforms
-		'Chrome'            => 128,
-		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_Mozilla_Firefox
-		'Firefox'           => 128,
-		'Internet Explorer' => 9999,
-		'Netscape'          => 9999,
-		// /https://en.wikipedia.org/wiki/History_of_the_Opera_web_browser
-		// Opera is Chromium based, all other Opera are old.
-		// 'Opera'             => 83,
-		// https://developer.apple.com/documentation/safari-release-notes
-		// https://theapplewiki.com/wiki/Safari
-		'Safari'            => 17,
+		'Chrome'  => 137,
 		// https://en.wikipedia.org/wiki/Microsoft_Edge#New_Edge_release_history
 		// https://www.cvedetails.com/version-list/26/32367/1/Microsoft-Edge.html?order=0
-		'Edge'              => 128,
+		// Edge = Chrome
+		'Edge'    => 137,
+		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_Mozilla_Firefox
+		'Firefox' => 138,
+		// https://developer.apple.com/documentation/safari-release-notes
+		// https://theapplewiki.com/wiki/Safari
+		'Safari'  => 18,
 	);
 	return $defaults;
 }
 
-function wimbblock_get_browsers_custom() {
-	$defaults          = wimbblock_get_default_browsers();
-	$wimbblock_options = wimbblock_get_option( 'wimbblock_browsers' );
-	return $wimbblock_options;
-}
-
 function wimbblock_get_all_browsers() {
 	$defaults = wimbblock_get_default_browsers();
-	$customs  = wimbblock_get_browsers_custom();
+	$customs  = wimbblock_get_option( 'wimbblock_browsers' );
+
+	$out = array();
+	if ( $customs !== false && count( $customs ) > 0 ) {
+		foreach ( $defaults as $name => $default ) {
+			if ( array_key_exists( $name, $customs ) ) {
+				$out[ $name ] = $customs[ $name ];
+			} else {
+				$out[ $name ] = $default;
+			}
+		}
+		foreach ( $customs as $name => $option ) {
+			if ( ! array_key_exists( $name, $out ) ) {
+				$out[ $name ] = $customs[ $name ];
+			}
+		}
+	} else {
+		$out = $defaults;
+	}
+	return $out;
+}
+
+// systems
+function wimbblock_get_default_systems() {
+	$defaults = array(
+		// https://support.google.com/chrome/thread/352616098/sunsetting-chrome-support-for-android-8-0-oreo-and-android-9-0-pie?hl=en
+		// https://blog.mozilla.org/futurereleases/2025/09/15/raising-the-minimum-android-version-for-firefox/  - oreo
+		'Android' => 9,
+		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_iOS#iPhone,_iPad_&_iPod_touch
+		'iOS'     => 15,
+		//
+	);
+	return $defaults;
+}
+
+function wimbblock_get_all_systems() {
+	$defaults = wimbblock_get_default_systems();
+	$customs  = wimbblock_get_option( 'wimbblock_systems' );
 
 	$out = array();
 	if ( $customs !== false && count( $customs ) > 0 ) {

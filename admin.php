@@ -91,9 +91,11 @@ function wimbblock_admin() {
 		do_settings_sections( 'wimbblock_settings_deleting' );
 		$wimbblock_options = wimbblock_get_options_db();
 		if ( $wimbblock_options['error'] === '0' ) {
-			if ( current_user_can( 'manage_options' ) ) {
-				wp_nonce_field( 'wimbblock_deleting', 'wimbblock_deleting_nonce' );
-				submit_button();
+			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
+				if ( current_user_can( 'manage_options' ) ) {
+					wp_nonce_field( 'wimbblock_deleting', 'wimbblock_deleting_nonce' );
+					submit_button();
+				}
 			}
 		}
 		echo '</form>';
@@ -126,6 +128,17 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
+		echo '<form method="post" action="options.php">';
+		settings_fields( 'wimbblock_systems' );
+		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
+		do_settings_sections( 'wimbblock_systems' );
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				submit_button();
+				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
+			}
+		}
+		echo '</form>';
 
 	} elseif ( $active_tab === 'table' ) {
 		require_once __DIR__ . '/admin/display-table.php';
@@ -135,6 +148,8 @@ function wimbblock_admin() {
 		require_once __DIR__ . '/admin/mgt-table.php';
 		echo '<h3>' . esc_html( __( 'WIMB Table Management', 'wimb-and-block' ) ) . '</h3>';
 		wimbblock_selection_table();
+	} elseif ( $active_tab === 'wimbstat' ) {
+		require_once __DIR__ . '/admin/mgt-statistik-table.php';
 	} elseif ( $active_tab === 'exclude' ) {
 		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
@@ -223,6 +238,10 @@ function wimbblock_admin_tabs() {
 		$tabs[] = array(
 			'tab'   => 'mgt',
 			'title' => __( 'WIMB Table Management', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'wimbstat',
+			'title' => __( 'WIMB Table Statistics', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
 			'tab'   => 'exclude',

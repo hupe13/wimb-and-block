@@ -5,6 +5,9 @@
  * @package wimb-and-block
  */
 
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
+
 //
 function wimbblock_help() {
 	require_once ABSPATH . 'wp-admin/includes/plugin-install.php';

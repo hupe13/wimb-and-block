@@ -30,13 +30,6 @@ function wimbblock_check_agent() {
 		return;
 	}
 
-	if ( strpos( $agent, 'WordPress/Private' ) !== false
-		|| boolval( preg_match( '#WordPress/.+' . get_home_url() . '#', $agent ) ) !== false
-		|| strpos( $agent, 'WP-URLDetails' ) !== false
-		|| strpos( $agent, 'cronBROWSE' ) !== false ) {
-			wimbblock_error_log( 'Never? : ' . $agent );
-	}
-
 	if ( $ip === '' ) {
 		wimbblock_error_log( 'no ip - blocked: ' . $agent );
 		status_header( 404 );
@@ -98,13 +91,12 @@ function wimbblock_check_agent() {
 			exit();
 		}
 		wimbblock_always( $table_name, $agent, $blocked, $id, false );
-		wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, false );
 		wimbblock_faked_crawler( $agent, $software, $ip, false );
 		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
-			if ( $software !== '' ) {
-				wimbblock_check_modern_browser( $table_name, $software, $version, $system, $blocked, $id, false );
-			}
+			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, false );
+			// wimbblock_check_sec_ch_ua( $table_name, $agent, $software, $version, $system, $id );
+			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, false );
 		}
 		wimbblock_counter( $table_name, 'count', $id );
 		$wimbblock_software = $software;

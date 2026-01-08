@@ -5,6 +5,9 @@
  * @package wimb-and-block
  */
 
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
+
 //
 function wimbblock_anon_init() {
 	add_settings_section( 'wimbblock_anon_settings', '', '', 'wimbblock_anon_settings' );

@@ -9,8 +9,6 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_display_table( $wimbblock_table_name ) {
-
-	require_once __DIR__ . '/statistics-all.php';
 	require_once __DIR__ . '/statistics24.php';
 
 	$all_rows = filter_input(
@@ -49,10 +47,11 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 	$tablehdr .= '<th colspan=4>Browser Software</th>';
 	$tablehdr .= '<th colspan=2>Time</th>';
 	$tablehdr .= '<th colspan=1>&nbsp;</th>';
-	$tablehdr .= '<th colspan=2>this month</th>';
-	$tablehdr .= '<th colspan=2>month before</th>';
-	$tablehdr .= '<th colspan=2>2 months before</th>';
-	$tablehdr .= '<th colspan=2>3 months before</th></tr>';
+	$thismonth = wp_date( 'Y-m' );
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth ) ) . '</th>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 1 month' ) ) . '</th>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 2 month' ) ) . '</th>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 3 month' ) ) . '</th></tr>';
 	$tablehdr .= $colgroups;
 	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>wimbdate</th><th>robots</th>';
 	for ( $i = 1; $i <= 4; $i++ ) {

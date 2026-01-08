@@ -1,4 +1,6 @@
 <?php
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
 
 #
 #

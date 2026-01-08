@@ -236,6 +236,9 @@ function wimbblock_handle_form() {
 				// escape: %d (integer), %f (float), %s (string), %i (identifier, e.g. table/field names)
 				$to_escapes = array( 'd', 'f', 's', 'i' );
 				foreach ( $to_escapes as $to_escape ) {
+					if ( stripos( $value, '%' . $to_escape ) !== false ) {
+						$value = str_ireplace( '%' . $to_escape, '%%' . $to_escape, $value );
+					}
 					if ( str_starts_with( strtolower( $value ), $to_escape ) ) {
 						$value = '%' . $value;
 					}

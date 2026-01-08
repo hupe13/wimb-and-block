@@ -5,6 +5,9 @@
  * @package wimb-and-block
  */
 
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
+
 //
 function wimbblock_whatsmybrowser( $user_agent ) {
 	if ( $user_agent !== '' ) {
@@ -59,25 +62,25 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 	$table_name = $wimbblock_table;
 	$yymm       = wp_date( 'ym' );
 
-	$browser = $wimb_datatable->get_results(
+	$browser = $wimb_datatable->get_row(
 		$wimb_datatable->prepare(
-			'SELECT * FROM %i WHERE browser = %s ORDER BY time DESC',
+			'SELECT * FROM %i WHERE browser = %s',
 			$table_name,
 			$agent
 		),
 		ARRAY_A
 	);
 
-	if ( count( $browser ) === 0 ) {
-
+	if ( is_null( $browser ) ) {
 		$wimb     = wimbblock_whatsmybrowser( $agent );
 		$software = $wimb['software'];
 		$system   = $wimb['system'];
 		$version  = $wimb['version'];
-
+		$blocked  = '0';
 		$mgt_code = $wimb_datatable->query(
 			$wimb_datatable->prepare(
-				'INSERT INTO %i ( browser,software,system,version ) VALUES ( %s,%s,%s,%s ) ON DUPLICATE KEY UPDATE i=i ',
+				'INSERT INTO %i ( browser,software,system,version ) VALUES ( %s,%s,%s,%s )
+				ON DUPLICATE KEY UPDATE i=LAST_INSERT_ID(i)',
 				$table_name,
 				$agent,
 				$software,
@@ -85,20 +88,14 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 				$version
 			),
 		);
-
-		wimbblock_error_log( 'Inserted agent: ' . $agent . ' * ' . $mgt_code . ' * ' . $wimb_datatable->insert_id );
-
-		$blocked = '0';
-		$id      = $wimb_datatable->insert_id;
-
+		$id       = $wimb_datatable->insert_id;
+		wimbblock_error_log( 'Inserted agent: ' . $agent . ' * ' . $mgt_code . ' * ' . $id );
 	} else {
-
-		$software = $browser[0]['software'];
-		$system   = $browser[0]['system'];
-		$version  = $browser[0]['version'];
-		$blocked  = $browser[0]['block'];
-		$id       = $browser[0]['i'];
-
+		$software = $browser['software'];
+		$system   = $browser['system'];
+		$version  = $browser['version'];
+		$blocked  = $browser['block'];
+		$id       = $browser['i'];
 	}
 	return array( $software, $system, $version, $blocked, $id );
 }

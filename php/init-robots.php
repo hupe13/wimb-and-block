@@ -102,7 +102,7 @@ function wimbblock_check_robots_txt( $posts ) {
 		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, true );
 			if ( $software !== '' ) {
-				wimbblock_check_modern_browser( $table_name, $software, $version, $system, $blocked, $id, true );
+				wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, true );
 			}
 		}
 		$logging = wimbblock_get_option( 'wimbblock_log' );

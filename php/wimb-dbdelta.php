@@ -5,6 +5,9 @@
  * @package wimb-and-block
  */
 
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
+
 /**
  * Modifies the database based on specified SQL statements.
  *

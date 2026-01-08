@@ -5,6 +5,9 @@
  * @package wimb-and-block
  */
 
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
+
 //
 function wimbblock_table_install( $table_name ) {
 
@@ -85,6 +88,9 @@ function wimbblock_counter( $table_name, $counter, $id ) {
 			$id
 		)
 	);
+	if ( $entry !== 1 ) {
+		wimbblock_error_log( 'mysql error: ' . $entry . ' * ' . $id );
+	}
 }
 
 function wimbblock_error_log( $reason, $loglevel = true ) {

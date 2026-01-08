@@ -5,6 +5,9 @@
  * @package wimb-and-block
  */
 
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
+
 //
 function wimbblock_always( $table_name, $agent, $blocked, $id, $robots ) {
 	$alwayses = wimbblock_get_option( 'wimbblock_always' );

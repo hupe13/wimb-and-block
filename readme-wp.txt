@@ -29,8 +29,8 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.
 * The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table.
 * Browsers are blocked if the browser and/or system are outdated:
-    - Default: Chrome and Chrome based browsers < 128, Firefox < 128, Internet Explorer, Netscape (!), Opera < 83, Safari < 17
-    - Old systems are all Windows versions prior to Windows 10, some MacOS and Android versions.
+    - Default: Chrome, Edge and Chrome based browsers < 137, Firefox browsers < 138, Safari < 18, Internet Explorer, Netscape (!)
+    - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 9 (Pie).
 * It will be blocked also if the "simple software string" contains "unknown" or is empty.
 * You can also set up other browsers.
 * Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
@@ -58,6 +58,4 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 == Changelog ==
 
-= 1.0.1 / 251211 =
-
-* readme.txt and documentation
+see https://github.com/hupe13/wimb-and-block/blob/main/changelog.md
