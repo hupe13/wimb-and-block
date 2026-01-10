@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-14 14:41+0000\n"
-"PO-Revision-Date: 2025-12-29 21:42+0000\n"
+"PO-Revision-Date: 2026-01-10 19:34+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.9; php-8.3.25-nmm1\n"
+"X-Loco-Version: 2.8.1; wp-6.9; php-8.3.25-nmm1\n"
 "X-Domain: wimb-and-block"
 
 #. translators:%s are numbers
-#: admin/statistics24.php:98
+#: admin/statistics24.php:97
 #, php-format
 msgid ""
 "%1$s browsers accessed the website(s) for the first time, of which %2$s were "
@@ -26,13 +26,13 @@ msgstr ""
 "wurden %2$s geblockt."
 
 #. translators:%s are numbers
-#: admin/statistics-all.php:75 admin/statistics24.php:115
+#: admin/statistics-all.php:78 admin/statistics24.php:114
 #, php-format
 msgid "%s are not allowed to crawl."
 msgstr "%s ist es verboten zu crawlen."
 
 #. translators:%s are numbers
-#: admin/statistics24.php:107
+#: admin/statistics24.php:106
 #, php-format
 msgid ""
 "%s browsers accessed robots.txt at some point, so not necessarily within the "
@@ -42,7 +42,7 @@ msgstr ""
 "unbedingt innerhalb der letzten 24 Stunden."
 
 #. translators:%s are numbers
-#: admin/statistics-all.php:67
+#: admin/statistics-all.php:70
 #, php-format
 msgid "%s browsers accessed robots.txt."
 msgstr "%s Browser haben auf robots.txt zugegriffen."
@@ -63,13 +63,21 @@ msgstr ""
 "Der Zugriff zur entfernten Datenbank scheint in Ordnung zu sein, bitte sende "
 "das Formular erneut ab."
 
-#: admin/display-table.php:31
+#: admin/statistics-all.php:55
+msgid "All entries"
+msgstr "Alle Einträge"
+
+#: admin/display-table.php:29
 msgid "all entries"
 msgstr "alle Einträge"
 
 #: admin/always-block.php:14 admin/always-block.php:55
 msgid "Always block browsers with this strings"
 msgstr "Blocke Browser mit diesen Zeichenfolgen immer"
+
+#: admin.php:149 admin.php:244
+msgid "Block / unblock entries"
+msgstr "Blocke / entsperre Einträge"
 
 #: admin/versions.php:14
 msgid "Block browser versions smaller than"
@@ -84,6 +92,14 @@ msgstr "Blocke alte Browser-Versionen und verdächtige Browser"
 msgid "Block operating system versions smaller than"
 msgstr "Blocke Betriebssystemversionen kleiner als"
 
+#: admin/statistics-new-month.php:94 admin/statistics-month.php:96
+msgid "blocked"
+msgstr "geblockt"
+
+#: admin/statistics-new-month.php:95 admin/statistics-month.php:97
+msgid "blocked in %"
+msgstr "geblockt in %"
+
 #: admin/versions.php:68
 msgid ""
 "Browsers will be blocked, if the browser and/or the system is an old one:"
@@ -92,7 +108,7 @@ msgstr ""
 "sind:"
 
 #. %1$s and %2$s is a link.
-#: admin/mgt-table.php:114
+#: admin/block-unblock.php:114
 #, php-format
 msgid ""
 "By default, all entries are displayed, except those browsers from "
@@ -101,11 +117,11 @@ msgstr ""
 "Standardmäßig werden alle Einträge angezeigt, mit Ausnahme der Browser aus "
 "der %1$sVersionskontrolle%2$s."
 
-#: admin/display-table.php:33
+#: admin/display-table.php:31
 msgid "Change view"
 msgstr "Wechsle die Ansicht"
 
-#: admin/mgt-statistik-table.php:99
+#: admin/statistics-new-month.php:93 admin/statistics-month.php:95
 msgid "count"
 msgstr "Anzahl"
 
@@ -120,6 +136,10 @@ msgstr "Das Crawling ist verboten:"
 #: admin/deleting.php:14
 msgid "Delete all plugin settings when deleting the plugin?"
 msgstr "Alle Einstellungen des Plugins beim Löschen des Plugins löschen?"
+
+#: admin/statistics-table.php:30
+msgid "Delete entries for"
+msgstr "Lösche die Einträge für"
 
 #: admin/robots.php:225
 msgid "Delete the rules"
@@ -137,7 +157,7 @@ msgstr "Notfall - Start / Stopp"
 msgid "Emergency button"
 msgstr "Notschalter"
 
-#: admin/display-table.php:28
+#: admin/display-table.php:26
 msgid "entries from the last 24 hours"
 msgstr "Einträge der letzten 24 Stunden"
 
@@ -167,7 +187,7 @@ msgstr "Hilfe"
 msgid "Help and Options"
 msgstr "Hilfe und Optionen"
 
-#: admin/log-anonym.php:57
+#: admin/log-anonym.php:56
 #| msgid ""
 #| "Logging only occurs if an agent is detected that meets the criteria "
 #| "listed below or if the agent accesses your website the first time."
@@ -192,16 +212,16 @@ msgstr "https://leafext.de/hp/wimb/"
 msgid "hupe13"
 msgstr "hupe13"
 
-#: admin/logging.php:138
+#: admin/logging.php:137
 msgid "if an agent is always blocked (on its first visit)"
 msgstr "wenn ein Agent immer geblockt wird (bei seinem ersten Besuch)"
 
-#: admin/logging.php:136
+#: admin/logging.php:135
 msgid "if an agent is inserted in table (on its first visit)"
 msgstr ""
 "wenn ein Agent in die Tabelle eingefügt wird (bei seinem ersten Besuch)"
 
-#: admin/logging.php:144
+#: admin/logging.php:143
 msgid ""
 "if an IP uses an agent without authorization (for example an agent string "
 "from Google)"
@@ -209,7 +229,7 @@ msgstr ""
 "Wenn eine IP-Adresse einen Agenten ohne Autorisierung verwendet (z. B. einen "
 "Agenten-String von Google)"
 
-#: admin/logging.php:140
+#: admin/logging.php:139
 msgid "if no agent is given"
 msgstr "wenn kein Agent angegeben ist"
 
@@ -230,7 +250,7 @@ msgstr ""
 msgid "If the database is local, the table will also be deleted."
 msgstr "Wenn die Datenbank lokal ist, wird auch die Tabelle gelöscht."
 
-#: admin/logging.php:132
+#: admin/logging.php:131
 msgid "if the plugin creates its table, local or remote"
 msgstr "wenn das Plugin seine Tabelle erstellt, lokal oder entfernt"
 
@@ -244,12 +264,12 @@ msgstr ""
 "Wenn du das Formular nicht verwenden möchtest, schreibe in die .htaccess im "
 "Stammverzeichnis von %s"
 
-#: admin/mgt-table.php:119
+#: admin/block-unblock.php:119
 msgid "If you want to block/unblock them, search for them."
 msgstr "Wenn du sie blocken/entsperren möchtest, suche nach ihnen."
 
 #. translators:%s are numbers
-#: admin/statistics24.php:89
+#: admin/statistics24.php:88
 #, php-format
 #| msgid ""
 #| "In the last 24 hours, there were %1$s different browsers, of which %2$s "
@@ -261,7 +281,7 @@ msgstr ""
 "In den letzten 24 Stunden gab es %1$s verschiedene Browser, von denen %2$s "
 "geblockt wurden."
 
-#: admin/log-anonym.php:14
+#: admin/log-anonym.php:13
 msgid "IP anonymization"
 msgstr "IP Anonymisierung"
 
@@ -273,7 +293,7 @@ msgstr "Es ist in Betrieb."
 msgid "Local WP database or remote database"
 msgstr "Lokale WP-Datenbank oder entfernte Datenbank "
 
-#: php/wimb-options.php:161
+#: php/wimb-options.php:160
 msgid ""
 "Log when the browser accesses your website for the first time and an old "
 "version is detected or it is unknown or suspicious."
@@ -281,17 +301,17 @@ msgstr ""
 "Logge, wenn der Browser zum ersten Mal auf deine Website zugreift und eine "
 "alte Version erkannt wird oder diese unbekannt oder verdächtig ist."
 
-#: php/wimb-options.php:149
+#: php/wimb-options.php:148
 msgid "Log when the browser gets a robots.txt to allow crawling."
 msgstr ""
 "Logge, wenn der Browser eine robots.txt erhält, die das Crawling erlaubt."
 
-#: php/wimb-options.php:155
+#: php/wimb-options.php:154
 msgid "Log when the browser gets a robots.txt to disable crawling."
 msgstr ""
 "Logge, wenn der Browser eine robots.txt erhält, die das Crawling verbietet."
 
-#: php/wimb-options.php:143
+#: php/wimb-options.php:142
 msgid "Log when the browser is excluded from checking."
 msgstr "Logge, wenn der Browser von der Überprüfung ausgeschlossen ist."
 
@@ -299,15 +319,23 @@ msgstr "Logge, wenn der Browser von der Überprüfung ausgeschlossen ist."
 msgid "Logging"
 msgstr "Logging"
 
-#: admin/mgt-statistik-table.php:98
+#: admin/statistics-new-month.php:92 admin/statistics-month.php:94
 msgid "month"
 msgstr "Monat"
 
-#: admin/logging.php:49 admin/deleting.php:34
+#: admin/statistics-table.php:35
+msgid "Monthly statistics  - first access"
+msgstr "Monatliche Statistik - erstmaliger Zugriff"
+
+#: admin/statistics-table.php:18
+msgid "Monthly statistics - last access"
+msgstr "Monatliche Statistik - letztmaliger Zugriff"
+
+#: admin/logging.php:48 admin/deleting.php:34
 msgid "no"
 msgstr "nein"
 
-#: php/wimb-options.php:137
+#: php/wimb-options.php:136
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
 "blocked later without any explanation."
@@ -336,7 +364,7 @@ msgstr ""
 "Bitte sende das Formular 2x ab, wenn du eine entfernte Datenbank "
 "konfigurierst und sie noch nicht existiert."
 
-#: admin/logging.php:134
+#: admin/logging.php:133
 msgid "plugins cron jobs"
 msgstr "Cronjobs des Plugins"
 
@@ -356,13 +384,21 @@ msgstr "Passwort der entfernten Datenbank"
 msgid "Remote database username"
 msgstr "Benutzername der entfernten Datenbank"
 
-#: admin.php:84 admin.php:127 admin.php:138 admin/logging.php:123
+#: admin.php:84 admin.php:127 admin.php:138 admin/logging.php:122
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin/mgt-statistik-table.php:100
+#: admin/statistics-new-month.php:96 admin/statistics-month.php:98
+msgid "robots"
+msgstr "robots"
+
+#: admin/statistics-new-month.php:98 admin/statistics-month.php:100
 msgid "robots blocked"
 msgstr "robots geblockt"
+
+#: admin/statistics-new-month.php:97 admin/statistics-month.php:99
+msgid "robots blocked in %"
+msgstr "robots geblockt in %"
 
 #: admin.php:264 admin.php:285
 msgid "robots.txt"
@@ -372,11 +408,11 @@ msgstr "robots.txt"
 msgid "Rotate the table on this site"
 msgstr "Rotiere die Tabelle auf dieser Seite"
 
-#: admin/mgt-table.php:142
+#: admin/block-unblock.php:142
 msgid "Search"
 msgstr "Suche"
 
-#: admin/mgt-table.php:99
+#: admin/block-unblock.php:99
 msgid "Select to unblock / block"
 msgstr "Zum Entsperren / Sperren auswählen"
 
@@ -384,7 +420,7 @@ msgstr "Zum Entsperren / Sperren auswählen"
 msgid "Setting:"
 msgstr "Einstellung:"
 
-#: wimb-and-block.php:83 wimb-and-block.php:91
+#: wimb-and-block.php:84 wimb-and-block.php:92
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -429,19 +465,35 @@ msgstr "Test"
 msgid "Test your configuration"
 msgstr "Teste deine Konfiguration"
 
-#: php/wimb-options.php:198
+#: admin/statistics-table.php:39
+msgid ""
+"The browsers whose first access occurred during this month are counted for "
+"the month."
+msgstr ""
+"Gezählt für den Monat werden die Browser, deren erster Zugriff in diesem "
+"Monat erfolgte."
+
+#: admin/statistics-table.php:22
+msgid ""
+"The browsers whose last access occurred during this month are counted for "
+"the month."
+msgstr ""
+"Gezählt für den Monat werden die Browser, deren letzter Zugriff in diesem "
+"Monat erfolgte."
+
+#: php/wimb-options.php:197
 msgid "The full IP is logged. (default)"
 msgstr "Die vollständige IP-Adresse wird geloggt. (Standard)"
 
-#: admin/help.php:24
+#: admin/help.php:23
 msgid "The information could not be retrieved."
 msgstr "Die Informationen konnten nicht abgerufen werden."
 
-#: php/wimb-options.php:190
+#: php/wimb-options.php:189
 msgid "The IP address is not logged."
 msgstr "Die IP-Adresse wird nicht geloggt."
 
-#: php/wimb-options.php:194
+#: php/wimb-options.php:193
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 "die letzten beiden Stellen der IP-Adresse werden gekürzt, aus IP 11.22.33.44 "
@@ -551,23 +603,23 @@ msgstr ""
 "Es gibt keine WordPress-Funktion, um die Regeln vollständig zu löschen. Das "
 "bedeutet, dass die Kommentare erhalten bleiben."
 
-#: admin/display-table.php:89
+#: admin/display-table.php:87
 msgid "There was an error:"
 msgstr "Es gab einen Fehler:"
 
 #. translators:%s are numbers
-#: admin/statistics-all.php:58
+#: admin/statistics-all.php:61
 #, php-format
 msgid "There were %1$s different browsers, of which %2$s were blocked."
 msgstr "Es gibt %1$s verschiedene Browser, von denen %2$s geblockt wurden."
 
-#: admin/log-anonym.php:53
+#: admin/log-anonym.php:52
 msgid "This could potentially be a problem in the context of the GDPR."
 msgstr ""
 "Das könnte möglicherweise ein Problem im Zusammenhang mit der DSGVO "
 "darstellen."
 
-#: admin/logging.php:130
+#: admin/logging.php:129
 msgid "This is always logged:"
 msgstr "Dies wird immer geloggt:"
 
@@ -575,7 +627,7 @@ msgstr "Dies wird immer geloggt:"
 msgid "This is the expected output."
 msgstr "Das ist die erwartete Ausgabe."
 
-#: admin/mgt-table.php:174
+#: admin/block-unblock.php:174
 msgid "Unblock / block selected entries"
 msgstr "Ausgewählte Einträge entsperren / sperren"
 
@@ -584,7 +636,7 @@ msgstr "Ausgewählte Einträge entsperren / sperren"
 msgid "Versions Control"
 msgstr "Versionskontrolle"
 
-#: admin/log-anonym.php:52
+#: admin/log-anonym.php:51
 #| msgid "If logged, the IP address is also logged."
 msgid "When logging, the IP address is also logged."
 msgstr "Wenn geloggt wird, wird auch die IP-Adresse geloggt."
@@ -601,15 +653,11 @@ msgstr "WIMB-API-Schlüssel"
 msgid "WIMB Table"
 msgstr "WIMB Tabelle"
 
-#: admin.php:149 admin.php:240
-msgid "WIMB Table Management"
-msgstr "Verwaltung der WIMB Tabelle"
-
 #: admin/settings.php:17
 msgid "WIMB table name"
 msgstr "WIMB Tabellenname"
 
-#: admin.php:244 admin/mgt-statistik-table.php:11
+#: admin.php:240 admin/statistics-table.php:15
 msgid "WIMB Table Statistics"
 msgstr "Statistik WIMB Tabelle"
 
@@ -623,7 +671,7 @@ msgstr "Schreibe das .htaccess-File"
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr "Schreibe in die .htaccess im Stammverzeichnis von %s:"
 
-#: admin/logging.php:46 admin/deleting.php:31
+#: admin/logging.php:45 admin/deleting.php:31
 msgid "yes"
 msgstr "ja"
 
@@ -650,7 +698,7 @@ msgstr ""
 msgid "You can do it on %1$sthis site%2$s."
 msgstr "Das kannst du auf %1$sdieser Seite%2$s tun."
 
-#: admin/mgt-table.php:110
+#: admin/block-unblock.php:110
 msgid "You can search for entries here."
 msgstr "Hier kannst du nach Einträgen suchen."
 
@@ -665,7 +713,7 @@ msgstr ""
 "%2$sEinstellungen%3$s für WIMB und die Datenbank konfiguriert hast."
 
 #. %1$s, %2$s and %3$s are column names.
-#: admin/mgt-table.php:152
+#: admin/block-unblock.php:152
 #, php-format
 #| msgid "You can sort the columns %1$s, %2$s and %3$s."
 msgid "You can sort the columns %1$s, %2$s, %3$s and %4$s."
@@ -689,7 +737,7 @@ msgstr ""
 msgid "You must configure these settings on each of your domains!"
 msgstr "Du musst diese Einstellungen für jede deiner Domains konfigurieren!"
 
-#: admin/exclude.php:63 admin/logging.php:74 admin/versions.php:72
+#: admin/exclude.php:63 admin/logging.php:73 admin/versions.php:72
 #: admin/always-block.php:58
 msgid ""
 "You must configure these settings on each of your websites that use this "

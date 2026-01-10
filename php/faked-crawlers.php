@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 	global $wimbblock_is_crawler;
 
@@ -33,7 +32,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 			$wimbblock_is_crawler = 'Google';
 		}
 
-		//BingBot
+		// BingBot
 		if ( str_contains( $software, 'BingBot' ) ) {
 			$hostname = gethostbyaddr( $ip );
 			if ( ! str_contains( $hostname, 'search.msn.com' ) ) {
@@ -54,8 +53,8 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		}
 	}
 
-	//https://yandex.com/support/webmaster/robot-workings/check-yandex-robots.html
-	//yandex.ru, yandex.net or yandex.com.
+	// https://yandex.com/support/webmaster/robot-workings/check-yandex-robots.html
+	// yandex.ru, yandex.net or yandex.com.
 	if ( str_contains( $agent, 'http://yandex.com/bots' ) ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! ( str_contains( $hostname, 'yandex.ru' ) || str_contains( $hostname, 'yandex.net' ) || str_contains( $hostname, 'yandex.com' ) ) ) {
@@ -75,7 +74,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$wimbblock_is_crawler = 'Yandex';
 	}
 
-	//Applebot
+	// Applebot
 	if ( str_contains( $agent, 'Applebot' ) ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! str_contains( $hostname, 'applebot.apple.com' ) ) {
@@ -95,7 +94,7 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$wimbblock_is_crawler = 'Applebot';
 	}
 
-	//https://www.mojeek.com/
+	// https://www.mojeek.com/
 	if ( str_contains( $agent, 'MojeekBot' ) ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! str_contains( $hostname, 'mojeek.com' ) ) {
@@ -136,8 +135,8 @@ function wimbblock_faked_crawler( $agent, $software, $ip, $robots ) {
 		$wimbblock_is_crawler = 'Baiduspider';
 	}
 
-	//seznam 240126
-	//https://napoveda.seznam.cz/en/seznambot-crawler/
+	// seznam 240126
+	// https://napoveda.seznam.cz/en/seznambot-crawler/
 	if ( str_contains( $agent, 'SeznamBot' ) ) {
 		$hostname = gethostbyaddr( $ip );
 		if ( ! ( str_contains( $hostname, 'fulltextrobot' ) && str_contains( $hostname, 'seznam.cz' ) ) ) {

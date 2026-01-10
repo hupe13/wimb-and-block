@@ -8,22 +8,21 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 function wimbblock_whatsmybrowser( $user_agent ) {
 	if ( $user_agent !== '' ) {
 		$options = wimbblock_get_options_db();
 
-		# Where will the request be sent to
+		// Where will the request be sent to
 		$url = 'https://api.whatismybrowser.com/api/v2/user_agent_parse';
-		# -- prepare data for the API request
-		# This shows the `parse_options` key with some options you can choose to enable if you want
-		# https://developers.whatismybrowser.com/api/docs/v2/integration-guide/#user-agent-parse-parse-options
+		// -- prepare data for the API request
+		// This shows the `parse_options` key with some options you can choose to enable if you want
+		// https://developers.whatismybrowser.com/api/docs/v2/integration-guide/#user-agent-parse-parse-options
 		$post_data = array(
 			'user_agent'    => $user_agent,
 			'parse_options' => array(
-				#"allow_servers_to_impersonate_devices" => True,
-				#"return_metadata_for_useragent" => True,
-				#"dont_sanitize" => True,
+				// "allow_servers_to_impersonate_devices" => True,
+				// "return_metadata_for_useragent" => True,
+				// "dont_sanitize" => True,
 			),
 		);
 
@@ -38,12 +37,12 @@ function wimbblock_whatsmybrowser( $user_agent ) {
 			)
 		);
 
-		# -- Try to decode the api response as json
+		// -- Try to decode the api response as json
 		$result_json = json_decode( $result['body'], true );
 
 		$parse = $result_json['parse'];
 
-		# Now you can do whatever you need to do with the parse result
+		// Now you can do whatever you need to do with the parse result
 
 		$result = array(
 			'software' => is_null( $parse['simple_software_string'] ) ? '' : $parse['simple_software_string'],

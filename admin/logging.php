@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 function wimbblock_log_init() {
 	add_settings_section( 'wimbblock_log_settings', '', '', 'wimbblock_log_settings' );
 	$fields = wimbblock_logging_levels();

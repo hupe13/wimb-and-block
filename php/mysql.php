@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 function wimbblock_table_install( $table_name ) {
 
 	$wimbblock_options = wimbblock_get_options_db();

@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 global $wimb_datatable;
 if ( is_null( $wimb_datatable ) ) {
 	wimbblock_open_wpdb();

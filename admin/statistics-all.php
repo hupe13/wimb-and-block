@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 global $wimb_datatable;
 if ( is_null( $wimb_datatable ) ) {
 	wimbblock_open_wpdb();
@@ -51,6 +50,10 @@ $wimbblock_entries    = $wimb_datatable->get_results(
 	ARRAY_A
 );
 $wimbblock_blockrobot = $wimbblock_entries[0]['blockrobot'];
+
+echo '<h4>' . wp_kses_post(
+	__( 'All entries', 'wimb-and-block' ),
+) . '</h4>';
 
 echo '<p>' . wp_kses_post(
 	wp_sprintf(

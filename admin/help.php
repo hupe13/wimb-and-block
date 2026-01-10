@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 function wimbblock_help() {
 	require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 	$plugin_info = plugins_api(
@@ -92,7 +91,7 @@ function wimbblock_help_readme( $file ) {
 					$translated = preg_replace_callback( $pattern, 'wimbblock_callback_translate', $line );
 					$german[]   = $translated;
 					// if ( $line === $translated ) {
-					//  var_dump( $line );
+					// var_dump( $line );
 					// }
 				} else {
 					$german[] = $translated;

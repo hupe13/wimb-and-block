@@ -90,7 +90,6 @@ function wimbblock_get_default_systems() {
 		'Android' => 9,
 		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_iOS#iPhone,_iPad_&_iPod_touch
 		'iOS'     => 15,
-		//
 	);
 	return $defaults;
 }

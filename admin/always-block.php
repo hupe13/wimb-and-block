@@ -32,7 +32,7 @@ function wimbblock_always_form() {
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function wimbblock_always_validate( $params ) {
-	//var_dump($params);wp_die();
+	// var_dump($params);wp_die();
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock', 'wimbblock_nonce' ) ) {
 		if ( isset( $_POST['submit'] ) ) {
 			$newparams = array();

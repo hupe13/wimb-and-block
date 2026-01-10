@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 function wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, $robots ) {
 	$checking = wimbblock_get_all_browsers();
 	foreach ( $checking as $key => $value ) {

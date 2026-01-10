@@ -1,5 +1,7 @@
-### 260109
+### 260109/10
 
+* statistics
+* now it is possible to delete entries
 * rework detecting old user agents
 * some improvements
 * Plugin Check (PCP) 1.8.0 passed

@@ -8,7 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-//
 function wimbblock_anon_init() {
 	add_settings_section( 'wimbblock_anon_settings', '', '', 'wimbblock_anon_settings' );
 	add_settings_field( 'wimbblock_anon', __( 'IP anonymization', 'wimb-and-block' ), 'wimbblock_form_anon', 'wimbblock_anon_settings', 'wimbblock_anon_settings' );

@@ -197,7 +197,7 @@ function wimbblock_validate( $options ) {
 						break;
 				}
 			}
-			//var_dump($options); wp_die("tot");
+			// var_dump($options); wp_die("tot");
 			return $options;
 		}
 		if ( isset( $_POST['delete'] ) ) {
