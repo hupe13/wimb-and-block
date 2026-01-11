@@ -81,6 +81,7 @@ function wimbblock_admin() {
 		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
+				echo '<p>' . esc_html( __( 'To change the settings, first reset them all.', 'wimb-and-block' ) ) . '</p>';
 				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
 			}
 		}

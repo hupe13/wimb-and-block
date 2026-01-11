@@ -43,9 +43,9 @@ if ( current_user_can( 'manage_options' ) ) {
 	);
 
 	if ( count( $wimbblock_entries ) > 0 ) {
-		$oldest_month = wp_date( 'F', strtotime( $wimbblock_entries[0]['time'] ) );
+		$wimbblock_oldest_month = wp_date( 'F', strtotime( $wimbblock_entries[0]['time'] ) );
 		wp_nonce_field( 'wimbblock_month', 'wimbblock_month_nonce' );
-		submit_button( __( 'Delete entries for', 'wimb-and-block' ) . ' ' . $oldest_month, 'primary', 'changeblock' );
+		submit_button( __( 'Delete entries for', 'wimb-and-block' ) . ' ' . $wimbblock_oldest_month, 'primary', 'changeblock' );
 	}
 }
 echo '</form>';

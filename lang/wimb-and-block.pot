@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-10 19:26+0000\n"
+"POT-Creation-Date: 2026-01-11 17:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Access is forbidden - this is correct."
 msgstr ""
 
-#: admin/settings.php:37
+#: admin/settings.php:42
 msgid ""
 "Access to the remote database seems to be working fine. Please resubmit the "
 "form."
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Always block browsers with this strings"
 msgstr ""
 
-#: admin.php:149 admin.php:244
+#: admin.php:147 admin.php:242
 msgid "Block / unblock entries"
 msgstr ""
 
@@ -87,11 +87,11 @@ msgstr ""
 msgid "Block operating system versions smaller than"
 msgstr ""
 
-#: admin/statistics-new-month.php:94 admin/statistics-month.php:96
+#: admin/statistics-month.php:89 admin/statistics-month.php:180
 msgid "blocked"
 msgstr ""
 
-#: admin/statistics-new-month.php:95 admin/statistics-month.php:97
+#: admin/statistics-month.php:90 admin/statistics-month.php:181
 msgid "blocked in %"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 msgid "Change view"
 msgstr ""
 
-#: admin/statistics-new-month.php:93 admin/statistics-month.php:95
+#: admin/statistics-month.php:88 admin/statistics-month.php:179
 msgid "count"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Delete all plugin settings when deleting the plugin?"
 msgstr ""
 
-#: admin/statistics-table.php:30
+#: admin/statistics-table.php:48
 msgid "Delete entries for"
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 msgid "entries from the last 24 hours"
 msgstr ""
 
-#: admin.php:248 admin.php:277
+#: admin.php:246 admin.php:275
 msgid "Exclude / always block"
 msgstr ""
 
@@ -165,12 +165,12 @@ msgid "Form to handle the entry in .htaccess"
 msgstr ""
 
 #. %s is a link .
-#: admin/settings.php:91
+#: admin/settings.php:92
 #, php-format
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:228
+#: admin.php:226
 msgid "Help"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "If something does not work as expected, you can stop it here."
 msgstr ""
 
-#: admin/settings.php:64
+#: admin/settings.php:69
 msgid ""
 "If the database is local, it is automatically set to \"yes\". For remote "
 "databases, set it to \"yes\" on exactly one WP instance."
@@ -283,19 +283,19 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:196 admin.php:260 admin.php:273
+#: admin.php:194 admin.php:258 admin.php:271
 msgid "Logging"
 msgstr ""
 
-#: admin/statistics-new-month.php:92 admin/statistics-month.php:94
+#: admin/statistics-month.php:87 admin/statistics-month.php:178
 msgid "month"
 msgstr ""
 
-#: admin/statistics-table.php:35
+#: admin/statistics-table.php:54
 msgid "Monthly statistics  - first access"
 msgstr ""
 
-#: admin/statistics-table.php:18
+#: admin/statistics-table.php:19
 msgid "Monthly statistics - last access"
 msgstr ""
 
@@ -346,23 +346,23 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:84 admin.php:127 admin.php:138 admin/logging.php:122
+#: admin.php:85 admin.php:125 admin.php:136 admin/logging.php:122
 msgid "Reset"
 msgstr ""
 
-#: admin/statistics-new-month.php:96 admin/statistics-month.php:98
+#: admin/statistics-month.php:91 admin/statistics-month.php:182
 msgid "robots"
 msgstr ""
 
-#: admin/statistics-new-month.php:98 admin/statistics-month.php:100
+#: admin/statistics-month.php:93 admin/statistics-month.php:184
 msgid "robots blocked"
 msgstr ""
 
-#: admin/statistics-new-month.php:97 admin/statistics-month.php:99
+#: admin/statistics-month.php:92 admin/statistics-month.php:183
 msgid "robots blocked in %"
 msgstr ""
 
-#: admin.php:264 admin.php:285
+#: admin.php:262 admin.php:283
 msgid "robots.txt"
 msgstr ""
 
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: admin.php:72 admin.php:256 admin.php:269
+#: admin.php:72 admin.php:254 admin.php:267
 msgid "Settings WIMB"
 msgstr ""
 
@@ -422,13 +422,13 @@ msgstr ""
 msgid "Test your configuration"
 msgstr ""
 
-#: admin/statistics-table.php:39
+#: admin/statistics-table.php:58
 msgid ""
 "The browsers whose first access occurred during this month are counted for "
 "the month."
 msgstr ""
 
-#: admin/statistics-table.php:22
+#: admin/statistics-table.php:23
 msgid ""
 "The browsers whose last access occurred during this month are counted for "
 "the month."
@@ -450,7 +450,7 @@ msgstr ""
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
-#: admin/settings.php:45
+#: admin/settings.php:50
 msgid ""
 "The latter is recommended if you have multiple WordPress instances on the "
 "same server."
@@ -540,11 +540,15 @@ msgstr ""
 msgid "This is the expected output."
 msgstr ""
 
+#: admin.php:84
+msgid "To change the settings, first reset them all."
+msgstr ""
+
 #: admin/block-unblock.php:174
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:105 admin.php:252 admin.php:281
+#: admin.php:104 admin.php:250 admin.php:279
 msgid "Versions Control"
 msgstr ""
 
@@ -560,7 +564,7 @@ msgstr ""
 msgid "WIMB API Key"
 msgstr ""
 
-#: admin.php:145 admin.php:236
+#: admin.php:143 admin.php:234
 msgid "WIMB Table"
 msgstr ""
 
@@ -568,7 +572,7 @@ msgstr ""
 msgid "WIMB table name"
 msgstr ""
 
-#: admin.php:240 admin/statistics-table.php:15
+#: admin.php:238 admin/statistics-table.php:16
 msgid "WIMB Table Statistics"
 msgstr ""
 
@@ -587,7 +591,7 @@ msgid "yes"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:112 admin.php:159 admin.php:202
+#: admin.php:47 admin.php:110 admin.php:157 admin.php:200
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""
@@ -641,7 +645,7 @@ msgid ""
 "database!"
 msgstr ""
 
-#: admin/settings.php:43
+#: admin/settings.php:48
 msgid ""
 "You need a table in a database. This can be a table in the default WordPress "
 "database (local) or in a remote database."

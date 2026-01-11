@@ -30,6 +30,11 @@ add_action( 'admin_init', 'wimbblock_init' );
 // Baue Abfrage der Params
 function wimbblock_form( $field ) {
 	$options = wimbblock_get_options_db();
+	if ( $options['error'] === '0' ) {
+		$select_disabled = ' disabled ';
+	} else {
+		$select_disabled = '';
+	}
 	if ( $field === 'error' ) {
 		echo '<input type="hidden" name="wimbblock_settings[' . esc_attr( $field ) . ']" value="' . esc_attr( $options[ $field ] ) . '" />';
 		if ( $options['error'] === '2' && $options['location'] === 'remote' ) {
@@ -49,7 +54,7 @@ function wimbblock_form( $field ) {
 		$locations[] = 'local';
 		$locations[] = 'remote';
 
-		echo '<select name="wimbblock_settings[' . esc_attr( $field ) . ']">' . "\r\n";
+		echo '<select ' . esc_attr( $select_disabled ) . ' name="wimbblock_settings[' . esc_attr( $field ) . ']">' . "\r\n";
 		foreach ( $locations as $location ) {
 			if ( $location === $options['location'] ) {
 				echo '<option selected ';
@@ -66,13 +71,8 @@ function wimbblock_form( $field ) {
 		if ( ! isset( $options['rotate'] ) ) {
 			$options['rotate'] = 'none';
 		}
-		if ( ! current_user_can( 'manage_options' ) ) {
-			$select_disabled = ' disabled ';
-		} else {
-			$select_disabled = '';
-		}
 		$times = array( 'yes', 'no' );
-		echo '<select ' . esc_attr( $select_disabled ) . ' id="rotate" name="wimbblock_settings[rotate]">' . "\r\n";
+		echo '<select id="rotate" name="wimbblock_settings[rotate]">' . "\r\n";
 		foreach ( $times as $time ) {
 			if ( $time === $options['rotate'] ) {
 				echo '<option selected ';
@@ -84,6 +84,7 @@ function wimbblock_form( $field ) {
 		echo '</select>' . "\r\n";
 	} else {
 		if ( $field === 'wimb_api' ) {
+			$select_disabled = '';
 			echo '<p>';
 			echo wp_kses_post(
 				sprintf(
@@ -94,7 +95,7 @@ function wimbblock_form( $field ) {
 			);
 			echo '</p>';
 		}
-		echo '<input type="text" size="20" name="wimbblock_settings[' . esc_attr( $field ) . ']" ';
+		echo '<input ' . esc_attr( $select_disabled ) . ' type="text" size="20" name="wimbblock_settings[' . esc_attr( $field ) . ']" ';
 		echo ' value="' . esc_attr( $options[ $field ] ) . '" />';
 	}
 }

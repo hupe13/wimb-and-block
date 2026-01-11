@@ -107,7 +107,7 @@ function wimbblock_statistic_new_month() {
 
 	$wimbblock_entries = $wimb_datatable->get_results(
 		$wimb_datatable->prepare(
-			'SELECT time FROM %i ORDER BY time ASC limit 1',
+			"SELECT wimbdate FROM %i WHERE wimbdate != '' ORDER BY wimbdate ASC limit 1",
 			$wimbblock_table_name
 		),
 		ARRAY_A
@@ -115,7 +115,7 @@ function wimbblock_statistic_new_month() {
 
 	if ( count( $wimbblock_entries ) > 0 ) {
 		$date1 = date_create( wp_date( 'Y-m-01' ) );
-		$date2 = date_create( wp_date( 'Y-m-01', strtotime( $wimbblock_entries[0]['time'] ) ) );
+		$date2 = date_create( wp_date( 'Y-m-01', strtotime( '01.' . substr( $wimbblock_entries[0]['wimbdate'], 2, 2 ) . '.20' . substr( $wimbblock_entries[0]['wimbdate'], 0, 2 ) ) ) );
 		$diff  = date_diff( $date1, $date2 );
 
 		$thismonth = wp_date( 'Y-m' );
