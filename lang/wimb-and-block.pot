@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 17:25+0000\n"
+"POT-Creation-Date: 2026-01-12 17:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -292,7 +292,7 @@ msgid "month"
 msgstr ""
 
 #: admin/statistics-table.php:54
-msgid "Monthly statistics  - first access"
+msgid "Monthly statistics - first access"
 msgstr ""
 
 #: admin/statistics-table.php:19
