@@ -51,7 +51,7 @@ if ( current_user_can( 'manage_options' ) ) {
 echo '</form>';
 
 echo '<h4>' . wp_kses_post(
-	__( 'Monthly statistics  - first access', 'wimb-and-block' ),
+	__( 'Monthly statistics - first access', 'wimb-and-block' ),
 ) . '</h4>';
 
 echo '<p>' . wp_kses_post(

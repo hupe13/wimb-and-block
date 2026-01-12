@@ -58,4 +58,4 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 == Changelog ==
 
-see https://github.com/hupe13/wimb-and-block/blob/main/changelog.md
+see https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md

@@ -51,6 +51,6 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 == Changelog ==
 
-see https://github.com/hupe13/wimb-and-block/blob/main/changelog.md
+see https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md
 
 Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc</a> to get updates and keep an eye on this repository in case I've made any mistakes.
