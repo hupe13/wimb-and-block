@@ -1,7 +1,7 @@
-### 260109/10/11
+### 260112 / 1.1
 
-* statistics
-* now it is possible to delete entries
+* more statistics
+* It is now possible to delete entries of the oldest month.
 * rework detecting old user agents
 * some improvements
 * Plugin Check (PCP) 1.8.0 passed
