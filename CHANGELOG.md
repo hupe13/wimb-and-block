@@ -1,3 +1,8 @@
+### 26011x / 1.2
+
+* rework WIMB Settings
+* error handling wimb query
+
 ### 260112 / 1.1
 
 * more statistics

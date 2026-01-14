@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 17:15+0000\n"
+"POT-Creation-Date: 2026-01-14 21:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Access is forbidden - this is correct."
 msgstr ""
 
-#: admin/settings.php:42
+#: admin/settings.php:45
 msgid ""
 "Access to the remote database seems to be working fine. Please resubmit the "
 "form."
@@ -87,11 +87,11 @@ msgstr ""
 msgid "Block operating system versions smaller than"
 msgstr ""
 
-#: admin/statistics-month.php:89 admin/statistics-month.php:180
+#: admin/statistics-month.php:89 admin/statistics-month.php:182
 msgid "blocked"
 msgstr ""
 
-#: admin/statistics-month.php:90 admin/statistics-month.php:181
+#: admin/statistics-month.php:90 admin/statistics-month.php:183
 msgid "blocked in %"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 msgid "Change view"
 msgstr ""
 
-#: admin/statistics-month.php:88 admin/statistics-month.php:179
+#: admin/statistics-month.php:88 admin/statistics-month.php:181
 msgid "count"
 msgstr ""
 
@@ -165,7 +165,7 @@ msgid "Form to handle the entry in .htaccess"
 msgstr ""
 
 #. %s is a link .
-#: admin/settings.php:92
+#: admin/settings.php:98
 #, php-format
 msgid "Get an API key for a %s."
 msgstr ""
@@ -219,7 +219,7 @@ msgstr ""
 msgid "If something does not work as expected, you can stop it here."
 msgstr ""
 
-#: admin/settings.php:69
+#: admin/settings.php:72
 msgid ""
 "If the database is local, it is automatically set to \"yes\". For remote "
 "databases, set it to \"yes\" on exactly one WP instance."
@@ -251,6 +251,10 @@ msgstr ""
 msgid ""
 "In the last 24 hours, there were %1$s different browsers, of which %2$s were "
 "blocked."
+msgstr ""
+
+#: admin/settings.php:181
+msgid "Invalid IP or hostname"
 msgstr ""
 
 #: admin/log-anonym.php:13
@@ -287,7 +291,7 @@ msgstr ""
 msgid "Logging"
 msgstr ""
 
-#: admin/statistics-month.php:87 admin/statistics-month.php:178
+#: admin/statistics-month.php:87 admin/statistics-month.php:180
 msgid "month"
 msgstr ""
 
@@ -301,6 +305,10 @@ msgstr ""
 
 #: admin/logging.php:48 admin/deleting.php:34
 msgid "no"
+msgstr ""
+
+#: admin/settings.php:209
+msgid "No connection to database - try again!"
 msgstr ""
 
 #: php/wimb-options.php:136
@@ -318,6 +326,10 @@ msgstr ""
 #, php-format
 msgid ""
 "Please check, if you need some flags like %1$s or %2$s or other or nothing."
+msgstr ""
+
+#: admin/settings.php:170
+msgid "Please fill out all fields."
 msgstr ""
 
 #: admin.php:79
@@ -350,15 +362,15 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: admin/statistics-month.php:91 admin/statistics-month.php:182
+#: admin/statistics-month.php:91 admin/statistics-month.php:184
 msgid "robots"
 msgstr ""
 
-#: admin/statistics-month.php:93 admin/statistics-month.php:184
+#: admin/statistics-month.php:93 admin/statistics-month.php:186
 msgid "robots blocked"
 msgstr ""
 
-#: admin/statistics-month.php:92 admin/statistics-month.php:183
+#: admin/statistics-month.php:92 admin/statistics-month.php:185
 msgid "robots blocked in %"
 msgstr ""
 
@@ -450,7 +462,7 @@ msgstr ""
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
-#: admin/settings.php:50
+#: admin/settings.php:53
 msgid ""
 "The latter is recommended if you have multiple WordPress instances on the "
 "same server."
@@ -560,8 +572,16 @@ msgstr ""
 msgid "WIMB and Block"
 msgstr ""
 
+#: admin/settings.php:142
+msgid "WIMB API is not correct."
+msgstr ""
+
 #: admin/settings.php:15
 msgid "WIMB API Key"
+msgstr ""
+
+#: admin/settings.php:122
+msgid "WIMB API key needed."
 msgstr ""
 
 #: admin.php:143 admin.php:234
@@ -645,7 +665,7 @@ msgid ""
 "database!"
 msgstr ""
 
-#: admin/settings.php:48
+#: admin/settings.php:51
 msgid ""
 "You need a table in a database. This can be a table in the default WordPress "
 "database (local) or in a remote database."

@@ -94,6 +94,8 @@ function wimbblock_statistic_month() {
 
 		array_unshift( $entries, $header );
 		return wimbblock_html_table( $entries );
+	} else {
+		return '';
 	}
 }
 
@@ -185,6 +187,8 @@ function wimbblock_statistic_new_month() {
 
 		array_unshift( $entries, $header );
 		return wimbblock_html_table( $entries );
+	} else {
+		return '';
 	}
 }
 

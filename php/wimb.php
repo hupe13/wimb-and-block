@@ -8,10 +8,12 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_whatsmybrowser( $user_agent ) {
+function wimbblock_whatsmybrowser( $user_agent, $api_key = '' ) {
 	if ( $user_agent !== '' ) {
-		$options = wimbblock_get_options_db();
-
+		if ( $api_key === '' ) {
+			$options = wimbblock_get_options_db();
+			$api_key = $options['wimb_api'];
+		}
 		// Where will the request be sent to
 		$url = 'https://api.whatismybrowser.com/api/v2/user_agent_parse';
 		// -- prepare data for the API request
@@ -25,31 +27,50 @@ function wimbblock_whatsmybrowser( $user_agent ) {
 				// "dont_sanitize" => True,
 			),
 		);
-
-		$result = wp_remote_post(
+		$result    = wp_remote_post(
 			$url,
 			array(
 				'method'  => 'POST',
 				'headers' => array(
-					'X-API-KEY' => $options['wimb_api'],
+					'X-API-KEY' => $api_key,
 				),
 				'body'    => wp_json_encode( $post_data ),
 			)
 		);
-
-		// -- Try to decode the api response as json
-		$result_json = json_decode( $result['body'], true );
-
-		$parse = $result_json['parse'];
-
-		// Now you can do whatever you need to do with the parse result
-
-		$result = array(
-			'software' => is_null( $parse['simple_software_string'] ) ? '' : $parse['simple_software_string'],
-			'system'   => is_null( $parse['operating_system'] ) ? '' : $parse['operating_system'],
-			'version'  => is_null( $parse['software_version'] ) ? '' : $parse['software_version'],
-		);
-		return( $result );
+		$wimberror = 'something went wrong';
+		if ( is_wp_error( $result ) ) {
+			$wimberror = $result->get_error_message();
+		} else {
+			if ( isset( $result['body'] ) ) {
+				// -- Try to decode the api response as json
+				$result_json = json_decode( $result['body'], true );
+				if ( isset( $result_json['parse'] ) ) {
+					$parse = $result_json['parse'];
+					// Now you can do whatever you need to do with the parse result
+					$result = array(
+						'software' => is_null( $parse['simple_software_string'] ) ? '' : $parse['simple_software_string'],
+						'system'   => is_null( $parse['operating_system'] ) ? '' : $parse['operating_system'],
+						'version'  => is_null( $parse['software_version'] ) ? '' : $parse['software_version'],
+					);
+					return( $result );
+				} elseif ( isset( $result_json['result'] ) ) {
+					$wimberror = $result_json['result']['message_code'];
+					// } else {
+					//  echo '<pre>';
+					//   var_dump($result, $result_json); wp_die("tot");
+					//  echo '</pre>';
+				}
+			} else {
+				$wimberror = 'no wimb body';
+			}
+			wimbblock_error_log( 'Could not get wimb data: ' . $wimberror . ' * ' . $user_agent, true );
+			$result = array(
+				'software' => 'none',
+				'system'   => '',
+				'version'  => '',
+			);
+			return( $result );
+		}
 	}
 }
 

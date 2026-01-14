@@ -31,16 +31,19 @@ add_action( 'admin_init', 'wimbblock_init' );
 function wimbblock_form( $field ) {
 	$options = wimbblock_get_options_db();
 	if ( $options['error'] === '0' ) {
-		$select_disabled = ' disabled ';
+		$readonly = ' readonly ';
+		$disabled = ' disabled ';
 	} else {
-		$select_disabled = '';
+		$readonly = '';
+		$disabled = '';
 	}
+	$input_extras = ' size=20 ';
 	if ( $field === 'error' ) {
 		echo '<input type="hidden" name="wimbblock_settings[' . esc_attr( $field ) . ']" value="' . esc_attr( $options[ $field ] ) . '" />';
 		if ( $options['error'] === '2' && $options['location'] === 'remote' ) {
 			echo '<div class="error notice">';
 			echo esc_html( __( 'Access to the remote database seems to be working fine. Please resubmit the form.', 'wimb-and-block' ) );
-			echo '</div>';
+			echo '</div>' . "\r\n";
 		}
 	} elseif ( $field === 'location' ) {
 
@@ -48,18 +51,18 @@ function wimbblock_form( $field ) {
 		esc_html_e( 'You need a table in a database. This can be a table in the default WordPress database (local) or in a remote database.', 'wimb-and-block' );
 		echo ' ';
 		esc_html_e( 'The latter is recommended if you have multiple WordPress instances on the same server.', 'wimb-and-block' );
-		echo '</p>';
+		echo '</p>' . "\r\n";
 
 		$locations   = array();
 		$locations[] = 'local';
 		$locations[] = 'remote';
 
-		echo '<select ' . esc_attr( $select_disabled ) . ' name="wimbblock_settings[' . esc_attr( $field ) . ']">' . "\r\n";
+		echo '<select name="wimbblock_settings[' . esc_attr( $field ) . ']">' . "\r\n";
 		foreach ( $locations as $location ) {
 			if ( $location === $options['location'] ) {
 				echo '<option selected ';
 			} else {
-				echo '<option ';
+				echo '<option ' . esc_attr( $disabled ) . ' ';
 			}
 			echo 'value="' . esc_attr( $location ) . '">' . esc_attr( $location ) . '</option>' . "\r\n";
 		}
@@ -67,7 +70,7 @@ function wimbblock_form( $field ) {
 	} elseif ( $field === 'rotate' ) {
 		echo '<p>';
 		esc_html_e( 'If the database is local, it is automatically set to "yes". For remote databases, set it to "yes" on exactly one WP instance.', 'wimb-and-block' );
-		echo '</p>';
+		echo '</p>' . "\r\n";
 		if ( ! isset( $options['rotate'] ) ) {
 			$options['rotate'] = 'none';
 		}
@@ -77,14 +80,17 @@ function wimbblock_form( $field ) {
 			if ( $time === $options['rotate'] ) {
 				echo '<option selected ';
 			} else {
-				echo '<option ';
+				if ( $options['location'] === 'remote' ) {
+					$disabled = '';
+				}
+				echo '<option ' . esc_attr( $disabled ) . ' ';
 			}
 			echo 'value="' . esc_attr( $time ) . '">' . esc_attr( $time ) . '</option>' . "\r\n";
 		}
 		echo '</select>' . "\r\n";
 	} else {
 		if ( $field === 'wimb_api' ) {
-			$select_disabled = '';
+			$input_extras = ' minlength=32 maxlength=32 size=32 ';
 			echo '<p>';
 			echo wp_kses_post(
 				sprintf(
@@ -93,10 +99,10 @@ function wimbblock_form( $field ) {
 					'<a href="https://developers.whatismybrowser.com/api/signup/?plan=basic">Basic Application Plan</a>'
 				)
 			);
-			echo '</p>';
+			echo '</p>' . "\r\n";
 		}
-		echo '<input ' . esc_attr( $select_disabled ) . ' type="text" size="20" name="wimbblock_settings[' . esc_attr( $field ) . ']" ';
-		echo ' value="' . esc_attr( $options[ $field ] ) . '" />';
+		echo '<input ' . esc_attr( $readonly ) . esc_attr( $input_extras ) . ' type="text" name="wimbblock_settings[' . esc_attr( $field ) . ']" ';
+		echo ' value="' . esc_attr( $options[ $field ] ) . '" />' . "\r\n";
 	}
 }
 
@@ -113,13 +119,33 @@ function wimbblock_validate( $options ) {
 				add_settings_error(
 					'wimbblock_settings',
 					'invalid',
-					'WIMB API key needed.',
+					__( 'WIMB API key needed.', 'wimb-and-block' ),
 					'error'
 				);
 				$options['error'] = '1';
 				return $options;
+			} else {
+				global $wimb_datatable;
+				if ( is_null( $wimb_datatable ) ) {
+					wimbblock_open_wpdb();
+				}
+				$wpdb_options = wimbblock_get_options_db();
+				$table_name   = $wpdb_options['table_name'];
+				$agent        = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
+				$wimb         = wimbblock_whatsmybrowser( $agent, $options['wimb_api'] );
+				// var_dump($wimb);wp_die();
+				$software = $wimb['software'];
+				if ( $software === 'none' ) {
+					add_settings_error(
+						'wimbblock_settings',
+						'invalid',
+						__( 'WIMB API is not correct.', 'wimb-and-block' ),
+						'error'
+					);
+					$options['error'] = '1';
+					return $options;
+				}
 			}
-
 			if ( $options['location'] === 'local' ) {
 				$options = array(
 					'wimb_api'    => $options['wimb_api'],
@@ -141,7 +167,7 @@ function wimbblock_validate( $options ) {
 					add_settings_error(
 						'wimbblock_settings',
 						'invalid',
-						'Please fill out all fields.',
+						__( 'Please fill out all fields.', 'wimb-and-block' ),
 						'error'
 					);
 					$options['error'] = '1';
@@ -152,7 +178,7 @@ function wimbblock_validate( $options ) {
 						add_settings_error(
 							'wimbblock_settings',
 							'invalid',
-							'Invalid IP or hostname',
+							__( 'Invalid IP or hostname', 'wimb-and-block' ),
 							'error'
 						);
 						$options['error'] = '1';
@@ -180,7 +206,7 @@ function wimbblock_validate( $options ) {
 							add_settings_error(
 								'wimbblock_settings',
 								'invalid',
-								'No connection to database - try again!',
+								__( 'No connection to database - try again!', 'wimb-and-block' ),
 								'error'
 							);
 							$options['error'] = '1';
