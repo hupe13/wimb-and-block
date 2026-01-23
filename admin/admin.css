@@ -49,3 +49,8 @@ table > thead > tr > th[data-sort=desc] {
 	height: 1.5px;
 	background-color: #c3c4c7;
 }
+
+.wimbbox {
+	display: flex;
+	flex-wrap: wrap;
+}

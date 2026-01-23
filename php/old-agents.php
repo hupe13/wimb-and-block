@@ -21,6 +21,7 @@ function wimbblock_check_modern_browser( $table_name, $agent, $software, $versio
 			( strpos( $software, 'Opera' ) !== false && strpos( $agent, 'Chrome/' ) === false )
 			|| strpos( $software, 'Internet Explorer' ) !== false
 			|| strpos( $software, 'Netscape' ) !== false
+			|| strpos( $software, 'Symbian' ) !== false
 			) {
 			if ( $robots === false ) {
 				wimbblock_counter( $table_name, 'block', $id );
@@ -190,7 +191,6 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 	if ( $system !== '' ) {
 		if ( strpos( $system, 'iOS' ) !== false ) {
 			$version = preg_replace( '%.*iOS ([0-9]+)[^0-9]?.*%', '${1}', $system );
-			// wimbblock_error_log( 'Test iOS: ' . $system . ' * ' . $version . ' * ' . $agent, $logging['oldagents'] ?? true );
 			if ( (int) $version < (int) $checking['iOS'] ) {
 				if ( $robots === false ) {
 					wimbblock_counter( $table_name, 'block', $id );
@@ -228,7 +228,6 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 			}
 		}
 		if ( ! $actual ) {
-			// wimbblock_error_log( 'Test Mac OS X: ' . $system . ' * ' . $version . ' * ' . $agent, $logging['oldagents'] ?? true );
 			if ( $robots === false ) {
 				wimbblock_counter( $table_name, 'block', $id );
 				$logging = wimbblock_get_option( 'wimbblock_log' );

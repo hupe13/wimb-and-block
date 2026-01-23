@@ -100,7 +100,7 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
-	} elseif ( strpos( $active_tab, 'blocking' ) !== false ) {
+	} elseif ( strpos( $active_tab, 'versions' ) !== false ) {
 		echo '<h3>' . esc_html( __( 'Versions Control', 'wimb-and-block' ) ) . '</h3>';
 		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
@@ -137,17 +137,16 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
-
-	} elseif ( $active_tab === 'table' ) {
-		require_once __DIR__ . '/admin/display-table.php';
-		echo '<h3>' . esc_html( __( 'WIMB Table', 'wimb-and-block' ) ) . '</h3>';
-		wimbblock_mgt_table();
-	} elseif ( $active_tab === 'mgt' ) {
+	} elseif ( $active_tab === 'last24' ) {
+		require_once __DIR__ . '/admin/last24.php';
+		echo '<h3>' . esc_html( __( 'WIMB last 24 hours', 'wimb-and-block' ) ) . '</h3>';
+		wimbblock_daily_table();
+	} elseif ( $active_tab === 'block' ) {
 		require_once __DIR__ . '/admin/block-unblock.php';
 		echo '<h3>' . esc_html( __( 'Block / unblock entries', 'wimb-and-block' ) ) . '</h3>';
-		wimbblock_selection_table();
-	} elseif ( $active_tab === 'wimbstat' ) {
-		require_once __DIR__ . '/admin/statistics-table.php';
+		wimbblock_block_unblock_main();
+	} elseif ( $active_tab === 'montly' ) {
+		require_once __DIR__ . '/admin/monthly.php';
 	} elseif ( $active_tab === 'exclude' ) {
 		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
@@ -230,15 +229,15 @@ function wimbblock_admin_tabs() {
 	$wimbblock_wpdb_options = wimbblock_get_options_db();
 	if ( $wimbblock_wpdb_options['error'] === '0' ) {
 		$tabs[] = array(
-			'tab'   => 'table',
-			'title' => __( 'WIMB Table', 'wimb-and-block' ),
+			'tab'   => 'last24',
+			'title' => __( 'WIMB last 24 hours', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
-			'tab'   => 'wimbstat',
-			'title' => __( 'WIMB Table Statistics', 'wimb-and-block' ),
+			'tab'   => 'montly',
+			'title' => __( 'Overview and maintenance', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
-			'tab'   => 'mgt',
+			'tab'   => 'block',
 			'title' => __( 'Block / unblock entries', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
@@ -246,7 +245,7 @@ function wimbblock_admin_tabs() {
 			'title' => __( 'Exclude / always block', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
-			'tab'   => 'blocking',
+			'tab'   => 'versions',
 			'title' => __( 'Versions Control', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
@@ -275,7 +274,7 @@ function wimbblock_admin_tabs() {
 			'title' => __( 'Exclude / always block', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
-			'tab'   => 'blocking',
+			'tab'   => 'versions',
 			'title' => __( 'Versions Control', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
@@ -296,4 +295,23 @@ function wimbblock_admin_tabs() {
 		echo '">' . esc_html( $tab['title'] ) . '</a>' . "\n";
 	}
 	echo '</h3>';
+}
+
+// Display array as table
+function wimbblock_html_table( $data = array() ) {
+	$rows      = array();
+	foreach ( $data as $row ) {
+		$cells = array();
+		foreach ( $row as $cell ) {
+			$cells[] = '<td align="center">' . "{$cell}</td>";
+		}
+		$rows[] = '<tr>' . implode( '', $cells ) . '</tr>' . "\n";
+	}
+	$head = '<div style="width:80%;">';
+	$head = $head . '<figure class="wp-block-table aligncenter is-style-stripes"><table border=1>';
+	return $head . implode( '', $rows ) . '</table></figure></div>';
+}
+
+function wimbblock_prozent( $teil, $gesamt ) {
+	return $gesamt > 0 ? number_format( $teil * 100 / $gesamt, 0, '', '' ) . '%' : '';
 }

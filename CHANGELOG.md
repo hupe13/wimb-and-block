@@ -1,4 +1,9 @@
-### 26011x / 1.2
+### 260xxx / 1.3
+
+* tidied up backend files
+* enhanced the GUI for block / unblock browsers
+
+### 260115 / 1.2
 
 * rework WIMB Settings
 * error handling wimb query

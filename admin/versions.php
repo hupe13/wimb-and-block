@@ -82,5 +82,6 @@ function wimbblock_browsers_help() {
 		'Iceweasel',
 		'Fennec'
 	);
+	$text .= ' ' . __( 'Search engines are excluded from this.', 'wimb-and-block' );
 	return $text;
 }
