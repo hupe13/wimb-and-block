@@ -15,7 +15,7 @@ function wimbblock_check_sec_ch_ua( $table_name, $agent, $software, $version, $s
 		if ( strpos( $sec_ch_ua, 'Chromium' ) !== false ) {
 			$parts = explode( ',', $sec_ch_ua );
 			if ( ! (
-								strpos( $sec_ch_ua, 'Microsoft Edge' ) !== false
+				strpos( $sec_ch_ua, 'Microsoft Edge' ) !== false
 				// "Brave";v="143", "Chromium";v="143", "Not A(Brand";v="24"
 				|| strpos( $sec_ch_ua, 'Brave' ) !== false
 				// "Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"

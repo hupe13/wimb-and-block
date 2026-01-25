@@ -299,7 +299,7 @@ function wimbblock_admin_tabs() {
 
 // Display array as table
 function wimbblock_html_table( $data = array() ) {
-	$rows      = array();
+	$rows = array();
 	foreach ( $data as $row ) {
 		$cells = array();
 		foreach ( $row as $cell ) {

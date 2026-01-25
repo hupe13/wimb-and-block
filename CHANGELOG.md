@@ -2,6 +2,7 @@
 
 * tidied up backend files
 * enhanced the GUI for block / unblock browsers
+* revised faked crawlers
 
 ### 260115 / 1.2
 

@@ -98,7 +98,7 @@ function wimbblock_check_robots_txt( $posts ) {
 		wimbblock_always( $table_name, $agent, $blocked, $id, true );
 		wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, true );
 
-		wimbblock_faked_crawler( $agent, $software, $ip, true );
+		wimbblock_faked_crawler( $agent, $ip, true );
 		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, true );
 			if ( $software !== '' ) {

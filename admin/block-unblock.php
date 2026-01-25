@@ -295,7 +295,8 @@ function wimbblock_handle_get( $search ) {
 	$name = filter_input(
 		INPUT_GET,
 		'name',
-		FILTER_SANITIZE_SPECIAL_CHARS
+		// FILTER_SANITIZE_SPECIAL_CHARS
+		FILTER_DEFAULT
 	);
 
 	$options = wimbblock_get_options_db();
@@ -318,9 +319,10 @@ function wimbblock_handle_get( $search ) {
 			);
 			break;
 		case 'C':
-			$results = $wimb_datatable->get_results(
+			$searchengines = wimbblock_searchengines();
+			$results       = $wimb_datatable->get_results(
 				$wimb_datatable->prepare(
-					'SELECT i,browser,software,system,time,block FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND software LIKE %s',
+					'SELECT i,browser,software,system,time,block FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
 					$options['table_name'],
 					'%Chrome/%',
 					'%Chrome%',
@@ -330,9 +332,10 @@ function wimbblock_handle_get( $search ) {
 			);
 			break;
 		case 'F':
-			$results = $wimb_datatable->get_results(
+			$searchengines = wimbblock_searchengines();
+			$results       = $wimb_datatable->get_results(
 				$wimb_datatable->prepare(
-					'SELECT i,browser,software,system,time,block FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND software LIKE %s',
+					'SELECT i,browser,software,system,time,block FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
 					$options['table_name'],
 					'%Firefox/%',
 					'%Firefox%',
@@ -433,11 +436,12 @@ function wimbblock_derivates_table( $type = '' ) {
 		default:
 			$browsers = array( 'Chrome', 'Firefox' );
 	}
-	// $browsers = array( 'Firefox' );
+	$searchengines = wimbblock_searchengines();
 	foreach ( $browsers as $browser ) {
 		$agents = $wimb_datatable->get_results(
 			$wimb_datatable->prepare(
-				"SELECT DISTINCT substring_index(regexp_replace(software, '([0-9].*)', ''),' on ',1) as variants FROM %i WHERE browser LIKE %s OR software LIKE %s",
+				"SELECT DISTINCT substring_index(regexp_replace(software, '([0-9].*)', ''),' on ',1) as variants FROM %i " .
+				' WHERE ( browser LIKE %s OR software LIKE %s ) AND NOT ( ' . $searchengines . ' )',
 				$wimbblock_table_name,
 				'%' . $browser . '/%',
 				'%' . $browser . '%',
@@ -593,18 +597,21 @@ function wimbblock_searchengines() {
 	// ( $agent, 'http://yandex.com/bots' )
 	// ( $agent, 'MojeekBot' )
 	// ( $agent, 'SeznamBot' )
-	// ( $software, 'BingBot' )
-	// ( $software, 'googlebot' )
+	// ( $agent, 'BingBot' )
 	// escape: %d (integer), %f (float), %s (string), %i (identifier, e.g. table/field names)
 	$searchengines = array(
 		'Applebot'               => 'browser',
 		'Baiduspider'            => 'browser',
-		'googleother'            => 'browser',
 		'http://yandex.com/bots' => 'browser',
 		'MojeekBot'              => 'browser',
 		'%SeznamBot'             => 'browser',
-		'BingBot'                => 'software',
-		'googlebot'              => 'software',
+		'BingBot'                => 'browser',
+		'Googlebot'              => 'browser',
+		'GoogleOther'            => 'browser',
+		'Google-CloudVertexBot'  => 'browser',
+		'Google-Extended'        => 'browser',
+		'Google-InspectionTool'  => 'browser',
+		'Storebot-Google'        => 'browser',
 	);
 	$command       = array();
 	foreach ( $searchengines as $searchengine => $type ) {
