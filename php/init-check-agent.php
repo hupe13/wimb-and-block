@@ -95,7 +95,6 @@ function wimbblock_check_agent() {
 		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
 			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, false );
-			wimbblock_check_sec_ch_ua( $table_name, $agent, $software, $version, $system, $id );
 			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, false );
 		}
 		wimbblock_counter( $table_name, 'count', $id );

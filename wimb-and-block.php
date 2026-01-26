@@ -32,7 +32,6 @@ require_once __DIR__ . '/php/faked-crawlers.php';
 require_once __DIR__ . '/php/init-check-agent.php';
 require_once __DIR__ . '/php/init-robots.php';
 require_once __DIR__ . '/php/always-block.php';
-require_once __DIR__ . '/php/sec-ch-ua.php';
 
 if ( is_admin() ) {
 	require_once __DIR__ . '/admin.php';
