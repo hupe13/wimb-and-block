@@ -26,7 +26,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 * Browsers are blocked if the browser and/or system are outdated:
     - Default: Chrome, Edge and Chrome based browsers < 137, Firefox browsers < 138, Safari < 18, Internet Explorer, Netscape (!)
-    - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 9 (Pie).
+    - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 9 (Pie) and Symbian.
 
         ![example entries](.wordpress-org/old.jpg)
 
