@@ -143,7 +143,7 @@ function wimbblock_admin() {
 		wimbblock_daily_table();
 	} elseif ( $active_tab === 'block' ) {
 		require_once __DIR__ . '/admin/block-unblock.php';
-		echo '<h3>' . esc_html( __( 'Block / unblock entries', 'wimb-and-block' ) ) . '</h3>';
+		echo '<h3>' . esc_html( __( 'Search / block / unblock entries', 'wimb-and-block' ) ) . '</h3>';
 		wimbblock_block_unblock_main();
 	} elseif ( $active_tab === 'montly' ) {
 		require_once __DIR__ . '/admin/monthly.php';
@@ -238,7 +238,7 @@ function wimbblock_admin_tabs() {
 		);
 		$tabs[] = array(
 			'tab'   => 'block',
-			'title' => __( 'Block / unblock entries', 'wimb-and-block' ),
+			'title' => __( 'Search / block / unblock entries', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
 			'tab'   => 'exclude',

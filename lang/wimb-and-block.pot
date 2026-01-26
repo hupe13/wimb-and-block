@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-23 08:45+0000\n"
+"POT-Creation-Date: 2026-01-26 08:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "All entries"
 msgstr ""
 
-#: admin/block-unblock.php:146 admin/block-unblock.php:524
+#: admin/block-unblock.php:146 admin/block-unblock.php:528
 msgid "All other browsers"
 msgstr ""
 
@@ -47,12 +47,8 @@ msgid "Always block browsers with this strings"
 msgstr ""
 
 #: admin/block-unblock.php:132 admin/block-unblock.php:136
-#: admin/block-unblock.php:468
+#: admin/block-unblock.php:472
 msgid "based browsers"
-msgstr ""
-
-#: admin.php:146 admin.php:241
-msgid "Block / unblock entries"
 msgstr ""
 
 #: admin/versions.php:14
@@ -370,7 +366,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: admin/block-unblock.php:140 admin/block-unblock.php:568
+#: admin.php:146 admin.php:241
+msgid "Search / block / unblock entries"
+msgstr ""
+
+#: admin/block-unblock.php:140 admin/block-unblock.php:572
 msgid "Search Engines"
 msgstr ""
 

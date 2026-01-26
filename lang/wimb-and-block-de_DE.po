@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-14 14:41+0000\n"
-"PO-Revision-Date: 2026-01-23 08:46+0000\n"
+"PO-Revision-Date: 2026-01-26 08:32+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -39,7 +39,7 @@ msgstr "Alle Browser"
 msgid "All entries"
 msgstr "Alle Einträge"
 
-#: admin/block-unblock.php:146 admin/block-unblock.php:524
+#: admin/block-unblock.php:146 admin/block-unblock.php:528
 msgid "All other browsers"
 msgstr "Alle anderen Browser"
 
@@ -48,13 +48,9 @@ msgid "Always block browsers with this strings"
 msgstr "Blocke Browser mit diesen Zeichenfolgen immer"
 
 #: admin/block-unblock.php:132 admin/block-unblock.php:136
-#: admin/block-unblock.php:468
+#: admin/block-unblock.php:472
 msgid "based browsers"
 msgstr "basierte Browser"
-
-#: admin.php:146 admin.php:241
-msgid "Block / unblock entries"
-msgstr "Blocke / entsperre Einträge"
 
 #: admin/versions.php:14
 msgid "Block browser versions smaller than"
@@ -398,7 +394,11 @@ msgstr "Rotiere die Tabelle auf dieser Seite"
 msgid "Search"
 msgstr "Suche"
 
-#: admin/block-unblock.php:140 admin/block-unblock.php:568
+#: admin.php:146 admin.php:241
+msgid "Search / block / unblock entries"
+msgstr "Suche / blocke / entsperre Einträge"
+
+#: admin/block-unblock.php:140 admin/block-unblock.php:572
 msgid "Search Engines"
 msgstr "Suchmaschinen"
 
