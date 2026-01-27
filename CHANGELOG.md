@@ -1,4 +1,4 @@
-### 26012x / 1.3
+### 260127 / 1.3
 
 * tidied up backend files
 * enhanced the GUI for search / block / unblock browsers
