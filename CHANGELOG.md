@@ -1,3 +1,7 @@
+### 260129 / 1.3.1
+
+* fixed faked crawlers
+
 ### 260127 / 1.3
 
 * tidied up backend files

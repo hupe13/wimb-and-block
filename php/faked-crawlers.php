@@ -41,7 +41,7 @@ function wimbblock_faked_crawler( $agent, $ip, $robots ) {
 	if ( wimbblock_google_crawlers( $agent ) ) {
 		$hostname = gethostbyaddr( $ip );
 		// wimbblock_error_log( 'Test Googlebot: ' . $agent . ' * ' . $hostname . ' * ' . $ip );
-		if ( $hostname !== $ip && $hostname !== false ) {
+		if ( $hostname !== false ) {
 			if ( !
 			( preg_match( '/crawl-.*.googlebot.com/', strtolower( $hostname ) )
 			|| preg_match( '/geo-crawl-.*.geo.googlebot.com/', strtolower( $hostname ) ) ) ) {
@@ -69,7 +69,7 @@ function wimbblock_faked_crawler( $agent, $ip, $robots ) {
 	if ( stripos( $agent, 'bingbot' ) !== false ) {
 		$hostname = gethostbyaddr( $ip );
 		// wimbblock_error_log( 'Test BingBot: ' . $agent . ' * ' . $hostname . ' * ' . $ip );
-		if ( $hostname !== $ip && $hostname !== false ) {
+		if ( $hostname !== false ) {
 			if ( stripos( $hostname, 'search.msn.com' ) === false ) {
 				if ( $robots === false ) {
 					wimbblock_error_log( 'Faked BingBot: ' . $agent . ' * ' . $hostname );
@@ -95,7 +95,7 @@ function wimbblock_faked_crawler( $agent, $ip, $robots ) {
 	if ( stripos( $agent, 'http://yandex.com/bots' ) !== false ) {
 		$hostname = gethostbyaddr( $ip );
 		// wimbblock_error_log( 'Test YandexBot: ' . $agent . ' * ' . $hostname . ' * ' . $ip );
-		if ( $hostname !== $ip && $hostname !== false ) {
+		if ( $hostname !== false ) {
 			if ( stripos( $hostname, 'yandex.ru' ) === false && stripos( $hostname, 'yandex.net' ) === false && stripos( $hostname, 'yandex.com' ) === false ) {
 				if ( $robots === false ) {
 					wimbblock_error_log( 'Faked YandexBot: ' . $agent . ' * ' . $hostname );
@@ -121,7 +121,7 @@ function wimbblock_faked_crawler( $agent, $ip, $robots ) {
 	if ( stripos( $agent, 'Applebot' ) !== false ) {
 		$hostname = gethostbyaddr( $ip );
 		// wimbblock_error_log( 'Test Applebot: ' . $agent . ' * ' . $hostname . ' * ' . $ip );
-		if ( $hostname !== $ip && $hostname !== false ) {
+		if ( $hostname !== false ) {
 			if ( stripos( $hostname, 'applebot.apple.com' ) === false ) {
 				if ( $robots === false ) {
 					wimbblock_error_log( 'Faked Applebot: ' . $agent . ' * ' . $hostname );
@@ -147,7 +147,7 @@ function wimbblock_faked_crawler( $agent, $ip, $robots ) {
 	if ( stripos( $agent, 'MojeekBot' ) !== false ) {
 		$hostname = gethostbyaddr( $ip );
 		// wimbblock_error_log( 'Test MojeekBot: ' . $agent . ' * ' . $hostname . ' * ' . $ip );
-		if ( $hostname !== $ip && $hostname !== false ) {
+		if ( $hostname !== false ) {
 			if ( ! preg_match( '/crawl-.*.mojeek.com/', strtolower( $hostname ) ) ) {
 				if ( $robots === false ) {
 					wimbblock_error_log( 'Faked MojeekBot: ' . $agent . ' * ' . $hostname );
@@ -173,7 +173,7 @@ function wimbblock_faked_crawler( $agent, $ip, $robots ) {
 	if ( stripos( $agent, 'Baiduspider' ) !== false ) {
 		$hostname = gethostbyaddr( $ip );
 		// wimbblock_error_log( 'Test Baiduspider: ' . $agent . ' * ' . $hostname . ' * ' . $ip );
-		if ( $hostname !== $ip && $hostname !== false ) {
+		if ( $hostname !== false ) {
 			if ( stripos( $hostname, 'baidu.com' ) === false && stripos( $hostname, 'baidu.jp' ) === false ) {
 				if ( $robots === false ) {
 					wimbblock_error_log( 'Faked Baiduspider: ' . $agent . ' * ' . $hostname );
@@ -199,7 +199,7 @@ function wimbblock_faked_crawler( $agent, $ip, $robots ) {
 	if ( stripos( $agent, 'SeznamBot' ) !== false ) {
 		$hostname = gethostbyaddr( $ip );
 		// wimbblock_error_log( 'Test SeznamBot: ' . $agent . ' * ' . $hostname . ' * ' . $ip );
-		if ( $hostname !== $ip && $hostname !== false ) {
+		if ( $hostname !== false ) {
 			if ( ! preg_match( '/fulltextrobot-.*.seznam.cz/', strtolower( $hostname ) ) ) {
 				if ( $robots === false ) {
 					wimbblock_error_log( 'Faked SeznamBot: ' . $agent . ' * ' . $hostname );
