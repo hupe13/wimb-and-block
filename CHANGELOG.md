@@ -1,3 +1,9 @@
+### 260217
+
+* Exception: Samsung Browser ( Samsung Browser 26 =  Chrome/122 )
+* minimal versions Chrome,Edge: 139, Firefox: 140
+* Error 503 if too many requests
+
 ### 260129 / 1.3.1
 
 * fixed faked crawlers

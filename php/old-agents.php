@@ -11,6 +11,9 @@ defined( 'ABSPATH' ) || die();
 function wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, $robots ) {
 	$checking = wimbblock_get_all_browsers();
 	foreach ( $checking as $key => $value ) {
+		if ( $key === 'Chrome' && strpos( $agent, 'SamsungBrowser' ) !== false ) {
+			continue;
+		}
 		wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $key, $value, false );
 	}
 	wimbblock_check_derivate( $table_name, $agent, $software, $version, $system, $blocked, $id, $robots );
@@ -85,6 +88,9 @@ function wimbblock_check_derivate( $table_name, $agent, $software, $version, $sy
 	$checking  = wimbblock_get_all_browsers();
 	$derivates = array( 'Chrome', 'Firefox' );
 	foreach ( $derivates as $derivate ) {
+		if ( $derivate === 'Chrome' && strpos( $agent, 'SamsungBrowser' ) !== false ) {
+			continue;
+		}
 		if ( strpos( $agent, $derivate . '/' ) !== false ) {
 			// Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/80.0.3987.162 Safari/537.36
 			// Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 Iceweasel/5.0

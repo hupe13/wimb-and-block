@@ -88,8 +88,23 @@ function wimbblock_counter( $table_name, $counter, $id ) {
 		)
 	);
 	if ( $entry !== 1 ) {
-		wimbblock_error_log( 'mysql error: ' . $entry . ' * ' . $id );
+		wimbblock_error_log( 'mysql error count: ' . $entry . ' * ' . $id );
 	}
+}
+
+function wimbblock_unblock( $table_name, $agent, $id ) {
+	global $wimb_datatable;
+	$entry = $wimb_datatable->query(
+		$wimb_datatable->prepare(
+			'UPDATE %i SET block=0 WHERE i = %s',
+			$table_name,
+			$id
+		)
+	);
+	if ( $entry !== 1 ) {
+		wimbblock_error_log( 'mysql error unblock: ' . $entry . ' * ' . $id );
+	}
+	wimbblock_error_log( 'Agent unblocked: ' . $agent . ' * ' . $id );
 }
 
 function wimbblock_error_log( $reason, $loglevel = true ) {

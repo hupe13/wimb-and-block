@@ -110,6 +110,14 @@ function wimbblock_check_wimb( $agent, $wimbblock_table ) {
 		);
 		$id       = $wimb_datatable->insert_id;
 		wimbblock_error_log( 'Inserted agent: ' . $agent . ' * ' . $mgt_code . ' * ' . $id );
+		if ( $id === '0' ) {
+			wimbblock_error_log( 'Too many requests - died: ' . $agent );
+			wp_die(
+				'<h1>Too many requests</h1><p>Try again later ...</p>',
+				'',
+				array( 'response' => 503 )
+			);
+		}
 	} else {
 		$software = $browser['software'];
 		$system   = $browser['system'];

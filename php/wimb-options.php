@@ -43,17 +43,22 @@ function wimbblock_get_options_db() {
 // tab=blocking
 function wimbblock_get_default_browsers() {
 	$defaults = array(
-		// https://en.wikipedia.org/wiki/Google_Chrome#Platforms
-		'Chrome'  => 137,
+		// https://developer.chrome.com/release-notes/
+		'Chrome'         => 139,
 		// https://en.wikipedia.org/wiki/Microsoft_Edge#New_Edge_release_history
 		// https://www.cvedetails.com/version-list/26/32367/1/Microsoft-Edge.html?order=0
 		// Edge = Chrome
-		'Edge'    => 137,
+		'Edge'           => 139,
 		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_Mozilla_Firefox
-		'Firefox' => 138,
+		// ESR  115.32.0  140.7.0
+		'Firefox'        => 140,
 		// https://developer.apple.com/documentation/safari-release-notes
 		// https://theapplewiki.com/wiki/Safari
-		'Safari'  => 18,
+		'Safari'         => 18,
+		// https://caniuse.com/usage-table
+		// SamsungBrowser/29.0 Chrome/136
+		// SamsungBrowser/28.0 Chrome/130
+		'SamsungBrowser' => 28,
 	);
 	return $defaults;
 }
@@ -87,7 +92,7 @@ function wimbblock_get_default_systems() {
 	$defaults = array(
 		// https://support.google.com/chrome/thread/352616098/sunsetting-chrome-support-for-android-8-0-oreo-and-android-9-0-pie?hl=en
 		// https://blog.mozilla.org/futurereleases/2025/09/15/raising-the-minimum-android-version-for-firefox/  - oreo
-		'Android' => 9,
+		'Android' => 10,
 		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_iOS#iPhone,_iPad_&_iPod_touch
 		'iOS'     => 15,
 	);
