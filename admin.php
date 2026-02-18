@@ -145,7 +145,7 @@ function wimbblock_admin() {
 		require_once __DIR__ . '/admin/block-unblock.php';
 		echo '<h3>' . esc_html( __( 'Search / block / unblock entries', 'wimb-and-block' ) ) . '</h3>';
 		wimbblock_block_unblock_main();
-	} elseif ( $active_tab === 'montly' ) {
+	} elseif ( $active_tab === 'monthly' ) {
 		require_once __DIR__ . '/admin/monthly.php';
 	} elseif ( $active_tab === 'exclude' ) {
 		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
@@ -233,7 +233,7 @@ function wimbblock_admin_tabs() {
 			'title' => __( 'WIMB last 24 hours', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
-			'tab'   => 'montly',
+			'tab'   => 'monthly',
 			'title' => __( 'Overview and maintenance', 'wimb-and-block' ),
 		);
 		$tabs[] = array(

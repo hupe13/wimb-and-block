@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad bots, ban, blocking, security, robots.txt
 Tested up to: 6.9
-Stable tag: 260217
+Stable tag: 260218
 Requires at least: 6.2
 Requires PHP: 8.1
 License: GPLv2 or later

@@ -1,4 +1,4 @@
-### 260217
+### 260218
 
 * Exception: Samsung Browser ( Samsung Browser 26 =  Chrome/122 )
 * minimal versions Chrome,Edge: 139, Firefox: 140
