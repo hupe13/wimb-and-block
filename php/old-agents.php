@@ -8,12 +8,26 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
+// Samsung Internet Browser and Chrome
+// https://en.wikipedia.org/wiki/Samsung_Internet
+
+function wimbblock_exceptions( $table_name, $software, $blocked, $id ) {
+	$samsung = 'Samsung Internet Browser';
+	if ( strpos( $software, $samsung ) !== false ) {
+		$version  = preg_replace( '%.*' . $samsung . ' ([0-9]+)[^0-9].*%', '${1}', $software );
+		$checking = wimbblock_get_all_browsers();
+		wimbblock_old_agent( $table_name, $samsung, $version, '0', $id, $software, $checking[ $samsung ], false );
+		if ( $blocked > 0 ) {
+			wimbblock_unblock( $table_name, $software, $id );
+		}
+		return '0';
+	}
+	return $blocked;
+}
+
 function wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, $robots ) {
 	$checking = wimbblock_get_all_browsers();
 	foreach ( $checking as $key => $value ) {
-		if ( $key === 'Chrome' && strpos( $agent, 'SamsungBrowser' ) !== false ) {
-			continue;
-		}
 		wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $key, $value, false );
 	}
 	wimbblock_check_derivate( $table_name, $agent, $software, $version, $system, $blocked, $id, $robots );

@@ -1,6 +1,6 @@
-### 260218
+### 260222 / 1.4
 
-* Exception: Samsung Browser ( Samsung Browser 26 =  Chrome/122 )
+* Exception: Samsung Browser >= 28 ( Samsung Browser 28 =  Chrome/130 )
 * minimal versions Chrome,Edge: 139, Firefox: 140
 * Error 503 if too many requests
 

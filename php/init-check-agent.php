@@ -82,7 +82,7 @@ function wimbblock_check_agent() {
 			wimbblock_open_wpdb();
 		}
 		list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
-		$blocked = wimbblock_exceptions( $table_name, $agent, $blocked, $id, false );
+		$blocked = wimbblock_exceptions( $table_name, $software, $blocked, $id, false );
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			$logging = wimbblock_logging_levels_settings();

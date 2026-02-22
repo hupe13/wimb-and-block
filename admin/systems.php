@@ -53,3 +53,12 @@ function wimbblock_systems_validate( $params ) {
 	}
 	return false;
 }
+
+function wimbblock_systems_help() {
+	echo '<p>' . wp_kses_post(
+		__(
+			'Please note that Chrome no longer necessarily distinguishes between Android versions starting with Android 10.',
+			'wimb-and-block'
+		)
+	) . '<p>';
+}

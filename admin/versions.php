@@ -83,5 +83,10 @@ function wimbblock_browsers_help() {
 		'Fennec'
 	);
 	$text .= ' ' . __( 'Search engines are excluded from this.', 'wimb-and-block' );
+	$text .= '<p>' . wp_sprintf(
+		/* Translators: %s is "Software" */
+		__( 'Enter a unique substring of the string in the %s column.', 'wimb-and-block' ),
+		'<strong>Software</strong>'
+	) . '</p>';
 	return $text;
 }

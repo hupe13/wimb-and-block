@@ -169,7 +169,8 @@ function wimbblock_block_unblock_table( $wimbblock_table_name, $entries ) {
 	<th id="click" onclick="onColumnHeaderClickedChar(event)">software</th>
 	<th id="click" onclick="onColumnHeaderClickedChar(event)">system</th>
 	<th id="click" onclick="onColumnHeaderClickedChar(event)">time</th>
-	<th>block</th>
+	<th id="click" onclick="onColumnHeaderClickedNumbers(event)">block</th>
+	<th id="click" onclick="onColumnHeaderClickedNumbers(event)">count</th>
 	<th>unblock/block</th></tr></thead>';
 
 	// Make the data rows
@@ -250,7 +251,7 @@ function wimbblock_handle_post() {
 
 			$entries = $wimb_datatable->get_results(
 				$wimb_datatable->prepare(
-					'SELECT i,browser,software,system,time,block FROM %i WHERE ' . $query,
+					'SELECT i,browser,software,system,time,block,count FROM %i WHERE ' . $query,
 					$options['table_name'],
 				),
 			);
@@ -281,7 +282,7 @@ function wimbblock_handle_post() {
 			// var_dump( $query );
 			$results = $wimb_datatable->get_results(
 				$wimb_datatable->prepare(
-					'SELECT i,browser,software,system,time,block FROM %i WHERE ' . $query . ' ORDER BY software, browser ASC',
+					'SELECT i,browser,software,system,time,block,count FROM %i WHERE ' . $query . ' ORDER BY software, browser ASC',
 					$options['table_name'],
 				),
 			);
@@ -311,7 +312,7 @@ function wimbblock_handle_get( $search ) {
 			$searchengines = wimbblock_searchengines();
 			$results       = $wimb_datatable->get_results(
 				$wimb_datatable->prepare(
-					'SELECT i,browser,software,system,time,block FROM %i WHERE ( ' . $searchengines . ' ) AND software LIKE %s',
+					'SELECT i,browser,software,system,time,block,count FROM %i WHERE ( ' . $searchengines . ' ) AND software LIKE %s',
 					$options['table_name'],
 					$query,
 				),
@@ -322,7 +323,7 @@ function wimbblock_handle_get( $search ) {
 			$searchengines = wimbblock_searchengines();
 			$results       = $wimb_datatable->get_results(
 				$wimb_datatable->prepare(
-					'SELECT i,browser,software,system,time,block FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
+					'SELECT i,browser,software,system,time,block,count FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
 					$options['table_name'],
 					'%Chrome/%',
 					'%Chrome%',
@@ -335,7 +336,7 @@ function wimbblock_handle_get( $search ) {
 			$searchengines = wimbblock_searchengines();
 			$results       = $wimb_datatable->get_results(
 				$wimb_datatable->prepare(
-					'SELECT i,browser,software,system,time,block FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
+					'SELECT i,browser,software,system,time,block,count FROM %i WHERE ( browser LIKE %s OR software LIKE %s ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
 					$options['table_name'],
 					'%Firefox/%',
 					'%Firefox%',
@@ -348,7 +349,7 @@ function wimbblock_handle_get( $search ) {
 			if ( $query === '%empty%' ) {
 				$results = $wimb_datatable->get_results(
 					$wimb_datatable->prepare(
-						"SELECT i,browser,software,system,time,block FROM %i WHERE software = ''",
+						"SELECT i,browser,software,system,time,block,count FROM %i WHERE software = ''",
 						$options['table_name'],
 					),
 				);
@@ -357,7 +358,7 @@ function wimbblock_handle_get( $search ) {
 				$searchengines = wimbblock_searchengines();
 				$results       = $wimb_datatable->get_results(
 					$wimb_datatable->prepare(
-						'SELECT i,browser,software,system,time,block FROM %i WHERE NOT ( ' . $derivates . ' ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
+						'SELECT i,browser,software,system,time,block,count FROM %i WHERE NOT ( ' . $derivates . ' ) AND NOT ( ' . $searchengines . ') AND software LIKE %s',
 						$options['table_name'],
 						$query,
 					),

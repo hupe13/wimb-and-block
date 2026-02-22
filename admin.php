@@ -130,6 +130,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_systems' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_systems' );
+		wimbblock_systems_help();
 		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();

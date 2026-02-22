@@ -92,7 +92,7 @@ function wimbblock_counter( $table_name, $counter, $id ) {
 	}
 }
 
-function wimbblock_unblock( $table_name, $agent, $id ) {
+function wimbblock_unblock( $table_name, $software, $id ) {
 	global $wimb_datatable;
 	$entry = $wimb_datatable->query(
 		$wimb_datatable->prepare(
@@ -104,7 +104,7 @@ function wimbblock_unblock( $table_name, $agent, $id ) {
 	if ( $entry !== 1 ) {
 		wimbblock_error_log( 'mysql error unblock: ' . $entry . ' * ' . $id );
 	}
-	wimbblock_error_log( 'Agent unblocked: ' . $agent . ' * ' . $id );
+	wimbblock_error_log( 'Software unblocked: ' . $software . ' * ' . $id );
 }
 
 function wimbblock_error_log( $reason, $loglevel = true ) {

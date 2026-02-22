@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-26 08:29+0000\n"
+"POT-Creation-Date: 2026-02-22 19:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "All entries"
 msgstr ""
 
-#: admin/block-unblock.php:146 admin/block-unblock.php:528
+#: admin/block-unblock.php:146 admin/block-unblock.php:529
 msgid "All other browsers"
 msgstr ""
 
@@ -47,7 +47,7 @@ msgid "Always block browsers with this strings"
 msgstr ""
 
 #: admin/block-unblock.php:132 admin/block-unblock.php:136
-#: admin/block-unblock.php:472
+#: admin/block-unblock.php:473
 msgid "based browsers"
 msgstr ""
 
@@ -115,11 +115,17 @@ msgstr ""
 msgid "Emergency button"
 msgstr ""
 
+#. %s is "Software"
+#: admin/versions.php:88
+#, php-format
+msgid "Enter a unique substring of the string in the %s column."
+msgstr ""
+
 #: admin/last24.php:14
 msgid "Entries last 24 hours"
 msgstr ""
 
-#: admin.php:245 admin.php:274
+#: admin.php:246 admin.php:275
 msgid "Exclude / always block"
 msgstr ""
 
@@ -137,7 +143,7 @@ msgstr ""
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:225
+#: admin.php:226
 msgid "Help"
 msgstr ""
 
@@ -232,25 +238,25 @@ msgstr ""
 msgid "Local WP database or remote database"
 msgstr ""
 
-#: php/wimb-options.php:160
+#: php/wimb-options.php:166
 msgid ""
 "Log when the browser accesses your website for the first time and an old "
 "version is detected or it is unknown or suspicious."
 msgstr ""
 
-#: php/wimb-options.php:148
+#: php/wimb-options.php:154
 msgid "Log when the browser gets a robots.txt to allow crawling."
 msgstr ""
 
-#: php/wimb-options.php:154
+#: php/wimb-options.php:160
 msgid "Log when the browser gets a robots.txt to disable crawling."
 msgstr ""
 
-#: php/wimb-options.php:142
+#: php/wimb-options.php:148
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:193 admin.php:257 admin.php:270
+#: admin.php:194 admin.php:258 admin.php:271
 msgid "Logging"
 msgstr ""
 
@@ -278,7 +284,7 @@ msgstr ""
 msgid "No connection to database - try again!"
 msgstr ""
 
-#: php/wimb-options.php:136
+#: php/wimb-options.php:142
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
 "blocked later without any explanation."
@@ -288,7 +294,7 @@ msgstr ""
 msgid "Or you can click on a link from one of the tables."
 msgstr ""
 
-#: admin.php:237 admin/monthly.php:11
+#: admin.php:238 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr ""
 
@@ -309,6 +315,12 @@ msgstr ""
 
 #: admin/settings.php:170
 msgid "Please fill out all fields."
+msgstr ""
+
+#: admin/systems.php:59
+msgid ""
+"Please note that Chrome no longer necessarily distinguishes between Android "
+"versions starting with Android 10."
 msgstr ""
 
 #: admin.php:79
@@ -337,7 +349,7 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:85 admin.php:125 admin.php:136 admin/logging.php:122
+#: admin.php:85 admin.php:125 admin.php:137 admin/logging.php:122
 msgid "Reset"
 msgstr ""
 
@@ -354,7 +366,7 @@ msgstr ""
 msgid "robots blocked in %"
 msgstr ""
 
-#: admin.php:261 admin.php:282
+#: admin.php:262 admin.php:283
 msgid "robots.txt"
 msgstr ""
 
@@ -366,11 +378,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: admin.php:146 admin.php:241
+#: admin.php:147 admin.php:242
 msgid "Search / block / unblock entries"
 msgstr ""
 
-#: admin/block-unblock.php:140 admin/block-unblock.php:572
+#: admin/block-unblock.php:140 admin/block-unblock.php:573
 msgid "Search Engines"
 msgstr ""
 
@@ -382,7 +394,7 @@ msgstr ""
 msgid "Search entries"
 msgstr ""
 
-#: admin/block-unblock.php:205
+#: admin/block-unblock.php:206
 msgid "Select to unblock / block"
 msgstr ""
 
@@ -390,11 +402,11 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:84 wimb-and-block.php:92
+#: wimb-and-block.php:83 wimb-and-block.php:91
 msgid "Settings"
 msgstr ""
 
-#: admin.php:72 admin.php:253 admin.php:266
+#: admin.php:72 admin.php:254 admin.php:267
 msgid "Settings WIMB"
 msgstr ""
 
@@ -446,7 +458,7 @@ msgid ""
 "the month."
 msgstr ""
 
-#: php/wimb-options.php:197
+#: php/wimb-options.php:203
 msgid "The full IP is logged. (default)"
 msgstr ""
 
@@ -454,11 +466,11 @@ msgstr ""
 msgid "The information could not be retrieved."
 msgstr ""
 
-#: php/wimb-options.php:189
+#: php/wimb-options.php:195
 msgid "The IP address is not logged."
 msgstr ""
 
-#: php/wimb-options.php:193
+#: php/wimb-options.php:199
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
@@ -558,7 +570,7 @@ msgstr ""
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:104 admin.php:249 admin.php:278
+#: admin.php:104 admin.php:250 admin.php:279
 msgid "Versions Control"
 msgstr ""
 
@@ -586,7 +598,7 @@ msgstr ""
 msgid "WIMB API key needed."
 msgstr ""
 
-#: admin.php:142 admin.php:233
+#: admin.php:143 admin.php:234
 msgid "WIMB last 24 hours"
 msgstr ""
 
@@ -609,7 +621,7 @@ msgid "yes"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:110 admin.php:156 admin.php:199
+#: admin.php:47 admin.php:110 admin.php:157 admin.php:200
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""
