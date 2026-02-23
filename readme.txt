@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad bots, ban, blocking, security, robots.txt
 Tested up to: 6.9
-Stable tag: 260222
+Stable tag: 260223
 Requires at least: 6.2
 Requires PHP: 8.1
 License: GPLv2 or later
@@ -31,7 +31,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * Browsers are blocked if the browser and/or system are outdated:
     - Default: Chrome, Edge and Chrome based browsers < 139, Firefox browsers < 140, Safari < 18, Samsung Browser < 28, Internet Explorer, Netscape (!)
     - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 10 and Symbian.
-* It will be blocked also if the "simple software string" contains "unknown" or is empty.
+* It will be blocked also if "Software" contains "unknown" or is empty.
 * You can also set up other browsers.
 * Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
 * The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.

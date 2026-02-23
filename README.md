@@ -21,7 +21,6 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.
 * The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table.
 
-    ![header](.wordpress-org/header.jpg)
     ![example entries](.wordpress-org/good.jpg)
 
 * Browsers are blocked if the browser and/or system are outdated:
@@ -30,7 +29,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
         ![example entries](.wordpress-org/old.jpg)
 
-* It will be blocked also if the "simple software string" contains "unknown" or is empty.
+* It will be blocked also if "Software" contains "unknown" or is empty.
 
     ![example entries](.wordpress-org/suspect.jpg)
 

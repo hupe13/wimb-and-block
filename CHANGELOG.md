@@ -1,4 +1,4 @@
-### 260222 / 1.4
+### 260223 / 1.4
 
 * Exception: Samsung Browser >= 28 ( Samsung Browser 28 =  Chrome/130 )
 * minimal versions Chrome,Edge: 139, Firefox: 140
