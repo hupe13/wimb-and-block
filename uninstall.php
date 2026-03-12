@@ -30,7 +30,7 @@ function wimbblock_uninstall_delete_options() {
 global $wpdb;
 // Erstmal alle Einstellungen holen, bevor sie gelöscht werden.
 if ( is_main_site() ) {
-	$wimbblock_wpdb_options = get_option( 'wimbblock_settings' );
+	$wimbblock_wpdb_options = wimbblock_get_option( 'wimbblock_settings' );
 	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
 	$wimbblock_local        = $wimbblock_wpdb_options['location'];
 }
