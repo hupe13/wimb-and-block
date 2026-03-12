@@ -35,7 +35,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 * You can also set up other browsers.
 * Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
-* The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam.
+* The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam and others.
 
 ### About robots.txt
 
@@ -44,6 +44,10 @@ With this information, the plugin attempts to detect old and bad browsers and de
 ### Logging
 
 * The logging can be very detailed. Please check the logs and the WIMB table regularly.
+
+### Tests
+
+* There are some [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Dest): Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site. These are tested for existence. However, I am not yet sure whether I should block requests from browsers where they should exist but are not present. I don't have enough examples for that. So far, they are being logged. I would appreciate any feedback.
 
 ## Screenshots
 

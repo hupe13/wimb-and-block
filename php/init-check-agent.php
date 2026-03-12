@@ -9,6 +9,9 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_check_agent() {
+	global $wimbblock_webbrowser;
+	$wimbblock_webbrowser = false;
+
 	$stop = wimbblock_get_option( 'wimbblock_emergency' );
 	if ( $stop !== false ) {
 		if ( $stop === '0' ) {
@@ -86,7 +89,9 @@ function wimbblock_check_agent() {
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			$logging = wimbblock_logging_levels_settings();
-			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ), $logging['blockagain'] ?? true );
+			if ( $software !== 'ChatGPT Agent 1.0' ) {
+				wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ), $logging['blockagain'] ?? true );
+			}
 			status_header( 404 );
 			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );
 			exit();
@@ -97,9 +102,11 @@ function wimbblock_check_agent() {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
 			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, false );
 			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, false );
+			$wimbblock_webbrowser = $agent;
+			wimbblock_secheaders_log();
 		}
 		wimbblock_counter( $table_name, 'count', $id );
 		$wimbblock_software = $software;
 	}
 }
-add_action( 'init', 'wimbblock_check_agent', 8 );
+add_action( 'init', 'wimbblock_check_agent' );

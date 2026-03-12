@@ -1,3 +1,7 @@
+### 260xxx
+
+* rework search engines, see settings in admin backend
+
 ### 260223 / 1.4
 
 * Exception: Samsung Browser >= 28 ( Samsung Browser 28 =  Chrome/130 )

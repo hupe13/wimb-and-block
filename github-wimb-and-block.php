@@ -12,10 +12,23 @@ defined( 'ABSPATH' ) || die();
  * For translating
  */
 function wimbblock_textdomain() {
-	load_plugin_textdomain( 'wimb-and-block', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
-	load_plugin_textdomain( 'wimb-and-block-readme', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
+	load_plugin_textdomain( 'wimb-and-block', false, WIMBBLOCK_NAME . '/lang' );
+	load_plugin_textdomain( 'wimb-and-block-readme', false, WIMBBLOCK_NAME . '/lang' );
 }
-add_action( 'init', 'wimbblock_textdomain' );
+add_action( 'init', 'wimbblock_textdomain', 11 );
+
+/**
+ * For translating if both plugins (WP and Github) exist.
+ */
+function wimbblock_extra_textdomain( $mofile, $domain ) {
+	if ( 'wimb-and-block' === $domain ) {
+		if ( file_exists( dirname( __DIR__ ) . '/' . WIMBBLOCK_NAME . '/lang/wimb-and-block-' . get_locale() . '.mo' ) ) {
+			$mofile = dirname( __DIR__ ) . '/' . WIMBBLOCK_NAME . '/lang/wimb-and-block-' . get_locale() . '.mo';
+		}
+	}
+	return $mofile;
+}
+add_filter( 'load_textdomain_mofile', 'wimbblock_extra_textdomain', 10, 2 );
 
 // Updates from Github
 function wimbblock_updates_from_github() {

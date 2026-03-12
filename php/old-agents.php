@@ -63,18 +63,18 @@ function wimbblock_check_modern_browser( $table_name, $agent, $software, $versio
 	}
 }
 
-function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $browser, $min_version, $robots ) {
+function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $agent, $min_version, $robots ) {
 	if ( $software !== '' ) {
-		if ( stripos( $software, $browser ) !== false ) {
+		if ( stripos( $software, $agent ) !== false ) {
 			if ( $version === '' ) {
-				$version = preg_replace( '%.*' . $browser . ' ([0-9]+)[^0-9].*%', '${1}', $software );
+				$version = preg_replace( '%.*' . $agent . ' ([0-9]+)[^0-9].*%', '${1}', $software );
 			}
 			if ( $version !== '' ) {
 				if ( (int) $version < (int) $min_version ) {
 					if ( $robots === false ) {
 						wimbblock_counter( $table_name, 'block', $id );
 						$logging = wimbblock_get_option( 'wimbblock_log' );
-						wimbblock_error_log( 'Blocked - old browser: ' . $browser . ' * ' . $software . ' * ' . $version, $logging['oldagents'] ?? true );
+						wimbblock_error_log( 'Blocked - old browser: ' . $agent . ' * ' . $software . ' * ' . $version, $logging['oldagents'] ?? true );
 						status_header( 404 );
 						echo 'Please use a modern webbrowser to access this website';
 						exit;
@@ -84,7 +84,7 @@ function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $
 						}
 						wimbblock_counter( $table_name, 'robots', $id );
 						$logging = wimbblock_get_option( 'wimbblock_log' );
-						wimbblock_error_log( 'robots.txt old browser forbidden: ' . $browser . ' * ' . $software . ' * ' . $version, $logging['robotsforbidden'] ?? true );
+						wimbblock_error_log( 'robots.txt old browser forbidden: ' . $agent . ' * ' . $software . ' * ' . $version, $logging['robotsforbidden'] ?? true );
 						header( 'Content-Type: text/plain; charset=UTF-8' );
 						echo "User-agent: *\r\n" .
 						'Disallow: /' . "\r\n";

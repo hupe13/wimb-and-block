@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-22 19:46+0000\n"
+"POT-Creation-Date: 2026-03-12 21:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -42,6 +42,12 @@ msgstr ""
 msgid "All other browsers"
 msgstr ""
 
+#: admin/crawler.php:96
+msgid ""
+"Alternatively you can enable the loading of a JSON file with IP ranges to do "
+"this."
+msgstr ""
+
 #: admin/always-block.php:14 admin/always-block.php:55
 msgid "Always block browsers with this strings"
 msgstr ""
@@ -78,6 +84,14 @@ msgid ""
 "Browsers will be blocked, if the browser and/or the system is an old one:"
 msgstr ""
 
+#: admin/crawler.php:95
+msgid "By default, all IP addresses are checked via DNS."
+msgstr ""
+
+#: admin/help.php:12
+msgid "Configuration and Settings"
+msgstr ""
+
 #: admin/last24.php:115 admin/monthly.php:123 admin/monthly.php:213
 #: admin/monthly.php:306
 msgid "count"
@@ -103,6 +117,10 @@ msgstr ""
 msgid "Delete the rules"
 msgstr ""
 
+#: admin/crawler.php:92
+msgid "Each search engine identifies itself with the user agent string."
+msgstr ""
+
 #: admin/robots.php:133
 msgid "Edit .htaccess"
 msgstr ""
@@ -125,12 +143,20 @@ msgstr ""
 msgid "Entries last 24 hours"
 msgstr ""
 
-#: admin.php:246 admin.php:275
+#: admin.php:264 admin.php:297
 msgid "Exclude / always block"
 msgstr ""
 
 #: admin/exclude.php:14 admin/exclude.php:60
 msgid "Exclude these browsers from checking"
+msgstr ""
+
+#. %s are hrefs
+#: admin/help.php:15
+#, php-format
+msgid ""
+"First configure the %1$sWIMB settings%2$s and then the settings for "
+"%3$ssearch engines%4$s."
 msgstr ""
 
 #: admin/robots.php:61
@@ -143,7 +169,7 @@ msgstr ""
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:226
+#: admin.php:244
 msgid "Help"
 msgstr ""
 
@@ -206,6 +232,14 @@ msgstr ""
 msgid "if the plugin creates its table, local or remote"
 msgstr ""
 
+#. %s is a crawler.
+#: admin/crawler.php:43
+#, php-format
+msgid ""
+"If you do not enable this option, IP addresses will not be checked to see if "
+"they originate from %s."
+msgstr ""
+
 #. is a host.
 #: admin/robots.php:139
 #, php-format
@@ -218,7 +252,7 @@ msgstr ""
 msgid "in %"
 msgstr ""
 
-#: admin/settings.php:181
+#: admin/settings.php:182
 msgid "Invalid IP or hostname"
 msgstr ""
 
@@ -232,6 +266,10 @@ msgstr ""
 
 #: admin/last24.php:100
 msgid "last 24 hours"
+msgstr ""
+
+#: admin/crawler.php:38
+msgid "Load file from"
 msgstr ""
 
 #: admin/settings.php:16
@@ -256,7 +294,7 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:194 admin.php:258 admin.php:271
+#: admin.php:211 admin.php:280 admin.php:293
 msgid "Logging"
 msgstr ""
 
@@ -276,11 +314,11 @@ msgstr ""
 msgid "new browsers"
 msgstr ""
 
-#: admin/logging.php:48 admin/deleting.php:34
+#: admin/logging.php:48 admin/crawler.php:56 admin/deleting.php:34
 msgid "no"
 msgstr ""
 
-#: admin/settings.php:209
+#: admin/settings.php:211
 msgid "No connection to database - try again!"
 msgstr ""
 
@@ -290,11 +328,20 @@ msgid ""
 "blocked later without any explanation."
 msgstr ""
 
+#: admin/crawler.php:97
+msgid ""
+"Only IPv4 addresses are validated via JSON files, IPv6 is validated via DNS."
+msgstr ""
+
+#: admin/crawler.php:109 admin/crawler.php:155
+msgid "only offer verification via DNS."
+msgstr ""
+
 #: admin/block-unblock.php:90
 msgid "Or you can click on a link from one of the tables."
 msgstr ""
 
-#: admin.php:238 admin/monthly.php:11
+#: admin.php:256 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr ""
 
@@ -313,7 +360,7 @@ msgid ""
 "Please check, if you need some flags like %1$s or %2$s or other or nothing."
 msgstr ""
 
-#: admin/settings.php:170
+#: admin/settings.php:171
 msgid "Please fill out all fields."
 msgstr ""
 
@@ -366,11 +413,11 @@ msgstr ""
 msgid "robots blocked in %"
 msgstr ""
 
-#: admin.php:262 admin.php:283
+#: admin.php:284 admin.php:305
 msgid "robots.txt"
 msgstr ""
 
-#: admin/settings.php:22
+#: admin/settings.php:22 admin/crawler.php:123
 msgid "Rotate the table on this site"
 msgstr ""
 
@@ -378,11 +425,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: admin.php:147 admin.php:242
+#: admin.php:147 admin.php:260
 msgid "Search / block / unblock entries"
 msgstr ""
 
-#: admin/block-unblock.php:140 admin/block-unblock.php:573
+#: admin.php:272 admin/block-unblock.php:140 admin/block-unblock.php:573
 msgid "Search Engines"
 msgstr ""
 
@@ -402,11 +449,15 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:83 wimb-and-block.php:91
+#: wimb-and-block.php:58 wimb-and-block.php:66
 msgid "Settings"
 msgstr ""
 
-#: admin.php:72 admin.php:254 admin.php:267
+#: admin/crawler.php:90 admin/crawler.php:116
+msgid "Settings Search Engines"
+msgstr ""
+
+#: admin.php:72 admin.php:276 admin.php:289
 msgid "Settings WIMB"
 msgstr ""
 
@@ -458,16 +509,33 @@ msgid ""
 "the month."
 msgstr ""
 
+#: php/crawler-settings.php:48
+msgid ""
+"The file also contains IPv6 addresses. However, these are verified via DNS."
+msgstr ""
+
 #: php/wimb-options.php:203
 msgid "The full IP is logged. (default)"
 msgstr ""
 
-#: admin/help.php:23
+#: admin/help.php:36
 msgid "The information could not be retrieved."
 msgstr ""
 
 #: php/wimb-options.php:195
 msgid "The IP address is not logged."
+msgstr ""
+
+#. %1$s are crawlers.
+#: admin/crawler.php:159
+#, php-format
+msgid "The IP addresses of %1$s are validated via DNS."
+msgstr ""
+
+#. %1$s are crawlers.
+#: admin/crawler.php:165
+#, php-format
+msgid "The IP addresses of %1$s are validated via JSON files."
 msgstr ""
 
 #: php/wimb-options.php:199
@@ -518,6 +586,13 @@ msgid ""
 "anyway."
 msgstr ""
 
+#. %s is an option
+#: admin/crawler.php:122
+#, php-format
+msgid ""
+"The settings are the same as on the website configured with \"%s\" = yes."
+msgstr ""
+
 #: admin/versions.php:59
 msgid ""
 "The user agent string of every browser accessing your website the first time "
@@ -546,6 +621,12 @@ msgstr ""
 msgid "There was an error:"
 msgstr ""
 
+#: admin/crawler.php:94
+msgid ""
+"Therefore, the plugin checks whether the IP address really comes from the "
+"search engine."
+msgstr ""
+
 #: admin/log-anonym.php:52
 msgid "This could potentially be a problem in the context of the GDPR."
 msgstr ""
@@ -556,6 +637,10 @@ msgstr ""
 
 #: admin/robots.php:283
 msgid "This is the expected output."
+msgstr ""
+
+#: admin/crawler.php:93
+msgid "This string is easy to fake."
 msgstr ""
 
 #: admin.php:84
@@ -570,7 +655,7 @@ msgstr ""
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:104 admin.php:250 admin.php:279
+#: admin.php:104 admin.php:268 admin.php:301
 msgid "Versions Control"
 msgstr ""
 
@@ -598,7 +683,7 @@ msgstr ""
 msgid "WIMB API key needed."
 msgstr ""
 
-#: admin.php:143 admin.php:234
+#: admin.php:143 admin.php:252
 msgid "WIMB last 24 hours"
 msgstr ""
 
@@ -616,12 +701,12 @@ msgstr ""
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr ""
 
-#: admin/logging.php:45 admin/deleting.php:31
+#: admin/logging.php:45 admin/crawler.php:53 admin/deleting.php:31
 msgid "yes"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:110 admin.php:157 admin.php:200
+#: admin.php:47 admin.php:110 admin.php:157 admin.php:217 admin/crawler.php:131
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""

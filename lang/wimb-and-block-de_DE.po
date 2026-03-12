@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Block old browser versions and suspicious browsers - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-02-22 19:49+0000\n"
+"PO-Revision-Date: 2026-03-12 21:47+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-22 19:43+0000\n"
 "Last-Translator: hupe13\n"
-"X-Loco-Version: 2.8.1; wp-6.9.1; php-8.3.29-nmm1"
+"X-Loco-Version: 2.8.2; wp-6.9.4; php-8.3.29-nmm1"
 
 #: admin/robots.php:303
 msgid "Access is allowed - this is correct."
@@ -44,6 +44,14 @@ msgstr "Alle Einträge"
 #: admin/block-unblock.php:146 admin/block-unblock.php:529
 msgid "All other browsers"
 msgstr "Alle anderen Browser"
+
+#: admin/crawler.php:96
+msgid ""
+"Alternatively you can enable the loading of a JSON file with IP ranges to do "
+"this."
+msgstr ""
+"Alternativ kannst du dazu das Laden einer JSON-Datei mit IP-Bereichen "
+"erlauben."
 
 #: admin/always-block.php:14 admin/always-block.php:55
 msgid "Always block browsers with this strings"
@@ -83,6 +91,14 @@ msgstr ""
 "Ein Browser wird geblockt, wenn der Browser und/oder das System veraltet "
 "sind:"
 
+#: admin/crawler.php:95
+msgid "By default, all IP addresses are checked via DNS."
+msgstr "Standardmäßig werden alle IP-Adressen über DNS überprüft."
+
+#: admin/help.php:12
+msgid "Configuration and Settings"
+msgstr "Konfiguration und Einstellungen"
+
 #: admin/last24.php:115 admin/monthly.php:123 admin/monthly.php:213
 #: admin/monthly.php:306
 msgid "count"
@@ -108,6 +124,11 @@ msgstr "Lösche die Einträge für"
 msgid "Delete the rules"
 msgstr "Lösche die Regeln"
 
+#: admin/crawler.php:92
+msgid "Each search engine identifies itself with the user agent string."
+msgstr ""
+"Jede Suchmaschine identifiziert sich anhand der User-Agent-Zeichenfolge."
+
 #: admin/robots.php:133
 msgid "Edit .htaccess"
 msgstr "Editiere .htaccess"
@@ -131,13 +152,23 @@ msgstr ""
 msgid "Entries last 24 hours"
 msgstr "Einträge der letzten 24 Stunden"
 
-#: admin.php:246 admin.php:275
+#: admin.php:264 admin.php:297
 msgid "Exclude / always block"
 msgstr "Ausschließen / immer blocken"
 
 #: admin/exclude.php:14 admin/exclude.php:60
 msgid "Exclude these browsers from checking"
 msgstr "Schließe diese Browser von der Überprüfung aus"
+
+#. %s are hrefs
+#: admin/help.php:15
+#, php-format
+msgid ""
+"First configure the %1$sWIMB settings%2$s and then the settings for "
+"%3$ssearch engines%4$s."
+msgstr ""
+"Konfiguriere zuerst die %1$sEinstellungen für WIMB%2$s und anschließend die "
+"Einstellungen für die %3$sSuchmaschinen%4$s."
 
 #: admin/robots.php:61
 msgid "Form to handle the entry in .htaccess"
@@ -149,7 +180,7 @@ msgstr "Formular zur Bearbeitung des Eintrags in .htaccess"
 msgid "Get an API key for a %s."
 msgstr "Hol dir einen API-Schlüssel für einen %s."
 
-#: admin.php:226
+#: admin.php:244
 msgid "Help"
 msgstr "Hilfe"
 
@@ -221,6 +252,19 @@ msgstr "Wenn die Datenbank lokal ist, wird auch die Tabelle gelöscht."
 msgid "if the plugin creates its table, local or remote"
 msgstr "wenn das Plugin seine Tabelle erstellt, lokal oder entfernt"
 
+#. %s is a crawler.
+#: admin/crawler.php:43
+#, php-format
+#| msgid ""
+#| "If you do not enable this option, IP addresses will not be checked to see "
+#| "if they originate from"
+msgid ""
+"If you do not enable this option, IP addresses will not be checked to see if "
+"they originate from %s."
+msgstr ""
+"Wenn du diese Option nicht aktivierst, wird nicht überprüft, ob IP-Adressen "
+"von %s stammen."
+
 #. is a host.
 #: admin/robots.php:139
 #, php-format
@@ -235,7 +279,7 @@ msgstr ""
 msgid "in %"
 msgstr "in %"
 
-#: admin/settings.php:181
+#: admin/settings.php:182
 msgid "Invalid IP or hostname"
 msgstr "IP-Adresse oder Hostname falsch"
 
@@ -250,6 +294,10 @@ msgstr "Es ist in Betrieb."
 #: admin/last24.php:100
 msgid "last 24 hours"
 msgstr "letzte 24 Stunden"
+
+#: admin/crawler.php:38
+msgid "Load file from"
+msgstr "Lade die Datei von"
 
 #: admin/settings.php:16
 msgid "Local WP database or remote database"
@@ -277,7 +325,7 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr "Logge, wenn der Browser von der Überprüfung ausgeschlossen ist."
 
-#: admin.php:194 admin.php:258 admin.php:271
+#: admin.php:211 admin.php:280 admin.php:293
 msgid "Logging"
 msgstr "Logging"
 
@@ -297,11 +345,11 @@ msgstr "Monatliche Statistik - letztmaliger Zugriff"
 msgid "new browsers"
 msgstr "neue Browser"
 
-#: admin/logging.php:48 admin/deleting.php:34
+#: admin/logging.php:48 admin/crawler.php:56 admin/deleting.php:34
 msgid "no"
 msgstr "nein"
 
-#: admin/settings.php:209
+#: admin/settings.php:211
 msgid "No connection to database - try again!"
 msgstr "Keine Verbindung zur Datenbank - versuche es noch einmal!"
 
@@ -313,11 +361,22 @@ msgstr ""
 "Sobald erkannt wurde, dass der Browser geblockt wird, wird er später ohne "
 "Angabe von Gründen geblockt."
 
+#: admin/crawler.php:97
+msgid ""
+"Only IPv4 addresses are validated via JSON files, IPv6 is validated via DNS."
+msgstr ""
+"Nur IPv4-Adressen werden mittels der JSON-Daten überprüft, IPv6 wird über "
+"DNS geprüft."
+
+#: admin/crawler.php:109 admin/crawler.php:155
+msgid "only offer verification via DNS."
+msgstr "bieten nur eine Überprüfung über DNS an."
+
 #: admin/block-unblock.php:90
 msgid "Or you can click on a link from one of the tables."
 msgstr "Oder du kannst auf einen Link aus einer der Tabellen klicken."
 
-#: admin.php:238 admin/monthly.php:11
+#: admin.php:256 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr "Überblick und Wartung"
 
@@ -338,7 +397,7 @@ msgstr ""
 "Bitte überprüfe, ob du Flags wie %1$s oder %2$s oder andere oder gar keine "
 "benötigst."
 
-#: admin/settings.php:170
+#: admin/settings.php:171
 msgid "Please fill out all fields."
 msgstr "Bitte fülle alle Felder aus."
 
@@ -395,11 +454,11 @@ msgstr "robots geblockt"
 msgid "robots blocked in %"
 msgstr "robots geblockt in %"
 
-#: admin.php:262 admin.php:283
+#: admin.php:284 admin.php:305
 msgid "robots.txt"
 msgstr "robots.txt"
 
-#: admin/settings.php:22
+#: admin/settings.php:22 admin/crawler.php:123
 msgid "Rotate the table on this site"
 msgstr "Rotiere die Tabelle auf dieser Seite"
 
@@ -407,11 +466,11 @@ msgstr "Rotiere die Tabelle auf dieser Seite"
 msgid "Search"
 msgstr "Suche"
 
-#: admin.php:147 admin.php:242
+#: admin.php:147 admin.php:260
 msgid "Search / block / unblock entries"
 msgstr "Suche / blocke / entsperre Einträge"
 
-#: admin/block-unblock.php:140 admin/block-unblock.php:573
+#: admin.php:272 admin/block-unblock.php:140 admin/block-unblock.php:573
 msgid "Search Engines"
 msgstr "Suchmaschinen"
 
@@ -431,11 +490,15 @@ msgstr "Zum Entsperren / Sperren auswählen"
 msgid "Setting:"
 msgstr "Einstellung:"
 
-#: wimb-and-block.php:83 wimb-and-block.php:91
+#: wimb-and-block.php:58 wimb-and-block.php:66
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin.php:72 admin.php:254 admin.php:267
+#: admin/crawler.php:90 admin/crawler.php:116
+msgid "Settings Search Engines"
+msgstr "Suchmaschinen Einstellungen"
+
+#: admin.php:72 admin.php:276 admin.php:289
 msgid "Settings WIMB"
 msgstr "Einstellungen für WIMB"
 
@@ -495,17 +558,35 @@ msgstr ""
 "Gezählt für den Monat werden die Browser, deren letzter Zugriff in diesem "
 "Monat erfolgte."
 
+#: php/crawler-settings.php:48
+msgid ""
+"The file also contains IPv6 addresses. However, these are verified via DNS."
+msgstr ""
+"Die Datei enthält auch IPv6-Adressen. Diese werden jedoch über DNS überprüft."
+
 #: php/wimb-options.php:203
 msgid "The full IP is logged. (default)"
 msgstr "Die vollständige IP-Adresse wird geloggt. (Standard)"
 
-#: admin/help.php:23
+#: admin/help.php:36
 msgid "The information could not be retrieved."
 msgstr "Die Informationen konnten nicht abgerufen werden."
 
 #: php/wimb-options.php:195
 msgid "The IP address is not logged."
 msgstr "Die IP-Adresse wird nicht geloggt."
+
+#. %1$s are crawlers.
+#: admin/crawler.php:159
+#, php-format
+msgid "The IP addresses of %1$s are validated via DNS."
+msgstr "Die IP-Adressen von %1$s werden über DNS geprüft."
+
+#. %1$s are crawlers.
+#: admin/crawler.php:165
+#, php-format
+msgid "The IP addresses of %1$s are validated via JSON files."
+msgstr "Nur IP-Adressen von %s werden mittels der JSON-Daten überprüft."
 
 #: php/wimb-options.php:199
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
@@ -572,6 +653,15 @@ msgstr ""
 "Es stellt eine robots.txt-Datei bereit, um das Crawling zu unterbinden, und "
 "blockt Crawler, wenn sie dies dennoch tun."
 
+#. %s is an option
+#: admin/crawler.php:122
+#, php-format
+msgid ""
+"The settings are the same as on the website configured with \"%s\" = yes."
+msgstr ""
+"Die Einstellungen sind dieselben wie auf der Website, die mit \"%s\" = ja "
+"konfiguriert ist."
+
 #: admin/versions.php:59
 msgid ""
 "The user agent string of every browser accessing your website the first time "
@@ -607,6 +697,14 @@ msgstr ""
 msgid "There was an error:"
 msgstr "Es gab einen Fehler:"
 
+#: admin/crawler.php:94
+msgid ""
+"Therefore, the plugin checks whether the IP address really comes from the "
+"search engine."
+msgstr ""
+"Daher überprüft das Plugin, ob die IP-Adresse tatsächlich von der "
+"Suchmaschine stammt."
+
 #: admin/log-anonym.php:52
 msgid "This could potentially be a problem in the context of the GDPR."
 msgstr ""
@@ -621,6 +719,10 @@ msgstr "Dies wird immer geloggt:"
 msgid "This is the expected output."
 msgstr "Das ist die erwartete Ausgabe."
 
+#: admin/crawler.php:93
+msgid "This string is easy to fake."
+msgstr "Diese Zeichenfolge lässt sich leicht fälschen."
+
 #: admin.php:84
 msgid "To change the settings, first reset them all."
 msgstr "Um die Einstellungen zu ändern, setze zunächst alle zurück."
@@ -633,7 +735,7 @@ msgstr "total"
 msgid "Unblock / block selected entries"
 msgstr "Ausgewählte Einträge entsperren / sperren"
 
-#: admin.php:104 admin.php:250 admin.php:279
+#: admin.php:104 admin.php:268 admin.php:301
 msgid "Versions Control"
 msgstr "Versionskontrolle"
 
@@ -661,7 +763,7 @@ msgstr "WIMB-API-Schlüssel"
 msgid "WIMB API key needed."
 msgstr "WIMB API Schlüssel nötig."
 
-#: admin.php:143 admin.php:234
+#: admin.php:143 admin.php:252
 msgid "WIMB last 24 hours"
 msgstr "WIMB letzte 24 Stunden"
 
@@ -679,12 +781,12 @@ msgstr "Schreibe das .htaccess-File"
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr "Schreibe in die .htaccess im Stammverzeichnis von %s:"
 
-#: admin/logging.php:45 admin/deleting.php:31
+#: admin/logging.php:45 admin/crawler.php:53 admin/deleting.php:31
 msgid "yes"
 msgstr "ja"
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:110 admin.php:157 admin.php:200
+#: admin.php:47 admin.php:110 admin.php:157 admin.php:217 admin/crawler.php:131
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr "Du kannst diese Einstellungen auf der %1$sHauptseite%2$s ändern."

@@ -160,6 +160,7 @@ function wimbblock_validate( $options ) {
 				);
 				wimbblock_error_log( 'Local Table ' . $options['table_name'] );
 				wimbblock_table_install( $options['table_name'] );
+				wimbblock_crawler_table_install( $options['table_name'] );
 			} else {
 				// remote
 				settings_errors( 'wimbblock_settings' );
@@ -190,6 +191,7 @@ function wimbblock_validate( $options ) {
 					case '2':
 						wimbblock_error_log( 'Remote Table ' . $options['table_name'] );
 						wimbblock_table_install( $options['table_name'] );
+						wimbblock_crawler_table_install( $options['table_name'] );
 						// $wimb_test_datatable->close();
 						$options['error'] = '0';
 						break;

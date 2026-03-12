@@ -8,49 +8,6 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_table_install( $table_name ) {
-
-	$wimbblock_options = wimbblock_get_options_db();
-	if ( $wimbblock_options['location'] === 'local' ) {
-		global $wpdb;
-		$charset_collate = $wpdb->get_charset_collate();
-	} else {
-		global $wimb_datatable;
-		wimbblock_open_wpdb();
-		$charset_collate = $wimb_datatable->get_charset_collate();
-	}
-
-	$wimb_sql = "CREATE TABLE {$table_name} (
-		i bigint NOT NULL auto_increment,
-		browser varchar(300) NOT NULL,
-		software varchar(70) NOT NULL,
-		system varchar(50) NOT NULL,
-		version varchar(6) NOT NULL,
-		time timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-		yymm char(4) NOT NULL DEFAULT date_format(current_timestamp(),'%y%m'),
-		wimbdate char(6) NOT NULL DEFAULT date_format(current_timestamp(),'%y%m%d'),
-		count int(11) NOT NULL DEFAULT 0,
-		block int(11) NOT NULL DEFAULT 0,
-		robots int(11) NOT NULL DEFAULT 0,
-		count_1 int(11) NOT NULL DEFAULT 0,
-		block_1 int(11) NOT NULL DEFAULT 0,
-		count_2 int(11) NOT NULL DEFAULT 0,
-		block_2 int(11) NOT NULL DEFAULT 0,
-		count_3 int(11) NOT NULL DEFAULT 0,
-		block_3 int(11) NOT NULL DEFAULT 0,
-		PRIMARY KEY i (i),
-		UNIQUE KEY browser (browser)
-	) $charset_collate;";
-
-	if ( $wimbblock_options['location'] === 'local' ) {
-		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		$status = dbDelta( $wimb_sql );
-	} else {
-		$status = wimbblock_dbDelta( $wimb_sql );
-	}
-	wimbblock_error_log( 'Created wimb_table: ' . $table_name );
-}
-
 function wimbblock_close_mysqlstat() {
 	global $wimb_datatable;
 	if ( isset( $wimb_datatable ) ) {
@@ -104,7 +61,7 @@ function wimbblock_unblock( $table_name, $software, $id ) {
 	if ( $entry !== 1 ) {
 		wimbblock_error_log( 'mysql error unblock: ' . $entry . ' * ' . $id );
 	}
-	wimbblock_error_log( 'Software unblocked: ' . $software . ' * ' . $id );
+	// wimbblock_error_log( 'Software unblocked: ' . $software . ' * ' . $id );
 }
 
 function wimbblock_error_log( $reason, $loglevel = true ) {

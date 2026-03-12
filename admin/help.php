@@ -8,6 +8,19 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
+function wimbblock_help_config() {
+	$text  = '<h2>' . __( 'Configuration and Settings', 'wimb-and-block' ) . '</h2>';
+	$text .= wp_sprintf(
+		/* translators: %s are hrefs */
+		__( 'First configure the %1$sWIMB settings%2$s and then the settings for %3$ssearch engines%4$s.', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=settings' ) . '">',
+		'</a>',
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=crawlers' ) . '">',
+		'</a>'
+	);
+	return $text;
+}
+
 function wimbblock_help() {
 	require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 	$plugin_info = plugins_api(

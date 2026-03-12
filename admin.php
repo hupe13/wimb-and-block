@@ -186,12 +186,29 @@ function wimbblock_admin() {
 			}
 		}
 		echo '</form>';
-
+	} elseif ( $active_tab === 'crawlers' ) {
+		$options = wimbblock_get_options_db();
+		if ( $options['rotate'] === 'yes' && is_main_site() ) {
+			wimbblock_crawler_help();
+			echo '<form method="post" action="options.php">';
+			settings_fields( 'wimbblock_searchengines' );
+			wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
+			do_settings_sections( 'wimbblock_searchengines' );
+			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
+				if ( current_user_can( 'manage_options' ) ) {
+					submit_button();
+					// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
+				}
+			}
+			echo '</form>';
+		} else {
+			wimbblock_crawler_help_elsewhere();
+		}
 	} elseif ( $active_tab === 'robots' ) {
 		require_once __DIR__ . '/admin/robots.php';
 		wimbblock_robots_htaccess();
 	} elseif ( $active_tab === 'logging' ) {
-			echo '<h2>' . wp_kses_post( __( 'Logging', 'wimb-and-block' ) ) . '</h2>';
+		echo '<h2>' . wp_kses_post( __( 'Logging', 'wimb-and-block' ) ) . '</h2>';
 		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
 			echo '<p>';
 			echo wp_kses_post(
@@ -211,6 +228,7 @@ function wimbblock_admin() {
 		}
 		require_once __DIR__ . '/admin/help.php';
 		// echo wp_kses_post( wimbblock_help() );
+		echo wp_kses_post( wimbblock_help_config() );
 		echo wp_kses_post( wimbblock_help_readme( '/wp-content/plugins/' . WIMBBLOCK_NAME . '/readme.txt' ) );
 	}
 	echo '</div>';
@@ -248,6 +266,10 @@ function wimbblock_admin_tabs() {
 		$tabs[] = array(
 			'tab'   => 'versions',
 			'title' => __( 'Versions Control', 'wimb-and-block' ),
+		);
+		$tabs[] = array(
+			'tab'   => 'crawlers',
+			'title' => __( 'Search Engines', 'wimb-and-block' ),
 		);
 		$tabs[] = array(
 			'tab'   => 'settings',

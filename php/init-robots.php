@@ -23,6 +23,9 @@ function wimbblock_get_robots_txt() {
 }
 
 function wimbblock_check_robots_txt( $posts ) {
+	global $wimbblock_webbrowser;
+	$wimbblock_webbrowser = false;
+
 	global $wp;
 
 	if ( ! is_admin()
@@ -96,14 +99,11 @@ function wimbblock_check_robots_txt( $posts ) {
 		}
 
 		wimbblock_always( $table_name, $agent, $blocked, $id, true );
-		wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, true );
-
 		wimbblock_faked_crawler( $agent, $ip, true );
 		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, true );
-			if ( $software !== '' ) {
-				wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, true );
-			}
+			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, true );
+			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, true );
 		}
 		$logging = wimbblock_get_option( 'wimbblock_log' );
 		wimbblock_error_log( 'robots.txt okay: ' . ( $software !== '' ? $software : $agent ), $logging['robotsokay'] ?? true );

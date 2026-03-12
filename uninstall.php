@@ -65,6 +65,14 @@ if ( is_main_site() ) {
 					$wimbblock_table_name
 				)
 			);
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query(
+				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+					'DROP TABLE IF EXISTS %i',
+					$wimbblock_table_name . '_crawler'
+				)
+			);
 		}
 	}
 }

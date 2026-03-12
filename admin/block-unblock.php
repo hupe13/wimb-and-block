@@ -592,31 +592,10 @@ function wimbblock_derivates() {
 }
 
 function wimbblock_searchengines() {
-	// ( $agent, 'Applebot' )
-	// ( $agent, 'Baiduspider' )
-	// ( $agent, 'googleother' )
-	// ( $agent, 'http://yandex.com/bots' )
-	// ( $agent, 'MojeekBot' )
-	// ( $agent, 'SeznamBot' )
-	// ( $agent, 'BingBot' )
-	// escape: %d (integer), %f (float), %s (string), %i (identifier, e.g. table/field names)
-	$searchengines = array(
-		'Applebot'               => 'browser',
-		'Baiduspider'            => 'browser',
-		'http://yandex.com/bots' => 'browser',
-		'MojeekBot'              => 'browser',
-		'%SeznamBot'             => 'browser',
-		'BingBot'                => 'browser',
-		'Googlebot'              => 'browser',
-		'GoogleOther'            => 'browser',
-		'Google-CloudVertexBot'  => 'browser',
-		'Google-Extended'        => 'browser',
-		'Google-InspectionTool'  => 'browser',
-		'Storebot-Google'        => 'browser',
-	);
+	$searchengines = wimbblock_get_search_engine_strings();
 	$command       = array();
-	foreach ( $searchengines as $searchengine => $type ) {
-		$command[] = ' ' . $type . " LIKE '%" . $searchengine . "%' ";
+	foreach ( $searchengines as $searchengine ) {
+		$command[] = " browser LIKE '%" . $searchengine . "%' ";
 	}
 	$query = implode( ' OR ', $command );
 	return $query;
