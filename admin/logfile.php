@@ -67,7 +67,6 @@ function wimbblock_logfile_form() {
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function wimbblock_validate_logfile( $filename ) {
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock_log', 'wimbblock_logfile_nonce' ) ) {
-		// wimbblock_error_log( 'Sanitize and validate' );
 		if ( isset( $_POST['submit'] ) ) {
 			delete_transient( 'wimbblock_logfile' );
 			if ( $filename !== '' ) {

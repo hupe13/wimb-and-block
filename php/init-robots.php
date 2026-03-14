@@ -38,7 +38,6 @@ function wimbblock_check_robots_txt( $posts ) {
 		$server_ip = sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ?? '' ) );
 
 		if ( $ip === $server_ip && $agent !== 'wimb-and-block test agent' ) {
-			// wimbblock_error_log( 'Server Task: ' . $agent );
 			wimbblock_get_robots_txt();
 		}
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-12 21:47+0000\n"
+"POT-Creation-Date: 2026-03-14 21:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -252,7 +252,7 @@ msgstr ""
 msgid "in %"
 msgstr ""
 
-#: admin/settings.php:182
+#: admin/settings.php:180
 msgid "Invalid IP or hostname"
 msgstr ""
 
@@ -274,6 +274,10 @@ msgstr ""
 
 #: admin/settings.php:16
 msgid "Local WP database or remote database"
+msgstr ""
+
+#: php/wimb-options.php:172
+msgid "Log a few tests."
 msgstr ""
 
 #: php/wimb-options.php:166
@@ -318,7 +322,7 @@ msgstr ""
 msgid "no"
 msgstr ""
 
-#: admin/settings.php:211
+#: admin/settings.php:209
 msgid "No connection to database - try again!"
 msgstr ""
 
@@ -360,7 +364,7 @@ msgid ""
 "Please check, if you need some flags like %1$s or %2$s or other or nothing."
 msgstr ""
 
-#: admin/settings.php:171
+#: admin/settings.php:169
 msgid "Please fill out all fields."
 msgstr ""
 
@@ -514,7 +518,7 @@ msgid ""
 "The file also contains IPv6 addresses. However, these are verified via DNS."
 msgstr ""
 
-#: php/wimb-options.php:203
+#: php/wimb-options.php:209
 msgid "The full IP is logged. (default)"
 msgstr ""
 
@@ -522,7 +526,7 @@ msgstr ""
 msgid "The information could not be retrieved."
 msgstr ""
 
-#: php/wimb-options.php:195
+#: php/wimb-options.php:201
 msgid "The IP address is not logged."
 msgstr ""
 
@@ -538,7 +542,7 @@ msgstr ""
 msgid "The IP addresses of %1$s are validated via JSON files."
 msgstr ""
 
-#: php/wimb-options.php:199
+#: php/wimb-options.php:205
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
@@ -671,7 +675,7 @@ msgstr ""
 msgid "WIMB and Block"
 msgstr ""
 
-#: admin/settings.php:142
+#: admin/settings.php:140
 msgid "WIMB API is not correct."
 msgstr ""
 
@@ -679,7 +683,7 @@ msgstr ""
 msgid "WIMB API Key"
 msgstr ""
 
-#: admin/settings.php:122
+#: admin/settings.php:120
 msgid "WIMB API key needed."
 msgstr ""
 

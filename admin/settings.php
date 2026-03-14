@@ -108,9 +108,7 @@ function wimbblock_form( $field ) {
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function wimbblock_validate( $options ) {
-	// wimbblock_error_log( 'Options ' . print_r( $options, true ) );
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock', 'wimbblock_nonce' ) ) {
-		// wimbblock_error_log( 'Sanitize and validate' );
 		if ( isset( $_POST['submit'] ) ) {
 			if ( $options['error'] === '1' ) {
 				$options['error'] = '3';

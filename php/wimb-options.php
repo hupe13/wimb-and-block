@@ -166,6 +166,12 @@ function wimbblock_logging_levels() {
 			'help'    => __( 'Log when the browser accesses your website for the first time and an old version is detected or it is unknown or suspicious.', 'wimb-and-block' ),
 			'default' => true,
 		),
+		array(
+			'param'   => 'tests',
+			'desc'    => 'Testing',
+			'help'    => __( 'Log a few tests.', 'wimb-and-block' ),
+			'default' => false,
+		),
 	);
 	return $params;
 }
