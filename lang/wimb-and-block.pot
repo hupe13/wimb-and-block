@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-20 18:36+0000\n"
+"POT-Creation-Date: 2026-03-20 21:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -39,7 +39,7 @@ msgid "All entries"
 msgstr ""
 
 #. %1$s are browser names.
-#: admin/header-checks.php:26
+#: admin/header-checks.php:29
 #, php-format
 msgid "All of these browsers %1$s should send these headers."
 msgstr ""
@@ -165,7 +165,7 @@ msgid ""
 "%3$ssearch engines%4$s."
 msgstr ""
 
-#: admin/header-checks.php:55
+#: admin/header-checks.php:58
 msgid ""
 "For example, the user-agent string indicates \"Windows\", but this header "
 "shows \"Linux\"."
@@ -230,8 +230,8 @@ msgstr ""
 msgid "if no agent is given"
 msgstr ""
 
-#: admin/header-checks.php:37
-msgid "If one is not present, the browser will be blocked."
+#: admin/header-checks.php:40
+msgid "If one is not present, access will be blocked."
 msgstr ""
 
 #: admin/emergency.php:65
@@ -252,8 +252,8 @@ msgstr ""
 msgid "if the plugin creates its table, local or remote"
 msgstr ""
 
-#: admin/header-checks.php:46
-msgid "If the two do not match, the browser is blocked."
+#: admin/header-checks.php:49
+msgid "If the two do not match, access will be blocked."
 msgstr ""
 
 #. %s is a crawler.
@@ -276,14 +276,14 @@ msgstr ""
 msgid "in %"
 msgstr ""
 
-#: admin/header-checks.php:16
+#: admin/header-checks.php:19
 msgid ""
 "In addition to the User Agent string, there are certain headers that some "
 "browsers also send."
 msgstr ""
 
-#: admin/header-checks.php:56
-msgid "In this case, the browser is blocked."
+#: admin/header-checks.php:59
+msgid "In this case, access is blocked."
 msgstr ""
 
 #: admin/settings.php:188
@@ -298,7 +298,7 @@ msgstr ""
 msgid "It is working."
 msgstr ""
 
-#: admin/header-checks.php:45
+#: admin/header-checks.php:48
 msgid ""
 "Just like with the user agent string, you can determine the browser version "
 "from this header."
@@ -418,6 +418,10 @@ msgstr ""
 msgid ""
 "Please note that Chrome no longer necessarily distinguishes between Android "
 "versions starting with Android 10."
+msgstr ""
+
+#: admin/header-checks.php:16
+msgid "Please note that these accesses are not counted in the database."
 msgstr ""
 
 #: admin.php:79
@@ -564,7 +568,7 @@ msgid ""
 "The file also contains IPv6 addresses. However, these are verified via DNS."
 msgstr ""
 
-#: admin/header-checks.php:41 admin/header-checks.php:50
+#: admin/header-checks.php:44 admin/header-checks.php:53
 msgid "The following Browsers have this header:"
 msgstr ""
 
@@ -685,7 +689,7 @@ msgstr ""
 msgid "This could potentially be a problem in the context of the GDPR."
 msgstr ""
 
-#: admin/header-checks.php:54
+#: admin/header-checks.php:57
 msgid ""
 "This header sometimes does not match the system detected from the user agent "
 "string."

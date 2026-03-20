@@ -12,6 +12,9 @@ function wimbblock_header_help() {
 	//$text .= 'https://caniuse.com/?search=Sec-Fetch-'
 
 	$text  = '<h3>' . __( 'Header Checks', 'wimb-and-block' ) . '</h3>';
+
+	$text .= '<p>' . __( 'Please note that these accesses are not counted in the database.', 'wimb-and-block' ) . '</p>';
+
 	$text .= '<h4>Sec-Fetch Header</h4>';
 	$text .= '<p>' . __( 'In addition to the User Agent string, there are certain headers that some browsers also send.', 'wimb-and-block' ) . '</p>';
 	$text .= '<ul>';
@@ -34,7 +37,7 @@ function wimbblock_header_help() {
     'QQ Browser' and
     'KaiOS Browser' - "
 	) . '</br>';
-	$text .= __( 'If one is not present, the browser will be blocked.', 'wimb-and-block' ) . '</p>';
+	$text .= __( 'If one is not present, access will be blocked.', 'wimb-and-block' ) . '</p>';
 
 	$text .= '<h4><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-CH-UA">Sec-CH-UA</a></h4>';
 
@@ -43,7 +46,7 @@ function wimbblock_header_help() {
 	$text .= '</p>';
 
 	$text .= '<p>' . __( 'Just like with the user agent string, you can determine the browser version from this header.', 'wimb-and-block' );
-	$text .= ' ' . __( 'If the two do not match, the browser is blocked.', 'wimb-and-block' ) . '</p>';
+	$text .= ' ' . __( 'If the two do not match, access will be blocked.', 'wimb-and-block' ) . '</p>';
 
 	$text .= '<h4><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-CH-UA-Platform">Sec-CH-UA-Platform</a></h4>';
 
@@ -53,6 +56,6 @@ function wimbblock_header_help() {
 
 	$text .= '<p>' . __( 'This header sometimes does not match the system detected from the user agent string.', 'wimb-and-block' );
 	$text .= ' ' . __( 'For example, the user-agent string indicates "Windows", but this header shows "Linux".', 'wimb-and-block' );
-	$text .= ' ' . __( 'In this case, the browser is blocked.', 'wimb-and-block' ) . '</p>';
+	$text .= ' ' . __( 'In this case, access is blocked.', 'wimb-and-block' ) . '</p>';
 	echo wp_kses_post( $text );
 }

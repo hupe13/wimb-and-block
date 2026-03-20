@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Block old browser versions and suspicious browsers - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-03-20 18:38+0000\n"
+"PO-Revision-Date: 2026-03-20 21:49+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgid "All entries"
 msgstr "Alle Einträge"
 
 #. %1$s are browser names.
-#: admin/header-checks.php:26
+#: admin/header-checks.php:29
 #, php-format
 #| msgid "All of these browsers %1$s should have these headers."
 msgid "All of these browsers %1$s should send these headers."
@@ -177,7 +177,7 @@ msgstr ""
 "Konfiguriere zuerst die %1$sEinstellungen für WIMB%2$s und anschließend die "
 "Einstellungen für die %3$sSuchmaschinen%4$s."
 
-#: admin/header-checks.php:55
+#: admin/header-checks.php:58
 msgid ""
 "For example, the user-agent string indicates \"Windows\", but this header "
 "shows \"Linux\"."
@@ -250,9 +250,10 @@ msgstr ""
 msgid "if no agent is given"
 msgstr "wenn kein Agent angegeben ist"
 
-#: admin/header-checks.php:37
-msgid "If one is not present, the browser will be blocked."
-msgstr "Ist einer davon nicht vorhanden, wird der Browser geblockt."
+#: admin/header-checks.php:40
+#| msgid "If one is not present, the browser will be blocked."
+msgid "If one is not present, access will be blocked."
+msgstr "Ist einer davon nicht vorhanden, wird der Zugriff geblockt."
 
 #: admin/emergency.php:65
 msgid "If something does not work as expected, you can stop it here."
@@ -275,9 +276,9 @@ msgstr "Wenn die Datenbank lokal ist, wird auch die Tabelle gelöscht."
 msgid "if the plugin creates its table, local or remote"
 msgstr "wenn das Plugin seine Tabelle erstellt, lokal oder entfernt"
 
-#: admin/header-checks.php:46
-msgid "If the two do not match, the browser is blocked."
-msgstr "Stimmen die beiden Angaben nicht überein, wird der Browser geblockt."
+#: admin/header-checks.php:49
+msgid "If the two do not match, access will be blocked."
+msgstr "Wenn die beiden nicht übereinstimmen, wird der Zugriff geblockt."
 
 #. %s is a crawler.
 #: admin/crawler.php:50
@@ -306,7 +307,7 @@ msgstr ""
 msgid "in %"
 msgstr "in %"
 
-#: admin/header-checks.php:16
+#: admin/header-checks.php:19
 msgid ""
 "In addition to the User Agent string, there are certain headers that some "
 "browsers also send."
@@ -314,9 +315,9 @@ msgstr ""
 "Neben der User-Agent-Zeichenfolge gibt es einige Header, die manche Browser "
 "ebenfalls senden."
 
-#: admin/header-checks.php:56
-msgid "In this case, the browser is blocked."
-msgstr "In diesem Fall wird der Browser geblockt."
+#: admin/header-checks.php:59
+msgid "In this case, access is blocked."
+msgstr "In diesem Fall wird der Zugriff geblockt."
 
 #: admin/settings.php:188
 msgid "Invalid IP or hostname"
@@ -330,7 +331,7 @@ msgstr "IP Anonymisierung"
 msgid "It is working."
 msgstr "Es ist in Betrieb."
 
-#: admin/header-checks.php:45
+#: admin/header-checks.php:48
 msgid ""
 "Just like with the user agent string, you can determine the browser version "
 "from this header."
@@ -466,6 +467,10 @@ msgid ""
 msgstr ""
 "Bitte beachte, dass Chrome ab Android 10 nicht mehr unbedingt zwischen "
 "Android-Versionen unterscheidet. "
+
+#: admin/header-checks.php:16
+msgid "Please note that these accesses are not counted in the database."
+msgstr "Beachte, dass diese Zugriffe nicht in der Datenbank gezählt werden."
 
 #: admin.php:79
 msgid ""
@@ -622,7 +627,7 @@ msgid ""
 msgstr ""
 "Die Datei enthält auch IPv6-Adressen. Diese werden jedoch über DNS überprüft."
 
-#: admin/header-checks.php:41 admin/header-checks.php:50
+#: admin/header-checks.php:44 admin/header-checks.php:53
 msgid "The following Browsers have this header:"
 msgstr "Folgende Browser haben diesen Header:"
 
@@ -773,7 +778,7 @@ msgstr ""
 "Das könnte möglicherweise ein Problem im Zusammenhang mit der DSGVO "
 "darstellen."
 
-#: admin/header-checks.php:54
+#: admin/header-checks.php:57
 msgid ""
 "This header sometimes does not match the system detected from the user agent "
 "string."
