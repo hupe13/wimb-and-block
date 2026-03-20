@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad bots, ban, blocking, security, robots.txt
 Tested up to: 6.9
-Stable tag: 260314
+Stable tag: 260320
 Requires at least: 6.2
 Requires PHP: 8.1
 License: GPLv2 or later
@@ -12,7 +12,7 @@ With the help of WhatIsMyBrowser the plugin detects old and bad browsers and den
 
 == Description ==
 
-If you manage your own server, you can install programs like fail2ban and ipfilter to block bad bots. If you host WordPress with a hosting provider, you’ll have access to the web server, FTP, and the database, depending on the provider and your plan, but you generally won’t have control over these aspects.
+If you manage your own server, you can install programs like fail2ban and ipfilter to block bad bots. If you host WordPress with a hosting provider, you’ll at least have access to the web server, FTP, and the database, depending on the provider and your plan, but you generally won’t have control over these aspects.
 
 Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
 
@@ -37,6 +37,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * You can also set up other browsers.
 * Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
 * The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam and others.
+* The plugin blocks browsers like Chrome, Firefox and other without <a href="https://developer.mozilla.org/en-US/docs/Glossary/Fetch_metadata_request_header">Sec-Fetch headers</a> (Sec-Fetch-Site, Sec-Fetch-Mode, Sec-Fetch-Dest) and incorrect <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Client_hints">Client hints</a> (Sec-CH-UA, Sec-CH-UA-Platform).
 
 = About robots.txt =
 

@@ -10,9 +10,17 @@ defined( 'ABSPATH' ) || die();
 
 // Init settings fuer emergency
 function wimbblock_emergency_init() {
-	add_settings_section( 'wimbblock_emergency', '', '', 'wimbblock_emergency' );
+	add_settings_section( 'wimbblock_emergency', '', '__return_empty_string', 'wimbblock_emergency' );
 	add_settings_field( 'wimbblock_emergency', __( 'Emergency - start / stop', 'wimb-and-block' ), 'wimbblock_form_emergency', 'wimbblock_emergency', 'wimbblock_emergency' );
-	register_setting( 'wimbblock_emergency', 'wimbblock_emergency', 'wimbblock_validate_emergency' );
+	register_setting(
+		'wimbblock_emergency',
+		'wimbblock_emergency',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'wimbblock_validate_emergency',
+			'default'           => '1',
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_emergency_init' );
 

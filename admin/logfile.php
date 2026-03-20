@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die();
 
 // Logfile
 function wimbblock_logfile_init() {
-	add_settings_section( 'logfile_settings', '', '', 'wimbblock_settings_logfile' );
+	add_settings_section( 'logfile_settings', '', '__return_empty_string', 'wimbblock_settings_logfile' );
 	add_settings_field( 'wimbblock_logfile', __( 'Path of log file', 'wimb-and-block' ), 'wimbblock_logfile_form', 'wimbblock_settings_logfile', 'logfile_settings' );
 	if ( get_option( 'wimbblock_logfile' ) === false ) {
 		$wimbblock_wpdb_options = wimbblock_get_options_db();
@@ -19,7 +19,15 @@ function wimbblock_logfile_init() {
 			add_option( 'wimbblock_logfile', $logfile );
 		}
 	}
-	register_setting( 'wimbblock_settings_logfile', 'wimbblock_logfile', 'wimbblock_validate_logfile' );
+	register_setting(
+		'wimbblock_settings_logfile',
+		'wimbblock_logfile',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'wimbblock_validate_logfile',
+			'default'           => null,
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_logfile_init' );
 

@@ -10,12 +10,20 @@ defined( 'ABSPATH' ) || die();
 
 // Database
 function wimbblock_systems_init() {
-	add_settings_section( 'wimbblock_systems', '', '', 'wimbblock_systems' );
+	add_settings_section( 'wimbblock_systems', '', '__return_empty_string', 'wimbblock_systems' );
 	add_settings_field( 'wimbblock_systems', __( 'Block operating system versions smaller than', 'wimb-and-block' ), 'wimbblock_systems_form', 'wimbblock_systems', 'wimbblock_systems' );
 	if ( get_option( 'wimbblock_systems' ) === false ) {
 		add_option( 'wimbblock_systems', array() );
 	}
-	register_setting( 'wimbblock_systems', 'wimbblock_systems', 'wimbblock_systems_validate' );
+	register_setting(
+		'wimbblock_systems',
+		'wimbblock_systems',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'wimbblock_systems_validate',
+			'default'           => wimbblock_get_default_systems(),
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_systems_init' );
 
@@ -24,8 +32,8 @@ function wimbblock_systems_form() {
 	$all = wimbblock_get_all_systems();
 	$i   = 0;
 	foreach ( $all as $system => $value ) {
-		echo '<p><input type="text" size="15" name="wimbblock_systems[system' . esc_html( $i ) . ']" value="' . esc_html( $system ) . '" /> ' . "\n";
-		echo '<input type="number" size="8" name="wimbblock_systems[count' . esc_html( $i ) . ']" value="' . esc_html( $value ) . '" /></p>' . "\n";
+		echo '<p><input type="text" size="15" name="wimbblock_systems[system' . esc_html( (string) $i ) . ']" value="' . esc_html( $system ) . '" /> ' . "\n";
+		echo '<input type="number" size="8" name="wimbblock_systems[count' . esc_html( (string) $i ) . ']" value="' . esc_html( $value ) . '" /></p>' . "\n";
 		++$i;
 	}
 	// echo '<p><input type="text" size="15" name="wimbblock_systems[system' . esc_html( $i ) . ']" /> ' . "\n";

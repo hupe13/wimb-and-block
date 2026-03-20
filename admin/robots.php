@@ -8,15 +8,17 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
+global $wimbblock_basename;
+
 wp_enqueue_style(
 	'prism-css',
-	plugins_url( dirname( WIMBBLOCK_BASENAME ) . '/pkg/prism/prism.css' ),
+	plugins_url( dirname( $wimbblock_basename ) . '/pkg/prism/prism.css' ),
 	array(),
-	1
+	'1',
 );
 wp_enqueue_script(
 	'prism-js',
-	plugins_url( dirname( WIMBBLOCK_BASENAME ) . '/pkg/prism/prism.js' ),
+	plugins_url( dirname( $wimbblock_basename ) . '/pkg/prism/prism.js' ),
 	array(),
 	'1',
 	true
@@ -181,7 +183,7 @@ function wimbblock_hint_multisite() {
 			$text .= __( 'You must configure these settings on each of your domains!', 'wimb-and-block' );
 			$text .= '<ul>';
 			foreach ( $domains as $blog_id => $domain ) {
-				$text .= '<li class="adminli"><a href="' . get_site_url( $blog_id ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=robots">' . $domain . '</a></li>';
+				$text .= '<li class="adminli"><a href="' . get_site_url( (int) $blog_id ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=robots">' . $domain . '</a></li>';
 			}
 			$text .= '</ul></div></p>';
 		}
@@ -199,7 +201,7 @@ function wimbblock_goto_robots_site() {
 					wp_sprintf(
 						/* translators: %1$s and %2$s is a link. */
 						__( 'You can do it on %1$sthis site%2$s.', 'wimb-and-block' ),
-						'<a href="' . get_site_url( $multisite->blog_id ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=robots">',
+						'<a href="' . get_site_url( (int) $multisite->blog_id ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=robots">',
 						'</a>'
 					)
 				);
@@ -298,13 +300,13 @@ function wimbblock_htaccess_handle_config_form() {
 				$response = wp_remote_get( $url, array( 'user-agent' => $agent ) );
 				if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 && $agent !== 'wimb-and-block test agent' ) {
 					echo '<p>';
-					echo wp_kses_post( wp_remote_retrieve_response_code( $response ) );
+					echo wp_kses_post( (string) wp_remote_retrieve_response_code( $response ) );
 					echo ' - ';
 					echo wp_kses_post( __( 'Access is allowed - this is correct.', 'wimb-and-block' ) );
 					echo '</p>';
 				} elseif ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 404 ) {
 					echo '<p>';
-					echo wp_kses_post( wp_remote_retrieve_response_code( $response ) );
+					echo wp_kses_post( (string) wp_remote_retrieve_response_code( $response ) );
 					echo ' - ';
 					echo wp_kses_post( __( 'Access is forbidden - this is correct.', 'wimb-and-block' ) );
 					echo '</p>';

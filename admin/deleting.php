@@ -10,9 +10,17 @@ defined( 'ABSPATH' ) || die();
 
 // Init settings fuer deleting
 function wimbblock_deleting_init() {
-	add_settings_section( 'deleting_settings', '', '', 'wimbblock_settings_deleting' );
+	add_settings_section( 'deleting_settings', '', '__return_empty_string', 'wimbblock_settings_deleting' );
 	add_settings_field( 'wimbblock_deleting', __( 'Delete all plugin settings when deleting the plugin?', 'wimb-and-block' ), 'wimbblock_form_deleting', 'wimbblock_settings_deleting', 'deleting_settings' );
-	register_setting( 'wimbblock_settings_deleting', 'wimbblock_deleting', 'wimbblock_validate_deleting' );
+	register_setting(
+		'wimbblock_settings_deleting',
+		'wimbblock_deleting',
+		array(
+			'type'              => 'boolean',
+			'sanitize_callback' => 'wimbblock_validate_deleting',
+			'default'           => false,
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_deleting_init' );
 

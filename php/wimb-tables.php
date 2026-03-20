@@ -160,44 +160,42 @@ if ( is_main_site() ) {
 				}
 				$response = wp_remote_get( $url );
 				if ( ! is_wp_error( $response ) ) {
-					if ( isset( $response['body'] ) ) {
-						$json = json_decode( $response['body'] );
-						// var_dump($json->creationTime, $wimbblock_crawlers[$crawler]);
-						// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-						if ( $json->creationTime > $last ) {
-							$mgt_code = $wimb_datatable->query(
-								$wimb_datatable->prepare(
-									'DELETE FROM %i WHERE crawler = %s',
-									$wpdb_options['table_name'] . '_crawler',
-									$crawler
-								),
-							);
-							foreach ( $json->prefixes as $prefix ) {
+					$json = json_decode( wp_remote_retrieve_body( $response ) );
+					// var_dump($json->creationTime, $wimbblock_crawlers[$crawler]);
+					// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					if ( $json->creationTime > $last ) {
+						$mgt_code = $wimb_datatable->query(
+							$wimb_datatable->prepare(
+								'DELETE FROM %i WHERE crawler = %s',
+								$wpdb_options['table_name'] . '_crawler',
+								$crawler
+							),
+						);
+						foreach ( $json->prefixes as $prefix ) {
 							// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-								if ( isset( $prefix->ipv4Prefix ) ) {
-									// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-									list($network, $mask) = explode( '/', $prefix->ipv4Prefix );
-									$begin                = long2ip( ip2long( $network ) & ( -1 << ( 32 - $mask ) ) );
-									$end                  = long2ip( ip2long( $network ) + pow( 2, ( 32 - $mask ) ) - 1 );
-
-									$mgt_code = $wimb_datatable->query(
-										$wimb_datatable->prepare(
-											'INSERT INTO %i ( crawler, begin, int_begin, end, int_end ) VALUES ( %s,%s,%s,%s,%s )',
-											$wpdb_options['table_name'] . '_crawler',
-											$crawler,
-											$begin,
-											ip2long( $begin ),
-											$end,
-											ip2long( $end ),
-										),
-									);
-								}
+							if ( isset( $prefix->ipv4Prefix ) ) {
+								// https://stackoverflow.com/questions/4931721/getting-list-ips-from-cidr-notation-in-php
+								// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+								list($network, $mask) = explode( '/', $prefix->ipv4Prefix );
+								$begin                = long2ip( ( ip2long( $network ) ) & ( ( -1 << ( 32 - (int) $mask ) ) ) );
+								$end                  = long2ip( ( ip2long( $network ) ) + pow( 2, ( 32 - (int) $mask ) ) - 1 );
+								$mgt_code             = $wimb_datatable->query(
+									$wimb_datatable->prepare(
+										'INSERT INTO %i ( crawler, begin, int_begin, end, int_end ) VALUES ( %s,%s,%s,%s,%s )',
+										$wpdb_options['table_name'] . '_crawler',
+										$crawler,
+										$begin,
+										ip2long( $begin ),
+										$end,
+										ip2long( $end ),
+									),
+								);
 							}
-							// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
-							$wimbblock_crawlers[ $crawler ] = $json->creationTime;
-							update_option( 'wimbblock_crawlers', $wimbblock_crawlers );
-							wimbblock_error_log( 'Crawler updated - ' . $crawler . ' * ' . $wimbblock_crawlers[ $crawler ] );
 						}
+						// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+						$wimbblock_crawlers[ $crawler ] = $json->creationTime;
+						update_option( 'wimbblock_crawlers', $wimbblock_crawlers );
+						wimbblock_error_log( 'Crawler updated - ' . $crawler . ' * ' . $wimbblock_crawlers[ $crawler ] );
 					}
 				}
 			}

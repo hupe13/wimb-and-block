@@ -4,7 +4,7 @@ With the help of WhatIsMyBrowser the plugin detects old and bad browsers and den
 
 ## Description
 
-If you manage your own server, you can install programs like fail2ban and ipfilter to block bad bots. If you host WordPress with a hosting provider, you’ll have access to the web server, FTP, and the database, depending on the provider and your plan, but you generally won’t have control over these aspects.
+If you manage your own server, you can install programs like fail2ban and ipfilter to block bad bots. If you host WordPress with a hosting provider, you’ll at least have access to the web server, FTP, and the database, depending on the provider and your plan, but you generally won’t have control over these aspects.
 
 Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
 
@@ -38,6 +38,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * You can also set up other browsers.
 * Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
 * The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam and others.
+* The plugin blocks browsers like Chrome, Firefox and other without [Sec-Fetch headers](https://developer.mozilla.org/en-US/docs/Glossary/Fetch_metadata_request_header) (Sec-Fetch-Site, Sec-Fetch-Mode, Sec-Fetch-Dest) and incorrect [Client hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Client_hints) (Sec-CH-UA, Sec-CH-UA-Platform).
 
 ### About robots.txt
 
@@ -46,10 +47,6 @@ With this information, the plugin attempts to detect old and bad browsers and de
 ### Logging
 
 * The logging can be very detailed. Please check the logs and the WIMB table regularly.
-
-### Tests
-
-* There are some [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Dest): Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site. These are tested for existence. However, I am not yet sure whether I should block requests from browsers where they should exist but are not present. I don't have enough examples for that. So far, they are being logged. I would appreciate any feedback.
 
 ## Screenshots
 

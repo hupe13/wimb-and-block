@@ -10,14 +10,23 @@ defined( 'ABSPATH' ) || die();
 
 // Crawlers
 function wimbblock_crawlers_init() {
-	add_settings_section( 'wimbblock_crawlers', '', '', 'wimbblock_crawlers' );
-	add_settings_field( 'wimbblock_crawlers', '', '', 'wimbblock_crawlers', 'wimbblock_crawlers' );
+	add_settings_section( 'wimbblock_crawlers', '', '__return_empty_string', 'wimbblock_crawlers' );
+	add_settings_field( 'wimbblock_crawlers', '', '__return_empty_string', 'wimbblock_crawlers', 'wimbblock_crawlers' );
 	if ( get_option( 'wimbblock_crawlers' ) === false ) {
 		add_option( 'wimbblock_crawlers', array() );
 	}
-	register_setting( 'wimbblock_crawlers', 'wimbblock_crawlers', 'wimbblock_crawlers_validate' );
+	register_setting(
+		'wimbblock_crawlers',
+		'wimbblock_crawlers',
+		array(
+			'type'    => 'array',
+			'default' => array(),
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_crawlers_init' );
+
+// https://developers.openai.com/api/docs/bots
 
 function wimbblock_crawlers_params() {
 	$params = array(
@@ -44,7 +53,7 @@ function wimbblock_crawlers_params() {
 				'Google-InspectionTool',
 				'Storebot-Google',
 			),
-			'json'        => 'https://developers.google.com/search/apis/ipranges/googlebot.json',
+			'json'        => 'https://developers.google.com/static/crawling/ipranges/common-crawlers.json',
 			'json-notice' => __( 'The file also contains IPv6 addresses. However, these are verified via DNS.', 'wimb-and-block' ),
 			'names'       => array(
 				'/crawl-.*.googlebot.com/',

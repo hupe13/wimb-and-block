@@ -9,9 +9,10 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_get_option( $option ) {
+	global $wimbblock_basename;
 	$wimbblock_option = get_option( $option );
 	if ( is_multisite() && ! is_main_site() ) {
-		if ( is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
+		if ( is_plugin_active_for_network( $wimbblock_basename ) ) {
 			$wimbblock_option = get_blog_option( get_main_site_id(), $option );
 		}
 	}
@@ -69,7 +70,7 @@ function wimbblock_get_all_browsers() {
 	$customs  = wimbblock_get_option( 'wimbblock_browsers' );
 
 	$out = array();
-	if ( $customs !== false && count( $customs ) > 0 ) {
+	if ( is_array( $customs ) && count( $customs ) > 0 ) {
 		foreach ( $defaults as $name => $default ) {
 			if ( array_key_exists( $name, $customs ) ) {
 				$out[ $name ] = $customs[ $name ];
@@ -105,7 +106,7 @@ function wimbblock_get_all_systems() {
 	$customs  = wimbblock_get_option( 'wimbblock_systems' );
 
 	$out = array();
-	if ( $customs !== false && count( $customs ) > 0 ) {
+	if ( is_array( $customs ) && count( $customs ) > 0 ) {
 		foreach ( $defaults as $name => $default ) {
 			if ( array_key_exists( $name, $customs ) ) {
 				$out[ $name ] = $customs[ $name ];
@@ -167,9 +168,20 @@ function wimbblock_logging_levels() {
 			'default' => true,
 		),
 		array(
+			'param'   => 'suspect',
+			'desc'    => 'Header checks',
+			'help'    => wp_sprintf(
+				/* translators: %1$s are browser names and %2$s are header names. */
+				__( 'Log when the browser is blocked because of %1$sheader checks%2$s.', 'wimb-and-block' ),
+				'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=headers' ) . '">',
+				'</a>'
+			),
+			'default' => true,
+		),
+		array(
 			'param'   => 'tests',
-			'desc'    => 'Testing',
-			'help'    => __( 'Log a few tests.', 'wimb-and-block' ),
+			'desc'    => 'Tests',
+			'help'    => __( 'Log tests for development purposes.', 'wimb-and-block' ),
 			'default' => false,
 		),
 	);

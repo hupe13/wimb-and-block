@@ -41,28 +41,20 @@ function wimbblock_whatsmybrowser( $user_agent, $api_key = '' ) {
 		if ( is_wp_error( $result ) ) {
 			$wimberror = $result->get_error_message();
 		} else {
-			if ( isset( $result['body'] ) ) {
-				// -- Try to decode the api response as json
-				$result_json = json_decode( $result['body'], true );
-				if ( isset( $result_json['parse'] ) ) {
-					$parse = $result_json['parse'];
-					// Now you can do whatever you need to do with the parse result
-					$result = array(
-						'software' => is_null( $parse['simple_software_string'] ) ? '' : $parse['simple_software_string'],
-						'system'   => is_null( $parse['operating_system'] ) ? '' : $parse['operating_system'],
-						'version'  => is_null( $parse['software_version'] ) ? '' : $parse['software_version'],
-					);
-					return( $result );
-				} elseif ( isset( $result_json['result'] ) ) {
-					$wimberror = $result_json['result']['message_code'];
-					// } else {
-					//  echo '<pre>';
-					//   var_dump($result, $result_json); wp_die("tot");
-					//  echo '</pre>';
-				}
-			} else {
-				$wimberror = 'no wimb body';
+			$result_json = json_decode( wp_remote_retrieve_body( $result ), true );
+			if ( isset( $result_json['parse'] ) ) {
+				$parse = $result_json['parse'];
+				// Now you can do whatever you need to do with the parse result
+				$result = array(
+					'software' => is_null( $parse['simple_software_string'] ) ? '' : $parse['simple_software_string'],
+					'system'   => is_null( $parse['operating_system'] ) ? '' : $parse['operating_system'],
+					'version'  => is_null( $parse['software_version'] ) ? '' : $parse['software_version'],
+				);
+				return( $result );
+			} elseif ( isset( $result_json['result'] ) ) {
+				$wimberror = $result_json['result']['message_code'];
 			}
+
 			wimbblock_error_log( 'Could not get wimb data: ' . $wimberror . ' * ' . $user_agent, true );
 			$result = array(
 				'software' => 'none',

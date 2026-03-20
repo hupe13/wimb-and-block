@@ -29,50 +29,43 @@ function wimbblock_uninstall_delete_options() {
 
 global $wpdb;
 // Erstmal alle Einstellungen holen, bevor sie gelöscht werden.
-if ( is_main_site() ) {
-	$wimbblock_wpdb_options = wimbblock_get_option( 'wimbblock_settings' );
-	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
-	$wimbblock_local        = $wimbblock_wpdb_options['location'];
-}
 
-if ( is_multisite() ) {
-	switch_to_blog( get_main_site_id() );
-	$wimbblock_should_delete = get_option( 'wimbblock_deleting' );
-	restore_current_blog();
-	if ( ( ! ( isset( $wimbblock_should_delete['on'] ) && $wimbblock_should_delete['on'] === '0' ) ) && $wimbblock_should_delete !== false ) {
-		foreach ( get_sites() as $wimbblock_site ) {
-			switch_to_blog( $wimbblock_site->blog_id );
+$wimbblock_wpdb_options  = get_option( 'wimbblock_settings' );
+$wimbblock_table_name    = $wimbblock_wpdb_options['table_name'];
+$wimbblock_local         = $wimbblock_wpdb_options['location'];
+$wimbblock_should_delete = get_option( 'wimbblock_deleting' );
+
+if ( $wimbblock_should_delete !== false ) {
+	if ( isset( $wimbblock_should_delete['on'] ) && $wimbblock_should_delete['on'] === '1' ) {
+		if ( is_multisite() ) {
+			$wimbblock_sites = get_sites( array( 'fields' => 'ids' ) );
+			foreach ( $wimbblock_sites as $wimbblock_id ) {
+				switch_to_blog( $wimbblock_id );
+				wimbblock_uninstall_delete_options();
+				restore_current_blog();
+			}
+		} else {
 			wimbblock_uninstall_delete_options();
-			restore_current_blog();
 		}
 	}
-} else {
-	$wimbblock_should_delete = get_option( 'wimbblock_deleting' );
-	if ( ( ! ( isset( $wimbblock_should_delete['on'] ) && $wimbblock_should_delete['on'] === '0' ) ) && $wimbblock_should_delete !== false ) {
-		wimbblock_uninstall_delete_options();
-	}
-}
 
-if ( is_main_site() ) {
-	if ( ( ! ( isset( $wimbblock_should_delete['on'] ) && $wimbblock_should_delete['on'] === '0' ) ) && $wimbblock_should_delete !== false ) {
-		$wimbblock_local = $wimbblock_wpdb_options['location'];
-		if ( $wimbblock_local === 'local' ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->query(
-				$wpdb->prepare(
-					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
-					'DROP TABLE IF EXISTS %i',
-					$wimbblock_table_name
-				)
-			);
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->query(
-				$wpdb->prepare(
-					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
-					'DROP TABLE IF EXISTS %i',
-					$wimbblock_table_name . '_crawler'
-				)
-			);
-		}
+	$wimbblock_local = $wimbblock_wpdb_options['location'];
+	if ( $wimbblock_local === 'local' ) {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->query(
+			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+				'DROP TABLE IF EXISTS %i',
+				$wimbblock_table_name
+			)
+		);
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->query(
+			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+				'DROP TABLE IF EXISTS %i',
+				$wimbblock_table_name . '_crawler'
+			)
+		);
 	}
 }

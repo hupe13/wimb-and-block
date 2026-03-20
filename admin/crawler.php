@@ -9,12 +9,19 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_searchengines_init() {
-	add_settings_section( 'wimbblock_searchengines', '', '', 'wimbblock_searchengines' );
+	add_settings_section( 'wimbblock_searchengines', '', '__return_empty_string', 'wimbblock_searchengines' );
 	add_settings_field( 'wimbblock_searchengines', '', 'wimbblock_crawler_form', 'wimbblock_searchengines', 'wimbblock_searchengines' );
 	if ( get_option( 'wimbblock_searchengines' ) === false ) {
 		add_option( 'wimbblock_searchengines', array() );
 	}
-	register_setting( 'wimbblock_searchengines', 'wimbblock_searchengines', 'wimbblock_searchengines_validate' );
+	register_setting(
+		'wimbblock_searchengines',
+		'wimbblock_searchengines',
+		array(
+			'type'    => 'array',
+			'default' => array(),
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_searchengines_init' );
 
@@ -113,6 +120,7 @@ function wimbblock_crawler_help() {
 }
 
 function wimbblock_crawler_help_elsewhere() {
+	global $wimbblock_basename;
 	$text    = '<h3>' . __( 'Settings Search Engines', 'wimb-and-block' ) . '</h3>';
 	$options = wimbblock_get_options_db();
 	if ( $options['location'] === 'remote' && $options['rotate'] !== 'yes' ) {
@@ -123,7 +131,7 @@ function wimbblock_crawler_help_elsewhere() {
 				__( 'Rotate the table on this site', 'wimb-and-block' )
 			) .
 			'</div></p>';
-	} elseif ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) {
+	} elseif ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) {
 			$text .= '<p>';
 			$text .=
 				wp_sprintf(

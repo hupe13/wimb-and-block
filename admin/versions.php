@@ -10,12 +10,20 @@ defined( 'ABSPATH' ) || die();
 
 // Database
 function wimbblock_browsers_init() {
-	add_settings_section( 'wimbblock_browsers', '', '', 'wimbblock_browsers' );
+	add_settings_section( 'wimbblock_browsers', '', '__return_empty_string', 'wimbblock_browsers' );
 	add_settings_field( 'wimbblock_browsers', __( 'Block browser versions smaller than', 'wimb-and-block' ), 'wimbblock_browsers_form', 'wimbblock_browsers', 'wimbblock_browsers' );
 	if ( get_option( 'wimbblock_browsers' ) === false ) {
 		add_option( 'wimbblock_browsers', array() );
 	}
-	register_setting( 'wimbblock_browsers', 'wimbblock_browsers', 'wimbblock_browsers_validate' );
+	register_setting(
+		'wimbblock_browsers',
+		'wimbblock_browsers',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'wimbblock_browsers_validate',
+			'default'           => wimbblock_get_default_browsers(),
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_browsers_init' );
 
@@ -24,12 +32,12 @@ function wimbblock_browsers_form() {
 	$all = wimbblock_get_all_browsers();
 	$i   = 0;
 	foreach ( $all as $browser => $value ) {
-		echo '<p><input type="text" size="15" name="wimbblock_browsers[browser' . esc_html( $i ) . ']" value="' . esc_html( $browser ) . '" /> ' . "\n";
-		echo '<input type="number" size="8" name="wimbblock_browsers[count' . esc_html( $i ) . ']" value="' . esc_html( $value ) . '" /></p>' . "\n";
+		echo '<p><input type="text" size="15" name="wimbblock_browsers[browser' . esc_attr( (string) $i ) . ']" value="' . esc_html( $browser ) . '" /> ' . "\n";
+		echo '<input type="number" size="8" name="wimbblock_browsers[count' . esc_attr( (string) $i ) . ']" value="' . esc_html( $value ) . '" /></p>' . "\n";
 		++$i;
 	}
-	echo '<p><input type="text" size="15" name="wimbblock_browsers[browser' . esc_html( $i ) . ']" /> ' . "\n";
-	echo '<input type="number" size="8" name="wimbblock_browsers[count' . esc_html( $i ) . ']" /></p>' . "\n";
+	echo '<p><input type="text" size="15" name="wimbblock_browsers[browser' . esc_attr( (string) $i ) . ']" /> ' . "\n";
+	echo '<input type="number" size="8" name="wimbblock_browsers[count' . esc_attr( (string) $i ) . ']" /></p>' . "\n";
 }
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.

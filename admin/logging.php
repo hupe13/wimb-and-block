@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_log_init() {
-	add_settings_section( 'wimbblock_log_settings', '', '', 'wimbblock_log_settings' );
+	add_settings_section( 'wimbblock_log_settings', '', '__return_empty_string', 'wimbblock_log_settings' );
 	$fields = wimbblock_logging_levels();
 	// var_dump($fields);
 	foreach ( $fields as $field ) {
@@ -22,7 +22,15 @@ function wimbblock_log_init() {
 			$field['param']
 		);
 	}
-	register_setting( 'wimbblock_log_settings', 'wimbblock_log', 'wimbblock_validate_logging' );
+	register_setting(
+		'wimbblock_log_settings',
+		'wimbblock_log',
+		array(
+			'type'              => 'array',
+			'sanitize_callback' => 'wimbblock_validate_logging',
+			'default'           => array(),
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_log_init' );
 
@@ -68,6 +76,7 @@ function wimbblock_validate_logging( $options ) {
 
 // Draw the menu page itself
 function wimbblock_log_admin_page() {
+	global $wimbblock_basename;
 	$options = wimbblock_get_options_db();
 	if ( $options['location'] === 'remote' ) {
 		echo '<p><div class="notice notice-info">' . wp_kses_post( __( 'You must configure these settings on each of your websites that use this database!', 'wimb-and-block' ) ) . '</div></p>';
@@ -80,7 +89,7 @@ function wimbblock_log_admin_page() {
 	settings_fields( 'wimbblock_settings_logfile' );
 	do_settings_sections( 'wimbblock_settings_logfile' );
 
-	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 		if ( current_user_can( 'manage_options' ) ) {
 			wp_nonce_field( 'wimbblock_log', 'wimbblock_logfile_nonce' );
 			submit_button();
@@ -97,7 +106,7 @@ function wimbblock_log_admin_page() {
 	}
 	settings_fields( 'wimbblock_anon_settings' );
 	do_settings_sections( 'wimbblock_anon_settings' );
-	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 		if ( current_user_can( 'manage_options' ) ) {
 			wp_nonce_field( 'wimbblock_anon', 'wimbblock_anon_nonce' );
 			submit_button();
@@ -115,7 +124,7 @@ function wimbblock_log_admin_page() {
 	}
 	settings_fields( 'wimbblock_log_settings' );
 	do_settings_sections( 'wimbblock_log_settings' );
-	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( WIMBBLOCK_BASENAME ) ) ) {
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 		if ( current_user_can( 'manage_options' ) ) {
 			wp_nonce_field( 'wimbblock_log', 'wimbblock_log_nonce' );
 			submit_button();

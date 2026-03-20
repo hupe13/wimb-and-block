@@ -10,20 +10,28 @@ defined( 'ABSPATH' ) || die();
 
 // Database
 function wimbblock_init() {
-	add_settings_section( 'wimbblock_settings', '', '', 'wimbblock_settings' );
-	add_settings_field( 'wimbblock_settings[error]', '', 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'error' );
-	add_settings_field( 'wimbblock_settings[wimb_api]', __( 'WIMB API Key', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'wimb_api' );
-	add_settings_field( 'wimbblock_settings[location]', __( 'Local WP database or remote database', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'location' );
-	add_settings_field( 'wimbblock_settings[table_name]', __( 'WIMB table name', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'table_name' );
-	add_settings_field( 'wimbblock_settings[db_user]', __( 'Remote database username', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'db_user' );
-	add_settings_field( 'wimbblock_settings[db_password]', __( 'Remote database password', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'db_password' );
-	add_settings_field( 'wimbblock_settings[db_name]', __( 'Remote database name', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'db_name' );
-	add_settings_field( 'wimbblock_settings[db_host]', __( 'Remote database hostname', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'db_host' );
-	add_settings_field( 'wimbblock_settings[rotate]', __( 'Rotate the table on this site', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', 'rotate' );
+	add_settings_section( 'wimbblock_settings', '', '__return_empty_string', 'wimbblock_settings' );
+	add_settings_field( 'wimbblock_settings[error]', '', 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'error' ) );
+	add_settings_field( 'wimbblock_settings[wimb_api]', __( 'WIMB API Key', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'wimb_api' ) );
+	add_settings_field( 'wimbblock_settings[location]', __( 'Local WP database or remote database', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'location' ) );
+	add_settings_field( 'wimbblock_settings[table_name]', __( 'WIMB table name', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'table_name' ) );
+	add_settings_field( 'wimbblock_settings[db_user]', __( 'Remote database username', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'db_user' ) );
+	add_settings_field( 'wimbblock_settings[db_password]', __( 'Remote database password', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'db_password' ) );
+	add_settings_field( 'wimbblock_settings[db_name]', __( 'Remote database name', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'db_name' ) );
+	add_settings_field( 'wimbblock_settings[db_host]', __( 'Remote database hostname', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'db_host' ) );
+	add_settings_field( 'wimbblock_settings[rotate]', __( 'Rotate the table on this site', 'wimb-and-block' ), 'wimbblock_form', 'wimbblock_settings', 'wimbblock_settings', array( 'label_for' => 'rotate' ) );
 	if ( get_option( 'wimbblock_settings' ) === false ) {
 		add_option( 'wimbblock_settings', array() );
 	}
-	register_setting( 'wimbblock_settings', 'wimbblock_settings', 'wimbblock_validate' );
+	register_setting(
+		'wimbblock_settings',
+		'wimbblock_settings',
+		array(
+			'type'              => 'array',
+			'sanitize_callback' => 'wimbblock_validate',
+			'default'           => array(),
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_init' );
 
@@ -38,14 +46,14 @@ function wimbblock_form( $field ) {
 		$disabled = '';
 	}
 	$input_extras = ' size=20 ';
-	if ( $field === 'error' ) {
-		echo '<input type="hidden" name="wimbblock_settings[' . esc_attr( $field ) . ']" value="' . esc_attr( $options[ $field ] ) . '" />';
+	if ( $field['label_for'] === 'error' ) {
+		echo '<input type="hidden" name="wimbblock_settings[' . esc_attr( $field['label_for'] ) . ']" value="' . esc_attr( $options[ $field['label_for'] ] ) . '" />';
 		if ( $options['error'] === '2' && $options['location'] === 'remote' ) {
 			echo '<div class="error notice">';
 			echo esc_html( __( 'Access to the remote database seems to be working fine. Please resubmit the form.', 'wimb-and-block' ) );
 			echo '</div>' . "\r\n";
 		}
-	} elseif ( $field === 'location' ) {
+	} elseif ( $field['label_for'] === 'location' ) {
 
 		echo '<p>';
 		esc_html_e( 'You need a table in a database. This can be a table in the default WordPress database (local) or in a remote database.', 'wimb-and-block' );
@@ -57,7 +65,7 @@ function wimbblock_form( $field ) {
 		$locations[] = 'local';
 		$locations[] = 'remote';
 
-		echo '<select name="wimbblock_settings[' . esc_attr( $field ) . ']">' . "\r\n";
+		echo '<select name="wimbblock_settings[' . esc_attr( $field['label_for'] ) . ']">' . "\r\n";
 		foreach ( $locations as $location ) {
 			if ( $location === $options['location'] ) {
 				echo '<option selected ';
@@ -67,7 +75,7 @@ function wimbblock_form( $field ) {
 			echo 'value="' . esc_attr( $location ) . '">' . esc_attr( $location ) . '</option>' . "\r\n";
 		}
 		echo '</select>' . "\r\n";
-	} elseif ( $field === 'rotate' ) {
+	} elseif ( $field['label_for'] === 'rotate' ) {
 		echo '<p>';
 		esc_html_e( 'If the database is local, it is automatically set to "yes". For remote databases, set it to "yes" on exactly one WP instance.', 'wimb-and-block' );
 		echo '</p>' . "\r\n";
@@ -89,11 +97,11 @@ function wimbblock_form( $field ) {
 		}
 		echo '</select>' . "\r\n";
 	} else {
-		if ( $field === 'wimb_api' ) {
+		if ( $field['label_for'] === 'wimb_api' ) {
 			$input_extras = ' minlength=32 maxlength=32 size=32 ';
 			echo '<p>';
 			echo wp_kses_post(
-				sprintf(
+				wp_sprintf(
 					/* translators: %s is a link . */
 					__( 'Get an API key for a %s.', 'wimb-and-block' ),
 					'<a href="https://developers.whatismybrowser.com/api/signup/?plan=basic">Basic Application Plan</a>'
@@ -101,8 +109,8 @@ function wimbblock_form( $field ) {
 			);
 			echo '</p>' . "\r\n";
 		}
-		echo '<input ' . esc_attr( $readonly ) . esc_attr( $input_extras ) . ' type="text" name="wimbblock_settings[' . esc_attr( $field ) . ']" ';
-		echo ' value="' . esc_attr( $options[ $field ] ) . '" />' . "\r\n";
+		echo '<input ' . esc_attr( $readonly ) . esc_attr( $input_extras ) . ' type="text" name="wimbblock_settings[' . esc_attr( $field['label_for'] ) . ']" ';
+		echo ' value="' . esc_attr( $options[ $field['label_for'] ] ) . '" />' . "\r\n";
 	}
 }
 

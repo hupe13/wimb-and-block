@@ -9,9 +9,17 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_anon_init() {
-	add_settings_section( 'wimbblock_anon_settings', '', '', 'wimbblock_anon_settings' );
+	add_settings_section( 'wimbblock_anon_settings', '', '__return_empty_string', 'wimbblock_anon_settings' );
 	add_settings_field( 'wimbblock_anon', __( 'IP anonymization', 'wimb-and-block' ), 'wimbblock_form_anon', 'wimbblock_anon_settings', 'wimbblock_anon_settings' );
-	register_setting( 'wimbblock_anon_settings', 'wimbblock_anon', 'wimbblock_validate_anon' );
+	register_setting(
+		'wimbblock_anon_settings',
+		'wimbblock_anon',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'wimbblock_validate_anon',
+			'default'           => 'all',
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_anon_init' );
 

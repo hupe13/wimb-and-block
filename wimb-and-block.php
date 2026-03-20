@@ -3,7 +3,7 @@
  * Plugin Name:       Block old browser versions and suspicious browsers
  * Plugin URI:        https://leafext.de/hp/wimb/
  * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
- * Version:           260314
+ * Version:           260320
  * Requires at least: 6.2
  * Requires PHP:      8.1
  * Author:            hupe13
@@ -20,7 +20,8 @@
 // Direktzugriff auf diese Datei verhindern:
 defined( 'ABSPATH' ) || die();
 
-define( 'WIMBBLOCK_BASENAME', plugin_basename( __FILE__ ) ); // wimb-and-block/wimb-and-block.php
+global $wimbblock_basename;
+$wimbblock_basename = plugin_basename( __FILE__ ); // wimb-and-block/wimb-and-block.php
 define( 'WIMBBLOCK_NAME', basename( __DIR__ ) ); // wimb-and-block
 
 require_once __DIR__ . '/php/wimb-options.php';
@@ -58,16 +59,16 @@ function wimbblock_add_action_links( $actions ) {
 	$actions[] = '<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMBBLOCK_NAME ) . '">' . esc_html__( 'Settings', 'wimb-and-block' ) . '</a>';
 	return $actions;
 }
-add_filter( 'plugin_action_links_' . WIMBBLOCK_BASENAME, 'wimbblock_add_action_links' );
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wimbblock_add_action_links' );
 
 // Add settings to network plugin page
 function wimbblock_network_add_action_links( $actions, $plugin ) {
-	if ( $plugin === WIMBBLOCK_BASENAME ) {
+	if ( $plugin === plugin_basename( __FILE__ ) ) {
 		$actions[] = '<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMBBLOCK_NAME ) . '">' . esc_html__( 'Settings', 'wimb-and-block' ) . '</a>';
 	}
 	return $actions;
 }
-add_filter( 'network_admin_plugin_action_links', 'wimbblock_network_add_action_links', 10, 4 );
+add_filter( 'network_admin_plugin_action_links', 'wimbblock_network_add_action_links', 10, 2 );
 
 /**
  * Deactivation hook.
@@ -96,5 +97,5 @@ if ( ! function_exists( 'wimbblock_disable_activation' ) ) {
 		return $actions;
 	}
 }
-add_filter( 'network_admin_plugin_action_links', 'wimbblock_disable_activation', 10, 4 );
-add_filter( 'plugin_action_links', 'wimbblock_disable_activation', 10, 4 );
+add_filter( 'network_admin_plugin_action_links', 'wimbblock_disable_activation', 10, 2 );
+add_filter( 'plugin_action_links', 'wimbblock_disable_activation', 10, 2 );

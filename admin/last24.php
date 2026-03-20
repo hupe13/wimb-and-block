@@ -199,7 +199,7 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 
 		$class = '';
 		// var_dump($row_vals); wp_die('tot');
-		if ( $entry['block'] === '0' && $entry['block_1'] === '0' && $entry['block_2'] === '0' && $entry['block_3'] === '0' ) {
+		if ( $entry['block'] === '0' ) {
 			if ( $alternate ) {
 				$alternate = false;
 				$class     = ' class="greenw04"';
@@ -207,7 +207,7 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 				$alternate = true;
 				$class     = ' class="greenw02"';
 			}
-		} elseif ( $entry['robots'] > 0 && ( $entry['block'] > 1 || $entry['block_1'] > 1 || $entry['block_2'] > 1 || $entry['block_3'] > 1 ) ) {
+		} elseif ( $entry['robots'] > 0 && $entry['block'] > 1 ) {
 			if ( $alternate ) {
 				$alternate = false;
 				$class     = ' class="red04"';

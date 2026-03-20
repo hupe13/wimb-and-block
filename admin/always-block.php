@@ -10,24 +10,34 @@ defined( 'ABSPATH' ) || die();
 
 // Database
 function wimbblock_always_init() {
-	add_settings_section( 'wimbblock_always', '', '', 'wimbblock_always' );
+	add_settings_section( 'wimbblock_always', '', '__return_empty_string', 'wimbblock_always' );
 	add_settings_field( 'wimbblock_always', __( 'Always block browsers with this strings', 'wimb-and-block' ), 'wimbblock_always_form', 'wimbblock_always', 'wimbblock_always' );
 	if ( get_option( 'wimbblock_always' ) === false ) {
 		add_option( 'wimbblock_always', array() );
 	}
-	register_setting( 'wimbblock_always', 'wimbblock_always', 'wimbblock_always_validate' );
+	register_setting(
+		'wimbblock_always',
+		'wimbblock_always',
+		array(
+			'type'              => 'array',
+			'sanitize_callback' => 'wimbblock_always_validate',
+			'default'           => array(),
+		)
+	);
 }
 add_action( 'admin_init', 'wimbblock_always_init' );
 
 // Baue Abfrage der Params
 function wimbblock_always_form() {
-	$all = wimbblock_get_always( 'wimbblock_always' );
+	$all = wimbblock_get_always();
 	$i   = 0;
 	foreach ( $all as $browser ) {
-		echo '<p><input type="text" size="15" name="wimbblock_always[browser' . esc_html( $i ) . ']" value="' . esc_html( $browser ) . '" /> ' . "\n";
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<p><input type="text" size="15" name="wimbblock_always[' . $i . ']" value="' . esc_html( $browser ) . '" /> ' . "\n";
 		++$i;
 	}
-	echo '<p><input type="text" size="15" name="wimbblock_always[browser' . esc_html( $i ) . ']" /> ' . "\n";
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<p><input type="text" size="15" name="wimbblock_always[' . $i . ']" /> ' . "\n";
 }
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
@@ -38,8 +48,8 @@ function wimbblock_always_validate( $params ) {
 			$newparams = array();
 			$last      = count( $params );
 			for ( $i = 0; $i < $last; $i++ ) {
-				if ( $params[ 'browser' . $i ] !== '' ) {
-					$newparams[] = $params[ 'browser' . $i ];
+				if ( $params[ $i ] !== '' ) {
+					$newparams[] = $params[ $i ];
 				}
 			}
 			return $newparams;
