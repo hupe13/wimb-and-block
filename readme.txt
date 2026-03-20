@@ -21,13 +21,12 @@ The plugin sends with an API the User Agent string of every browser that accesse
 * Software Name & Version
 * Operating System Name & Version
 
-<a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>
-
 With this information, the plugin attempts to detect old and bad browsers and denies them access to your website.
 
 = HowTo =
 
 * Go to <a href="https://developers.whatismybrowser.com/api/pricing/">What is my browser?</a> and sign up to the WhatIsMyBrowser.com API for a Basic (free) Application Plan.
+* Take care about the <a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>.
 * You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.
 * The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table.
 * Browsers are blocked if the browser and/or system are outdated:
