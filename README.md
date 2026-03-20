@@ -20,7 +20,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * Go to <a href="https://developers.whatismybrowser.com/api/pricing/">What is my browser?</a> and sign up to the WhatIsMyBrowser.com API for a Basic (free) Application Plan.
 * Take care about the <a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>.
 * You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.
-* The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored a table.
+* The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored this table.
 
     ![example entries](.wordpress-org/good.jpg)
 
