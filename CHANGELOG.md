@@ -1,4 +1,4 @@
-### 2603xx / 2.0
+### 260321 / 2.0
 
 * rework search engines, see settings in admin backend
 * block browsers like Chrome, Firefox and other without [Sec-Fetch headers](https://developer.mozilla.org/en-US/docs/Glossary/Fetch_metadata_request_header) and incorrect [Client hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Client_hints) (Sec-CH-UA, Sec-CH-UA-Platform)
