@@ -113,8 +113,11 @@ function wimbblock_crawler_help() {
 		}
 	}
 
-	$text .= '<p>' . implode( ', ', $dns_only ) . ' ' . __( 'only offer verification via DNS.', 'wimb-and-block' ) . '</p>';
-	// $text .= '<p>' . __( '', 'wimb-and-block' ) . '</p>';
+	$text .= '<p>' . wp_sprintf(
+		/* translators: %1$s are crawlers. */
+		__( '%s only offer verification via DNS.', 'wimb-and-block' ),
+		implode( ', ', $dns_only )
+	) . '</p>';
 
 	echo wp_kses_post( $text );
 }
@@ -143,36 +146,54 @@ function wimbblock_crawler_help_elsewhere() {
 			$text .= '</p>';
 	}
 
-	$jsons        = wimbblock_get_allowed_jsons();
-	$jsons_true   = wimbblock_set_transients_crawlers_in_table();
 	$params       = wimbblock_crawlers_params();
 	$dns_only     = array();
-	$json_checked = array();
-	$json_dns     = array();
+	$all_crawlers = array();
 
 	foreach ( $params as $crawler => $value ) {
 		if ( $value['json'] === '' ) {
 			$dns_only[] = $crawler;
 		} else {
-			$json_dns[] = $crawler;
+			$all_crawlers[] = $crawler;
 		}
 	}
 
-	$text .= '<ul><li class="adminli">' .
-	implode( ', ', $dns_only ) . ' ' .
-	__( 'only offer verification via DNS.', 'wimb-and-block' ) . '</li>';
+	$crawlers = get_transient( 'wimbblock_crawlers' );
+	if ( $crawlers === false ) {
+		$crawlers = wimbblock_set_transients_crawlers_in_table();
+	}
+	$in_table = array();
+	foreach ( $crawlers as $crawler ) {
+		$in_table[] = $crawler;
+	}
+
+	$via_dns = array_diff( $all_crawlers, $in_table );
+
 	$text .= '<li class="adminli">' .
 	wp_sprintf(
-	/* translators: %1$s are crawlers. */
-		__( 'The IP addresses of %1$s are validated via DNS.', 'wimb-and-block' ),
-		implode( ', ', $json_dns )
+		/* translators: %1$s are crawlers. */
+		__( '%s only offer verification via DNS.', 'wimb-and-block' ),
+		implode( ', ', $dns_only )
 	) . '</li>';
-	$text .= '<li class="adminli">' .
-	wp_sprintf(
-	/* translators: %1$s are crawlers. */
-		__( 'The IP addresses of %1$s are validated via JSON files.', 'wimb-and-block' ),
-		implode( ', ', $jsons_true )
-	) . '</li></ul>';
+
+	if ( count( $in_table ) > 0 ) {
+		$text .= '<li class="adminli">' .
+		wp_sprintf(
+			/* translators: %1$s are crawlers. */
+			__( 'The IP addresses of %1$s are validated via JSON files.', 'wimb-and-block' ),
+			implode( ', ', $in_table )
+		) . '</li>';
+	}
+
+	if ( count( $via_dns ) > 0 ) {
+		$text .= '<li class="adminli">' .
+		wp_sprintf(
+			/* translators: %1$s are crawlers. */
+			__( 'The IP addresses of %1$s are validated via DNS.', 'wimb-and-block' ),
+			implode( ', ', $via_dns )
+		) . '</li>';
+	}
+	$text .= '</ul>';
 
 	echo wp_kses_post( $text );
 }

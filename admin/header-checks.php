@@ -12,21 +12,18 @@ function wimbblock_header_help() {
 	//$text .= 'https://caniuse.com/?search=Sec-Fetch-'
 
 	$text  = '<h3>' . __( 'Header Checks', 'wimb-and-block' ) . '</h3>';
-
+	$text .= '<p>' . __(
+		'In addition to the User Agent string, there are a few other headers that can be sent.',
+		'wimb-and-block'
+	) . '</p>';
 	$text .= '<p>' . __( 'Please note that these accesses are not counted in the database.', 'wimb-and-block' ) . '</p>';
 
 	$text .= '<h4>Sec-Fetch Header</h4>';
-	$text .= '<p>' . __( 'In addition to the User Agent string, there are certain headers that some browsers also send.', 'wimb-and-block' ) . '</p>';
-	$text .= '<ul>';
-	$text .= '<li class="adminli"><a href="https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Site">Sec-Fetch-Site</a></li>';
-	$text .= '<li class="adminli"><a href="https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Mode">Sec-Fetch-Mode</a></li>';
-	$text .= '<li class="adminli"><a href="https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Dest">Sec-Fetch-Dest</a></li>';
-	$text .= '</ul>';
 
 	$text .= '<p>' .
 	wp_sprintf(
 	/* translators: %1$s are browser names. */
-		__( 'All of these browsers %1$s should send these headers.', 'wimb-and-block' ),
+		__( 'All of these browsers %1$s should send these headers:', 'wimb-and-block' ),
 		" - 'Chrome',
     'Edge',
     'Safari',
@@ -36,12 +33,17 @@ function wimbblock_header_help() {
     'UC Browser',
     'QQ Browser' and
     'KaiOS Browser' - "
-	) . '</br>';
+	);
+	$text .= '<p><ul>';
+	$text .= '<li class="adminli"><a href="https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Site">Sec-Fetch-Site</a></li>';
+	$text .= '<li class="adminli"><a href="https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Mode">Sec-Fetch-Mode</a></li>';
+	$text .= '<li class="adminli"><a href="https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-Fetch-Dest">Sec-Fetch-Dest</a></li>';
+	$text .= '</ul></p>';
 	$text .= __( 'If one is not present, access will be blocked.', 'wimb-and-block' ) . '</p>';
 
 	$text .= '<h4><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-CH-UA">Sec-CH-UA</a></h4>';
 
-	$text .= '<p>' . __( 'The following Browsers have this header:', 'wimb-and-block' );
+	$text .= '<p>' . __( 'The following Browsers send this header:', 'wimb-and-block' );
 	$text .= " 'Chrome', 'Edge', 'Opera', 'Samsung Internet', 'WebView Android'.";
 	$text .= '</p>';
 
@@ -50,7 +52,7 @@ function wimbblock_header_help() {
 
 	$text .= '<h4><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-CH-UA-Platform">Sec-CH-UA-Platform</a></h4>';
 
-	$text .= '<p>' . __( 'The following Browsers have this header:', 'wimb-and-block' );
+	$text .= '<p>' . __( 'The following Browsers send this header:', 'wimb-and-block' );
 	$text .= " 'Chrome', 'Edge', 'Opera', 'Samsung Internet', 'WebView Android'.";
 	$text .= '</p>';
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-20 21:46+0000\n"
+"POT-Creation-Date: 2026-03-21 16:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,6 +15,12 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.8.0; wp-6.8.3; php-8.3.25-nmm1\n"
 "X-Domain: wimb-and-block"
+
+#. %1$s are crawlers.
+#: admin/crawler.php:118 admin/crawler.php:175
+#, php-format
+msgid "%s only offer verification via DNS."
+msgstr ""
 
 #: admin/robots.php:305
 msgid "Access is allowed - this is correct."
@@ -39,9 +45,9 @@ msgid "All entries"
 msgstr ""
 
 #. %1$s are browser names.
-#: admin/header-checks.php:29
+#: admin/header-checks.php:26
 #, php-format
-msgid "All of these browsers %1$s should send these headers."
+msgid "All of these browsers %1$s should send these headers:"
 msgstr ""
 
 #: admin/block-unblock.php:146 admin/block-unblock.php:529
@@ -165,7 +171,7 @@ msgid ""
 "%3$ssearch engines%4$s."
 msgstr ""
 
-#: admin/header-checks.php:58
+#: admin/header-checks.php:60
 msgid ""
 "For example, the user-agent string indicates \"Windows\", but this header "
 "shows \"Linux\"."
@@ -230,7 +236,7 @@ msgstr ""
 msgid "if no agent is given"
 msgstr ""
 
-#: admin/header-checks.php:40
+#: admin/header-checks.php:42
 msgid "If one is not present, access will be blocked."
 msgstr ""
 
@@ -252,7 +258,7 @@ msgstr ""
 msgid "if the plugin creates its table, local or remote"
 msgstr ""
 
-#: admin/header-checks.php:49
+#: admin/header-checks.php:51
 msgid "If the two do not match, access will be blocked."
 msgstr ""
 
@@ -276,13 +282,13 @@ msgstr ""
 msgid "in %"
 msgstr ""
 
-#: admin/header-checks.php:19
+#: admin/header-checks.php:15
 msgid ""
-"In addition to the User Agent string, there are certain headers that some "
-"browsers also send."
+"In addition to the User Agent string, there are a few other headers that can "
+"be sent."
 msgstr ""
 
-#: admin/header-checks.php:59
+#: admin/header-checks.php:61
 msgid "In this case, access is blocked."
 msgstr ""
 
@@ -298,7 +304,7 @@ msgstr ""
 msgid "It is working."
 msgstr ""
 
-#: admin/header-checks.php:48
+#: admin/header-checks.php:50
 msgid ""
 "Just like with the user agent string, you can determine the browser version "
 "from this header."
@@ -383,10 +389,6 @@ msgid ""
 "Only IPv4 addresses are validated via JSON files, IPv6 is validated via DNS."
 msgstr ""
 
-#: admin/crawler.php:116 admin/crawler.php:163
-msgid "only offer verification via DNS."
-msgstr ""
-
 #: admin/block-unblock.php:90
 msgid "Or you can click on a link from one of the tables."
 msgstr ""
@@ -420,7 +422,7 @@ msgid ""
 "versions starting with Android 10."
 msgstr ""
 
-#: admin/header-checks.php:16
+#: admin/header-checks.php:19
 msgid "Please note that these accesses are not counted in the database."
 msgstr ""
 
@@ -471,7 +473,7 @@ msgstr ""
 msgid "robots.txt"
 msgstr ""
 
-#: admin/settings.php:22 admin/crawler.php:131
+#: admin/settings.php:22 admin/crawler.php:134
 msgid "Rotate the table on this site"
 msgstr ""
 
@@ -507,7 +509,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: admin/crawler.php:97 admin/crawler.php:124
+#: admin/crawler.php:97 admin/crawler.php:127
 msgid "Settings Search Engines"
 msgstr ""
 
@@ -568,8 +570,8 @@ msgid ""
 "The file also contains IPv6 addresses. However, these are verified via DNS."
 msgstr ""
 
-#: admin/header-checks.php:44 admin/header-checks.php:53
-msgid "The following Browsers have this header:"
+#: admin/header-checks.php:46 admin/header-checks.php:55
+msgid "The following Browsers send this header:"
 msgstr ""
 
 #: php/wimb-options.php:221
@@ -585,13 +587,13 @@ msgid "The IP address is not logged."
 msgstr ""
 
 #. %1$s are crawlers.
-#: admin/crawler.php:167
+#: admin/crawler.php:190
 #, php-format
 msgid "The IP addresses of %1$s are validated via DNS."
 msgstr ""
 
 #. %1$s are crawlers.
-#: admin/crawler.php:173
+#: admin/crawler.php:182
 #, php-format
 msgid "The IP addresses of %1$s are validated via JSON files."
 msgstr ""
@@ -645,7 +647,7 @@ msgid ""
 msgstr ""
 
 #. %s is an option
-#: admin/crawler.php:130
+#: admin/crawler.php:133
 #, php-format
 msgid ""
 "The settings are the same as on the website configured with \"%s\" = yes."
@@ -689,7 +691,7 @@ msgstr ""
 msgid "This could potentially be a problem in the context of the GDPR."
 msgstr ""
 
-#: admin/header-checks.php:57
+#: admin/header-checks.php:59
 msgid ""
 "This header sometimes does not match the system detected from the user agent "
 "string."
@@ -770,7 +772,7 @@ msgid "yes"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:110 admin.php:157 admin.php:220 admin/crawler.php:139
+#: admin.php:47 admin.php:110 admin.php:157 admin.php:220 admin/crawler.php:142
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""

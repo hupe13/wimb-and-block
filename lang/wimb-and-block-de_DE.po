@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Block old browser versions and suspicious browsers - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-03-20 21:49+0000\n"
+"PO-Revision-Date: 2026-03-21 16:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,6 +16,12 @@ msgstr ""
 "POT-Creation-Date: 2026-02-22 19:43+0000\n"
 "Last-Translator: hupe13\n"
 "X-Loco-Version: 2.8.3; wp-6.9.4; php-8.3.29-nmm1"
+
+#. %1$s are crawlers.
+#: admin/crawler.php:118 admin/crawler.php:175
+#, php-format
+msgid "%s only offer verification via DNS."
+msgstr "%s bieten nur die Überprüfung via DNS an."
 
 #: admin/robots.php:305
 msgid "Access is allowed - this is correct."
@@ -42,11 +48,11 @@ msgid "All entries"
 msgstr "Alle Einträge"
 
 #. %1$s are browser names.
-#: admin/header-checks.php:29
+#: admin/header-checks.php:26
 #, php-format
-#| msgid "All of these browsers %1$s should have these headers."
-msgid "All of these browsers %1$s should send these headers."
-msgstr "Alle diese Browser %1$s sollten diese Header senden."
+#| msgid "All of these browsers %1$s should send these headers."
+msgid "All of these browsers %1$s should send these headers:"
+msgstr "Alle diese Browser %1$s sollten diese Header senden:"
 
 #: admin/block-unblock.php:146 admin/block-unblock.php:529
 msgid "All other browsers"
@@ -177,7 +183,7 @@ msgstr ""
 "Konfiguriere zuerst die %1$sEinstellungen für WIMB%2$s und anschließend die "
 "Einstellungen für die %3$sSuchmaschinen%4$s."
 
-#: admin/header-checks.php:58
+#: admin/header-checks.php:60
 msgid ""
 "For example, the user-agent string indicates \"Windows\", but this header "
 "shows \"Linux\"."
@@ -250,7 +256,7 @@ msgstr ""
 msgid "if no agent is given"
 msgstr "wenn kein Agent angegeben ist"
 
-#: admin/header-checks.php:40
+#: admin/header-checks.php:42
 #| msgid "If one is not present, the browser will be blocked."
 msgid "If one is not present, access will be blocked."
 msgstr "Ist einer davon nicht vorhanden, wird der Zugriff geblockt."
@@ -276,7 +282,7 @@ msgstr "Wenn die Datenbank lokal ist, wird auch die Tabelle gelöscht."
 msgid "if the plugin creates its table, local or remote"
 msgstr "wenn das Plugin seine Tabelle erstellt, lokal oder entfernt"
 
-#: admin/header-checks.php:49
+#: admin/header-checks.php:51
 msgid "If the two do not match, access will be blocked."
 msgstr "Wenn die beiden nicht übereinstimmen, wird der Zugriff geblockt."
 
@@ -307,15 +313,15 @@ msgstr ""
 msgid "in %"
 msgstr "in %"
 
-#: admin/header-checks.php:19
+#: admin/header-checks.php:15
 msgid ""
-"In addition to the User Agent string, there are certain headers that some "
-"browsers also send."
+"In addition to the User Agent string, there are a few other headers that can "
+"be sent."
 msgstr ""
-"Neben der User-Agent-Zeichenfolge gibt es einige Header, die manche Browser "
-"ebenfalls senden."
+"Neben der User-Agent-Zeichenfolge können noch einige weitere Header gesendet "
+"werden."
 
-#: admin/header-checks.php:59
+#: admin/header-checks.php:61
 msgid "In this case, access is blocked."
 msgstr "In diesem Fall wird der Zugriff geblockt."
 
@@ -331,7 +337,7 @@ msgstr "IP Anonymisierung"
 msgid "It is working."
 msgstr "Es ist in Betrieb."
 
-#: admin/header-checks.php:48
+#: admin/header-checks.php:50
 msgid ""
 "Just like with the user agent string, you can determine the browser version "
 "from this header."
@@ -427,10 +433,6 @@ msgstr ""
 "Nur IPv4-Adressen werden mittels der JSON-Daten überprüft, IPv6 wird über "
 "DNS geprüft."
 
-#: admin/crawler.php:116 admin/crawler.php:163
-msgid "only offer verification via DNS."
-msgstr "bieten nur eine Überprüfung über DNS an."
-
 #: admin/block-unblock.php:90
 msgid "Or you can click on a link from one of the tables."
 msgstr "Oder du kannst auf einen Link aus einer der Tabellen klicken."
@@ -468,7 +470,7 @@ msgstr ""
 "Bitte beachte, dass Chrome ab Android 10 nicht mehr unbedingt zwischen "
 "Android-Versionen unterscheidet. "
 
-#: admin/header-checks.php:16
+#: admin/header-checks.php:19
 msgid "Please note that these accesses are not counted in the database."
 msgstr "Beachte, dass diese Zugriffe nicht in der Datenbank gezählt werden."
 
@@ -521,7 +523,7 @@ msgstr "robots geblockt in %"
 msgid "robots.txt"
 msgstr "robots.txt"
 
-#: admin/settings.php:22 admin/crawler.php:131
+#: admin/settings.php:22 admin/crawler.php:134
 msgid "Rotate the table on this site"
 msgstr "Rotiere die Tabelle auf dieser Seite"
 
@@ -557,7 +559,7 @@ msgstr "Einstellung:"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin/crawler.php:97 admin/crawler.php:124
+#: admin/crawler.php:97 admin/crawler.php:127
 msgid "Settings Search Engines"
 msgstr "Suchmaschinen Einstellungen"
 
@@ -627,9 +629,10 @@ msgid ""
 msgstr ""
 "Die Datei enthält auch IPv6-Adressen. Diese werden jedoch über DNS überprüft."
 
-#: admin/header-checks.php:44 admin/header-checks.php:53
-msgid "The following Browsers have this header:"
-msgstr "Folgende Browser haben diesen Header:"
+#: admin/header-checks.php:46 admin/header-checks.php:55
+#| msgid "The following Browsers have this header:"
+msgid "The following Browsers send this header:"
+msgstr "Folgende Browser senden diesen Header:"
 
 #: php/wimb-options.php:221
 msgid "The full IP is logged. (default)"
@@ -644,16 +647,16 @@ msgid "The IP address is not logged."
 msgstr "Die IP-Adresse wird nicht geloggt."
 
 #. %1$s are crawlers.
-#: admin/crawler.php:167
+#: admin/crawler.php:190
 #, php-format
 msgid "The IP addresses of %1$s are validated via DNS."
 msgstr "Die IP-Adressen von %1$s werden über DNS geprüft."
 
 #. %1$s are crawlers.
-#: admin/crawler.php:173
+#: admin/crawler.php:182
 #, php-format
 msgid "The IP addresses of %1$s are validated via JSON files."
-msgstr "Nur IP-Adressen von %s werden mittels der JSON-Daten überprüft."
+msgstr "Die IP-Adressen von %s werden mittels der JSON-Daten überprüft."
 
 #: php/wimb-options.php:217
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
@@ -721,7 +724,7 @@ msgstr ""
 "blockt Crawler, wenn sie dies dennoch tun."
 
 #. %s is an option
-#: admin/crawler.php:130
+#: admin/crawler.php:133
 #, php-format
 msgid ""
 "The settings are the same as on the website configured with \"%s\" = yes."
@@ -778,7 +781,7 @@ msgstr ""
 "Das könnte möglicherweise ein Problem im Zusammenhang mit der DSGVO "
 "darstellen."
 
-#: admin/header-checks.php:57
+#: admin/header-checks.php:59
 msgid ""
 "This header sometimes does not match the system detected from the user agent "
 "string."
@@ -861,7 +864,7 @@ msgid "yes"
 msgstr "ja"
 
 #. %1$s and %2$s is a link.
-#: admin.php:47 admin.php:110 admin.php:157 admin.php:220 admin/crawler.php:139
+#: admin.php:47 admin.php:110 admin.php:157 admin.php:220 admin/crawler.php:142
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr "Du kannst diese Einstellungen auf der %1$sHauptseite%2$s ändern."

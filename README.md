@@ -4,7 +4,7 @@ With the help of WhatIsMyBrowser the plugin detects old and bad browsers and den
 
 ## Description
 
-If you manage your own server, you can install programs like fail2ban and ipfilter to block bad bots. If you host WordPress with a hosting provider, you’ll at least have access to the web server, FTP, and the database, depending on the provider and your plan, but you generally won’t have control over these aspects.
+There are many ways to block bad bots. This plugin checks which browser or crawler is accessing your website. If it is outdated, fraudulent, or suspicious, access is blocked.
 
 Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
 
