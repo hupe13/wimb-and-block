@@ -4,7 +4,7 @@ With the help of WhatIsMyBrowser the plugin detects old and bad browsers and den
 
 ## Description
 
-There are many ways to block bad bots. This plugin checks which browser or crawler is accessing your website. If it is outdated, fraudulent, or suspicious, access is blocked.
+There are many ways to block unwanted access to your website. This plugin checks which user agent is accessing your website. If it is outdated, unwanted, or suspicious, access is blocked.
 
 Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
 

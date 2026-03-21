@@ -2,7 +2,7 @@
 
 Contributors: hupe13
 Tags: bad bots, ban, blocking, security, robots.txt
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 260321
 Requires at least: 6.2
 Requires PHP: 8.1
@@ -12,7 +12,7 @@ With the help of WhatIsMyBrowser the plugin detects old and bad browsers and den
 
 == Description ==
 
-There are many ways to block bad bots. This plugin checks which browser or crawler is accessing your website. If it is outdated, fraudulent, or suspicious, access is blocked.
+There are many ways to block unwanted access to your website. This plugin checks which user agent is accessing your website. If it is outdated, unwanted, or suspicious, access is blocked.
 
 Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
 
