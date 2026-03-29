@@ -24,6 +24,10 @@ function wimbblock_block_unblock_main() {
 				}
 			}
 		}
+		if ( wp_verify_nonce( $nonce, 'id' ) ) {
+			$id     = sanitize_text_field( wp_unslash( $_GET['id'] ?? '' ) );
+			$result = wimbblock_handle_id( $id );
+		}
 		if ( is_null( $result ) ) {
 			$result = wimbblock_handle_post();
 		}
@@ -290,6 +294,30 @@ function wimbblock_handle_post() {
 			return $results;
 		}
 	}
+}
+
+function wimbblock_handle_id( $id ) {
+	$id = filter_input(
+		INPUT_GET,
+		'id',
+		// FILTER_SANITIZE_SPECIAL_CHARS
+		FILTER_DEFAULT
+	);
+
+	$options = wimbblock_get_options_db();
+	global $wimb_datatable;
+	if ( is_null( $wimb_datatable ) ) {
+		wimbblock_open_wpdb();
+	}
+	$results = $wimb_datatable->get_results(
+		$wimb_datatable->prepare(
+			'SELECT i,browser,software,system,time,block,count FROM %i WHERE i = %s',
+			$options['table_name'],
+			$id,
+		),
+		ARRAY_A
+	);
+	return $results;
 }
 
 function wimbblock_handle_get( $search ) {

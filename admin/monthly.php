@@ -58,6 +58,23 @@ echo '<p>' . wp_kses_post(
 
 echo wp_kses_post( wimbblock_statistic_new_month() );
 
+echo '<h4>' . wp_kses_post(
+	__( 'Statistics about systems in total', 'wimb-and-block' ),
+) . '</h4>';
+
+echo '<p>' . wp_kses_post(
+	__( 'The number of different browsers per system is counted.', 'wimb-and-block' ),
+) . '</p>';
+
+echo wp_kses_post( wimbblock_stats_systems() );
+
+echo '<h4>' . wp_kses_post(
+	'<a href="' .
+	wp_nonce_url( '?page=' . WIMBBLOCK_NAME . '&tab=block&type=A', 'link' )
+	. '">' .
+	__( 'Even more statistics', 'wimb-and-block' ) . '</a>'
+) . '</h4>';
+
 function wimbblock_counter_all() {
 	global $wimb_datatable;
 	if ( is_null( $wimb_datatable ) ) {

@@ -147,27 +147,30 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth ) ) . '</th>';
 	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 1 month' ) ) . '</th>';
 	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 2 month' ) ) . '</th>';
-	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 3 month' ) ) . '</th></tr>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 3 month' ) ) . '</th>';
+	$tablehdr .= '<th colspan=1>&nbsp;</th>';
+	$tablehdr .= '</tr>';
 	$tablehdr .= $colgroups;
 	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>wimbdate</th><th>robots</th>';
 	for ( $i = 1; $i <= 4; $i++ ) {
 		$tablehdr .= '<th>count</th><th>blocked</th>';
 	}
+	$tablehdr .= '<th colspan=1>block/unblock</th>';
 	$tablehdr .= '</tr>';
 	$header    = '<thead>' . $tablehdr . '</thead>';
 
-		$datetime      = new DateTime( '-24 hours', new DateTimeZone( wp_timezone_string() ) );
-		$selected_date = $datetime->format( 'Y-m-d H:i:s' );
-		// var_dump($selected_date);
+	$datetime      = new DateTime( '-24 hours', new DateTimeZone( wp_timezone_string() ) );
+	$selected_date = $datetime->format( 'Y-m-d H:i:s' );
+	// var_dump($selected_date);
 
-		$entries = $wimb_datatable->get_results(
-			$wimb_datatable->prepare(
-				'SELECT * FROM %i WHERE time >= %s ORDER BY time DESC',
-				$wimbblock_table_name,
-				$selected_date
-			),
-			ARRAY_A
-		);
+	$entries = $wimb_datatable->get_results(
+		$wimb_datatable->prepare(
+			'SELECT * FROM %i WHERE time >= %s ORDER BY time DESC',
+			$wimbblock_table_name,
+			$selected_date
+		),
+		ARRAY_A
+	);
 
 	if ( $wimb_datatable->last_error ) {
 		return esc_html__( 'There was an error:', 'wimb-and-block' ) . ' ' . $wimb_datatable->last_error;
@@ -225,6 +228,8 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 
 		$table  = '<tr' . $class . '>
 		<td class="center-text">' . join( '</td><td class="center-text">', $line ) . '</td>';
+		$table .= '<td class="center-text"><a href="' .
+		wp_nonce_url( '?page=' . WIMBBLOCK_NAME . '&tab=block&id=' . $entry['i'] . '', 'id' ) . '">*</a></td>';
 		$table .= '</tr>';
 		$rows[] = $table;
 	}

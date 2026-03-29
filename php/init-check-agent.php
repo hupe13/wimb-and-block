@@ -37,7 +37,6 @@ function wimbblock_check_agent() {
 	}
 
 	if ( $agent === '' ) {
-		wimbblock_log_sec_headers();
 		wimbblock_error_log( 'no agent - blocked: ' . $ip );
 		status_header( 404 );
 		echo 'You have been blocked.';
@@ -48,6 +47,7 @@ function wimbblock_check_agent() {
 	global $wimbblock_software;
 	global $wimbblock_is_crawler;
 	$wimbblock_is_crawler = false;
+	$wimbblock_software   = false;
 
 	$uri        = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) );
 	$table_name = $wpdb_options['table_name'];
@@ -81,10 +81,10 @@ function wimbblock_check_agent() {
 			wimbblock_open_wpdb();
 		}
 		list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
-		$blocked = wimbblock_exceptions( $table_name, $software, $blocked, $id );
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			$logging = wimbblock_logging_levels_settings();
+			wimbblock_log_sec_headers();
 			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ), $logging['blockagain'] ?? true );
 			status_header( 404 );
 			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );
@@ -95,6 +95,9 @@ function wimbblock_check_agent() {
 		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_log_sec_headers();
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
+			if ( $version === '' && $software !== '' ) {
+				$version = preg_replace( '%.* ([0-9]+)[^0-9]?.* on .*%', '${1}', $software );
+			}
 			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, false );
 			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, false );
 			wimbblock_check_secheaders( $software, $system, $version );

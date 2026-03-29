@@ -147,6 +147,7 @@ function wimbblock_admin() {
 		echo '<h3>' . esc_html( __( 'Search / block / unblock entries', 'wimb-and-block' ) ) . '</h3>';
 		wimbblock_block_unblock_main();
 	} elseif ( $active_tab === 'monthly' ) {
+		require_once __DIR__ . '/admin/stats-systems.php';
 		require_once __DIR__ . '/admin/monthly.php';
 	} elseif ( $active_tab === 'exclude' ) {
 		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {

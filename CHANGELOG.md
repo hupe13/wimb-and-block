@@ -1,3 +1,7 @@
+### 260xxx / 2.1
+
+* some imprivements and statistics
+
 ### 260321 / 2.0
 
 * rework search engines, see settings in admin backend

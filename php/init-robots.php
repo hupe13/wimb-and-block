@@ -41,7 +41,7 @@ function wimbblock_check_robots_txt( $posts ) {
 		}
 
 		if ( $agent === '' ) {
-			wimbblock_log_sec_headers();
+			// wimbblock_log_sec_headers();
 			wimbblock_error_log( 'robots no agent - blocked: ' . $ip );
 			status_header( 404 );
 			echo 'You have been blocked.';
@@ -82,7 +82,9 @@ function wimbblock_check_robots_txt( $posts ) {
 		$wimbblock_is_crawler = false;
 
 		list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
-
+		if ( $version === '' && $software !== '' ) {
+			$version = preg_replace( '%.* ([0-9]+)[^0-9]?.* on .*%', '${1}', $software );
+		}
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'robots', $id );
 			$logging = wimbblock_get_option( 'wimbblock_log' );
