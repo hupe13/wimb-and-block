@@ -8,7 +8,7 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_log_sec_headers() {
+function wimbblock_log_sec_headers( $info ) {
 	$logging = wimbblock_logging_levels_settings();
 	$todo    = $logging['tests'] ?? false;
 	if ( $todo ) {
@@ -21,6 +21,14 @@ function wimbblock_log_sec_headers() {
 			}
 		}
 		if ( count( $message ) > 0 ) {
+
+			// $accept_language = sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '' ) );
+			// if ( $accept_language === '' ) {
+			//  $message[] = 'ACCEPT_LANGUAGE - missing';
+			// } else {
+			//  $message[] = 'ACCEPT_LANGUAGE - exists';
+			// }
+
 			$known   = array(
 				'SEC_FETCH_DEST',
 				'SEC_FETCH_MODE',
@@ -41,7 +49,8 @@ function wimbblock_log_sec_headers() {
 				$headers[] = $part;
 			}
 			wimbblock_error_log(
-				'Test Info Header: ' . implode( ' * ', $headers ) .
+				'Test Header ' . $info . ': ' .
+				implode( ' * ', $headers ) .
 				' * ' . $agent,
 				$logging['tests'] ?? false
 			);
@@ -143,7 +152,7 @@ function wimbblock_check_ch_ua( $agent, $software, $version ) {
 				'v="' . $version . '"',
 			);
 			if ( str_replace( $versionstypes, '', $sec_ua ) === $sec_ua ) {
-				// wimbblock_log_sec_headers();
+				wimbblock_log_sec_headers( 'blocked' );
 				wimbblock_error_log( 'Blocked header: Sec-CH-UA version incorrect * ' . $version . ' * ' . $sec_ua, $logging['suspect'] ?? true );
 				status_header( 403 );
 				echo '403 suspicious.';
@@ -188,9 +197,9 @@ function wimbblock_check_platform( $software, $system ) {
 
 		if ( $platform !== '' ) {
 			if ( strpos( $system, $platform ) === false ) { // Sec-CH-UA-Platform stimmt mit dem System nicht ueberein
-				// wimbblock_log_sec_headers();
 				// 'Samsung Internet' sends in Desktop mode "Linux" instead "Android"
 				if ( ! ( strpos( $software, 'Samsung Internet' ) !== false && $platform === 'Linux' ) ) {
+					wimbblock_log_sec_headers( 'blocked' );
 					wimbblock_error_log( 'Blocked header: Sec-CH-UA-Platform faked: ' . $platform . ' * system ' . $system, $logging['suspect'] ?? true );
 					status_header( 403 );
 					echo '403 suspicious.';
@@ -218,6 +227,7 @@ function wimbblock_check_secheaders( $software, $system, $version ) {
 	$message  = wimbblock_check_ch_ua( $agent, $software, $version );
 	$message .= wimbblock_check_platform( $software, $system );
 	if ( $message !== '' ) {
-		wimbblock_error_log( 'Test Debug ' . $message . ' * ' . $agent, $logging['tests'] ?? false );
+		wimbblock_log_sec_headers( 'Debug' );
+		wimbblock_error_log( 'Test Debug ' . $message, $logging['tests'] ?? false );
 	}
 }

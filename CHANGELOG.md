@@ -1,6 +1,6 @@
 ### 260xxx / 2.1
 
-* some imprivements and statistics
+* some improvements and statistics
 
 ### 260321 / 2.0
 
