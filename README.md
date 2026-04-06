@@ -24,6 +24,8 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 ### Functions
 
+* The plugin checks whether the browser is up to date; it does not check whether the requested page or post actually exists.
+
     ![example entries](.wordpress-org/good.jpg)
 
 * Browsers are blocked if the browser and/or system are outdated:

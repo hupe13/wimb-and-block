@@ -32,6 +32,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 = Functions =
 
+* The plugin checks whether the browser is up to date; it does not check whether the requested page or post actually exists.
 * Browsers are blocked if the browser and/or system are outdated:
     - Default: Chrome, Edge and Chrome based browsers < 139, Firefox browsers < 140, Safari < 18, Samsung Browser < 28, Internet Explorer, Netscape (!)
     - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 10 and Symbian.
