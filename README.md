@@ -60,3 +60,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * Go to Settings - WIMB and Block - and get documentation and settings options.
 
 Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc</a> to get updates and keep an eye on this repository in case I've made any mistakes.
+
+## Changelog
+
+see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Github</a>
