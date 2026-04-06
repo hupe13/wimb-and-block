@@ -29,6 +29,9 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * Take care about the <a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>.
 * You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.
 * The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored this table.
+
+= Functions =
+
 * Browsers are blocked if the browser and/or system are outdated:
     - Default: Chrome, Edge and Chrome based browsers < 139, Firefox browsers < 140, Safari < 18, Samsung Browser < 28, Internet Explorer, Netscape (!)
     - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 10 and Symbian.
