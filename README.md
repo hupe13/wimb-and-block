@@ -63,4 +63,4 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 ## Changelog
 
-see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Github</a>
+see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog</a>
