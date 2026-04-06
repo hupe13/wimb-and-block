@@ -69,6 +69,7 @@ function wimbblock_sec_fetch( $software, $agent ) {
 		// All of these have sec-fetch header!
 		$browser_has_sec_fetch = array(
 			'Chrome',
+			'Chromium',
 			'Edge',
 			'Safari',
 			'Firefox',
@@ -82,15 +83,15 @@ function wimbblock_sec_fetch( $software, $agent ) {
 		if ( str_replace( $browser_has_sec_fetch, '', $software ) !== $software ) {
 			if ( $dest === '' || $mode === '' || $site === '' ) {
 				wimbblock_error_log(
-					'Header suspect:' .
+					'Blocked header: Sec-Fetch missing: ' .
 					' * dest ' . $dest .
 					' * mode ' . $mode .
 					' * site ' . $site .
+					' * software ' . $software .
 					' * uri ' . $uri .
 					' * ' . $agent,
 					$logging['suspect'] ?? true
 				);
-				wimbblock_error_log( 'Blocked header: Sec-Fetch missing: ' . $software, $logging['suspect'] ?? true );
 				status_header( 403 );
 				echo '403 suspicious.';
 				exit;
@@ -127,7 +128,7 @@ function wimbblock_sec_fetch( $software, $agent ) {
 				$message .= ' Site * ' . $site;
 			}
 			if ( $message !== '' ) {
-				wimbblock_error_log( 'Test Debug Header not valid: ' . $message . ' * ' . $agent, $logging['tests'] ?? false );
+				wimbblock_error_log( 'Test Debug Header not valid:' . $message . ' * ' . $agent, $logging['tests'] ?? false );
 			}
 		}
 	}
@@ -140,10 +141,11 @@ function wimbblock_check_ch_ua( $agent, $software, $version ) {
 		// https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-CH-UA
 		$has_ch_ua = array(
 			'Chrome',
+			'Chromium',
 			'Edge',
 			'Opera',
 			'Samsung Internet',
-			'WebView Android',
+			'Android WebView',
 		);
 		$sec_ua    = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_CH_UA'] ?? '' ) );
 		if ( $sec_ua !== '' && $version !== '' ) {
@@ -159,11 +161,11 @@ function wimbblock_check_ch_ua( $agent, $software, $version ) {
 				exit;
 			}
 		} elseif ( $sec_ua !== '' ) {
-			$message = ' Software has SEC_CH_UA * ' . $software . ' * ' . $sec_ua;
+			$message = ' * Software has SEC_CH_UA - ' . $software . ' * ' . $sec_ua;
 		}
 		if ( str_replace( $has_ch_ua, '', $software ) !== $software ) {
 			if ( $sec_ua === '' ) {
-				$message = ' SEC_CH_UA missing * ' . $software;
+				$message = ' * SEC_CH_UA missing - ' . $software;
 			}
 		}
 	}
@@ -176,10 +178,11 @@ function wimbblock_check_platform( $software, $system ) {
 		// https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-CH-UA-Platform
 		$browser_has_platform = array(
 			'Chrome',
+			'Chromium',
 			'Edge',
 			'Opera',
 			'Samsung Internet',
-			'WebView Android',
+			'Android WebView',
 		);
 		$valid_platforms      = array(
 			'Android',
@@ -210,9 +213,9 @@ function wimbblock_check_platform( $software, $system ) {
 		if ( str_replace( $browser_has_platform, '', $software ) !== $software ) { // Wenn der Browser diesen header haben sollte
 			if ( str_replace( $valid_platforms, '', $system ) !== $system ) { // Wenn das system eines der o.g. Platformen ist
 				if ( $platform === '' ) { // hat den header nicht
-					$message .= ' platform missing * ' . $system;
+					$message .= ' * platform missing - ' . $system;
 				} elseif ( str_replace( $valid_platforms, '', $platform ) === $platform ) { // oder er ist aber falsch
-					$message .= ' platform no valid value';
+					$message .= ' * platform no valid value';
 				}
 			}
 		}
@@ -228,6 +231,6 @@ function wimbblock_check_secheaders( $software, $system, $version ) {
 	$message .= wimbblock_check_platform( $software, $system );
 	if ( $message !== '' ) {
 		wimbblock_log_sec_headers( 'Debug' );
-		wimbblock_error_log( 'Test Debug ' . $message, $logging['tests'] ?? false );
+		wimbblock_error_log( 'Test Debug' . $message, $logging['tests'] ?? false );
 	}
 }

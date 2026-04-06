@@ -1,4 +1,8 @@
-### 260xxx / 2.1
+### 26040x / 2.2
+
+* Fixes in Sec-headers
+
+### 260331 / 2.1
 
 * some improvements and statistics
 
