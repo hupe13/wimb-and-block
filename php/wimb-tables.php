@@ -102,11 +102,11 @@ if ( is_main_site() ) {
 		$wimb_sql           = "CREATE TABLE {$table_name_crawler} (
 		  crawler varchar(20) NOT NULL,
 		  begin varchar(15) NOT NULL,
-			int_begin int(11) UNSIGNED NOT NULL,
+		  int_begin int(11) UNSIGNED NOT NULL,
 		  end varchar(15) NOT NULL,
-			int_end int(11) UNSIGNED NOT NULL,
-			UNIQUE KEY crawler_index (crawler,int_begin,int_end),
-  		KEY crawler (crawler)
+		  int_end int(11) UNSIGNED NOT NULL,
+		  UNIQUE KEY crawler_index (crawler,int_begin,int_end),
+		  KEY crawler (crawler)
 		) $charset_collate;";
 
 		if ( $wimbblock_options['location'] === 'local' ) {
