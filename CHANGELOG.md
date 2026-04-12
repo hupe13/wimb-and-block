@@ -1,4 +1,4 @@
-### 26040x / 2.2
+### 260412 / 2.2
 
 * Fixes in Sec-headers
 * improvements mysql crawler table

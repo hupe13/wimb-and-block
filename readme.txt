@@ -59,7 +59,7 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-= 26040x / 2.2 =
+= 260412 / 2.2 =
 
 * fixes in Sec-headers
 * improvements mysql crawler table
