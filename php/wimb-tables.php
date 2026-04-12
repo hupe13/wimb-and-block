@@ -98,26 +98,57 @@ if ( is_main_site() ) {
 			$charset_collate = $wimb_datatable->get_charset_collate();
 		}
 
-		$table_name_create = $table_name . '_crawler';
-		$wimb_sql          = "CREATE TABLE {$table_name_create} (
+		$table_name_crawler = $table_name . '_crawler';
+		$wimb_sql           = "CREATE TABLE {$table_name_crawler} (
 		  crawler varchar(20) NOT NULL,
 		  begin varchar(15) NOT NULL,
 			int_begin int(11) UNSIGNED NOT NULL,
 		  end varchar(15) NOT NULL,
 			int_end int(11) UNSIGNED NOT NULL,
-			PRIMARY KEY (int_begin),
-		  UNIQUE KEY int_end (int_end),
-		  KEY crawler (crawler)
+			UNIQUE KEY crawler_index (crawler,int_begin,int_end),
+  		KEY crawler (crawler)
 		) $charset_collate;";
 
 		if ( $wimbblock_options['location'] === 'local' ) {
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 			$status = dbDelta( $wimb_sql );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$status = $wpdb->get_results(
+				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+					'ALTER TABLE %i DROP INDEX IF EXISTS %i;',
+					$table_name_crawler,
+					'PRIMARY'
+				)
+			);
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$status = $wpdb->get_results(
+				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+					'ALTER TABLE %i DROP INDEX IF EXISTS %i;',
+					$table_name_crawler,
+					'int_end'
+				)
+			);
 		} else {
 			$status = wimbblock_dbDelta( $wimb_sql );
+			$status = $wimb_datatable->get_results(
+				$wimb_datatable->prepare(
+					'ALTER TABLE %i DROP INDEX IF EXISTS %i;',
+					$table_name_crawler,
+					'PRIMARY'
+				)
+			);
+			$status = $wimb_datatable->get_results(
+				$wimb_datatable->prepare(
+					'ALTER TABLE %i DROP INDEX IF EXISTS %i;',
+					$table_name_crawler,
+					'int_end'
+				)
+			);
 		}
 		wimbblock_update_crawlers();
-		wimbblock_error_log( 'Created / updated wimb_table crawler: ' . $table_name_create );
+		wimbblock_error_log( 'Created / updated wimb_table crawler: ' . $table_name_crawler );
 	}
 
 	function wimbblock_update_crawlers() {
@@ -128,8 +159,17 @@ if ( is_main_site() ) {
 			wimbblock_open_wpdb();
 		}
 		$wimbblock_crawlers = wimbblock_get_option( 'wimbblock_crawlers' );
-		$crawlers           = wimbblock_get_jsons();
+		$params             = wimbblock_crawlers_params();
 		$searchengines      = wimbblock_get_option( 'wimbblock_searchengines' );
+
+		$crawlers = array();
+		foreach ( $params as $crawler => $value ) {
+			if ( isset( $searchengines[ $crawler ] ) ) {
+				if ( $searchengines[ $crawler ] === '1' ) {
+					$crawlers[ $crawler ] = $value['json'];
+				}
+			}
+		}
 
 		foreach ( $searchengines as $crawler => $value ) {
 			if ( $value === '0' ) {
@@ -212,15 +252,15 @@ if ( is_main_site() ) {
 
 	// Set the initial version of the database schema
 	function wimbblock_activate() {
-		add_option( 'wimbblock_db_version', '260300' );
+		add_option( 'wimbblock_db_version', '000000' );
 	}
 	register_activation_hook( __FILE__, 'wimbblock_activate' );
 
 	function wimbblock_update() {
 		$options = wimbblock_get_options_db();
 		if ( $options['error'] === '0' ) {
-			$current_version = get_option( 'wimbblock_db_version', '260300' );
-			$new_version     = '260311'; // Update this to your new version
+			$current_version = get_option( 'wimbblock_db_version', '000000' );
+			$new_version     = '260409'; // Update this to your new version
 			if ( version_compare( $current_version, $new_version, '<' ) ) {
 				$options = wimbblock_get_options_db();
 				wimbblock_table_install( $options['table_name'] ); // Call the migration function

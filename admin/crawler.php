@@ -197,3 +197,14 @@ function wimbblock_crawler_help_elsewhere() {
 
 	echo wp_kses_post( $text );
 }
+
+function wimbblock_get_allowed_jsons() {
+	$params  = wimbblock_crawlers_params();
+	$default = array();
+	foreach ( $params as $crawler => $value ) {
+		$default[ $crawler ] = $value['allowed'];
+	}
+	$settings = wimbblock_get_option( 'wimbblock_searchengines' );
+	$options  = shortcode_atts( $default, $settings );
+	return $options;
+}

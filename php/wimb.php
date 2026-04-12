@@ -66,13 +66,9 @@ function wimbblock_whatsmybrowser( $user_agent, $api_key = '' ) {
 	}
 }
 
-function wimbblock_check_wimb( $agent, $wimbblock_table ) {
+function wimbblock_check_wimb( $agent, $table_name ) {
 	global $wimb_datatable;
-	if ( is_null( $wimb_datatable ) ) {
-		wimbblock_open_wpdb();
-	}
-	$table_name = $wimbblock_table;
-	$yymm       = wp_date( 'ym' );
+	$yymm = wp_date( 'ym' );
 
 	$browser = $wimb_datatable->get_row(
 		$wimb_datatable->prepare(

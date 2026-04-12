@@ -75,6 +75,7 @@ function wimbblock_sec_fetch( $software, $agent ) {
 			'Firefox',
 			'Opera',
 			'Samsung Internet',
+			'Android WebView',
 			'UC Browser',
 			'QQ Browser',
 			'KaiOS Browser',

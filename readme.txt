@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad bots, ban, blocking, security, robots.txt
 Tested up to: 7.0
-Stable tag: 260406
+Stable tag: 260412
 Requires at least: 6.2
 Requires PHP: 8.1
 License: GPLv2 or later
@@ -58,5 +58,10 @@ With this information, the plugin attempts to detect old and bad browsers and de
 Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc</a> to get updates and keep an eye on this repository in case I've made any mistakes.
 
 == Changelog ==
+
+= 26040x / 2.2 =
+
+* fixes in Sec-headers
+* improvements mysql crawler table
 
 see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog</a>

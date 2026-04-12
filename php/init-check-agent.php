@@ -91,7 +91,7 @@ function wimbblock_check_agent() {
 			exit();
 		}
 		wimbblock_always( $table_name, $agent, $blocked, $id, false );
-		wimbblock_faked_crawler( $agent, $ip, false );
+		wimbblock_faked_crawler( $table_name, $agent, $ip, false );
 		if ( $wimbblock_is_crawler === false ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
 			if ( $version === '' && $software !== '' ) {

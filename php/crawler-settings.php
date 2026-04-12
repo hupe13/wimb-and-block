@@ -26,8 +26,6 @@ function wimbblock_crawlers_init() {
 }
 add_action( 'admin_init', 'wimbblock_crawlers_init' );
 
-// https://developers.openai.com/api/docs/bots
-
 function wimbblock_crawlers_params() {
 	$params = array(
 
@@ -175,31 +173,6 @@ function wimbblock_crawlers_params() {
 	return $params;
 }
 
-function wimbblock_get_allowed_jsons() {
-	$params  = wimbblock_crawlers_params();
-	$default = array();
-	foreach ( $params as $crawler => $value ) {
-		$default[ $crawler ] = $value['allowed'];
-	}
-	$settings = wimbblock_get_option( 'wimbblock_searchengines' );
-	$options  = shortcode_atts( $default, $settings );
-	return $options;
-}
-
-function wimbblock_get_jsons() {
-	$params    = wimbblock_crawlers_params();
-	$settings  = wimbblock_get_option( 'wimbblock_searchengines' );
-	$get_jsons = array();
-	foreach ( $params as $crawler => $value ) {
-		if ( isset( $settings[ $crawler ] ) ) {
-			if ( $settings[ $crawler ] === '1' ) {
-				$get_jsons[ $crawler ] = $value['json'];
-			}
-		}
-	}
-	return $get_jsons;
-}
-
 function wimbblock_get_search_engine_strings() {
 	$params  = wimbblock_crawlers_params();
 	$strings = array();
@@ -218,23 +191,28 @@ function wimbblock_get_search_engine_strings() {
 	return $strings;
 }
 
-function wimbblock_set_transients_crawlers_in_table() {
+function wimbblock_set_transients_crawlers_in_table( $table_name_crawler = '' ) {
 	global $wimb_datatable;
 	if ( is_null( $wimb_datatable ) ) {
 		wimbblock_open_wpdb();
 	}
-	$wpdb_options = wimbblock_get_options_db();
-	$table_name   = $wpdb_options['table_name'] . '_crawler';
-	$results      = $wimb_datatable->get_results(
+	if ( $table_name_crawler == '' ) {
+		$wpdb_options       = wimbblock_get_options_db();
+		$table_name_crawler = $wpdb_options['table_name'] . '_crawler';
+	}
+	$results  = $wimb_datatable->get_results(
 		$wimb_datatable->prepare(
 			'SELECT DISTINCT(crawler) FROM %i WHERE 1;',
-			$table_name
+			$table_name_crawler
 		),
 		ARRAY_A
 	);
-	$crawlers     = array();
+	$crawlers = array();
+	$in_table = array_keys( wimbblock_crawlers_params() );
 	foreach ( $results as $result ) {
-		$crawlers[] = $result['crawler'];
+		if ( in_array( $result['crawler'], $in_table, true ) ) {
+			$crawlers[] = $result['crawler'];
+		}
 	}
 	set_transient( 'wimbblock_crawlers', $crawlers, HOUR_IN_SECONDS );
 	// wimbblock_error_log( 'Set transient wimbblock_crawlers' );

@@ -8,15 +8,13 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function wimbblock_check_crawler_address_in_table( $table_name, $crawler, $agent, $ip, $robots ) {
+function wimbblock_check_crawler_address_in_table( $table_name_crawler, $crawler, $agent, $ip, $robots ) {
 	global $wimb_datatable;
-	if ( is_null( $wimb_datatable ) ) {
-		wimbblock_open_wpdb();
-	}
+
 	$valid = $wimb_datatable->get_row(
 		$wimb_datatable->prepare(
 			'SELECT crawler FROM %i WHERE %s = crawler AND INET_ATON(%s) >= int_begin AND INET_ATON(%s) <= int_end;',
-			$table_name,
+			$table_name_crawler,
 			$crawler,
 			$ip,
 			$ip
@@ -27,7 +25,7 @@ function wimbblock_check_crawler_address_in_table( $table_name, $crawler, $agent
 		$exist = $wimb_datatable->get_row(
 			$wimb_datatable->prepare(
 				'SELECT crawler FROM %i WHERE %s = crawler;',
-				$table_name,
+				$table_name_crawler,
 				$crawler
 			),
 			ARRAY_A
@@ -90,25 +88,18 @@ function wimbblock_check_crawler_ip_hostname( $agent, $ip, $robots ) {
 	return '';
 }
 
-function wimbblock_is_crawler_in_table( $agent, $ip, $robots ) {
+function wimbblock_is_crawler_in_table( $table_name_crawler, $agent, $ip, $robots ) {
 	global $wimbblock_is_crawler;
-
-	$wpdb_options = wimbblock_get_options_db();
-	global $wimb_datatable;
-	if ( is_null( $wimb_datatable ) ) {
-		wimbblock_open_wpdb();
-	}
-	$table_name = $wpdb_options['table_name'] . '_crawler';
 
 	$params   = wimbblock_crawlers_params();
 	$crawlers = get_transient( 'wimbblock_crawlers' );
 	if ( $crawlers === false ) {
-		$crawlers = wimbblock_set_transients_crawlers_in_table();
+		$crawlers = wimbblock_set_transients_crawlers_in_table( $table_name_crawler );
 	}
 	foreach ( $crawlers as $crawler ) {
 		foreach ( $params[ $crawler ]['agents'] as $brand ) {
 			if ( stripos( $agent, $brand ) !== false ) {
-				$test = wimbblock_check_crawler_address_in_table( $table_name, $crawler, $agent, $ip, $robots );
+				$test = wimbblock_check_crawler_address_in_table( $table_name_crawler, $crawler, $agent, $ip, $robots );
 				if ( $test ) {
 					// wimbblock_error_log( 'Crawler is okay ' . $crawler );
 					$wimbblock_is_crawler = $crawler;
@@ -119,11 +110,11 @@ function wimbblock_is_crawler_in_table( $agent, $ip, $robots ) {
 	}
 }
 
-function wimbblock_faked_crawler( $agent, $ip, $robots ) {
+function wimbblock_faked_crawler( $table_name, $agent, $ip, $robots ) {
 	global $wimbblock_is_crawler;
-
+	$table_name_crawler = $table_name . '_crawler';
 	if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
-		wimbblock_is_crawler_in_table( $agent, $ip, $robots );
+		wimbblock_is_crawler_in_table( $table_name_crawler, $agent, $ip, $robots );
 	}
 	if ( $wimbblock_is_crawler === false ) {
 		wimbblock_check_crawler_ip_hostname( $agent, $ip, $robots );
