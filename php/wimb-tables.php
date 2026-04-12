@@ -260,7 +260,7 @@ if ( is_main_site() ) {
 		$options = wimbblock_get_options_db();
 		if ( $options['error'] === '0' ) {
 			$current_version = get_option( 'wimbblock_db_version', '000000' );
-			$new_version     = '260409'; // Update this to your new version
+			$new_version     = '260412'; // Update this to new version
 			if ( version_compare( $current_version, $new_version, '<' ) ) {
 				$options = wimbblock_get_options_db();
 				wimbblock_table_install( $options['table_name'] ); // Call the migration function
