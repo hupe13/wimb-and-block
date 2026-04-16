@@ -237,6 +237,7 @@ function wimbblock_validate( $options ) {
 		}
 		if ( isset( $_POST['delete'] ) ) {
 			delete_option( 'wimbblock_settings' );
+			return array();
 		}
 	}
 	return false;

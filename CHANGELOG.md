@@ -1,3 +1,7 @@
+### 2604xx / 2.3
+
+* fixed error in delete settings
+
 ### 260412 / 2.2
 
 * Fixes in Sec-headers

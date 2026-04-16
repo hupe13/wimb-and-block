@@ -102,6 +102,7 @@ function wimbblock_sec_fetch( $software, $agent ) {
 				'document',
 				'empty',
 				'iframe',
+				'image',
 				// and many others
 			);
 			// Servers should ignore this header if it contains any other value.
