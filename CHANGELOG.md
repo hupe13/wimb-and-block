@@ -1,6 +1,6 @@
 ### 2604xx / 2.3
 
-* fixed error in delete settings
+* fixed an error when delete settings
 
 ### 260412 / 2.2
 

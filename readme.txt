@@ -61,6 +61,6 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 = 2604xx / 2.3
 
-* fixed error in delete settings
+* fixed an error when delete settings
 
 see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog</a>
