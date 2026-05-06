@@ -49,7 +49,7 @@ function wimbblock_block_unblock_main() {
 
 			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 
-						echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
+				echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
 				if ( current_user_can( 'manage_options' ) ) {
 					$allowed_html          = wp_kses_allowed_html( 'post' );
 					$allowed_html['input'] = array(
