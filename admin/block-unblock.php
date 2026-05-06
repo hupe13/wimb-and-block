@@ -9,6 +9,10 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_block_unblock_main() {
+	global $wimbblock_basename;
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$active_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ?? 'help' ) );
+
 	$wimbblock_wpdb_options = wimbblock_get_options_db();
 	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
 
@@ -43,25 +47,40 @@ function wimbblock_block_unblock_main() {
 				'<code>time</code>'
 			);
 
-			echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
-			if ( current_user_can( 'manage_options' ) ) {
-				$allowed_html          = wp_kses_allowed_html( 'post' );
-				$allowed_html['input'] = array(
-					'type'  => array(),
-					'name'  => array(),
-					'value' => array(),
-				);
-				$allowed_html['th']    = array(
-					'onclick' => array(),
-					'id'      => array(),
-				);
+			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 
-				echo wp_kses( wimbblock_block_unblock_table( $wimbblock_table_name, $result ), $allowed_html );
-				wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
-				submit_button( __( 'Unblock / block selected entries', 'wimb-and-block' ), 'primary', 'changeblock' );
+						echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
+				if ( current_user_can( 'manage_options' ) ) {
+					$allowed_html          = wp_kses_allowed_html( 'post' );
+					$allowed_html['input'] = array(
+						'type'  => array(),
+						'name'  => array(),
+						'value' => array(),
+					);
+					$allowed_html['th']    = array(
+						'onclick' => array(),
+						'id'      => array(),
+					);
+
+					echo wp_kses( wimbblock_block_unblock_table( $wimbblock_table_name, $result ), $allowed_html );
+					wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
+					submit_button( __( 'Unblock / block selected entries', 'wimb-and-block' ), 'primary', 'changeblock' );
+				}
+				echo '</form>';
 			}
-			echo '</form>';
+		} else {
+			echo '<p>';
+			echo wp_kses_post(
+				wp_sprintf(
+				/* translators: %1$s and %2$s is a link. */
+					__( 'You can do this on the %1$smain site%2$s.', 'wimb-and-block' ),
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
+					'</a>'
+				)
+			);
+			echo '</p>';
 		}
+
 		echo '<div class="wimbbox">';
 
 		$nonce = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ?? '' ) );
@@ -103,30 +122,43 @@ function wimbblock_block_unblock_main() {
 	);
 	echo '<br>';
 
-	echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
-	if ( current_user_can( 'manage_options' ) ) {
-		echo '<table class="form-table" role="presentation">';
-		echo '<tr><th scope="row">';
-		echo 'browser';
-		echo '</th><td>';
-		echo '<input type="text" size="15" name="browser" />';
-		echo '</td></tr>';
-		echo '<tr><th scope="row">';
-		echo 'software';
-		echo '</th><td>';
-		echo '<input type="text" size="15" name="software" />';
-		echo '</td></tr>';
-		echo '<tr><th scope="row">';
-		echo 'system';
-		echo '</th><td>';
-		echo '<input type="text" size="15" name="system" />';
-		echo '</td></tr>';
-		echo '</table>';
+	if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
+		echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
+		if ( current_user_can( 'manage_options' ) ) {
+			echo '<table class="form-table" role="presentation">';
+			echo '<tr><th scope="row">';
+			echo 'browser';
+			echo '</th><td>';
+			echo '<input type="text" size="15" name="browser" />';
+			echo '</td></tr>';
+			echo '<tr><th scope="row">';
+			echo 'software';
+			echo '</th><td>';
+			echo '<input type="text" size="15" name="software" />';
+			echo '</td></tr>';
+			echo '<tr><th scope="row">';
+			echo 'system';
+			echo '</th><td>';
+			echo '<input type="text" size="15" name="system" />';
+			echo '</td></tr>';
+			echo '</table>';
 
-		wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
-		submit_button( __( 'Search', 'wimb-and-block' ), 'primary', 'search' );
+			wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
+			submit_button( __( 'Search', 'wimb-and-block' ), 'primary', 'search' );
+		}
+		echo '</form>';
+	} else {
+		echo '<p>';
+			echo wp_kses_post(
+				wp_sprintf(
+				/* translators: %1$s and %2$s is a link. */
+					__( 'You can do this on the %1$smain site%2$s.', 'wimb-and-block' ),
+					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
+					'</a>'
+				)
+			);
+			echo '</p>';
 	}
-	echo '</form>';
 
 	echo '<h3>' . esc_html__( 'Tables', 'wimb-and-block' ) . '</h3>';
 

@@ -1,4 +1,8 @@
-### 2604xx / 2.3
+### 260506 / 2.4
+
+* fixed errors in backend on multisite
+
+### 260417 / 2.3
 
 * fixed an error when delete settings
 

@@ -38,8 +38,9 @@ function wimbblock_admin() {
 	echo '<div class="maxwidth1000">';
 	wimbblock_admin_tabs();
 
+	global $wimbblock_basename;
 	if ( $active_tab === 'settings' ) {
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(
@@ -61,7 +62,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_emergency' );
 		wp_nonce_field( 'wimbblock_emergency', 'wimbblock_emergency_nonce' );
 		do_settings_sections( 'wimbblock_emergency' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 			}
@@ -78,7 +79,7 @@ function wimbblock_admin() {
 		if ( $wimbblock_options === false || count( $wimbblock_options ) === 0 ) {
 			echo wp_kses_post( __( 'Please submit the form twice if you are configuring a remote database and it does not yet exist.', 'wimb-and-block' ) );
 		}
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				echo '<p>' . esc_html( __( 'To change the settings, first reset them all.', 'wimb-and-block' ) ) . '</p>';
@@ -92,7 +93,7 @@ function wimbblock_admin() {
 		do_settings_sections( 'wimbblock_settings_deleting' );
 		$wimbblock_options = wimbblock_get_options_db();
 		if ( $wimbblock_options['error'] === '0' ) {
-			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 				if ( current_user_can( 'manage_options' ) ) {
 					wp_nonce_field( 'wimbblock_deleting', 'wimbblock_deleting_nonce' );
 					submit_button();
@@ -102,7 +103,7 @@ function wimbblock_admin() {
 		echo '</form>';
 	} elseif ( strpos( $active_tab, 'versions' ) !== false ) {
 		echo '<h3>' . esc_html( __( 'Versions Control', 'wimb-and-block' ) ) . '</h3>';
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(
@@ -119,7 +120,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_browsers' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_browsers' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -131,7 +132,7 @@ function wimbblock_admin() {
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_systems' );
 		wimbblock_systems_help();
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -150,7 +151,7 @@ function wimbblock_admin() {
 		require_once __DIR__ . '/admin/stats-systems.php';
 		require_once __DIR__ . '/admin/monthly.php';
 	} elseif ( $active_tab === 'exclude' ) {
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(
@@ -167,7 +168,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_exclude' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_exclude' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -180,7 +181,7 @@ function wimbblock_admin() {
 		settings_fields( 'wimbblock_always' );
 		wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 		do_settings_sections( 'wimbblock_always' );
-		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+		if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 			if ( current_user_can( 'manage_options' ) ) {
 				submit_button();
 				// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -195,7 +196,7 @@ function wimbblock_admin() {
 			settings_fields( 'wimbblock_searchengines' );
 			wp_nonce_field( 'wimbblock', 'wimbblock_nonce' );
 			do_settings_sections( 'wimbblock_searchengines' );
-			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ) {
+			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
 				if ( current_user_can( 'manage_options' ) ) {
 					submit_button();
 					// submit_button( __( 'Reset', 'wimb-and-block' ), 'delete', 'delete', false );
@@ -213,7 +214,7 @@ function wimbblock_admin() {
 		wimbblock_robots_htaccess();
 	} elseif ( $active_tab === 'logging' ) {
 		echo '<h2>' . wp_kses_post( __( 'Logging', 'wimb-and-block' ) ) . '</h2>';
-		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {
+		if ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) {
 			echo '<p>';
 			echo wp_kses_post(
 				wp_sprintf(

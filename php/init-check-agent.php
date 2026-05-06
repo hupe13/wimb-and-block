@@ -84,7 +84,7 @@ function wimbblock_check_agent() {
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			$logging = wimbblock_logging_levels_settings();
-			wimbblock_log_sec_headers( 'blocked' );
+			// wimbblock_log_sec_headers( 'blocked' );
 			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ), $logging['blockagain'] ?? true );
 			status_header( 404 );
 			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );

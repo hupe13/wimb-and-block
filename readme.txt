@@ -1,9 +1,9 @@
 === Block old browser versions and suspicious browsers ===
 
 Contributors: hupe13
-Tags: bad bots, ban, blocking, security, robots.txt
+Tags: bad bots, ban, blocking, deny, robots.txt
 Tested up to: 7.0
-Stable tag: 260416
+Stable tag: 260506
 Requires at least: 6.2
 Requires PHP: 8.1
 License: GPLv2 or later
@@ -59,8 +59,8 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-= 2604xx / 2.3
+### 260506 / 2.4
 
-* fixed an error when delete settings
+* fixed errors in backend on multisite
 
 see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog</a>
