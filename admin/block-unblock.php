@@ -67,18 +67,19 @@ function wimbblock_block_unblock_main() {
 					submit_button( __( 'Unblock / block selected entries', 'wimb-and-block' ), 'primary', 'changeblock' );
 				}
 				echo '</form>';
+
+			} else {
+				echo '<p>';
+				echo wp_kses_post(
+					wp_sprintf(
+					/* translators: %1$s and %2$s is a link. */
+						__( 'You can do this on the %1$smain site%2$s.', 'wimb-and-block' ),
+						'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
+						'</a>'
+					)
+				);
+				echo '</p>';
 			}
-		} else {
-			echo '<p>';
-			echo wp_kses_post(
-				wp_sprintf(
-				/* translators: %1$s and %2$s is a link. */
-					__( 'You can do this on the %1$smain site%2$s.', 'wimb-and-block' ),
-					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
-					'</a>'
-				)
-			);
-			echo '</p>';
 		}
 
 		echo '<div class="wimbbox">';

@@ -1,4 +1,4 @@
-### 260506 / 2.4
+### 260507 / 2.4
 
 * fixed errors in backend on multisite
 
