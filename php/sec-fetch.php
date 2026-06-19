@@ -11,24 +11,23 @@ defined( 'ABSPATH' ) || die();
 function wimbblock_log_sec_headers( $info ) {
 	$logging = wimbblock_logging_levels_settings();
 	$todo    = $logging['tests'] ?? false;
+	// zum Testen auskommentieren
+	// $todo = false;
 	if ( $todo ) {
 		$message     = array();
+		$interesting = array(
+			'HTTP_ACCEPT',
+			'HTTP_REFERER',
+		);
 		$server_vars = $_SERVER;
 		$agent       = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
 		foreach ( $server_vars as $server_var => $value ) {
-			if ( stripos( $server_var, 'sec_' ) !== false ) {
+			if ( stripos( $server_var, 'sec_' ) !== false || in_array( $server_var, $interesting, true ) ) {
 				$message[] = str_replace( 'HTTP_', '', $server_var ) . ' - ' . str_replace( '\\', '', $value );
 			}
 		}
+
 		if ( count( $message ) > 0 ) {
-
-			// $accept_language = sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '' ) );
-			// if ( $accept_language === '' ) {
-			//  $message[] = 'ACCEPT_LANGUAGE - missing';
-			// } else {
-			//  $message[] = 'ACCEPT_LANGUAGE - exists';
-			// }
-
 			$known   = array(
 				'SEC_FETCH_DEST',
 				'SEC_FETCH_MODE',
@@ -36,24 +35,33 @@ function wimbblock_log_sec_headers( $info ) {
 				'SEC_CH_UA',
 				'SEC_CH_UA_MOBILE',
 				'SEC_CH_UA_PLATFORM',
+				'ACCEPT',
+				'HTTP_REFERER',
 			);
 			$headers = array();
 			foreach ( $known as $header ) {
 				$keys = array_keys( preg_grep( '/' . $header . ' - /', $message ) );
 				foreach ( $keys as $key ) {
-					$headers[] = $message[ $key ];
-					unset( $message[ $key ] );
+					if ( strpos( $message[ $key ], 'ACCEPT' ) !== false && strpos( $message[ $key ], ',' ) !== false ) {
+						// wimbblock_error_log( 'unset ' . $message[ $key ], $logging['tests'] ?? false );
+						unset( $message[ $key ] );
+					} else {
+						$headers[] = $message[ $key ];
+						unset( $message[ $key ] );
+					}
 				}
 			}
 			foreach ( $message as $part ) {
 				$headers[] = $part;
 			}
-			wimbblock_error_log(
-				'Test Header ' . $info . ': ' .
-				implode( ' * ', $headers ) .
-				' * ' . $agent,
-				$logging['tests'] ?? false
-			);
+			if ( count( $headers ) > 0 ) {
+				wimbblock_error_log(
+					'Test Header ' . $info . ': ' .
+					implode( ' * ', $headers ) .
+					' * ' . $agent,
+					$logging['tests'] ?? false
+				);
+			}
 		}
 	}
 }
@@ -225,12 +233,24 @@ function wimbblock_check_platform( $software, $system ) {
 	return $message;
 }
 
+function wimbblock_prefetch_block() {
+	$purpose = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_PURPOSE'] ?? '' ) );
+	if ( $purpose === 'prefetch;anonymous-client-ip' ) {
+		wimbblock_log_sec_headers( 'blocked' );
+		status_header( 403 );
+		exit;
+	} elseif ( $purpose !== '' ) {
+		return ' * purpose ' . $purpose;
+	}
+}
+
 function wimbblock_check_secheaders( $software, $system, $version ) {
 	$logging = wimbblock_logging_levels_settings();
 	$agent   = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
 	wimbblock_sec_fetch( $software, $agent );  // alle Firefox, Chrome usw. MUESSEN diese Header haben!
 	$message  = wimbblock_check_ch_ua( $agent, $software, $version );
 	$message .= wimbblock_check_platform( $software, $system );
+	// $message .= wimbblock_prefetch_block();
 	if ( $message !== '' ) {
 		wimbblock_log_sec_headers( 'Debug' );
 		wimbblock_error_log( 'Test Debug' . $message, $logging['tests'] ?? false );

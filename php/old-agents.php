@@ -138,9 +138,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 			'Disallow: /' . "\r\n";
 			exit;
 		}
-	}
-
-	if ( stripos( $software, 'unknown' ) !== false ) {
+	} elseif ( stripos( $software, 'unknown' ) !== false ) {
 		if ( $robots === false ) {
 			wimbblock_counter( $table_name, 'block', $id );
 			$logging = wimbblock_get_option( 'wimbblock_log' );

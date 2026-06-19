@@ -63,15 +63,15 @@ if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wi
 			echo '</p>';
 }
 
-echo '<h4>' . wp_kses_post(
-	__( 'Monthly statistics - first access', 'wimb-and-block' ),
-) . '</h4>';
-
-echo '<p>' . wp_kses_post(
-	__( 'The browsers whose first access occurred during this month are counted for the month.', 'wimb-and-block' ),
-) . '</p>';
-
-echo wp_kses_post( wimbblock_statistic_new_month() );
+// echo '<h4>' . wp_kses_post(
+//  __( 'Monthly statistics - first access', 'wimb-and-block' ),
+// ) . '</h4>';
+//
+// echo '<p>' . wp_kses_post(
+//  __( 'The browsers whose first access occurred during this month are counted for the month.', 'wimb-and-block' ),
+// ) . '</p>';
+//
+// echo wp_kses_post( wimbblock_statistic_new_month() );
 
 echo '<h4>' . wp_kses_post(
 	__( 'Statistics about systems in total', 'wimb-and-block' ),
@@ -82,6 +82,12 @@ echo '<p>' . wp_kses_post(
 ) . '</p>';
 
 echo wp_kses_post( wimbblock_stats_systems() );
+
+echo '<h4>' . wp_kses_post(
+	__( 'Statistics about first and last monthly access', 'wimb-and-block' ),
+) . '</h4>';
+
+wimbblock_statistic_first_last();
 
 echo '<h4>' . wp_kses_post(
 	'<a href="' .
@@ -376,5 +382,100 @@ function wimbblock_delete_month() {
 				ARRAY_A
 			);
 		}
+	}
+}
+
+function wimbblock_statistic_first_last() {
+	global $wimb_datatable;
+	if ( is_null( $wimb_datatable ) ) {
+		wimbblock_open_wpdb();
+	}
+	$wimbblock_wpdb_options = wimbblock_get_options_db();
+	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
+
+	$oldest_wimbdate_entries = $wimb_datatable->get_results(
+		$wimb_datatable->prepare(
+			'SELECT wimbdate FROM %i ORDER BY wimbdate ASC limit 1',
+			$wimbblock_table_name
+		),
+		ARRAY_A
+	);
+
+	$oldest_entries = $wimb_datatable->get_results(
+		$wimb_datatable->prepare(
+			'SELECT time FROM %i ORDER BY time ASC limit 1',
+			$wimbblock_table_name
+		),
+		ARRAY_A
+	);
+
+	$date1      = date_create( wp_date( 'Y-m-01' ) );
+	$wimbmonths = 0;
+	$oldmonths  = 0;
+
+	if ( count( $oldest_wimbdate_entries ) > 0 ) {
+		$date2      = date_create( wp_date( 'Y-m-01', strtotime( '01.' . substr( $oldest_wimbdate_entries[0]['wimbdate'], 2, 2 ) . '.20' . substr( $oldest_wimbdate_entries[0]['wimbdate'], 0, 2 ) ) ) );
+		$diff       = date_diff( $date1, $date2 );
+		$thismonth  = wp_date( 'Y-m' );
+		$wimbmonths = range( 0, $diff->format( '%m' ) );
+	}
+
+	if ( count( $oldest_entries ) > 0 ) {
+		$date2     = date_create( wp_date( 'Y-m-01', strtotime( $oldest_entries[0]['time'] ) ) );
+		$diff      = date_diff( $date1, $date2 );
+		$oldmonths = range( 0, $diff->format( '%m' ) );
+	}
+
+	if ( $wimbmonths !== 0 && $oldmonths !== 0 ) {
+		$entries   = array();
+		$percents  = array();
+		$oldmonths = array_reverse( $oldmonths );
+		foreach ( $wimbmonths as $wimbmonth ) {
+			$entries[ $wimbmonth ]['month']  = wp_date( 'F', strtotime( $thismonth . ' - ' . $wimbmonth . ' month' ) );
+			$percents[ $wimbmonth ]['month'] = $entries[ $wimbmonth ]['month'];
+
+			$wimb_search = wp_date( 'ym', strtotime( $thismonth . ' - ' . $wimbmonth . ' month' ) );
+
+			foreach ( $oldmonths as $oldmonth ) {
+				$time_search = wp_date( 'Y-m-', strtotime( $thismonth . ' - ' . $oldmonth . ' month' ) );
+
+				$wimbblock_entries                  = $wimb_datatable->get_results(
+					$wimb_datatable->prepare(
+						'SELECT COUNT(*) as count FROM %i WHERE time LIKE %s AND wimbdate LIKE %s',
+						$wimbblock_table_name,
+						$time_search . '%',
+						$wimb_search . '%'
+					),
+					ARRAY_A
+				);
+				$entries[ $wimbmonth ][ $oldmonth ] = $wimbblock_entries[0]['count'] > 0 ? $wimbblock_entries[0]['count'] : '';
+
+				$wimbblock_entries = $wimb_datatable->get_results(
+					$wimb_datatable->prepare(
+						'SELECT COUNT(*) as count FROM %i WHERE time LIKE %s AND wimbdate LIKE %s AND block > 0',
+						$wimbblock_table_name,
+						$time_search . '%',
+						$wimb_search . '%'
+					),
+					ARRAY_A
+				);
+				if ( $wimbblock_entries[0]['count'] > 0 ) {
+					$percents[ $wimbmonth ][ $oldmonth ] = wimbblock_percent( $wimbblock_entries[0]['count'], $entries[ $wimbmonth ][ $oldmonth ] );
+				} else {
+					$percents[ $wimbmonth ][ $oldmonth ] = '';
+				}
+			}
+		}
+		$header = array_fill_keys( array_keys( $entries[0] ), '' );
+		foreach ( $header as $key => $value ) {
+			$header[ $key ] = wp_date( 'F', strtotime( $thismonth . ' - ' . $key . ' month' ) );
+		}
+		$header['month'] = '<table><tr><td>' . __( 'last', 'wimb-and-block' ) . ' &rarr;</td></tr>' .
+		'<tr><td>' . __( 'first', 'wimb-and-block' ) . ' &darr;</td></tr></table>';
+		array_unshift( $entries, $header );
+		array_unshift( $percents, $header );
+		echo wp_kses_post( wimbblock_html_table( $entries ) );
+		echo wp_kses_post( wimbblock_html_table( $percents, 'statistics' ) );
+
 	}
 }

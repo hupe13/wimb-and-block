@@ -54,6 +54,7 @@ function wimbblock_form_emergency() {
 function wimbblock_validate_emergency( $input ) {
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock_emergency', 'wimbblock_emergency_nonce' ) ) {
 		if ( isset( $_POST['submit'] ) ) {
+			delete_transient( 'wimbblock_emergency_stop' );
 			return $input;
 		}
 	}

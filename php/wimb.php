@@ -81,9 +81,9 @@ function wimbblock_check_wimb( $agent, $table_name ) {
 
 	if ( is_null( $browser ) ) {
 		$wimb     = wimbblock_whatsmybrowser( $agent );
-		$software = $wimb['software'];
-		$system   = $wimb['system'];
-		$version  = $wimb['version'];
+		$software = $wimb['software'] ?? '';
+		$system   = $wimb['system'] ?? '';
+		$version  = $wimb['version'] ?? '';
 		$blocked  = '0';
 		$mgt_code = $wimb_datatable->query(
 			$wimb_datatable->prepare(

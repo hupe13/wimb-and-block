@@ -9,11 +9,9 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_check_agent() {
-	$stop = wimbblock_get_option( 'wimbblock_emergency' );
-	if ( $stop !== false ) {
-		if ( $stop === '0' ) {
-			return;
-		}
+	$stop = wimbblock_get_emergency_transient();
+	if ( $stop ) {
+		return;
 	}
 	$wpdb_options = wimbblock_get_options_db();
 	if ( $wpdb_options['error'] !== '0' || $wpdb_options['wimb_api'] === '' ) {
@@ -100,7 +98,7 @@ function wimbblock_check_agent() {
 			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, false );
 			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, false );
 			wimbblock_check_secheaders( $software, $system, $version );
-			wimbblock_log_sec_headers( 'info' );
+			// wimbblock_log_sec_headers( 'info' );
 		}
 		wimbblock_counter( $table_name, 'count', $id );
 		$wimbblock_software = $software;

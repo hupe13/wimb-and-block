@@ -29,6 +29,13 @@ function wimbblock_admin() {
 		array(),
 		'1'
 	);
+	wp_enqueue_script(
+		'wimbblock-table-js',
+		plugins_url( dirname( plugin_basename( __FILE__ ) ) . '/admin/table.js' ),
+		array(),
+		'1',
+		true
+	);
 	echo '<h2>' . esc_html__( 'Block old browser versions and suspicious browsers', 'wimb-and-block' ) . '</h2>';
 	echo '<h3>' . esc_html__( 'Help and Options', 'wimb-and-block' ) . '</h3>';
 
@@ -325,7 +332,7 @@ function wimbblock_admin_tabs() {
 }
 
 // Display array as table
-function wimbblock_html_table( $data = array() ) {
+function wimbblock_html_table( $data = array(), $id = 'table' ) {
 	$rows = array();
 	foreach ( $data as $row ) {
 		$cells = array();
@@ -335,10 +342,14 @@ function wimbblock_html_table( $data = array() ) {
 		$rows[] = '<tr>' . implode( '', $cells ) . '</tr>' . "\n";
 	}
 	$head = '<div style="width:80%;">';
-	$head = $head . '<figure class="wp-block-table aligncenter is-style-stripes"><table border=1>';
+	$head = $head . '<figure class="wp-block-table aligncenter"><table border=1 class="alternate" id="' . $id . '">';
 	return $head . implode( '', $rows ) . '</table></figure></div>';
 }
 
 function wimbblock_prozent( $teil, $gesamt ) {
 	return $gesamt > 0 ? number_format( $teil * 100 / $gesamt, 0, '', '' ) . '%' : '';
+}
+
+function wimbblock_percent( $teil, $gesamt ) {
+	return $gesamt > 0 ? number_format( $teil * 100 / $gesamt, 0, '', '' ) : '';
 }

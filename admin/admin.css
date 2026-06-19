@@ -54,3 +54,7 @@ table > thead > tr > th[data-sort=desc] {
 	display: flex;
 	flex-wrap: wrap;
 }
+
+table.alternate tr:nth-child(odd) {
+	background-color: #dcdcde;
+}

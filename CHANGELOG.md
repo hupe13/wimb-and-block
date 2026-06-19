@@ -1,3 +1,8 @@
+### 2606xx / 2.5
+
+* some improvements in statistics and code
+* fixed some small errors
+
 ### 260507 / 2.4
 
 * fixed errors in backend on multisite

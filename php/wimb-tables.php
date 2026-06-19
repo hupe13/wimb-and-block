@@ -270,5 +270,4 @@ if ( is_main_site() ) {
 		}
 	}
 	add_action( 'plugins_loaded', 'wimbblock_update' );
-
 }
