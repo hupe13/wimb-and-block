@@ -1,6 +1,7 @@
 ### 2606xx / 2.5
 
 * some improvements in statistics and code
+* changes to handle an explicitly unblocked agent
 * fixed some small errors
 
 ### 260507 / 2.4
