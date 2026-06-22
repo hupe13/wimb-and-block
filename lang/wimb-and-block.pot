@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-06 20:09+0000\n"
+"POT-Creation-Date: 2026-06-22 15:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -36,11 +36,11 @@ msgid ""
 "form."
 msgstr ""
 
-#: admin/block-unblock.php:186
+#: admin/block-unblock.php:194
 msgid "All browsers"
 msgstr ""
 
-#: admin/monthly.php:137
+#: admin/monthly.php:144
 msgid "All entries"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "All of these browsers %1$s should send these headers:"
 msgstr ""
 
-#: admin/block-unblock.php:182 admin/block-unblock.php:589
+#: admin/block-unblock.php:190 admin/block-unblock.php:597
 msgid "All other browsers"
 msgstr ""
 
@@ -64,8 +64,8 @@ msgstr ""
 msgid "Always block browsers with this strings"
 msgstr ""
 
-#: admin/block-unblock.php:168 admin/block-unblock.php:172
-#: admin/block-unblock.php:533
+#: admin/block-unblock.php:176 admin/block-unblock.php:180
+#: admin/block-unblock.php:541
 msgid "based browsers"
 msgstr ""
 
@@ -74,7 +74,7 @@ msgid "Block browser versions smaller than"
 msgstr ""
 
 #. Name of the plugin
-#: admin.php:32
+#: admin.php:39
 msgid "Block old browser versions and suspicious browsers"
 msgstr ""
 
@@ -82,14 +82,14 @@ msgstr ""
 msgid "Block operating system versions smaller than"
 msgstr ""
 
-#: admin/last24.php:116 admin/last24.php:119 admin/last24.php:122
-#: admin/stats-systems.php:166 admin/monthly.php:155 admin/monthly.php:245
-#: admin/monthly.php:338
+#: admin/last24.php:124 admin/last24.php:127 admin/last24.php:130
+#: admin/stats-systems.php:166 admin/monthly.php:162 admin/monthly.php:252
+#: admin/monthly.php:345
 msgid "blocked"
 msgstr ""
 
-#: admin/stats-systems.php:167 admin/monthly.php:156 admin/monthly.php:246
-#: admin/monthly.php:339
+#: admin/stats-systems.php:167 admin/monthly.php:163 admin/monthly.php:253
+#: admin/monthly.php:346
 msgid "blocked in %"
 msgstr ""
 
@@ -106,8 +106,8 @@ msgstr ""
 msgid "Configuration and Settings"
 msgstr ""
 
-#: admin/last24.php:115 admin/monthly.php:154 admin/monthly.php:244
-#: admin/monthly.php:337
+#: admin/last24.php:123 admin/monthly.php:161 admin/monthly.php:251
+#: admin/monthly.php:344
 msgid "count"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Delete all plugin settings when deleting the plugin?"
 msgstr ""
 
-#: admin/monthly.php:48
+#: admin/monthly.php:49
 msgid "Delete entries for"
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr ""
 msgid "Emergency - start / stop"
 msgstr ""
 
-#: admin.php:59
+#: admin.php:66
 msgid "Emergency button"
 msgstr ""
 
@@ -161,16 +161,20 @@ msgstr ""
 msgid "Entries last 24 hours"
 msgstr ""
 
-#: admin/monthly.php:89
+#: admin/monthly.php:96
 msgid "Even more statistics"
 msgstr ""
 
-#: admin.php:269 admin.php:306
+#: admin.php:276 admin.php:313
 msgid "Exclude / always block"
 msgstr ""
 
 #: admin/exclude.php:14 admin/exclude.php:70
 msgid "Exclude these browsers from checking"
+msgstr ""
+
+#: admin/monthly.php:474
+msgid "first"
 msgstr ""
 
 #. %s are hrefs
@@ -197,15 +201,15 @@ msgstr ""
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:281 admin/header-checks.php:14
+#: admin.php:288 admin/header-checks.php:14
 msgid "Header Checks"
 msgstr ""
 
-#: admin.php:249
+#: admin.php:256
 msgid "Help"
 msgstr ""
 
-#: admin.php:33
+#: admin.php:40
 msgid "Help and Options"
 msgstr ""
 
@@ -228,21 +232,21 @@ msgstr ""
 msgid "hupe13"
 msgstr ""
 
-#: admin/logging.php:146
+#: admin/logging.php:147
 msgid "if an agent is always blocked (on its first visit)"
 msgstr ""
 
-#: admin/logging.php:144
+#: admin/logging.php:145
 msgid "if an agent is inserted in table (on its first visit)"
 msgstr ""
 
-#: admin/logging.php:152
+#: admin/logging.php:153
 msgid ""
 "if an IP uses an agent without authorization (for example an agent string "
 "from Google)"
 msgstr ""
 
-#: admin/logging.php:148
+#: admin/logging.php:149
 msgid "if no agent is given"
 msgstr ""
 
@@ -250,7 +254,7 @@ msgstr ""
 msgid "If one is not present, access will be blocked."
 msgstr ""
 
-#: admin/emergency.php:65
+#: admin/emergency.php:66
 msgid "If something does not work as expected, you can stop it here."
 msgstr ""
 
@@ -264,7 +268,7 @@ msgstr ""
 msgid "If the database is local, the table will also be deleted."
 msgstr ""
 
-#: admin/logging.php:140
+#: admin/logging.php:141
 msgid "if the plugin creates its table, local or remote"
 msgstr ""
 
@@ -288,7 +292,7 @@ msgid ""
 "directory of  %s"
 msgstr ""
 
-#: admin/last24.php:117 admin/last24.php:120 admin/last24.php:123
+#: admin/last24.php:125 admin/last24.php:128 admin/last24.php:131
 msgid "in %"
 msgstr ""
 
@@ -320,7 +324,11 @@ msgid ""
 "from this header."
 msgstr ""
 
-#: admin/last24.php:100
+#: admin/monthly.php:473
+msgid "last"
+msgstr ""
+
+#: admin/last24.php:108
 msgid "last 24 hours"
 msgstr ""
 
@@ -360,23 +368,19 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:216 admin.php:289 admin.php:302
+#: admin.php:223 admin.php:296 admin.php:309
 msgid "Logging"
 msgstr ""
 
-#: admin/monthly.php:243 admin/monthly.php:336
+#: admin/monthly.php:250 admin/monthly.php:343
 msgid "month"
-msgstr ""
-
-#: admin/monthly.php:66
-msgid "Monthly statistics - first access"
 msgstr ""
 
 #: admin/monthly.php:17
 msgid "Monthly statistics - last access"
 msgstr ""
 
-#: admin/last24.php:121
+#: admin/last24.php:129
 msgid "new browsers"
 msgstr ""
 
@@ -399,11 +403,11 @@ msgid ""
 "Only IPv4 addresses are validated via JSON files, IPv6 is validated via DNS."
 msgstr ""
 
-#: admin/block-unblock.php:113
+#: admin/block-unblock.php:121
 msgid "Or you can click on a link from one of the tables."
 msgstr ""
 
-#: admin.php:261 admin/monthly.php:11
+#: admin.php:268 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr ""
 
@@ -436,13 +440,13 @@ msgstr ""
 msgid "Please note that these accesses are not counted in the database."
 msgstr ""
 
-#: admin.php:80
+#: admin.php:87
 msgid ""
 "Please submit the form twice if you are configuring a remote database and it "
 "does not yet exist."
 msgstr ""
 
-#: admin/logging.php:142
+#: admin/logging.php:143
 msgid "plugins cron jobs"
 msgstr ""
 
@@ -462,24 +466,24 @@ msgstr ""
 msgid "Remote database username"
 msgstr ""
 
-#: admin.php:86 admin.php:126 admin.php:138 admin/logging.php:131
+#: admin.php:93 admin.php:133 admin.php:145 admin/logging.php:132
 msgid "Reset"
 msgstr ""
 
-#: admin/last24.php:118 admin/monthly.php:157 admin/monthly.php:247
-#: admin/monthly.php:340
+#: admin/last24.php:126 admin/monthly.php:164 admin/monthly.php:254
+#: admin/monthly.php:347
 msgid "robots"
 msgstr ""
 
-#: admin/monthly.php:159 admin/monthly.php:249 admin/monthly.php:342
+#: admin/monthly.php:166 admin/monthly.php:256 admin/monthly.php:349
 msgid "robots blocked"
 msgstr ""
 
-#: admin/monthly.php:158 admin/monthly.php:248 admin/monthly.php:341
+#: admin/monthly.php:165 admin/monthly.php:255 admin/monthly.php:348
 msgid "robots blocked in %"
 msgstr ""
 
-#: admin.php:293 admin.php:314
+#: admin.php:300 admin.php:321
 msgid "robots.txt"
 msgstr ""
 
@@ -487,15 +491,15 @@ msgstr ""
 msgid "Rotate the table on this site"
 msgstr ""
 
-#: admin/block-unblock.php:147
+#: admin/block-unblock.php:155
 msgid "Search"
 msgstr ""
 
-#: admin.php:148 admin.php:265
+#: admin.php:155 admin.php:272
 msgid "Search / block / unblock entries"
 msgstr ""
 
-#: admin.php:277 admin/block-unblock.php:176 admin/block-unblock.php:633
+#: admin.php:284 admin/block-unblock.php:184 admin/block-unblock.php:641
 msgid "Search Engines"
 msgstr ""
 
@@ -503,11 +507,11 @@ msgstr ""
 msgid "Search engines are excluded from this."
 msgstr ""
 
-#: admin/block-unblock.php:111
+#: admin/block-unblock.php:119
 msgid "Search entries"
 msgstr ""
 
-#: admin/block-unblock.php:242
+#: admin/block-unblock.php:250
 msgid "Select to unblock / block"
 msgstr ""
 
@@ -515,7 +519,7 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:59 wimb-and-block.php:67
+#: wimb-and-block.php:60 wimb-and-block.php:68
 msgid "Settings"
 msgstr ""
 
@@ -523,7 +527,7 @@ msgstr ""
 msgid "Settings Search Engines"
 msgstr ""
 
-#: admin.php:73 admin.php:285 admin.php:298
+#: admin.php:80 admin.php:292 admin.php:305
 msgid "Settings WIMB"
 msgstr ""
 
@@ -547,7 +551,11 @@ msgid ""
 "Mastodon. Then you can exclude these."
 msgstr ""
 
-#: admin/monthly.php:76
+#: admin/monthly.php:87
+msgid "Statistics about first and last monthly access"
+msgstr ""
+
+#: admin/monthly.php:77
 msgid "Statistics about systems in total"
 msgstr ""
 
@@ -559,7 +567,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: admin/block-unblock.php:163
+#: admin/block-unblock.php:171
 msgid "Tables"
 msgstr ""
 
@@ -569,12 +577,6 @@ msgstr ""
 
 #: admin/robots.php:250
 msgid "Test your configuration"
-msgstr ""
-
-#: admin/monthly.php:70
-msgid ""
-"The browsers whose first access occurred during this month are counted for "
-"the month."
 msgstr ""
 
 #: admin/monthly.php:21
@@ -592,7 +594,7 @@ msgstr ""
 msgid "The following Browsers send this header:"
 msgstr ""
 
-#: php/wimb-options.php:221
+#: php/wimb-options.php:203
 msgid "The full IP is logged. (default)"
 msgstr ""
 
@@ -600,7 +602,7 @@ msgstr ""
 msgid "The information could not be retrieved."
 msgstr ""
 
-#: php/wimb-options.php:213
+#: php/wimb-options.php:195
 msgid "The IP address is not logged."
 msgstr ""
 
@@ -616,7 +618,7 @@ msgstr ""
 msgid "The IP addresses of %1$s are validated via JSON files."
 msgstr ""
 
-#: php/wimb-options.php:217
+#: php/wimb-options.php:199
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
@@ -632,11 +634,11 @@ msgid ""
 "want the plugin to log anything, set it to /dev/null."
 msgstr ""
 
-#: admin/monthly.php:80
+#: admin/monthly.php:81
 msgid "The number of different browsers per system is counted."
 msgstr ""
 
-#: admin/emergency.php:63
+#: admin/emergency.php:64
 msgid ""
 "The plugin begins its work if the WIMB API Key is set and if the database is "
 "configured and running."
@@ -681,6 +683,14 @@ msgid ""
 "is send to WhatIsMyBrowser and some data will be stored in the table:"
 msgstr ""
 
+#. %s is "-1"
+#. %1$s is "-1" and %2$s is "blocked"
+#: admin/last24.php:18 admin/block-unblock.php:54
+#, php-format
+msgid ""
+"The value %1$s in the %2$s column means that you have unblocked the agent."
+msgstr ""
+
 #. %s are browsers
 #: admin/versions.php:84
 #, php-format
@@ -689,7 +699,12 @@ msgid ""
 "example %3$s, %4$s, %5$s, %6$s, %7$s."
 msgstr ""
 
-#: admin.php:57
+#. %1$s and %2$s is a link.
+#: admin/block-unblock.php:126
+msgid "Then you can block or unblock the entries."
+msgstr ""
+
+#: admin.php:64
 msgid "There is an error in your settings."
 msgstr ""
 
@@ -699,7 +714,7 @@ msgid ""
 "that the comments remain."
 msgstr ""
 
-#: admin/last24.php:176
+#: admin/last24.php:184
 msgid "There was an error:"
 msgstr ""
 
@@ -719,7 +734,7 @@ msgid ""
 "string."
 msgstr ""
 
-#: admin/logging.php:138
+#: admin/logging.php:139
 msgid "This is always logged:"
 msgstr ""
 
@@ -731,11 +746,11 @@ msgstr ""
 msgid "This string is easy to fake."
 msgstr ""
 
-#: admin.php:85
+#: admin.php:92
 msgid "To change the settings, first reset them all."
 msgstr ""
 
-#: admin/monthly.php:142
+#: admin/monthly.php:149
 msgid "total"
 msgstr ""
 
@@ -743,11 +758,11 @@ msgstr ""
 msgid "total share in %"
 msgstr ""
 
-#: admin/block-unblock.php:67
+#: admin/block-unblock.php:74
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:105 admin.php:273 admin.php:310
+#: admin.php:112 admin.php:280 admin.php:317
 msgid "Versions Control"
 msgstr ""
 
@@ -755,7 +770,7 @@ msgstr ""
 msgid "When logging, the IP address is also logged."
 msgstr ""
 
-#: admin/block-unblock.php:177
+#: admin/block-unblock.php:185
 msgid "which are verified by the plugin"
 msgstr ""
 
@@ -775,7 +790,7 @@ msgstr ""
 msgid "WIMB API key needed."
 msgstr ""
 
-#: admin.php:144 admin.php:257
+#: admin.php:151 admin.php:264
 msgid "WIMB last 24 hours"
 msgstr ""
 
@@ -798,7 +813,7 @@ msgid "yes"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin.php:48 admin.php:111 admin.php:159 admin.php:222 admin/crawler.php:142
+#: admin.php:55 admin.php:118 admin.php:166 admin.php:229 admin/crawler.php:142
 #, php-format
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""
@@ -811,7 +826,7 @@ msgid ""
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/monthly.php:57
+#: admin/monthly.php:58
 #, php-format
 msgid "You can delete oldest month on the %1$smain site%2$s."
 msgstr ""
@@ -823,12 +838,12 @@ msgid "You can do it on %1$sthis site%2$s."
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/block-unblock.php:76 admin/block-unblock.php:155
+#: admin/block-unblock.php:83 admin/block-unblock.php:163
 #, php-format
 msgid "You can do this on the %1$smain site%2$s."
 msgstr ""
 
-#: admin/block-unblock.php:112
+#: admin/block-unblock.php:120
 msgid "You can search for entries here."
 msgstr ""
 
@@ -846,14 +861,6 @@ msgstr ""
 msgid "You can sort the columns %1$s, %2$s, %3$s and %4$s."
 msgstr ""
 
-#. %1$s and %2$s is a link.
-#: admin/block-unblock.php:118
-#, php-format
-msgid ""
-"You can unblock all blocked entries. However, it is possible that they will "
-"be blocked again based on the settings for %1$sVersion Control%2$s."
-msgstr ""
-
 #: admin/robots.php:53
 msgid ""
 "You do not seem to have your own robots.txt file, so WordPress provides it. "
@@ -865,7 +872,7 @@ msgstr ""
 msgid "You must configure these settings on each of your domains!"
 msgstr ""
 
-#: admin/exclude.php:73 admin/logging.php:82 admin/versions.php:80
+#: admin/exclude.php:73 admin/logging.php:83 admin/versions.php:80
 #: admin/always-block.php:68
 msgid ""
 "You must configure these settings on each of your websites that use this "

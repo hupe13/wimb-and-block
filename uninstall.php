@@ -24,7 +24,10 @@ function wimbblock_uninstall_delete_options() {
 	foreach ( $wimbblock_option_names as $key => $value ) {
 		delete_option( $value['option_name'] );
 	}
+	delete_transient( 'wimbblock_emergency_stop' );
+	delete_transient( 'wimbblock_crawlers' );
 	delete_transient( 'wimbblock_logfile' );
+	delete_transient( 'wimbblock_logging_levels' );
 }
 
 global $wpdb;

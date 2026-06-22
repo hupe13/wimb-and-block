@@ -68,7 +68,7 @@ function wimbblock_check_agent() {
 		if ( $excludes !== false ) {
 			foreach ( $excludes as $exclude ) {
 				if ( stripos( $agent, $exclude ) !== false ) {
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'Excluded: ' . $agent . ' * ' . $exclude, $logging['excluded'] ?? true );
 					return;
 				}
@@ -88,6 +88,13 @@ function wimbblock_check_agent() {
 			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );
 			exit();
 		}
+		if ( (int) $blocked < 0 ) { // unblocked
+			wimbblock_counter( $table_name, 'count', $id );
+			$logging = wimbblock_logging_levels_settings();
+			wimbblock_error_log( 'Unblocked: ' . $agent, $logging['excluded'] ?? true );
+			return;
+		}
+
 		wimbblock_always( $table_name, $agent, $blocked, $id, false );
 		wimbblock_faked_crawler( $table_name, $agent, $ip, false );
 		if ( $wimbblock_is_crawler === false ) {

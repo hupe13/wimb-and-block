@@ -188,24 +188,6 @@ function wimbblock_logging_levels() {
 	return $params;
 }
 
-function wimbblock_logging_levels_settings() {
-	$params   = wimbblock_logging_levels();
-	$defaults = array();
-	foreach ( $params as $param ) {
-		$defaults[ $param['param'] ] = $param['default'];
-	}
-	$settings = wimbblock_get_option( 'wimbblock_log' );
-	$options  = array();
-	foreach ( $defaults as $key => $default ) {
-		if ( isset( $settings[ $key ] ) ) {
-			$options[ $key ] = $settings[ $key ];
-		} else {
-			$options[ $key ] = $default;
-		}
-	}
-	return $options;
-}
-
 function wimbblock_anon_log() {
 	$logip = array(
 		array(
@@ -231,4 +213,41 @@ function wimbblock_anon_settings() {
 		$setting = 'all';
 	}
 	return $setting;
+}
+
+function wimbblock_get_emergency_transient() {
+	$emergency = get_transient( 'wimbblock_emergency_stop' );
+	if ( false === $emergency ) {
+		$stop      = wimbblock_get_option( 'wimbblock_emergency' );
+		$emergency = false;
+		if ( $stop !== false ) {
+			if ( $stop === '0' ) {
+				$emergency = true;
+			}
+		}
+		set_transient( 'wimbblock_emergency_stop', $emergency, HOUR_IN_SECONDS );
+	}
+	return $emergency;
+}
+
+function wimbblock_logging_levels_settings() {
+	$logging = get_transient( 'wimbblock_logging_levels' );
+	if ( false === $logging ) {
+		$params   = wimbblock_logging_levels();
+		$defaults = array();
+		foreach ( $params as $param ) {
+			$defaults[ $param['param'] ] = $param['default'];
+		}
+		$settings = wimbblock_get_option( 'wimbblock_log' );
+		$logging  = array();
+		foreach ( $defaults as $key => $default ) {
+			if ( isset( $settings[ $key ] ) ) {
+				$logging[ $key ] = $settings[ $key ];
+			} else {
+				$logging[ $key ] = $default;
+			}
+		}
+		set_transient( 'wimbblock_logging_levels', $logging, HOUR_IN_SECONDS );
+	}
+	return $logging;
 }

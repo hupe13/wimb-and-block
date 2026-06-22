@@ -25,7 +25,7 @@ function wimbblock_check_modern_browser( $table_name, $agent, $software, $versio
 			) {
 			if ( $robots === false ) {
 				wimbblock_counter( $table_name, 'block', $id );
-				$logging = wimbblock_get_option( 'wimbblock_log' );
+				$logging = wimbblock_logging_levels_settings();
 				wimbblock_error_log( 'Blocked - old browser: ' . $software, $logging['oldagents'] ?? true );
 				status_header( 404 );
 				echo 'Please use a modern webbrowser to access this website';
@@ -35,7 +35,7 @@ function wimbblock_check_modern_browser( $table_name, $agent, $software, $versio
 					wimbblock_counter( $table_name, 'block', $id );
 				}
 				wimbblock_counter( $table_name, 'robots', $id );
-				$logging = wimbblock_get_option( 'wimbblock_log' );
+				$logging = wimbblock_logging_levels_settings();
 				wimbblock_error_log( 'robots.txt old browser forbidden: ' . $agent, $logging['robotsforbidden'] ?? true );
 				header( 'Content-Type: text/plain; charset=UTF-8' );
 				echo "User-agent: *\r\n" .
@@ -56,7 +56,7 @@ function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $
 				if ( (int) $version < (int) $min_version ) {
 					if ( $robots === false ) {
 						wimbblock_counter( $table_name, 'block', $id );
-						$logging = wimbblock_get_option( 'wimbblock_log' );
+						$logging = wimbblock_logging_levels_settings();
 						wimbblock_error_log( 'Blocked - old browser: ' . $software, $logging['oldagents'] ?? true );
 						status_header( 404 );
 						echo 'Please use a modern webbrowser to access this website';
@@ -66,7 +66,7 @@ function wimbblock_old_agent( $table_name, $software, $version, $blocked, $id, $
 							wimbblock_counter( $table_name, 'block', $id );
 						}
 						wimbblock_counter( $table_name, 'robots', $id );
-						$logging = wimbblock_get_option( 'wimbblock_log' );
+						$logging = wimbblock_logging_levels_settings();
 						wimbblock_error_log( 'robots.txt old browser forbidden: ' . $browser . ' * ' . $software . ' * ' . $version, $logging['robotsforbidden'] ?? true );
 						header( 'Content-Type: text/plain; charset=UTF-8' );
 						echo "User-agent: *\r\n" .
@@ -95,7 +95,7 @@ function wimbblock_check_derivate( $table_name, $agent, $software, $version, $sy
 			if ( (int) $version < (int) $checking[ $derivate ] ) {
 				if ( $robots === false ) {
 					wimbblock_counter( $table_name, 'block', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'Blocked - old ' . $derivate . ' like browser: ' . $software . ' * ' . $agent . ' * ' . $version, $logging['oldagents'] ?? true );
 					status_header( 404 );
 					echo 'Please use a modern webbrowser to access this website';
@@ -105,7 +105,7 @@ function wimbblock_check_derivate( $table_name, $agent, $software, $version, $sy
 						wimbblock_counter( $table_name, 'block', $id );
 					}
 					wimbblock_counter( $table_name, 'robots', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'robots.txt old ' . $derivate . ' like forbidden: ' . $agent, $logging['robotsforbidden'] ?? true );
 					header( 'Content-Type: text/plain; charset=UTF-8' );
 					echo "User-agent: *\r\n" .
@@ -121,7 +121,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 	if ( $software === '' ) {
 		if ( $robots === false ) {
 			wimbblock_counter( $table_name, 'block', $id );
-			$logging = wimbblock_get_option( 'wimbblock_log' );
+			$logging = wimbblock_logging_levels_settings();
 			wimbblock_error_log( 'Blocked - unknown software: ' . $agent, $logging['oldagents'] ?? true );
 			status_header( 404 );
 			echo 'Blocked - unknown software: ' . esc_html( $agent );
@@ -131,7 +131,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 				wimbblock_counter( $table_name, 'block', $id );
 			}
 			wimbblock_counter( $table_name, 'robots', $id );
-			$logging = wimbblock_get_option( 'wimbblock_log' );
+			$logging = wimbblock_logging_levels_settings();
 			wimbblock_error_log( 'robots.txt unknown software forbidden: ' . $agent, $logging['robotsforbidden'] ?? true );
 			header( 'Content-Type: text/plain; charset=UTF-8' );
 			echo "User-agent: *\r\n" .
@@ -141,7 +141,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 	} elseif ( stripos( $software, 'unknown' ) !== false ) {
 		if ( $robots === false ) {
 			wimbblock_counter( $table_name, 'block', $id );
-			$logging = wimbblock_get_option( 'wimbblock_log' );
+			$logging = wimbblock_logging_levels_settings();
 			wimbblock_error_log( 'Blocked - unknown webbrowser: ' . $agent . ' * ' . $software, $logging['oldagents'] ?? true );
 			status_header( 404 );
 			echo 'Blocked - unknown webbrowser';
@@ -151,7 +151,7 @@ function wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id,
 				wimbblock_counter( $table_name, 'block', $id );
 			}
 			wimbblock_counter( $table_name, 'robots', $id );
-			$logging = wimbblock_get_option( 'wimbblock_log' );
+			$logging = wimbblock_logging_levels_settings();
 			wimbblock_error_log( 'robots.txt unknown webbrowser forbidden: ' . $agent . ' * ' . $software, $logging['robotsforbidden'] ?? true );
 			header( 'Content-Type: text/plain; charset=UTF-8' );
 			echo "User-agent: *\r\n" .
@@ -169,7 +169,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 			if ( (int) $version < (int) $checking['Android'] ) {
 				if ( $robots === false ) {
 					wimbblock_counter( $table_name, 'block', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'Blocked - old Android: ' . $system . ' * ' . $version, $logging['oldagents'] ?? true );
 					status_header( 404 );
 					echo 'Please use a modern operating system to access this website';
@@ -179,7 +179,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 						wimbblock_counter( $table_name, 'block', $id );
 					}
 					wimbblock_counter( $table_name, 'robots', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'robots.txt old Android: ' . $system . ' * ' . $version, $logging['robotsforbidden'] ?? true );
 					header( 'Content-Type: text/plain; charset=UTF-8' );
 					echo "User-agent: *\r\n" .
@@ -195,7 +195,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 			if ( (int) $version < (int) $checking['iOS'] ) {
 				if ( $robots === false ) {
 					wimbblock_counter( $table_name, 'block', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'Blocked - old iOS: ' . $system . ' * ' . $version, $logging['oldagents'] ?? true );
 					status_header( 404 );
 					echo 'Please use a modern operating system to access this website';
@@ -205,7 +205,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 						wimbblock_counter( $table_name, 'block', $id );
 					}
 					wimbblock_counter( $table_name, 'robots', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'robots.txt old iOS: ' . $system . ' * ' . $version, $logging['robotsforbidden'] ?? true );
 					header( 'Content-Type: text/plain; charset=UTF-8' );
 					echo "User-agent: *\r\n" .
@@ -231,7 +231,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 		if ( ! $actual ) {
 			if ( $robots === false ) {
 				wimbblock_counter( $table_name, 'block', $id );
-				$logging = wimbblock_get_option( 'wimbblock_log' );
+				$logging = wimbblock_logging_levels_settings();
 				wimbblock_error_log( 'Blocked - old Mac OS X: ' . $system . ' * ' . $version, $logging['oldagents'] ?? true );
 				status_header( 404 );
 				echo 'Please use a modern operating system to access this website';
@@ -241,7 +241,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 					wimbblock_counter( $table_name, 'block', $id );
 				}
 				wimbblock_counter( $table_name, 'robots', $id );
-				$logging = wimbblock_get_option( 'wimbblock_log' );
+				$logging = wimbblock_logging_levels_settings();
 				wimbblock_error_log( 'robots.txt old Mac OS X: ' . $system . ' * ' . $version, $logging['robotsforbidden'] ?? true );
 				header( 'Content-Type: text/plain; charset=UTF-8' );
 				echo "User-agent: *\r\n" .
@@ -256,7 +256,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 			if ( strpos( $system, 'Windows 1' ) === false ) {
 				if ( $robots === false ) {
 					wimbblock_counter( $table_name, 'block', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'Blocked - old Windows: ' . $system, $logging['oldagents'] ?? true );
 					status_header( 404 );
 					echo 'Please use a modern operating system to access this website';
@@ -266,7 +266,7 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 						wimbblock_counter( $table_name, 'block', $id );
 					}
 					wimbblock_counter( $table_name, 'robots', $id );
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'robots.txt old Windows forbidden: ' . $system, $logging['robotsforbidden'] ?? true );
 					header( 'Content-Type: text/plain; charset=UTF-8' );
 					echo "User-agent: *\r\n" .

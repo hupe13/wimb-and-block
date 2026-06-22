@@ -1,3 +1,9 @@
+/**
+ * Color of table first last
+ *
+ * @package wimb-and-block
+ */
+
 var t = document.getElementById( 'statistics' );
 if (t) {
 	Array.from( t.rows ).forEach(

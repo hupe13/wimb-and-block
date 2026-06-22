@@ -196,7 +196,7 @@ function wimbblock_set_transients_crawlers_in_table( $table_name_crawler = '' ) 
 	if ( is_null( $wimb_datatable ) ) {
 		wimbblock_open_wpdb();
 	}
-	if ( $table_name_crawler == '' ) {
+	if ( $table_name_crawler === '' ) {
 		$wpdb_options       = wimbblock_get_options_db();
 		$table_name_crawler = $wpdb_options['table_name'] . '_crawler';
 	}

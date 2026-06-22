@@ -48,7 +48,14 @@ function wimbblock_block_unblock_main() {
 			);
 
 			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
-
+				echo '<p>' . esc_html(
+					sprintf(
+						/* translators: %1$s is "-1" and %2$s is "blocked" */
+						__( 'The value %1$s in the %2$s column means that you have unblocked the agent.', 'wimb-and-block' ),
+						'"-1"',
+						'"blocked"'
+					)
+				) . '</p>';
 				echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
 				if ( current_user_can( 'manage_options' ) ) {
 					$allowed_html          = wp_kses_allowed_html( 'post' );
@@ -116,7 +123,7 @@ function wimbblock_block_unblock_main() {
 	printf(
 		wp_kses_post(
 			/* translators: %1$s and %2$s is a link. */
-			__( 'You can unblock all blocked entries. However, it is possible that they will be blocked again based on the settings for %1$sVersion Control%2$s.', 'wimb-and-block' )
+			__( 'Then you can block or unblock the entries.', 'wimb-and-block' )
 		),
 		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=versions' ) . '">',
 		'</a>'
@@ -219,7 +226,7 @@ function wimbblock_block_unblock_table( $wimbblock_table_name, $entries ) {
 			$row_vals[] = $value;
 		}
 		$class = '';
-		if ( $row_vals[5] === '0' ) {
+		if ( (int) $row_vals[5] < 1 ) {
 			if ( $alternate ) {
 				$alternate = false;
 				$class     = ' class="greenw04"';
@@ -263,7 +270,7 @@ function wimbblock_handle_post() {
 
 			$command = array();
 			foreach ( $entries as $i => $block ) {
-				if ( $block === '0' ) {
+				if ( (int) $block < 1 ) {
 					// block the entry
 					$entries = $wimb_datatable->get_results(
 						$wimb_datatable->prepare(
@@ -276,7 +283,7 @@ function wimbblock_handle_post() {
 					// unblock the entry
 					$entries = $wimb_datatable->get_results(
 						$wimb_datatable->prepare(
-							"UPDATE %i SET time=time,software=IF(software LIKE '%unknown%' OR software='','*',software), block=0 WHERE i = %s",
+							"UPDATE %i SET time=time, block='-1' WHERE i = %s",
 							$options['table_name'],
 							$i
 						),

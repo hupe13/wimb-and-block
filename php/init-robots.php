@@ -63,7 +63,7 @@ function wimbblock_check_robots_txt( $posts ) {
 		if ( $excludes !== false ) {
 			foreach ( $excludes as $exclude ) {
 				if ( stripos( $agent, $exclude ) !== false ) {
-					$logging = wimbblock_get_option( 'wimbblock_log' );
+					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'Excluded - robots.txt okay: ' . $agent . ' * ' . $exclude, $logging['excluded'] ?? true );
 					wimbblock_get_robots_txt();
 				}
@@ -86,23 +86,28 @@ function wimbblock_check_robots_txt( $posts ) {
 		}
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'robots', $id );
-			$logging = wimbblock_get_option( 'wimbblock_log' );
+			$logging = wimbblock_logging_levels_settings();
 			wimbblock_error_log( 'robots.txt forbidden: ' . ( $software !== '' ? $software : $agent ), $logging['robotsforbidden'] ?? true );
 			header( 'Content-Type: text/plain; charset=UTF-8' );
 			echo "User-agent: *\r\n" .
 			'Disallow: /' . "\r\n";
 			exit;
 		}
-
-		wimbblock_always( $table_name, $agent, $blocked, $id, true );
-		wimbblock_faked_crawler( $table_name, $agent, $ip, true );
-		if ( $wimbblock_is_crawler === false ) {
-			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, true );
-			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, true );
-			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, true );
-			wimbblock_check_secheaders( $software, $system, $version );
+		if ( (int) $blocked < 0 ) { // unblocked
+			wimbblock_counter( $table_name, 'robots', $id );
+			$logging = wimbblock_logging_levels_settings();
+			wimbblock_error_log( 'Unblocked: ' . $agent, $logging['excluded'] ?? true );
+		} else {
+			wimbblock_always( $table_name, $agent, $blocked, $id, true );
+			wimbblock_faked_crawler( $table_name, $agent, $ip, true );
+			if ( $wimbblock_is_crawler === false ) {
+				wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, true );
+				wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, true );
+				wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, true );
+				wimbblock_check_secheaders( $software, $system, $version );
+			}
 		}
-		$logging = wimbblock_get_option( 'wimbblock_log' );
+		$logging = wimbblock_logging_levels_settings();
 		wimbblock_error_log( 'robots.txt okay: ' . ( $software !== '' ? $software : $agent ), $logging['robotsokay'] ?? true );
 		wimbblock_counter( $table_name, 'robots', $id );
 		wimbblock_get_robots_txt();

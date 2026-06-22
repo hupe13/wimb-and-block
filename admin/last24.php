@@ -12,6 +12,14 @@ function wimbblock_daily_table() {
 	echo '<h4>' . esc_html( __( 'Overview last 24 hours', 'wimb-and-block' ) ) . '</h4>';
 	wimbblock_statistic24();
 	echo '<h4>' . esc_html( __( 'Entries last 24 hours', 'wimb-and-block' ) ) . '</h4>';
+	echo '<p>' . esc_html(
+		sprintf(
+			/* translators: %1$s is "-1" and %2$s is "blocked" */
+			__( 'The value %1$s in the %2$s column means that you have unblocked the agent.', 'wimb-and-block' ),
+			'"-1"',
+			'"blocked"'
+		)
+	) . '</p>';
 	$wimbblock_wpdb_options = wimbblock_get_options_db();
 	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
 	if ( $wimbblock_wpdb_options['error'] === '0' ) {
@@ -202,7 +210,7 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 
 		$class = '';
 		// var_dump($row_vals); wp_die('tot');
-		if ( $entry['block'] === '0' ) {
+		if ( (int) $entry['block'] < 1 ) {
 			if ( $alternate ) {
 				$alternate = false;
 				$class     = ' class="greenw04"';

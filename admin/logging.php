@@ -60,6 +60,7 @@ function wimbblock_form_logging( $field ) {
 function wimbblock_validate_logging( $options ) {
 	$post = map_deep( wp_unslash( $_POST ), 'sanitize_text_field' );
 	if ( ! empty( $post ) && check_admin_referer( 'wimbblock_log', 'wimbblock_log_nonce' ) ) {
+		delete_transient( 'wimbblock_logging_levels' );
 		if ( isset( $post['submit'] ) ) {
 			$settings = array();
 			foreach ( $options as $key => $value ) {
