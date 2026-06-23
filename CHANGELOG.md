@@ -1,4 +1,4 @@
-### 2606xx / 2.5
+### 260623 / 2.5
 
 * some improvements in statistics and code
 * changes to handle an explicitly unblocked agent

@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad-bots, user-agent, ban, blocking, robots.txt
 Tested up to: 7.0
-Stable tag: 260622
+Stable tag: 260623
 Requires at least: 6.2
 Requires PHP: 8.1
 License: GPLv2 or later

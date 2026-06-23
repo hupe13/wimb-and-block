@@ -82,10 +82,10 @@ function wimbblock_help_readme( $file ) {
 	require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
 	$filesystem = new WP_Filesystem_Direct( true );
 	$readme     = $filesystem->get_contents( ABSPATH . $file );
-	$readme     = preg_replace( '/Contributors: [\s0-9a-zA-Z:.,]+GPLv2 or later/m', '', $readme );
+	$header     = array( '/Contributors:.*/', '/Tags:.*/', '/Tested up to:.*/', '/Stable tag:.*/', '/Requires at least:.*/', '/Requires PHP:.*/', '/License:.*/' );
+	$readme     = preg_replace( $header, '', $readme );
 	if ( get_locale() === 'de_DE' ) {
-		$array = explode( "\n", $readme );
-		// var_dump($array);
+		$array  = explode( "\n", $readme );
 		$german = array();
 		foreach ( $array as $line ) {
 			if ( $line !== '' ) {
