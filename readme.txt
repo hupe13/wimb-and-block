@@ -59,7 +59,7 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-### 2606xx / 2.5
+### 260623 / 2.5
 
 * some improvements in statistics and code
 * changes to handle an explicitly unblocked agent
