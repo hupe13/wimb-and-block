@@ -1,7 +1,7 @@
 === Block old browser versions and suspicious browsers ===
 
 Contributors: hupe13
-Tags: bad bots, ban, blocking, deny, robots.txt
+Tags: bad-bots, user-agent, ban, blocking, robots.txt
 Tested up to: 7.0
 Stable tag: 260622
 Requires at least: 6.2
