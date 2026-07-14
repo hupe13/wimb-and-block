@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_header_help() {
-	//$text .= 'https://caniuse.com/?search=Sec-Fetch-'
+	// $text .= 'https://caniuse.com/?search=Sec-Fetch-'
 
 	$text  = '<h3>' . __( 'Header Checks', 'wimb-and-block' ) . '</h3>';
 	$text .= '<p>' . __(

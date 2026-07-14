@@ -49,7 +49,7 @@ function wimbblock_exclude_form() {
 function wimbblock_exclude_validate( $params ) {
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock', 'wimbblock_nonce' ) ) {
 		if ( isset( $_POST['submit'] ) ) {
-			//var_dump($params);
+			// var_dump($params);
 			$newparams = array();
 			$last      = count( $params );
 			for ( $i = 0; $i < $last; $i++ ) {

@@ -12,14 +12,6 @@ function wimbblock_daily_table() {
 	echo '<h4>' . esc_html( __( 'Overview last 24 hours', 'wimb-and-block' ) ) . '</h4>';
 	wimbblock_statistic24();
 	echo '<h4>' . esc_html( __( 'Entries last 24 hours', 'wimb-and-block' ) ) . '</h4>';
-	echo '<p>' . esc_html(
-		sprintf(
-			/* translators: %1$s is "-1" and %2$s is "blocked" */
-			__( 'The value %1$s in the %2$s column means that you have unblocked the agent.', 'wimb-and-block' ),
-			'"-1"',
-			'"blocked"'
-		)
-	) . '</p>';
 	$wimbblock_wpdb_options = wimbblock_get_options_db();
 	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
 	if ( $wimbblock_wpdb_options['error'] === '0' ) {
@@ -159,7 +151,7 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 	$tablehdr .= '<th colspan=1>&nbsp;</th>';
 	$tablehdr .= '</tr>';
 	$tablehdr .= $colgroups;
-	$tablehdr .= '<tr><th>i</th><th>Type</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>wimbdate</th><th>robots</th>';
+	$tablehdr .= '<tr><th>i</th><th>Browser</th><th>Software</th><th>System</th><th>Version</th><th>time</th><th>wimbdate</th><th>robots</th>';
 	for ( $i = 1; $i <= 4; $i++ ) {
 		$tablehdr .= '<th>count</th><th>blocked</th>';
 	}
@@ -188,12 +180,18 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 	$rows      = array();
 	$alternate = true;
 
+	$star     = false;
+	$exclusiv = false;
+
 	foreach ( $entries as $entry ) {
 		$line = array();
 
 		$line[] = $entry['i'];
 		$line[] = $entry['browser'];
 		$line[] = $entry['software'];
+		if ( $entry['software'] === '*' ) {
+			$star = true;
+		}
 		$line[] = $entry['system'];
 		$line[] = $entry['version'];
 		$line[] = $entry['time'];
@@ -201,6 +199,9 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 		$line[] = $entry['robots'];
 		$line[] = $entry['count'];
 		$line[] = $entry['block'];
+		if ( $entry['block'] === '-1' ) {
+			$exclusiv = true;
+		}
 		$line[] = $entry['count_1'];
 		$line[] = $entry['block_1'];
 		$line[] = $entry['count_2'];
@@ -242,6 +243,28 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 		$rows[] = $table;
 	}
 
+	$comment = '';
+	if ( ( $star && ! $exclusiv ) || ( ! $star && $exclusiv ) ) {
+		$comment .= '<p>' .
+			sprintf(
+			/* translators: %1$s is a value and %2$s is a column name */
+				__( 'The value %1$s in the %2$s column means that you have explicitly unblocked the browser.', 'wimb-and-block' ),
+				$star ? '<code>*</code>' : '<code>software</code>',
+				$star ? '<code>-1</code>' : '<code>block</code>'
+			) . '</p>';
+	}
+	if ( $star && $exclusiv ) {
+		$comment .= '<p>' .
+			sprintf(
+			/* translators: %1$s is "-1" and %2$s is "blocked", %3$s is "*" and %4$s is "software" */
+				__( 'The value %1$s in the %2$s column or the value %3$s in %4$s column means that you have explicitly unblocked the browser.', 'wimb-and-block' ),
+				'<code>-1</code>',
+				'<code>block</code>',
+				'<code>*</code>',
+				'<code>software</code>',
+			) . '</p>';
+	}
+
 	// Put the table together and output
-	return '<table border=1>' . $header . '<tbody>' . join( $rows ) . '</tbody></table>';
+	return $comment . '<table border=1>' . $header . '<tbody>' . join( $rows ) . '</tbody></table>';
 }

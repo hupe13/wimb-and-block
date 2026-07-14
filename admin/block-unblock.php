@@ -48,14 +48,18 @@ function wimbblock_block_unblock_main() {
 			);
 
 			if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wimbblock_basename ) ) ) {
-				echo '<p>' . esc_html(
+				echo '<p>' . wp_kses_post(
 					sprintf(
-						/* translators: %1$s is "-1" and %2$s is "blocked" */
-						__( 'The value %1$s in the %2$s column means that you have unblocked the agent.', 'wimb-and-block' ),
-						'"-1"',
-						'"blocked"'
+						/* translators: %1$s is "-1" and %2$s is "blocked", %3$s is "*" and %4$s is "software" */
+						__( 'The value %1$s in the %2$s column or the value %3$s in %4$s column means that you have explicitly unblocked the browser.', 'wimb-and-block' ),
+						'<code>-1</code>',
+						'<code>block</code>',
+						'<code>*</code>',
+						'<code>software</code>',
 					)
-				) . '</p>';
+				) . '<br>';
+				echo esc_html( __( 'If you select this entry now, it will be reset to defaults.', 'wimb-and-block' ) ) . '</p>';
+
 				echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
 				if ( current_user_can( 'manage_options' ) ) {
 					$allowed_html          = wp_kses_allowed_html( 'post' );
@@ -155,17 +159,24 @@ function wimbblock_block_unblock_main() {
 			submit_button( __( 'Search', 'wimb-and-block' ), 'primary', 'search' );
 		}
 		echo '</form>';
+		echo '<form method="post" action="options-general.php?page=' . esc_html( WIMBBLOCK_NAME ) . '&tab=block">';
+		echo wp_kses_post( __( 'Search for entries that have been explicitly unblocked.', 'wimb-and-block' ) );
+		if ( current_user_can( 'manage_options' ) ) {
+			wp_nonce_field( 'wimbblock_mgt', 'wimbblock_mgt_nonce' );
+			submit_button( __( 'Search unblocked', 'wimb-and-block' ), 'primary', 'explicitly' );
+		}
+		echo '</form>';
 	} else {
 		echo '<p>';
-			echo wp_kses_post(
-				wp_sprintf(
-				/* translators: %1$s and %2$s is a link. */
-					__( 'You can do this on the %1$smain site%2$s.', 'wimb-and-block' ),
-					'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
-					'</a>'
-				)
-			);
-			echo '</p>';
+		echo wp_kses_post(
+			wp_sprintf(
+			/* translators: %1$s and %2$s is a link. */
+				__( 'You can do this on the %1$smain site%2$s.', 'wimb-and-block' ),
+				'<a href="' . get_site_url( get_main_site_id() ) . '/wp-admin/admin.php?page=' . WIMBBLOCK_NAME . '&tab=' . $active_tab . '">',
+				'</a>'
+			)
+		);
+		echo '</p>';
 	}
 
 	echo '<h3>' . esc_html__( 'Tables', 'wimb-and-block' ) . '</h3>';
@@ -271,17 +282,26 @@ function wimbblock_handle_post() {
 			$command = array();
 			foreach ( $entries as $i => $block ) {
 				if ( (int) $block < 1 ) {
-					// block the entry
-					$entries = $wimb_datatable->get_results(
+					// block the entry or set it to default if it was unblocked
+					$result = $wimb_datatable->get_results(
 						$wimb_datatable->prepare(
-							'UPDATE %i SET time=time, block=1 WHERE i = %s',
+							'UPDATE %i SET time=time, block=IF(software = %s, "-1", block), software = IF(software = %s, "", software) WHERE i = %s',
+							$options['table_name'],
+							'*',
+							'*',
+							$i
+						),
+					);
+					$result = $wimb_datatable->get_results(
+						$wimb_datatable->prepare(
+							'UPDATE %i SET time=time, block = block + 1 WHERE i = %s',
 							$options['table_name'],
 							$i
 						),
 					);
 				} else {
 					// unblock the entry
-					$entries = $wimb_datatable->get_results(
+					$result = $wimb_datatable->get_results(
 						$wimb_datatable->prepare(
 							"UPDATE %i SET time=time, block='-1' WHERE i = %s",
 							$options['table_name'],
@@ -328,6 +348,22 @@ function wimbblock_handle_post() {
 				$wimb_datatable->prepare(
 					'SELECT i,browser,software,system,time,block,count FROM %i WHERE ' . $query . ' ORDER BY software, browser ASC',
 					$options['table_name'],
+				),
+			);
+			// var_dump( $results );
+			return $results;
+		}
+		if ( isset( $_POST['explicitly'] ) ) {
+			$entries = $_POST;
+			unset( $entries['wimbblock_mgt_nonce'] );
+			unset( $entries['_wp_http_referer'] );
+			unset( $entries['explicitly'] );
+			$results = $wimb_datatable->get_results(
+				$wimb_datatable->prepare(
+					'SELECT i,browser,software,system,time,block,count FROM %i WHERE software = %s OR block = %s',
+					$options['table_name'],
+					'*',
+					'-1',
 				),
 			);
 			// var_dump( $results );

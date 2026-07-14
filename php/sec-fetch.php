@@ -8,6 +8,10 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
+// Sec-CH-UA-Platform-Version
+// Windows 10: values between 1.0.0 and 10.0.0
+// Windows 11: 13.0.0 and above
+
 function wimbblock_log_sec_headers( $info ) {
 	$logging = wimbblock_logging_levels_settings();
 	$todo    = $logging['tests'] ?? false;
@@ -103,7 +107,7 @@ function wimbblock_sec_fetch( $software, $agent ) {
 				);
 				status_header( 403 );
 				echo '403 suspicious.';
-				exit;
+				exit();
 			}
 			// Servers should ignore this header if it contains any other value.
 			$sec_fetch_dest = array(
@@ -146,36 +150,50 @@ function wimbblock_sec_fetch( $software, $agent ) {
 
 function wimbblock_check_ch_ua( $agent, $software, $version ) {
 	$message = '';
-	if ( $software !== '' ) {
-		$logging = wimbblock_logging_levels_settings();
-		// https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-CH-UA
-		$has_ch_ua = array(
-			'Chrome',
-			'Chromium',
-			'Edge',
-			'Opera',
-			'Samsung Internet',
-			'Android WebView',
-		);
-		$sec_ua    = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_CH_UA'] ?? '' ) );
-		if ( $sec_ua !== '' && $version !== '' ) {
-			$versionstypes = array(
-				'v="' . $version . '.',
-				'v="' . $version . '"',
-			);
-			if ( str_replace( $versionstypes, '', $sec_ua ) === $sec_ua ) {
-				wimbblock_log_sec_headers( 'blocked' );
-				wimbblock_error_log( 'Blocked header: Sec-CH-UA version incorrect * ' . $version . ' * ' . $sec_ua, $logging['suspect'] ?? true );
-				status_header( 403 );
-				echo '403 suspicious.';
-				exit;
+	$logging = wimbblock_logging_levels_settings();
+	// https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Headers/Sec-CH-UA
+	$has_ch_ua = array(
+		// Chrome/149.0.0.0 * "Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"
+		'Chrome',
+		// Chrome/152.0.0.0 * "Not?A_Brand";v="24", "Chromium";v="152"
+		'Chromium',
+		// Chrome/149.0 Edg/149.0 * "Microsoft Edge";v="149", "Chromium";v="149"
+		'Edge',
+		// Chrome/149.0 OPR/133.0 * "Opera";v="133", "Chromium";v="149"
+		'Opera',
+		// SamsungBrowser/30.0 Chrome/143.0.0.0 * "Samsung Internet";v="30.0", "Chromium";v="143"
+		'Samsung Internet',
+		'Android WebView',
+	);
+
+	$sec_ua = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_CH_UA'] ?? '' ) );
+	if ( $sec_ua !== '' ) {
+		if ( strpos( $agent, 'Chrome/' ) !== false ) {
+			// alles mit "Chrome/xxx"
+			$version = preg_replace( '%.* Chrome/([0-9]+)[^0-9].*%', '${1}', $agent );
+			if ( $version !== '' ) {
+				$versionstypes = array(
+					'v="' . $version . '.',
+					'v="' . $version . '"',
+				);
+				if ( str_replace( $versionstypes, '', $sec_ua ) === $sec_ua ) {
+					wimbblock_log_sec_headers( 'blocked' );
+					wimbblock_error_log( 'Blocked header: Sec-CH-UA version incorrect * ' . $version . ' * ' . $sec_ua, $logging['suspect'] ?? true );
+					status_header( 403 );
+					echo '403 suspicious.';
+					exit();
+				}
+			} else {
+				$message .= ' * Chrome/xxx missing - ' . $agent . ' * ' . $sec_ua;
 			}
-		} elseif ( $sec_ua !== '' ) {
-			$message = ' * Software has SEC_CH_UA - ' . $software . ' * ' . $sec_ua;
+		} else {
+			$message .= ' * Chrome/ missing - ' . $agent . ' * ' . $sec_ua;
 		}
-		if ( str_replace( $has_ch_ua, '', $software ) !== $software ) {
+	}
+	if ( $software !== '' ) {
+		if ( str_replace( $has_ch_ua, '', $software ) !== $software ) { // ist eines der o.g.
 			if ( $sec_ua === '' ) {
-				$message = ' * SEC_CH_UA missing - ' . $software;
+				$message .= ' * SEC_CH_UA missing - ' . $agent . ' * ' . $software;
 			}
 		}
 	}

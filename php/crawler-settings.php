@@ -76,7 +76,7 @@ function wimbblock_crawlers_params() {
 		),
 
 		// https://help.baidu.com/question?prod_id=99&class=476&id=3001
-		//  *.baidu.com or *.baidu.jp.
+		// *.baidu.com or *.baidu.jp.
 		'Baiduspider' => array(
 			'allowed'     => '0',
 			'agents'      => array(
@@ -109,7 +109,8 @@ function wimbblock_crawlers_params() {
 		'Bingbot'     => array(
 			'allowed'     => '0',
 			'agents'      => array(
-				'Bingbot',
+				'bingbot',
+				'https://aka.ms',
 			),
 			'json'        => 'https://www.bing.com/toolbox/bingbot.json',
 			'json-notice' => '',

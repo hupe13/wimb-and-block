@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 15:53+0000\n"
+"POT-Creation-Date: 2026-07-14 15:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -36,7 +36,7 @@ msgid ""
 "form."
 msgstr ""
 
-#: admin/block-unblock.php:194
+#: admin/block-unblock.php:205
 msgid "All browsers"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "All of these browsers %1$s should send these headers:"
 msgstr ""
 
-#: admin/block-unblock.php:190 admin/block-unblock.php:597
+#: admin/block-unblock.php:201 admin/block-unblock.php:633
 msgid "All other browsers"
 msgstr ""
 
@@ -64,8 +64,8 @@ msgstr ""
 msgid "Always block browsers with this strings"
 msgstr ""
 
-#: admin/block-unblock.php:176 admin/block-unblock.php:180
-#: admin/block-unblock.php:541
+#: admin/block-unblock.php:187 admin/block-unblock.php:191
+#: admin/block-unblock.php:577
 msgid "based browsers"
 msgstr ""
 
@@ -82,8 +82,12 @@ msgstr ""
 msgid "Block operating system versions smaller than"
 msgstr ""
 
-#: admin/last24.php:124 admin/last24.php:127 admin/last24.php:130
-#: admin/stats-systems.php:166 admin/monthly.php:162 admin/monthly.php:252
+#: admin.php:308
+msgid "Block rules results"
+msgstr ""
+
+#: admin/stats-systems.php:166 admin/last24.php:116 admin/last24.php:119
+#: admin/last24.php:122 admin/monthly.php:162 admin/monthly.php:252
 #: admin/monthly.php:345
 msgid "blocked"
 msgstr ""
@@ -106,7 +110,7 @@ msgstr ""
 msgid "Configuration and Settings"
 msgstr ""
 
-#: admin/last24.php:123 admin/monthly.php:161 admin/monthly.php:251
+#: admin/last24.php:115 admin/monthly.php:161 admin/monthly.php:251
 #: admin/monthly.php:344
 msgid "count"
 msgstr ""
@@ -121,6 +125,10 @@ msgstr ""
 
 #: admin/robots.php:274
 msgid "Crawling is disabled:"
+msgstr ""
+
+#: admin/testing-rules.php:96
+msgid "Currently blocked"
 msgstr ""
 
 #: admin/deleting.php:14
@@ -165,7 +173,13 @@ msgstr ""
 msgid "Even more statistics"
 msgstr ""
 
-#: admin.php:276 admin.php:313
+#: admin/testing-rules.php:100
+msgid ""
+"Everything changes - new agents appear almost every day, while others no "
+"longer meet current requirements."
+msgstr ""
+
+#: admin.php:280 admin.php:321
 msgid "Exclude / always block"
 msgstr ""
 
@@ -201,11 +215,11 @@ msgstr ""
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:288 admin/header-checks.php:14
+#: admin.php:292 admin/header-checks.php:14
 msgid "Header Checks"
 msgstr ""
 
-#: admin.php:256
+#: admin.php:260
 msgid "Help"
 msgstr ""
 
@@ -292,7 +306,11 @@ msgid ""
 "directory of  %s"
 msgstr ""
 
-#: admin/last24.php:125 admin/last24.php:128 admin/last24.php:131
+#: admin/block-unblock.php:61
+msgid "If you select this entry now, it will be reset to defaults."
+msgstr ""
+
+#: admin/last24.php:117 admin/last24.php:120 admin/last24.php:123
 msgid "in %"
 msgstr ""
 
@@ -328,7 +346,7 @@ msgstr ""
 msgid "last"
 msgstr ""
 
-#: admin/last24.php:108
+#: admin/last24.php:100
 msgid "last 24 hours"
 msgstr ""
 
@@ -340,35 +358,35 @@ msgstr ""
 msgid "Local WP database or remote database"
 msgstr ""
 
-#: php/wimb-options.php:184
+#: php/wimb-options.php:192
 msgid "Log tests for development purposes."
 msgstr ""
 
-#: php/wimb-options.php:167
+#: php/wimb-options.php:175
 msgid ""
 "Log when the browser accesses your website for the first time and an old "
 "version is detected or it is unknown or suspicious."
 msgstr ""
 
-#: php/wimb-options.php:155
+#: php/wimb-options.php:163
 msgid "Log when the browser gets a robots.txt to allow crawling."
 msgstr ""
 
-#: php/wimb-options.php:161
+#: php/wimb-options.php:169
 msgid "Log when the browser gets a robots.txt to disable crawling."
 msgstr ""
 
 #. %1$s are browser names and %2$s are header names.
-#: php/wimb-options.php:175
+#: php/wimb-options.php:183
 #, php-format
 msgid "Log when the browser is blocked because of %1$sheader checks%2$s."
 msgstr ""
 
-#: php/wimb-options.php:149
+#: php/wimb-options.php:157
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:223 admin.php:296 admin.php:309
+#: admin.php:223 admin.php:300 admin.php:317
 msgid "Logging"
 msgstr ""
 
@@ -380,11 +398,11 @@ msgstr ""
 msgid "Monthly statistics - last access"
 msgstr ""
 
-#: admin/last24.php:129
+#: admin/last24.php:121
 msgid "new browsers"
 msgstr ""
 
-#: admin/logging.php:56 admin/crawler.php:63 admin/deleting.php:42
+#: admin/deleting.php:42 admin/logging.php:56 admin/crawler.php:63
 msgid "no"
 msgstr ""
 
@@ -392,7 +410,11 @@ msgstr ""
 msgid "No connection to database - try again!"
 msgstr ""
 
-#: php/wimb-options.php:143
+#: admin/testing-rules.php:101
+msgid "Not blocked so far, but will be blocked in the future"
+msgstr ""
+
+#: php/wimb-options.php:151
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
 "blocked later without any explanation."
@@ -403,11 +425,11 @@ msgid ""
 "Only IPv4 addresses are validated via JSON files, IPv6 is validated via DNS."
 msgstr ""
 
-#: admin/block-unblock.php:121
+#: admin/block-unblock.php:125
 msgid "Or you can click on a link from one of the tables."
 msgstr ""
 
-#: admin.php:268 admin/monthly.php:11
+#: admin.php:272 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr ""
 
@@ -470,7 +492,7 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: admin/last24.php:126 admin/monthly.php:164 admin/monthly.php:254
+#: admin/last24.php:118 admin/monthly.php:164 admin/monthly.php:254
 #: admin/monthly.php:347
 msgid "robots"
 msgstr ""
@@ -483,23 +505,23 @@ msgstr ""
 msgid "robots blocked in %"
 msgstr ""
 
-#: admin.php:300 admin.php:321
+#: admin.php:304 admin.php:329
 msgid "robots.txt"
 msgstr ""
 
-#: admin/settings.php:22 admin/crawler.php:134
+#: admin/crawler.php:134 admin/settings.php:22
 msgid "Rotate the table on this site"
 msgstr ""
 
-#: admin/block-unblock.php:155
+#: admin/block-unblock.php:159
 msgid "Search"
 msgstr ""
 
-#: admin.php:155 admin.php:272
+#: admin.php:155 admin.php:276
 msgid "Search / block / unblock entries"
 msgstr ""
 
-#: admin.php:284 admin/block-unblock.php:184 admin/block-unblock.php:641
+#: admin.php:288 admin/block-unblock.php:195 admin/block-unblock.php:677
 msgid "Search Engines"
 msgstr ""
 
@@ -507,11 +529,19 @@ msgstr ""
 msgid "Search engines are excluded from this."
 msgstr ""
 
-#: admin/block-unblock.php:119
+#: admin/block-unblock.php:123
 msgid "Search entries"
 msgstr ""
 
-#: admin/block-unblock.php:250
+#: admin/block-unblock.php:163
+msgid "Search for entries that have been explicitly unblocked."
+msgstr ""
+
+#: admin/block-unblock.php:166
+msgid "Search unblocked"
+msgstr ""
+
+#: admin/block-unblock.php:261
 msgid "Select to unblock / block"
 msgstr ""
 
@@ -519,7 +549,7 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:60 wimb-and-block.php:68
+#: wimb-and-block.php:59 wimb-and-block.php:67
 msgid "Settings"
 msgstr ""
 
@@ -527,7 +557,7 @@ msgstr ""
 msgid "Settings Search Engines"
 msgstr ""
 
-#: admin.php:80 admin.php:292 admin.php:305
+#: admin.php:80 admin.php:296 admin.php:313
 msgid "Settings WIMB"
 msgstr ""
 
@@ -567,7 +597,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: admin/block-unblock.php:171
+#: admin/block-unblock.php:182
 msgid "Tables"
 msgstr ""
 
@@ -594,7 +624,7 @@ msgstr ""
 msgid "The following Browsers send this header:"
 msgstr ""
 
-#: php/wimb-options.php:203
+#: php/wimb-options.php:211
 msgid "The full IP is logged. (default)"
 msgstr ""
 
@@ -602,7 +632,7 @@ msgstr ""
 msgid "The information could not be retrieved."
 msgstr ""
 
-#: php/wimb-options.php:195
+#: php/wimb-options.php:203
 msgid "The IP address is not logged."
 msgstr ""
 
@@ -618,7 +648,7 @@ msgstr ""
 msgid "The IP addresses of %1$s are validated via JSON files."
 msgstr ""
 
-#: php/wimb-options.php:199
+#: php/wimb-options.php:207
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
@@ -683,12 +713,20 @@ msgid ""
 "is send to WhatIsMyBrowser and some data will be stored in the table:"
 msgstr ""
 
-#. %s is "-1"
-#. %1$s is "-1" and %2$s is "blocked"
-#: admin/last24.php:18 admin/block-unblock.php:54
+#. %1$s is a value and %2$s is a column name
+#: admin/last24.php:251
 #, php-format
 msgid ""
-"The value %1$s in the %2$s column means that you have unblocked the agent."
+"The value %1$s in the %2$s column means that you have explicitly unblocked "
+"the browser."
+msgstr ""
+
+#. %1$s is "-1" and %2$s is "blocked", %3$s is "*" and %4$s is "software"
+#: admin/last24.php:260 admin/block-unblock.php:54
+#, php-format
+msgid ""
+"The value %1$s in the %2$s column or the value %3$s in %4$s column means "
+"that you have explicitly unblocked the browser."
 msgstr ""
 
 #. %s are browsers
@@ -700,7 +738,7 @@ msgid ""
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/block-unblock.php:126
+#: admin/block-unblock.php:130
 msgid "Then you can block or unblock the entries."
 msgstr ""
 
@@ -714,7 +752,7 @@ msgid ""
 "that the comments remain."
 msgstr ""
 
-#: admin/last24.php:184
+#: admin/last24.php:176
 msgid "There was an error:"
 msgstr ""
 
@@ -758,11 +796,11 @@ msgstr ""
 msgid "total share in %"
 msgstr ""
 
-#: admin/block-unblock.php:74
+#: admin/block-unblock.php:78
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:112 admin.php:280 admin.php:317
+#: admin.php:112 admin.php:284 admin.php:325
 msgid "Versions Control"
 msgstr ""
 
@@ -770,7 +808,7 @@ msgstr ""
 msgid "When logging, the IP address is also logged."
 msgstr ""
 
-#: admin/block-unblock.php:185
+#: admin/block-unblock.php:196
 msgid "which are verified by the plugin"
 msgstr ""
 
@@ -790,7 +828,7 @@ msgstr ""
 msgid "WIMB API key needed."
 msgstr ""
 
-#: admin.php:151 admin.php:264
+#: admin.php:151 admin.php:268
 msgid "WIMB last 24 hours"
 msgstr ""
 
@@ -808,7 +846,7 @@ msgstr ""
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr ""
 
-#: admin/logging.php:53 admin/crawler.php:60 admin/deleting.php:39
+#: admin/deleting.php:39 admin/logging.php:53 admin/crawler.php:60
 msgid "yes"
 msgstr ""
 
@@ -838,12 +876,12 @@ msgid "You can do it on %1$sthis site%2$s."
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/block-unblock.php:83 admin/block-unblock.php:163
+#: admin/block-unblock.php:87 admin/block-unblock.php:174
 #, php-format
 msgid "You can do this on the %1$smain site%2$s."
 msgstr ""
 
-#: admin/block-unblock.php:120
+#: admin/block-unblock.php:124
 msgid "You can search for entries here."
 msgstr ""
 
@@ -868,12 +906,16 @@ msgid ""
 "htaccess."
 msgstr ""
 
+#: admin/testing-rules.php:97
+msgid "You have probably set it up to block that."
+msgstr ""
+
 #: admin/robots.php:183
 msgid "You must configure these settings on each of your domains!"
 msgstr ""
 
-#: admin/exclude.php:73 admin/logging.php:83 admin/versions.php:80
-#: admin/always-block.php:68
+#: admin/logging.php:83 admin/exclude.php:73 admin/always-block.php:68
+#: admin/versions.php:80
 msgid ""
 "You must configure these settings on each of your websites that use this "
 "database!"

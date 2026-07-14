@@ -64,11 +64,11 @@ if ( ! ( is_multisite() && ! is_main_site() && is_plugin_active_for_network( $wi
 }
 
 // echo '<h4>' . wp_kses_post(
-//  __( 'Monthly statistics - first access', 'wimb-and-block' ),
+// __( 'Monthly statistics - first access', 'wimb-and-block' ),
 // ) . '</h4>';
 //
 // echo '<p>' . wp_kses_post(
-//  __( 'The browsers whose first access occurred during this month are counted for the month.', 'wimb-and-block' ),
+// __( 'The browsers whose first access occurred during this month are counted for the month.', 'wimb-and-block' ),
 // ) . '</p>';
 //
 // echo wp_kses_post( wimbblock_statistic_new_month() );

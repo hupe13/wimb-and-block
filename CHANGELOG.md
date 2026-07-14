@@ -1,3 +1,8 @@
+### 2607xx / 2.6
+
+* some new block rules
+* some improvements in statistics
+
 ### 260623 / 2.5
 
 * some improvements in statistics and code

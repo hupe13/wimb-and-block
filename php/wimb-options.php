@@ -66,27 +66,31 @@ function wimbblock_get_default_browsers() {
 }
 
 function wimbblock_get_all_browsers() {
-	$defaults = wimbblock_get_default_browsers();
-	$customs  = wimbblock_get_option( 'wimbblock_browsers' );
+	$all_browsers = get_transient( 'wimbblock_browsers' );
+	if ( false === $all_browsers ) {
+		$defaults = wimbblock_get_default_browsers();
+		$customs  = wimbblock_get_option( 'wimbblock_browsers' );
 
-	$out = array();
-	if ( is_array( $customs ) && count( $customs ) > 0 ) {
-		foreach ( $defaults as $name => $default ) {
-			if ( array_key_exists( $name, $customs ) ) {
-				$out[ $name ] = $customs[ $name ];
-			} else {
-				$out[ $name ] = $default;
+		$all_browsers = array();
+		if ( is_array( $customs ) && count( $customs ) > 0 ) {
+			foreach ( $defaults as $name => $default ) {
+				if ( array_key_exists( $name, $customs ) ) {
+					$all_browsers[ $name ] = $customs[ $name ];
+				} else {
+					$all_browsers[ $name ] = $default;
+				}
 			}
-		}
-		foreach ( $customs as $name => $option ) {
-			if ( ! array_key_exists( $name, $out ) ) {
-				$out[ $name ] = $customs[ $name ];
+			foreach ( $customs as $name => $option ) {
+				if ( ! array_key_exists( $name, $all_browsers ) ) {
+					$all_browsers[ $name ] = $customs[ $name ];
+				}
 			}
+		} else {
+			$all_browsers = $defaults;
 		}
-	} else {
-		$out = $defaults;
+		set_transient( 'wimbblock_browsers', $all_browsers, DAY_IN_SECONDS );
 	}
-	return $out;
+	return $all_browsers;
 }
 
 // systems
@@ -102,27 +106,31 @@ function wimbblock_get_default_systems() {
 }
 
 function wimbblock_get_all_systems() {
-	$defaults = wimbblock_get_default_systems();
-	$customs  = wimbblock_get_option( 'wimbblock_systems' );
+	$all_systems = get_transient( 'wimbblock_systems' );
+	if ( false === $all_systems ) {
+		$defaults = wimbblock_get_default_systems();
+		$customs  = wimbblock_get_option( 'wimbblock_systems' );
 
-	$out = array();
-	if ( is_array( $customs ) && count( $customs ) > 0 ) {
-		foreach ( $defaults as $name => $default ) {
-			if ( array_key_exists( $name, $customs ) ) {
-				$out[ $name ] = $customs[ $name ];
-			} else {
-				$out[ $name ] = $default;
+		$all_systems = array();
+		if ( is_array( $customs ) && count( $customs ) > 0 ) {
+			foreach ( $defaults as $name => $default ) {
+				if ( array_key_exists( $name, $customs ) ) {
+					$all_systems[ $name ] = $customs[ $name ];
+				} else {
+					$all_systems[ $name ] = $default;
+				}
 			}
-		}
-		foreach ( $customs as $name => $option ) {
-			if ( ! array_key_exists( $name, $out ) ) {
-				$out[ $name ] = $customs[ $name ];
+			foreach ( $customs as $name => $option ) {
+				if ( ! array_key_exists( $name, $all_systems ) ) {
+					$all_systems[ $name ] = $customs[ $name ];
+				}
 			}
+		} else {
+			$all_systems = $defaults;
 		}
-	} else {
-		$out = $defaults;
+		set_transient( 'wimbblock_systems', $all_systems, DAY_IN_SECONDS );
 	}
-	return $out;
+	return $all_systems;
 }
 
 function wimbblock_get_exclude() {
