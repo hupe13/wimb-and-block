@@ -149,9 +149,9 @@ function wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, $rob
 
 function wimbblock_return_error( $table_name, $agent, $blocked, $id, $robots, $why ) {
 	$logging = wimbblock_logging_levels_settings();
-	global $wimbtest_to_block;
+	global $wimbblock_test_to_block;
 	if ( $robots === 'testing' ) {
-		$wimbtest_to_block = $why;
+		$wimbblock_test_to_block = $why;
 	} elseif ( $robots === false ) {
 		wimbblock_counter( $table_name, 'block', $id );
 		wimbblock_error_log( $why . ': ' . $agent, $logging['oldagents'] ?? true );

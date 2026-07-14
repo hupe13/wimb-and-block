@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die();
 
 function wimbblock_test_rules( $query ) {
 	global $wimb_datatable;
-	global $wimbtest_to_block;
+	global $wimbblock_test_to_block;
 	if ( is_null( $wimb_datatable ) ) {
 		wimbblock_open_wpdb();
 	}
@@ -45,7 +45,7 @@ function wimbblock_test_rules( $query ) {
 		$blocked           = $entry['block'];
 		$last_access       = $entry['time'];
 		$id                = $entry['i'];
-		$wimbtest_to_block = '';
+		$wimbblock_test_to_block = '';
 		$is_crawler        = false;
 		$params            = wimbblock_crawlers_params();
 		foreach ( $params as $crawler => $value ) {
@@ -75,18 +75,18 @@ function wimbblock_test_rules( $query ) {
 		}
 		if ( ! $is_crawler && ! $alwaysblock && ! $toexclude ) {
 			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, 'testing' );
-			if ( $wimbtest_to_block === '' ) {
+			if ( $wimbblock_test_to_block === '' ) {
 				if ( $version === '' && $software !== '' ) {
 					$version = preg_replace( '%.* ([0-9]+)[^0-9]?.* on .*%', '${1}', $software );
 				}
 				wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, 'testing' );
 			}
-			if ( $wimbtest_to_block === '' ) {
+			if ( $wimbblock_test_to_block === '' ) {
 				wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, 'testing' );
 			}
-			if ( $wimbtest_to_block !== '' && (int) $blocked === 0 ) {
-				$results[] = array( $agent, $software, $system, $wimbtest_to_block, $last_access );
-			} elseif ( $wimbtest_to_block === '' && (int) $blocked > 0 ) {
+			if ( $wimbblock_test_to_block !== '' && (int) $blocked === 0 ) {
+				$results[] = array( $agent, $software, $system, $wimbblock_test_to_block, $last_access );
+			} elseif ( $wimbblock_test_to_block === '' && (int) $blocked > 0 ) {
 				$results[] = array( $agent, $software, $system, $blocked );
 			}
 		}
