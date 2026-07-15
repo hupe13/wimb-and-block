@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Block old browser versions and suspicious browsers - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-07-15 18:15+0000\n"
+"PO-Revision-Date: 2026-07-15 19:39+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -380,7 +380,7 @@ msgid ""
 "from this header."
 msgstr ""
 "Genau wie bei der User-Agent-Zeichenfolge kann man anhand dieses Headers die "
-"Browserversion ermitteln. "
+"Browserversion ermitteln."
 
 #: admin/monthly.php:370
 msgid "last"
@@ -509,7 +509,7 @@ msgid ""
 "versions starting with Android 10."
 msgstr ""
 "Bitte beachte, dass Chrome ab Android 10 nicht mehr unbedingt zwischen "
-"Android-Versionen unterscheidet. "
+"Android-Versionen unterscheidet."
 
 #: admin/header-checks.php:19
 msgid "Please note that these accesses are not counted in the database."
@@ -712,7 +712,7 @@ msgstr "Die IP-Adressen von %1$s werden über DNS geprüft."
 #: admin/crawler.php:183
 #, php-format
 msgid "The IP addresses of %1$s are validated via JSON files."
-msgstr "Die IP-Adressen von %s werden mittels der JSON-Daten überprüft."
+msgstr "Die IP-Adressen von %1$s werden mittels der JSON-Daten überprüft."
 
 #: php/wimb-options.php:207
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"

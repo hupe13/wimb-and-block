@@ -138,7 +138,7 @@ function wimbblock_edit_rules_htaccess( $form ) {
 		$text .= '<p>';
 		$text .= wp_sprintf(
 		/* translators: is a host. */
-			__( 'If you do not want to use the form write in your .htaccess in the root directory of  %s', 'wimb-and-block' ),
+			__( 'If you do not want to use the form write in your .htaccess in the root directory of %s', 'wimb-and-block' ),
 			$site['host']
 		);
 		$text .= ':</p>';
