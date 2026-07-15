@@ -59,7 +59,7 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-### 260714 / 2.6
+### 2607xx / 2.6
 
 * some new block rules
 * some improvements in statistics
