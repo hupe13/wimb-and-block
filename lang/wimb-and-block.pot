@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 18:14+0000\n"
+"POT-Creation-Date: 2026-07-15 20:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -304,7 +304,7 @@ msgstr ""
 #, php-format
 msgid ""
 "If you do not want to use the form write in your .htaccess in the root "
-"directory of  %s"
+"directory of %s"
 msgstr ""
 
 #: admin/block-unblock.php:61
