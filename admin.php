@@ -236,8 +236,29 @@ function wimbblock_admin() {
 		wimbblock_log_admin_page();
 	} elseif ( $active_tab === 'testing' ) {
 		require_once __DIR__ . '/admin/testing-rules.php';
-		wimbblock_test_rules( false );
-		wimbblock_test_rules( true );
+		echo '<form action="" method="post">';
+		wp_nonce_field( 'wimbblock_test_tables', 'wimbblock_test_tables_nonce' );
+		echo '<p><select name="table" onchange="this.form.submit()">';
+		echo '<option value=" ">' . wp_kses_post( __( 'Select info', 'wimb-and-block' ) ) . '</option>';
+		echo '<option value="1">' . wp_kses_post( __( 'Not blocked so far, but will be blocked in the future', 'wimb-and-block' ) ) . '</option>';
+		echo '<option value="2">' . wp_kses_post( __( 'Currently blocked', 'wimb-and-block' ) ) . '</option>';
+		echo '<option value="3">' . wp_kses_post( __( 'Always blocked', 'wimb-and-block' ) ) . '</option>';
+		echo '</select>';
+		echo '</form></p>';
+		if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock_test_tables', 'wimbblock_test_tables_nonce' ) ) {
+			if ( isset( $_POST['table'] ) ) {
+				switch ( $_POST['table'] ) {
+					case '1':
+						wimbblock_test_rules( false );
+						break;
+					case '2':
+						wimbblock_test_rules( true );
+						break;
+					default:
+						wimbblock_test_always_blocked();
+				}
+			}
+		}
 	} else {
 		if ( function_exists( 'wimbblock_updates_from_github' ) ) {
 			wimbblock_updates_from_github();
@@ -263,43 +284,43 @@ function wimbblock_admin_tabs() {
 
 	$wimbblock_wpdb_options = wimbblock_get_options_db();
 	if ( $wimbblock_wpdb_options['error'] === '0' ) {
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'last24',
 			'title' => __( 'WIMB last 24 hours', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'monthly',
 			'title' => __( 'Overview and maintenance', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'block',
 			'title' => __( 'Search / block / unblock entries', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'exclude',
 			'title' => __( 'Exclude / always block', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'versions',
 			'title' => __( 'Versions Control', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'crawlers',
 			'title' => __( 'Search Engines', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'headers',
 			'title' => __( 'Header Checks', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'settings',
 			'title' => __( 'Settings WIMB', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'logging',
 			'title' => __( 'Logging', 'wimb-and-block' ),
 		);
-		$tabs[]  = array(
+		$tabs[] = array(
 			'tab'   => 'robots',
 			'title' => __( 'robots.txt', 'wimb-and-block' ),
 		);

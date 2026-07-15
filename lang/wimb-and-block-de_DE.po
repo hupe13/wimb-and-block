@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Block old browser versions and suspicious browsers - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-07-14 15:47+0000\n"
+"PO-Revision-Date: 2026-07-15 18:15+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-02-22 19:43+0000\n"
 "Last-Translator: hupe13\n"
-"X-Loco-Version: 2.8.6; wp-7.0.1; php-8.3.29-nmm1"
+"X-Loco-Version: 2.8.7; wp-7.0.1; php-8.3.29-nmm1"
 
 #. %1$s are crawlers.
 #: admin/crawler.php:118 admin/crawler.php:175
@@ -43,7 +43,7 @@ msgstr ""
 msgid "All browsers"
 msgstr "Alle Browser"
 
-#: admin/monthly.php:144
+#: admin/monthly.php:134
 msgid "All entries"
 msgstr "Alle Einträge"
 
@@ -70,6 +70,10 @@ msgstr ""
 msgid "Always block browsers with this strings"
 msgstr "Blocke Browser mit diesen Zeichenfolgen immer"
 
+#: admin.php:245 admin/testing-rules.php:146
+msgid "Always blocked"
+msgstr "Wird immer geblockt"
+
 #: admin/block-unblock.php:187 admin/block-unblock.php:191
 #: admin/block-unblock.php:577
 msgid "based browsers"
@@ -88,18 +92,16 @@ msgstr "Blocke alte Browser-Versionen und verdächtige Browser"
 msgid "Block operating system versions smaller than"
 msgstr "Blocke Betriebssystemversionen kleiner als"
 
-#: admin.php:308
+#: admin.php:329
 msgid "Block rules results"
 msgstr "Ergebnisse der Blockregeln"
 
 #: admin/stats-systems.php:166 admin/last24.php:116 admin/last24.php:119
-#: admin/last24.php:122 admin/monthly.php:162 admin/monthly.php:252
-#: admin/monthly.php:345
+#: admin/last24.php:122 admin/monthly.php:152 admin/monthly.php:242
 msgid "blocked"
 msgstr "geblockt"
 
-#: admin/stats-systems.php:167 admin/monthly.php:163 admin/monthly.php:253
-#: admin/monthly.php:346
+#: admin/stats-systems.php:167 admin/monthly.php:153 admin/monthly.php:243
 msgid "blocked in %"
 msgstr "geblockt in %"
 
@@ -118,8 +120,7 @@ msgstr "Standardmäßig werden alle IP-Adressen über DNS überprüft."
 msgid "Configuration and Settings"
 msgstr "Konfiguration und Einstellungen"
 
-#: admin/last24.php:115 admin/monthly.php:161 admin/monthly.php:251
-#: admin/monthly.php:344
+#: admin/last24.php:115 admin/monthly.php:151 admin/monthly.php:241
 msgid "count"
 msgstr "Anzahl"
 
@@ -135,7 +136,7 @@ msgstr "Das Crawling ist erlaubt:"
 msgid "Crawling is disabled:"
 msgstr "Das Crawling ist verboten:"
 
-#: admin/testing-rules.php:96
+#: admin.php:244 admin/testing-rules.php:96
 msgid "Currently blocked"
 msgstr "Derzeit geblockt"
 
@@ -179,7 +180,7 @@ msgstr ""
 msgid "Entries last 24 hours"
 msgstr "Einträge der letzten 24 Stunden"
 
-#: admin/monthly.php:96
+#: admin/monthly.php:86
 msgid "Even more statistics"
 msgstr "Noch mehr Statistik"
 
@@ -191,7 +192,7 @@ msgstr ""
 "Alles ändert sich – fast täglich kommen neue Browser hinzu, während andere "
 "den aktuellen Anforderungen nicht mehr gerecht werden."
 
-#: admin.php:280 admin.php:321
+#: admin.php:301 admin.php:342
 msgid "Exclude / always block"
 msgstr "Ausschließen / immer blocken"
 
@@ -199,7 +200,7 @@ msgstr "Ausschließen / immer blocken"
 msgid "Exclude these browsers from checking"
 msgstr "Schließe diese Browser von der Überprüfung aus"
 
-#: admin/monthly.php:474
+#: admin/monthly.php:371
 msgid "first"
 msgstr "erster"
 
@@ -231,11 +232,11 @@ msgstr "Formular zur Bearbeitung des Eintrags in .htaccess"
 msgid "Get an API key for a %s."
 msgstr "Hol dir einen API-Schlüssel für einen %s."
 
-#: admin.php:292 admin/header-checks.php:14
+#: admin.php:313 admin/header-checks.php:14
 msgid "Header Checks"
 msgstr "Header-Prüfungen"
 
-#: admin.php:260
+#: admin.php:281
 msgid "Help"
 msgstr "Hilfe"
 
@@ -381,7 +382,7 @@ msgstr ""
 "Genau wie bei der User-Agent-Zeichenfolge kann man anhand dieses Headers die "
 "Browserversion ermitteln. "
 
-#: admin/monthly.php:473
+#: admin/monthly.php:370
 msgid "last"
 msgstr "letzter"
 
@@ -430,11 +431,11 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr "Logge, wenn der Browser von der Überprüfung ausgeschlossen ist."
 
-#: admin.php:223 admin.php:300 admin.php:317
+#: admin.php:223 admin.php:321 admin.php:338
 msgid "Logging"
 msgstr "Logging"
 
-#: admin/monthly.php:250 admin/monthly.php:343
+#: admin/monthly.php:240
 msgid "month"
 msgstr "Monat"
 
@@ -454,7 +455,7 @@ msgstr "nein"
 msgid "No connection to database - try again!"
 msgstr "Keine Verbindung zur Datenbank - versuche es noch einmal!"
 
-#: admin/testing-rules.php:101
+#: admin.php:243 admin/testing-rules.php:101
 msgid "Not blocked so far, but will be blocked in the future"
 msgstr "Wurde bisher nicht geblockt, wird aber in Zukunft geblockt werden"
 
@@ -477,7 +478,7 @@ msgstr ""
 msgid "Or you can click on a link from one of the tables."
 msgstr "Oder du kannst auf einen Link aus einer der Tabellen klicken."
 
-#: admin.php:272 admin/monthly.php:11
+#: admin.php:293 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr "Überblick und Wartung"
 
@@ -546,20 +547,19 @@ msgstr "Benutzername der entfernten Datenbank"
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin/last24.php:118 admin/monthly.php:164 admin/monthly.php:254
-#: admin/monthly.php:347
+#: admin/last24.php:118 admin/monthly.php:154 admin/monthly.php:244
 msgid "robots"
 msgstr "robots"
 
-#: admin/monthly.php:166 admin/monthly.php:256 admin/monthly.php:349
+#: admin/monthly.php:156 admin/monthly.php:246
 msgid "robots blocked"
 msgstr "robots geblockt"
 
-#: admin/monthly.php:165 admin/monthly.php:255 admin/monthly.php:348
+#: admin/monthly.php:155 admin/monthly.php:245
 msgid "robots blocked in %"
 msgstr "robots geblockt in %"
 
-#: admin.php:304 admin.php:329
+#: admin.php:325 admin.php:350
 msgid "robots.txt"
 msgstr "robots.txt"
 
@@ -571,11 +571,11 @@ msgstr "Rotiere die Tabelle auf dieser Seite"
 msgid "Search"
 msgstr "Suche"
 
-#: admin.php:155 admin.php:276
+#: admin.php:155 admin.php:297
 msgid "Search / block / unblock entries"
 msgstr "Suche / blocke / entsperre Einträge"
 
-#: admin.php:288 admin/block-unblock.php:195 admin/block-unblock.php:677
+#: admin.php:309 admin/block-unblock.php:195 admin/block-unblock.php:677
 msgid "Search Engines"
 msgstr "Suchmaschinen"
 
@@ -595,6 +595,10 @@ msgstr "Suche nach Einträgen, die ausdrücklich freigegeben wurden."
 msgid "Search unblocked"
 msgstr "Suche freigegebene Einträge"
 
+#: admin.php:242
+msgid "Select info"
+msgstr "Wähle die Info"
+
 #: admin/block-unblock.php:261
 msgid "Select to unblock / block"
 msgstr "Zum Entsperren / Sperren auswählen"
@@ -611,7 +615,7 @@ msgstr "Einstellungen"
 msgid "Settings Search Engines"
 msgstr "Suchmaschinen Einstellungen"
 
-#: admin.php:80 admin.php:296 admin.php:313
+#: admin.php:80 admin.php:317 admin.php:334
 msgid "Settings WIMB"
 msgstr "Einstellungen für WIMB"
 
@@ -639,11 +643,11 @@ msgstr ""
 "Manchmal gibt es falsche Positive, beispielsweise wenn der Browser von "
 "Mastodon stammt. Diese kannst du dann ausschließen."
 
-#: admin/monthly.php:87
+#: admin/monthly.php:77
 msgid "Statistics about first and last monthly access"
 msgstr "Statistiken über den ersten und letzten monatlichen Zugriff"
 
-#: admin/monthly.php:77
+#: admin/monthly.php:67
 msgid "Statistics about systems in total"
 msgstr "Statistik über alle Systeme insgesamt"
 
@@ -732,7 +736,7 @@ msgstr ""
 "Das Logging ist sehr ausführlich. Wenn du WP_DEBUG auf true gesetzt hast, "
 "aber nicht möchtest, dass das Plugin etwas loggt, setze es auf /dev/null."
 
-#: admin/monthly.php:81
+#: admin/monthly.php:71
 msgid "The number of different browsers per system is counted."
 msgstr "Es werden die verschiedenen Browser pro System gezählt."
 
@@ -858,6 +862,18 @@ msgstr ""
 "Daher überprüft das Plugin, ob die IP-Adresse tatsächlich von der "
 "Suchmaschine stammt."
 
+#: admin/testing-rules.php:147
+msgid "These are blocked based on your settings."
+msgstr "Diese werden entsprechend deinen Einstellungen geblockt."
+
+#: admin/testing-rules.php:97
+msgid ""
+"These would not be blocked by rules. You have probably set it up to "
+"explictly block that."
+msgstr ""
+"Diese würden durch die Regeln nicht geblockt werden. Wahrscheinlich hast die "
+"Einstellungen so vorgenommen, dass genau diese ausdrücklich geblockt werden."
+
 #: admin/log-anonym.php:60
 msgid "This could potentially be a problem in the context of the GDPR."
 msgstr ""
@@ -888,7 +904,7 @@ msgstr "Diese Zeichenfolge lässt sich leicht fälschen."
 msgid "To change the settings, first reset them all."
 msgstr "Um die Einstellungen zu ändern, setze zunächst alle zurück."
 
-#: admin/monthly.php:149
+#: admin/monthly.php:139
 msgid "total"
 msgstr "total"
 
@@ -900,7 +916,7 @@ msgstr "Gesamtanteil in %"
 msgid "Unblock / block selected entries"
 msgstr "Ausgewählte Einträge entsperren / sperren"
 
-#: admin.php:112 admin.php:284 admin.php:325
+#: admin.php:112 admin.php:305 admin.php:346
 msgid "Versions Control"
 msgstr "Versionskontrolle"
 
@@ -928,7 +944,7 @@ msgstr "WIMB-API-Schlüssel"
 msgid "WIMB API key needed."
 msgstr "WIMB API Schlüssel nötig."
 
-#: admin.php:151 admin.php:268
+#: admin.php:151 admin.php:289
 msgid "WIMB last 24 hours"
 msgstr "WIMB letzte 24 Stunden"
 
@@ -949,6 +965,12 @@ msgstr "Schreibe in die .htaccess im Stammverzeichnis von %s:"
 #: admin/deleting.php:39 admin/logging.php:53 admin/crawler.php:60
 msgid "yes"
 msgstr "ja"
+
+#. %1$s and %2$s is a link.
+#: admin/testing-rules.php:151
+#, php-format
+msgid "You can change the strings %1$shere%2$s."
+msgstr "Du kannst die Zeichenfolgen %1$shier%2$s ändern."
 
 #. %1$s and %2$s is a link.
 #: admin.php:55 admin.php:118 admin.php:166 admin.php:229 admin/crawler.php:142
@@ -1014,10 +1036,6 @@ msgstr ""
 "Du scheinst keine eigene robots.txt-Datei zu haben, deshalb stellt WordPress "
 "diese zur Verfügung. Daher kannst du die Konfiguration ohne Änderungen an "
 "der .htaccess testen."
-
-#: admin/testing-rules.php:97
-msgid "You have probably set it up to block that."
-msgstr "Wahrscheinlich hast du es so konfiguriert, dass diese geblockt werden."
 
 #: admin/robots.php:183
 msgid "You must configure these settings on each of your domains!"

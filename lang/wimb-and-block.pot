@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-14 15:44+0000\n"
+"POT-Creation-Date: 2026-07-15 18:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "All browsers"
 msgstr ""
 
-#: admin/monthly.php:144
+#: admin/monthly.php:134
 msgid "All entries"
 msgstr ""
 
@@ -64,6 +64,10 @@ msgstr ""
 msgid "Always block browsers with this strings"
 msgstr ""
 
+#: admin.php:245 admin/testing-rules.php:146
+msgid "Always blocked"
+msgstr ""
+
 #: admin/block-unblock.php:187 admin/block-unblock.php:191
 #: admin/block-unblock.php:577
 msgid "based browsers"
@@ -82,18 +86,16 @@ msgstr ""
 msgid "Block operating system versions smaller than"
 msgstr ""
 
-#: admin.php:308
+#: admin.php:329
 msgid "Block rules results"
 msgstr ""
 
 #: admin/stats-systems.php:166 admin/last24.php:116 admin/last24.php:119
-#: admin/last24.php:122 admin/monthly.php:162 admin/monthly.php:252
-#: admin/monthly.php:345
+#: admin/last24.php:122 admin/monthly.php:152 admin/monthly.php:242
 msgid "blocked"
 msgstr ""
 
-#: admin/stats-systems.php:167 admin/monthly.php:163 admin/monthly.php:253
-#: admin/monthly.php:346
+#: admin/stats-systems.php:167 admin/monthly.php:153 admin/monthly.php:243
 msgid "blocked in %"
 msgstr ""
 
@@ -110,8 +112,7 @@ msgstr ""
 msgid "Configuration and Settings"
 msgstr ""
 
-#: admin/last24.php:115 admin/monthly.php:161 admin/monthly.php:251
-#: admin/monthly.php:344
+#: admin/last24.php:115 admin/monthly.php:151 admin/monthly.php:241
 msgid "count"
 msgstr ""
 
@@ -127,7 +128,7 @@ msgstr ""
 msgid "Crawling is disabled:"
 msgstr ""
 
-#: admin/testing-rules.php:96
+#: admin.php:244 admin/testing-rules.php:96
 msgid "Currently blocked"
 msgstr ""
 
@@ -169,7 +170,7 @@ msgstr ""
 msgid "Entries last 24 hours"
 msgstr ""
 
-#: admin/monthly.php:96
+#: admin/monthly.php:86
 msgid "Even more statistics"
 msgstr ""
 
@@ -179,7 +180,7 @@ msgid ""
 "longer meet current requirements."
 msgstr ""
 
-#: admin.php:280 admin.php:321
+#: admin.php:301 admin.php:342
 msgid "Exclude / always block"
 msgstr ""
 
@@ -187,7 +188,7 @@ msgstr ""
 msgid "Exclude these browsers from checking"
 msgstr ""
 
-#: admin/monthly.php:474
+#: admin/monthly.php:371
 msgid "first"
 msgstr ""
 
@@ -215,11 +216,11 @@ msgstr ""
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:292 admin/header-checks.php:14
+#: admin.php:313 admin/header-checks.php:14
 msgid "Header Checks"
 msgstr ""
 
-#: admin.php:260
+#: admin.php:281
 msgid "Help"
 msgstr ""
 
@@ -342,7 +343,7 @@ msgid ""
 "from this header."
 msgstr ""
 
-#: admin/monthly.php:473
+#: admin/monthly.php:370
 msgid "last"
 msgstr ""
 
@@ -386,11 +387,11 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:223 admin.php:300 admin.php:317
+#: admin.php:223 admin.php:321 admin.php:338
 msgid "Logging"
 msgstr ""
 
-#: admin/monthly.php:250 admin/monthly.php:343
+#: admin/monthly.php:240
 msgid "month"
 msgstr ""
 
@@ -410,7 +411,7 @@ msgstr ""
 msgid "No connection to database - try again!"
 msgstr ""
 
-#: admin/testing-rules.php:101
+#: admin.php:243 admin/testing-rules.php:101
 msgid "Not blocked so far, but will be blocked in the future"
 msgstr ""
 
@@ -429,7 +430,7 @@ msgstr ""
 msgid "Or you can click on a link from one of the tables."
 msgstr ""
 
-#: admin.php:272 admin/monthly.php:11
+#: admin.php:293 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr ""
 
@@ -492,20 +493,19 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: admin/last24.php:118 admin/monthly.php:164 admin/monthly.php:254
-#: admin/monthly.php:347
+#: admin/last24.php:118 admin/monthly.php:154 admin/monthly.php:244
 msgid "robots"
 msgstr ""
 
-#: admin/monthly.php:166 admin/monthly.php:256 admin/monthly.php:349
+#: admin/monthly.php:156 admin/monthly.php:246
 msgid "robots blocked"
 msgstr ""
 
-#: admin/monthly.php:165 admin/monthly.php:255 admin/monthly.php:348
+#: admin/monthly.php:155 admin/monthly.php:245
 msgid "robots blocked in %"
 msgstr ""
 
-#: admin.php:304 admin.php:329
+#: admin.php:325 admin.php:350
 msgid "robots.txt"
 msgstr ""
 
@@ -517,11 +517,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: admin.php:155 admin.php:276
+#: admin.php:155 admin.php:297
 msgid "Search / block / unblock entries"
 msgstr ""
 
-#: admin.php:288 admin/block-unblock.php:195 admin/block-unblock.php:677
+#: admin.php:309 admin/block-unblock.php:195 admin/block-unblock.php:677
 msgid "Search Engines"
 msgstr ""
 
@@ -541,6 +541,10 @@ msgstr ""
 msgid "Search unblocked"
 msgstr ""
 
+#: admin.php:242
+msgid "Select info"
+msgstr ""
+
 #: admin/block-unblock.php:261
 msgid "Select to unblock / block"
 msgstr ""
@@ -557,7 +561,7 @@ msgstr ""
 msgid "Settings Search Engines"
 msgstr ""
 
-#: admin.php:80 admin.php:296 admin.php:313
+#: admin.php:80 admin.php:317 admin.php:334
 msgid "Settings WIMB"
 msgstr ""
 
@@ -581,11 +585,11 @@ msgid ""
 "Mastodon. Then you can exclude these."
 msgstr ""
 
-#: admin/monthly.php:87
+#: admin/monthly.php:77
 msgid "Statistics about first and last monthly access"
 msgstr ""
 
-#: admin/monthly.php:77
+#: admin/monthly.php:67
 msgid "Statistics about systems in total"
 msgstr ""
 
@@ -664,7 +668,7 @@ msgid ""
 "want the plugin to log anything, set it to /dev/null."
 msgstr ""
 
-#: admin/monthly.php:81
+#: admin/monthly.php:71
 msgid "The number of different browsers per system is counted."
 msgstr ""
 
@@ -762,6 +766,16 @@ msgid ""
 "search engine."
 msgstr ""
 
+#: admin/testing-rules.php:147
+msgid "These are blocked based on your settings."
+msgstr ""
+
+#: admin/testing-rules.php:97
+msgid ""
+"These would not be blocked by rules. You have probably set it up to "
+"explictly block that."
+msgstr ""
+
 #: admin/log-anonym.php:60
 msgid "This could potentially be a problem in the context of the GDPR."
 msgstr ""
@@ -788,7 +802,7 @@ msgstr ""
 msgid "To change the settings, first reset them all."
 msgstr ""
 
-#: admin/monthly.php:149
+#: admin/monthly.php:139
 msgid "total"
 msgstr ""
 
@@ -800,7 +814,7 @@ msgstr ""
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:112 admin.php:284 admin.php:325
+#: admin.php:112 admin.php:305 admin.php:346
 msgid "Versions Control"
 msgstr ""
 
@@ -828,7 +842,7 @@ msgstr ""
 msgid "WIMB API key needed."
 msgstr ""
 
-#: admin.php:151 admin.php:268
+#: admin.php:151 admin.php:289
 msgid "WIMB last 24 hours"
 msgstr ""
 
@@ -848,6 +862,12 @@ msgstr ""
 
 #: admin/deleting.php:39 admin/logging.php:53 admin/crawler.php:60
 msgid "yes"
+msgstr ""
+
+#. %1$s and %2$s is a link.
+#: admin/testing-rules.php:151
+#, php-format
+msgid "You can change the strings %1$shere%2$s."
 msgstr ""
 
 #. %1$s and %2$s is a link.
@@ -904,10 +924,6 @@ msgid ""
 "You do not seem to have your own robots.txt file, so WordPress provides it. "
 "Therefore you can test the configuration without any changes of the ."
 "htaccess."
-msgstr ""
-
-#: admin/testing-rules.php:97
-msgid "You have probably set it up to block that."
 msgstr ""
 
 #: admin/robots.php:183

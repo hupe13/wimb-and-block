@@ -38,16 +38,16 @@ function wimbblock_test_rules( $query ) {
 	$results = array();
 
 	foreach ( $wimbblock_entries as $entry ) {
-		$agent             = $entry['browser'];
-		$software          = $entry['software'];
-		$system            = $entry['system'];
-		$version           = $entry['version'];
-		$blocked           = $entry['block'];
-		$last_access       = $entry['time'];
-		$id                = $entry['i'];
+		$agent                   = $entry['browser'];
+		$software                = $entry['software'];
+		$system                  = $entry['system'];
+		$version                 = $entry['version'];
+		$blocked                 = $entry['block'];
+		$last_access             = $entry['time'];
+		$id                      = $entry['i'];
 		$wimbblock_test_to_block = '';
-		$is_crawler        = false;
-		$params            = wimbblock_crawlers_params();
+		$is_crawler              = false;
+		$params                  = wimbblock_crawlers_params();
 		foreach ( $params as $crawler => $value ) {
 			foreach ( $value['agents'] as $brand ) {
 				if ( stripos( $agent, $brand ) !== false ) {
@@ -94,13 +94,67 @@ function wimbblock_test_rules( $query ) {
 
 	if ( $query ) {
 		echo '<h2>' . wp_kses_post( __( 'Currently blocked', 'wimb-and-block' ) ) . '</h2>';
-		echo '<p>' . wp_kses_post( __( 'You have probably set it up to block that.', 'wimb-and-block' ) ) . '</p>';
+		echo '<p>' . wp_kses_post( __( 'These would not be blocked by rules. You have probably set it up to explictly block that.', 'wimb-and-block' ) ) . '</p>';
 		array_unshift( $results, array( '<strong>browser</strong>', '<strong>software</strong>', '<strong>system</strong>', '<strong>blocked</strong>' ) );
 	} else {
 		echo '<p>' . wp_kses_post( __( 'Everything changes - new agents appear almost every day, while others no longer meet current requirements.', 'wimb-and-block' ) ) . '</p>';
 		echo '<h2>' . wp_kses_post( __( 'Not blocked so far, but will be blocked in the future', 'wimb-and-block' ) ) . '</h2>';
 		array_unshift( $results, array( '<strong>browser</strong>', '<strong>software</strong>', '<strong>system</strong>', '<strong>reason</strong>', '<strong>time</strong>' ) );
 	}
+	echo '<p>';
+	echo wp_kses_post( wimbblock_html_table( $results ) );
+	echo '</p>';
+}
+
+function wimbblock_test_always_blocked() {
+	global $wimb_datatable;
+	global $wimbblock_test_to_block;
+	if ( is_null( $wimb_datatable ) ) {
+		wimbblock_open_wpdb();
+	}
+	$wimbblock_wpdb_options = wimbblock_get_options_db();
+	$wimbblock_table_name   = $wimbblock_wpdb_options['table_name'];
+	$table_name             = $wimbblock_table_name;
+
+	$results  = array();
+	$alwayses = wimbblock_get_option( 'wimbblock_always' );
+	if ( $alwayses !== false ) {
+		foreach ( $alwayses as $always ) {
+			$wimbblock_entries = $wimb_datatable->get_results(
+				$wimb_datatable->prepare(
+					'SELECT * FROM %i WHERE browser LIKE %s ORDER BY time DESC',
+					$table_name,
+					'%' . $always . '%',
+				),
+				ARRAY_A
+			);
+
+			foreach ( $wimbblock_entries as $entry ) {
+				$agent       = $entry['browser'];
+				$software    = $entry['software'];
+				$system      = $entry['system'];
+				$version     = $entry['version'];
+				$blocked     = $entry['block'];
+				$last_access = $entry['time'];
+				$id          = $entry['i'];
+
+				$results[] = array( $agent, $software, $system, $always, $blocked, $last_access );
+			}
+		}
+	}
+
+	echo '<h2>' . wp_kses_post( __( 'Always blocked', 'wimb-and-block' ) ) . '</h2>';
+	echo '<p>' . wp_kses_post( __( 'These are blocked based on your settings.', 'wimb-and-block' ) ) . ' ';
+	echo wp_kses_post(
+		sprintf(
+			/* translators: %1$s and %2$s is a link. */
+			__( 'You can change the strings %1$shere%2$s.', 'wimb-and-block' ),
+			'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME ) . '&tab=exclude">',
+			'</a>'
+		)
+	) . '</p>';
+	array_unshift( $results, array( '<strong>browser</strong>', '<strong>software</strong>', '<strong>system</strong>', '<strong>string</strong>', '<strong>blocked</strong>', '<strong>time</strong>' ) );
+
 	echo '<p>';
 	echo wp_kses_post( wimbblock_html_table( $results ) );
 	echo '</p>';
