@@ -16,7 +16,7 @@ function wimbblock_always( $table_name, $agent, $blocked, $id, $robots ) {
 				if ( $robots === false ) {
 					wimbblock_counter( $table_name, 'block', $id );
 					wimbblock_error_log( 'always blocked: ' . $agent . ' * ' . $always );
-					status_header( 404 );
+					status_header( 403 );
 					echo 'Your browser has been blocked.';
 					exit();
 				} else {

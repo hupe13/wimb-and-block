@@ -33,7 +33,7 @@ function wimbblock_check_crawler_address_in_table( $table_name_crawler, $crawler
 		if ( ! is_null( $exist ) ) {
 			if ( $robots === false ) {
 				wimbblock_error_log( 'Faked ' . $crawler . ': ' . $agent );
-				status_header( 404 );
+				status_header( 403 );
 				echo 'You are not a ' . esc_html( $crawler );
 				exit();
 			} else {
@@ -69,7 +69,7 @@ function wimbblock_check_crawler_ip_hostname( $agent, $ip, $robots ) {
 					}
 					if ( $robots === false ) {
 						wimbblock_error_log( 'Faked ' . $crawler . ': ' . $agent . ' * ' . $hostname );
-						status_header( 404 );
+						status_header( 403 );
 						echo 'You are not ' . esc_html( $crawler );
 						exit();
 					} else {

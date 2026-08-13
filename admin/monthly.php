@@ -314,13 +314,13 @@ function wimbblock_statistic_first_last() {
 		$date2      = date_create( wp_date( 'Y-m-01', strtotime( '01.' . substr( $oldest_wimbdate_entries[0]['wimbdate'], 2, 2 ) . '.20' . substr( $oldest_wimbdate_entries[0]['wimbdate'], 0, 2 ) ) ) );
 		$diff       = date_diff( $date1, $date2 );
 		$thismonth  = wp_date( 'Y-m' );
-		$wimbmonths = range( 0, $diff->format( '%m' ) );
+		$wimbmonths = range( 0, $diff->format( '%y' ) * 12 + $diff->format( '%m' ) );
 	}
 
 	if ( count( $oldest_entries ) > 0 ) {
 		$date2     = date_create( wp_date( 'Y-m-01', strtotime( $oldest_entries[0]['time'] ) ) );
 		$diff      = date_diff( $date1, $date2 );
-		$oldmonths = range( 0, $diff->format( '%m' ) );
+		$oldmonths = range( 0, $diff->format( '%y' ) * 12 + $diff->format( '%m' ) );
 	}
 
 	if ( $wimbmonths !== 0 && $oldmonths !== 0 ) {

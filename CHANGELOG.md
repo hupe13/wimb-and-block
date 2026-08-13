@@ -1,3 +1,8 @@
+### 260813 / 2.7
+
+* changed http status code 404 -> 403
+* fixed an error in monthly statistics
+
 ### 260718 / 2.6
 
 * some new block rules

@@ -377,7 +377,7 @@ function wimbblock_handle_id( $id ) {
 		INPUT_GET,
 		'id',
 		// FILTER_SANITIZE_SPECIAL_CHARS
-		FILTER_DEFAULT
+		FILTER_UNSAFE_RAW
 	);
 
 	$options = wimbblock_get_options_db();
@@ -401,7 +401,7 @@ function wimbblock_handle_get( $search ) {
 		INPUT_GET,
 		'name',
 		// FILTER_SANITIZE_SPECIAL_CHARS
-		FILTER_DEFAULT
+		FILTER_UNSAFE_RAW
 	);
 
 	$options = wimbblock_get_options_db();

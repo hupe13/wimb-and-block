@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad-bots, user-agent, ban, blocking, robots.txt
 Tested up to: 7.1
-Stable tag: 260715
+Stable tag: 260813
 Requires at least: 6.2
 Requires PHP: 8.1
 License: GPLv2 or later
@@ -59,9 +59,9 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-### 260718 / 2.6
+### 260813 / 2.7
 
-* some new block rules
-* some improvements in statistics
+* changed http status code 404 -> 403
+* fixed an error in monthly statistics
 
 see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog</a>

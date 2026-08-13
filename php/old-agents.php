@@ -155,7 +155,7 @@ function wimbblock_return_error( $table_name, $agent, $blocked, $id, $robots, $w
 	} elseif ( $robots === false ) {
 		wimbblock_counter( $table_name, 'block', $id );
 		wimbblock_error_log( $why . ': ' . $agent, $logging['oldagents'] ?? true );
-		status_header( 404 );
+		status_header( 403 );
 		echo 'Please use a modern browser to access this website';
 		exit;
 	} else {
