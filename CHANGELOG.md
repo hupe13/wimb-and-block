@@ -1,3 +1,8 @@
+### 26082x / 2.8
+
+* fixed an error in transients
+* readme
+
 ### 260813 / 2.7
 
 * changed http status code 404 -> 403

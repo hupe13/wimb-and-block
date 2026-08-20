@@ -66,7 +66,7 @@ function wimbblock_error_log( $reason, $loglevel = true ) {
 					require_once ABSPATH . 'wp-admin/includes/file.php';
 				}
 				WP_Filesystem();
-				if ( $wp_filesystem->exists( WP_DEBUG_LOG ) && $wp_filesystem->is_writable( WP_DEBUG_LOG ) ) {
+				if ( $wp_filesystem->is_writable( dirname( WP_DEBUG_LOG ) ) ) {
 					$logfile = WP_DEBUG_LOG;
 				} else {
 					$logfile = '';
@@ -77,6 +77,12 @@ function wimbblock_error_log( $reason, $loglevel = true ) {
 			$logfile = '';
 		}
 		set_transient( 'wimbblock_logfile', $logfile, DAY_IN_SECONDS );
+		$logging = wimbblock_logging_levels_settings();
+		$tolog   = $logging['tests'] ?? false;
+		if ( $tolog ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( 'transient wimbblock_logfile: ' . get_site_url() . ' ' . $logfile );
+		}
 	}
 	if ( $logfile !== '' && $loglevel !== false ) {
 		$anon = wimbblock_anon_settings();

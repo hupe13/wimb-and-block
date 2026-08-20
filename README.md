@@ -6,7 +6,7 @@ With the help of WhatIsMyBrowser the plugin detects old and bad browsers and den
 
 There are many ways to block unwanted access to your website. This plugin checks which user agent is accessing your website. If it is outdated, unwanted, or suspicious, access is blocked.
 
-Every time your web browser makes a request to a website, it sends a HTTP Header called the "User Agent". The User Agent string contains information about your web browser name, operating system, device type and lots of other useful bits of information.
+Every time a web browser sends a request to a website, then it sends a HTTP Header called the "User Agent". The User Agent string contains information about the web browser name, operating system, device type and lots of other useful bits of information.
 
 The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v2/user_agent_parse">https://api.whatismybrowser.com/api/v2/user_agent_parse</a> to obtain following information about the User Agent:
 
