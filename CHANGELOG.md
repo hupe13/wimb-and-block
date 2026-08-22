@@ -1,7 +1,6 @@
-### 26082x / 2.8
+### 260822 / 2.8
 
 * fixed an error in transients
-* readme
 
 ### 260813 / 2.7
 
