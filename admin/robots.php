@@ -304,7 +304,7 @@ function wimbblock_htaccess_handle_config_form() {
 					echo ' - ';
 					echo wp_kses_post( __( 'Access is allowed - this is correct.', 'wimb-and-block' ) );
 					echo '</p>';
-				} elseif ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 404 ) {
+				} elseif ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 403 ) {
 					echo '<p>';
 					echo wp_kses_post( (string) wp_remote_retrieve_response_code( $response ) );
 					echo ' - ';

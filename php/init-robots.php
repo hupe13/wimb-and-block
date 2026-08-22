@@ -9,14 +9,22 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_get_robots_txt() {
-	$site      = wp_parse_url( get_home_url() );
-	$http_host = $site['host'];
-	$response  = wp_remote_get( 'https://' . $http_host . '/robots.txt' );
-	if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
+	$docroot = sanitize_text_field( wp_unslash( $_SERVER['DOCUMENT_ROOT'] ?? '' ) );
+	$robots  = $docroot . '/robots.txt';
+	if ( file_exists( $robots ) ) {
+		$response = file_get_contents( $robots );
 		header( 'Content-Type: text/plain; charset=UTF-8' );
-		echo esc_html( $response['body'] ); // use the content
+		echo esc_html( $response ); // use the content
 		exit;
 	}
+	// $site      = wp_parse_url( get_home_url() );
+	// $http_host = $site['host'];
+	// $response  = wp_remote_get( 'https://' . $http_host . '/robots.txt' );
+	// if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
+		// header( 'Content-Type: text/plain; charset=UTF-8' );
+		// echo esc_html( $response['body'] ); // use the content
+		// exit;
+	// }
 	header( 'Content-Type: text/plain; charset=UTF-8' );
 	do_robots();
 	exit;

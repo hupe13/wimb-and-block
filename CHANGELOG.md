@@ -1,3 +1,8 @@
+### 260823 / 2.8.1
+
+* changed testing and creating robots.txt because of
+  https://core.trac.wordpress.org/ticket/65936
+
 ### 260822 / 2.8
 
 * fixed an error in transients
