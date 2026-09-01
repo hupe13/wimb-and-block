@@ -3,9 +3,9 @@
  * Plugin Name:       Block old browser versions and suspicious browsers
  * Plugin URI:        https://leafext.de/hp/wimb/
  * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
- * Version:           260823
- * Requires at least: 6.2
- * Requires PHP:      8.1
+ * Version:           260901
+ * Requires at least: 6.8
+ * Requires PHP:      8.2
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
  * Network:           true

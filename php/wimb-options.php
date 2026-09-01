@@ -45,22 +45,23 @@ function wimbblock_get_options_db() {
 function wimbblock_get_default_browsers() {
 	$defaults = array(
 		// https://developer.chrome.com/release-notes/
-		'Chrome'                   => 139,
+		'Chrome'                   => 147,  // Released 04/26
 		// https://en.wikipedia.org/wiki/Microsoft_Edge#New_Edge_release_history
 		// https://www.cvedetails.com/version-list/26/32367/1/Microsoft-Edge.html?order=0
 		// Edge = Chrome
-		'Edge'                     => 139,
+		'Edge'                     => 147,
 		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_Mozilla_Firefox
-		// ESR  115.32.0  140.7.0
+		// ESR 140.7.0
 		'Firefox'                  => 140,
 		// https://developer.apple.com/documentation/safari-release-notes
 		// https://theapplewiki.com/wiki/Safari
 		'Safari'                   => 18,
 		// https://caniuse.com/usage-table
+		// SamsungBrowser/30.0 Chrome/143
 		// SamsungBrowser/29.0 Chrome/136
 		// SamsungBrowser/28.0 Chrome/130
 		// https://en.wikipedia.org/wiki/Samsung_Internet
-		'Samsung Internet Browser' => 28,
+		'Samsung Internet Browser' => 30,
 	);
 	return $defaults;
 }

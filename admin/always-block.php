@@ -44,6 +44,7 @@ function wimbblock_always_form() {
 function wimbblock_always_validate( $params ) {
 	// var_dump($params);wp_die();
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock', 'wimbblock_nonce' ) ) {
+		delete_transient( 'wimbblock_always' );
 		if ( isset( $_POST['submit'] ) ) {
 			$newparams = array();
 			$last      = count( $params );

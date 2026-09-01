@@ -9,7 +9,11 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_always( $table_name, $agent, $blocked, $id, $robots ) {
-	$alwayses = wimbblock_get_option( 'wimbblock_always' );
+	$alwayses = get_transient( 'wimbblock_always' );
+	if ( false === $alwayses ) {
+		$alwayses = wimbblock_get_option( 'wimbblock_always' );
+		set_transient( 'wimbblock_always', $alwayses, HOUR_IN_SECONDS );
+	}
 	if ( $alwayses !== false ) {
 		foreach ( $alwayses as $always ) {
 			if ( stripos( $agent, $always ) !== false ) {

@@ -235,6 +235,7 @@ if ( is_main_site() ) {
 						// phpcs:ignore  WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 						$wimbblock_crawlers[ $crawler ] = $json->creationTime;
 						update_option( 'wimbblock_crawlers', $wimbblock_crawlers );
+						delete_transient( 'wimbblock_crawlers' );
 						wimbblock_error_log( 'Crawler updated - ' . $crawler . ' * ' . $wimbblock_crawlers[ $crawler ] );
 					}
 				}

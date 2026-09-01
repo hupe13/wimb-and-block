@@ -3,9 +3,9 @@
 Contributors: hupe13
 Tags: bad-bots, user-agent, ban, blocking, robots.txt
 Tested up to: 7.1
-Stable tag: 260823
-Requires at least: 6.2
-Requires PHP: 8.1
+Stable tag: 260901
+Requires at least: 6.8
+Requires PHP: 8.2
 License: GPLv2 or later
 
 With the help of WhatIsMyBrowser the plugin detects old and bad browsers and denies them access. A special robots.txt denies crawling by bad bots.
@@ -34,7 +34,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 * The plugin checks whether the browser is up to date; it does not check whether the requested page or post actually exists.
 * Browsers are blocked if the browser and/or system are outdated:
-    - Default: Chrome, Edge and Chrome based browsers < 139, Firefox browsers < 140, Safari < 18, Samsung Browser < 28, Internet Explorer, Netscape (!)
+    - Default: Chrome, Edge and Chrome based browsers < 147, Firefox browsers < 140, Safari < 18, Samsung Browser < 30, Internet Explorer, Netscape (!)
     - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 10 and Symbian.
 * It will be blocked also if "Software" contains "unknown" or is empty.
 * You can also set up other browsers.
@@ -65,7 +65,6 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 ### 260823 / 2.8.1
 
-* changed testing and creating robots.txt because of
-  https://core.trac.wordpress.org/ticket/65936
+* changed testing and creating robots.txt
 
 see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog</a>

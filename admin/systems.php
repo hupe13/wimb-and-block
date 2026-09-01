@@ -43,6 +43,7 @@ function wimbblock_systems_form() {
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function wimbblock_systems_validate( $params ) {
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock', 'wimbblock_nonce' ) ) {
+		delete_transient( 'wimbblock_systems' );
 		if ( isset( $_POST['submit'] ) ) {
 			$newparams = array();
 			$last      = count( $params ) / 2;

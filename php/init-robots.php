@@ -17,14 +17,6 @@ function wimbblock_get_robots_txt() {
 		echo esc_html( $response ); // use the content
 		exit;
 	}
-	// $site      = wp_parse_url( get_home_url() );
-	// $http_host = $site['host'];
-	// $response  = wp_remote_get( 'https://' . $http_host . '/robots.txt' );
-	// if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
-		// header( 'Content-Type: text/plain; charset=UTF-8' );
-		// echo esc_html( $response['body'] ); // use the content
-		// exit;
-	// }
 	header( 'Content-Type: text/plain; charset=UTF-8' );
 	do_robots();
 	exit;

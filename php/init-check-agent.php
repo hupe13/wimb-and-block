@@ -94,7 +94,6 @@ function wimbblock_check_agent() {
 			wimbblock_error_log( 'Unblocked: ' . $agent, $logging['excluded'] ?? true );
 			return;
 		}
-
 		wimbblock_always( $table_name, $agent, $blocked, $id, false );
 		wimbblock_faked_crawler( $table_name, $agent, $ip, false );
 		if ( $wimbblock_is_crawler === false ) {
