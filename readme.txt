@@ -63,3 +63,5 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 * fixes errors in handling of transients
 * bumped minimum versions of agents: Chrome, Edge and Chrome based browsers < 147, Samsung Internet Browser < 30
+* fixed error in rotate the table
+* Please check your explicitly unblocked entries!!
