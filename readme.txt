@@ -59,12 +59,7 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-### 260822 / 2.8
+### 260901 /
 
-* fixed an error in transients
-
-### 260823 / 2.8.1
-
-* changed testing and creating robots.txt
-
-see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog</a>
+* fixes errors in handling of transients
+* bumped minimum versions of agents: Chrome, Edge and Chrome based browsers < 147, Samsung Internet Browser < 30
