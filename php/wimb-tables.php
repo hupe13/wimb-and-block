@@ -67,7 +67,7 @@ if ( is_main_site() ) {
 				'count_3=count_2, block_3=block_2, ' .
 				'count_2=count_1, block_2=block_1, ' .
 				'count_1=count, block_1=block, ' .
-				'count=0, block=IF(block > 0, 1, 0), ' .
+				'count=0, block=IF(block > 0, 1, block), ' .
 				'robots=IF(robots > 0, 1, 0), ' .
 				'yymm=%s WHERE yymm=%s',
 				$wpdb_options['table_name'],
