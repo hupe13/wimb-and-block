@@ -1,7 +1,9 @@
-### 260901 /
+### 260902 / 2.9
 
-* fixes errors in handling of transients
+* fixed errors in handling of transients
 * bumped minimum versions of agents: Chrome, Edge and Chrome based browsers < 147, Samsung Internet Browser < 30
+* fixed error in rotating the table
+* Please check your explicitly unblocked entries!!
 
 ### 260823 / 2.8.1
 
