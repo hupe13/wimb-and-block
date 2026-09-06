@@ -104,7 +104,7 @@ function wimbblock_check_robots_txt( $posts ) {
 				wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, true );
 				wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, true );
 				wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, true );
-				wimbblock_check_secheaders( $software, $system, $version );
+				// wimbblock_check_secheaders( $software, $system, $version );
 			}
 		}
 		$logging = wimbblock_logging_levels_settings();
