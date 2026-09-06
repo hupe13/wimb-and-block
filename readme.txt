@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad-bots, user-agent, crawlers, blocking, robots.txt
 Tested up to: 7.1
-Stable tag: 260902
+Stable tag: 260906
 Requires at least: 6.8
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -59,15 +59,6 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-= 260902 / 2.9 =
+= 260906
 
-* fixed errors in handling of transients
-* bumped minimum versions of agents: Chrome, Edge and Chrome based browsers < 147, Samsung Internet Browser < 30
-* fixed error in rotating the table
-* Please check your explicitly unblocked entries!!
-
-== Upgrade Notice ==
-
-= 260902 / 2.9 =
-* Please check your explicitly unblocked entries!!
-  /wp-admin/options-general.php?page=wimb-and-block-github&tab=block
+* fixed an error in checking robots.txt

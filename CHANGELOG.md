@@ -1,3 +1,7 @@
+### 260906
+
+* fixed an error in checking robots.txt
+
 ### 260902 / 2.9
 
 * fixed errors in handling of transients

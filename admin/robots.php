@@ -276,7 +276,18 @@ function wimbblock_htaccess_handle_config_form() {
 				foreach ( $urls as $url ) {
 					// var_dump( $url, $agent );
 					echo '<h4>' . wp_kses_post( $url ) . '</h4>';
-					$response = wp_remote_get( $url, array( 'user-agent' => $agent ) );
+					$dest     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_DEST'] ?? '' ) );
+					$mode     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_MODE'] ?? '' ) );
+					$site     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_SITE'] ?? '' ) );
+					$args     = array(
+						'headers' => array(
+							'user-agent'     => $agent,
+							'Sec-Fetch-Dest' => $dest,
+							'Sec-Fetch-Mode' => $mode,
+							'Sec-Fetch-Site' => $site,
+						),
+					);
+					$response = wp_remote_get( $url, $args );
 					if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
 						echo '<pre>' . esc_html( $response['body'] ) . '</pre>'; // use the content
 						if ( $agent === 'wimb-and-block test agent' ) {
@@ -297,7 +308,18 @@ function wimbblock_htaccess_handle_config_form() {
 				}
 				$url = trailingslashit( get_home_url() );
 				echo '<h4>' . wp_kses_post( $url ) . '</h4>';
-				$response = wp_remote_get( $url, array( 'user-agent' => $agent ) );
+				$dest     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_DEST'] ?? '' ) );
+				$mode     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_MODE'] ?? '' ) );
+				$site     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_SITE'] ?? '' ) );
+				$args     = array(
+					'headers' => array(
+						'user-agent'     => $agent,
+						'Sec-Fetch-Dest' => $dest,
+						'Sec-Fetch-Mode' => $mode,
+						'Sec-Fetch-Site' => $site,
+					),
+				);
+				$response = wp_remote_get( $url, $args );
 				if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 && $agent !== 'wimb-and-block test agent' ) {
 					echo '<p>';
 					echo wp_kses_post( (string) wp_remote_retrieve_response_code( $response ) );
