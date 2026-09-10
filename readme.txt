@@ -32,7 +32,7 @@ With this information, the plugin attempts to detect old and bad browsers and de
 
 = Privacy =
 
-If you have concerns about data privacy: The user agent string is sent to this service only once and never again after that (unless the database entries are deleted). According to my hosting provider, over the past 12 months, I've had over 4 million visits to my websites, but there are "only" < 7,000 entries in the database. And most of them (in my case, over 80%) come from outdated browsers or are suspicious. Just "over 4 million" - that’s because my websites are only of interest to a select group of users. Other websites have significantly more visitors. However, I don't think the number of user-agent strings will be significantly higher.
+If you have concerns about data privacy: The user agent string is sent to this service only once and never again after that (unless the database entries are deleted). According to my hosting provider, over the past 12 months, I've had over 140000 visitors to my websites, but there are "only" < 7,000 entries in the database. And most of them (in my case, over 80%) come from outdated browsers or are suspicious. Just "140000" - that’s because my websites are only of interest to a select group of users. Other websites have significantly more visitors. However, I don't think the number of user-agent strings will be significantly higher.
 
 = Functions =
 
