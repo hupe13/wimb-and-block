@@ -22,6 +22,8 @@ With this information, the plugin attempts to detect old and bad browsers and de
 * You have a limit of 5000 hits / month for Parsing User Agent. That's why the plugin manages a database table.
 * The user agent string of every browser that accesses your website for the first time is sent to this service, and the information is stored this table.
 
+### Privacy
+
 If you have concerns about data privacy: The user agent string is sent to this service only once and never again after that (unless the database entries are deleted). According to my hosting provider, over the past 12 months, I've had over 140000 visitors to my websites, but there are "only" < 7,000 entries in the database. And most of them (in my case, over 80%) come from outdated browsers or are suspicious. Just "140000" - that’s because my websites are only of interest to a select group of users. Other websites have significantly more visitors. However, I don't think the number of user-agent strings will be significantly higher.
 
 ### Functions
