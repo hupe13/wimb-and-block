@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 20:18+0000\n"
+"POT-Creation-Date: 2026-09-24 18:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "%s only offer verification via DNS."
 msgstr ""
 
-#: admin/robots.php:305
+#: admin/robots.php:317
 msgid "Access is allowed - this is correct."
 msgstr ""
 
-#: admin/robots.php:311
+#: admin/robots.php:323
 msgid "Access is forbidden - this is correct."
 msgstr ""
 
@@ -60,7 +60,7 @@ msgid ""
 "this."
 msgstr ""
 
-#: admin/always-block.php:14 admin/always-block.php:65
+#: admin/always-block.php:14 admin/always-block.php:66
 msgid "Always block browsers with this strings"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 msgid "blocked in %"
 msgstr ""
 
-#: admin/versions.php:76
+#: admin/versions.php:77
 msgid ""
 "Browsers will be blocked, if the browser and/or the system is an old one:"
 msgstr ""
@@ -120,11 +120,11 @@ msgstr ""
 msgid "count total"
 msgstr ""
 
-#: admin/robots.php:272
+#: admin/robots.php:273
 msgid "Crawling is allowed:"
 msgstr ""
 
-#: admin/robots.php:274
+#: admin/robots.php:275
 msgid "Crawling is disabled:"
 msgstr ""
 
@@ -140,7 +140,7 @@ msgstr ""
 msgid "Delete entries for"
 msgstr ""
 
-#: admin/robots.php:227
+#: admin/robots.php:229
 msgid "Delete the rules"
 msgstr ""
 
@@ -148,7 +148,7 @@ msgstr ""
 msgid "Each search engine identifies itself with the user agent string."
 msgstr ""
 
-#: admin/robots.php:135
+#: admin/robots.php:139
 msgid "Edit .htaccess"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgid "Emergency button"
 msgstr ""
 
 #. %s is "Software"
-#: admin/versions.php:96
+#: admin/versions.php:126
 #, php-format
 msgid "Enter a unique substring of the string in the %s column."
 msgstr ""
@@ -188,6 +188,12 @@ msgstr ""
 msgid "Exclude these browsers from checking"
 msgstr ""
 
+#. %s are version numbers
+#: admin/versions.php:97
+#, php-format
+msgid "Firefox ESR versions %1$s and %2$s are not blocked."
+msgstr ""
+
 #: admin/monthly.php:371
 msgid "first"
 msgstr ""
@@ -206,7 +212,7 @@ msgid ""
 "shows \"Linux\"."
 msgstr ""
 
-#: admin/robots.php:63
+#: admin/robots.php:68
 msgid "Form to handle the entry in .htaccess"
 msgstr ""
 
@@ -291,6 +297,14 @@ msgstr ""
 msgid "If the two do not match, access will be blocked."
 msgstr ""
 
+#. %s are href
+#: admin/versions.php:104
+#, php-format
+msgid ""
+"If these versions of Firefox cause problems when accessing your website, you "
+"can block them %1$shere%2$s"
+msgstr ""
+
 #. %s is a crawler.
 #: admin/crawler.php:50
 #, php-format
@@ -300,7 +314,7 @@ msgid ""
 msgstr ""
 
 #. is a host.
-#: admin/robots.php:141
+#: admin/robots.php:145
 #, php-format
 msgid ""
 "If you do not want to use the form write in your .htaccess in the root "
@@ -359,31 +373,31 @@ msgstr ""
 msgid "Local WP database or remote database"
 msgstr ""
 
-#: php/wimb-options.php:192
+#: php/wimb-options.php:193
 msgid "Log tests for development purposes."
 msgstr ""
 
-#: php/wimb-options.php:175
+#: php/wimb-options.php:176
 msgid ""
 "Log when the browser accesses your website for the first time and an old "
 "version is detected or it is unknown or suspicious."
 msgstr ""
 
-#: php/wimb-options.php:163
+#: php/wimb-options.php:164
 msgid "Log when the browser gets a robots.txt to allow crawling."
 msgstr ""
 
-#: php/wimb-options.php:169
+#: php/wimb-options.php:170
 msgid "Log when the browser gets a robots.txt to disable crawling."
 msgstr ""
 
 #. %1$s are browser names and %2$s are header names.
-#: php/wimb-options.php:183
+#: php/wimb-options.php:184
 #, php-format
 msgid "Log when the browser is blocked because of %1$sheader checks%2$s."
 msgstr ""
 
-#: php/wimb-options.php:157
+#: php/wimb-options.php:158
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
@@ -415,7 +429,7 @@ msgstr ""
 msgid "Not blocked so far, but will be blocked in the future"
 msgstr ""
 
-#: php/wimb-options.php:151
+#: php/wimb-options.php:152
 msgid ""
 "Once it has been detected that the browser is being blocked, it will be "
 "blocked later without any explanation."
@@ -424,6 +438,12 @@ msgstr ""
 #: admin/crawler.php:104
 msgid ""
 "Only IPv4 addresses are validated via JSON files, IPv6 is validated via DNS."
+msgstr ""
+
+#. first two %s are search terms, last two is a href
+#: admin/versions.php:117
+#, php-format
+msgid "or always block these strings (%1$s and/or %2$s) %3$shere%4$s."
 msgstr ""
 
 #: admin/block-unblock.php:125
@@ -443,7 +463,7 @@ msgid "Path of log file"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:120
+#: admin/robots.php:124
 #, php-format
 msgid ""
 "Please check, if you need some flags like %1$s or %2$s or other or nothing."
@@ -453,7 +473,7 @@ msgstr ""
 msgid "Please fill out all fields."
 msgstr ""
 
-#: admin/systems.php:67
+#: admin/systems.php:68
 msgid ""
 "Please note that Chrome no longer necessarily distinguishes between Android "
 "versions starting with Android 10."
@@ -525,12 +545,18 @@ msgstr ""
 msgid "Search Engines"
 msgstr ""
 
-#: admin/versions.php:93
-msgid "Search engines are excluded from this."
+#: admin/versions.php:123
+msgid "Search engines are excluded from this check."
 msgstr ""
 
 #: admin/block-unblock.php:123
 msgid "Search entries"
+msgstr ""
+
+#. %s are search terms, %3$s is a field name
+#: admin/versions.php:110
+#, php-format
+msgid "search for %1$s or %2$s in %3$s field"
 msgstr ""
 
 #: admin/block-unblock.php:163
@@ -553,7 +579,7 @@ msgstr ""
 msgid "Setting:"
 msgstr ""
 
-#: wimb-and-block.php:59 wimb-and-block.php:67
+#: wimb-and-block.php:64 wimb-and-block.php:72 admin/versions.php:83
 msgid "Settings"
 msgstr ""
 
@@ -565,15 +591,15 @@ msgstr ""
 msgid "Settings WIMB"
 msgstr ""
 
-#: admin/robots.php:287 admin/robots.php:317
+#: admin/robots.php:299 admin/robots.php:329
 msgid "Something is going wrong."
 msgstr ""
 
-#: admin/robots.php:294
+#: admin/robots.php:306
 msgid "Something is going wrong. Check your rewrite rules."
 msgstr ""
 
-#: admin/always-block.php:70
+#: admin/always-block.php:71
 msgid ""
 "Sometimes bad bots have a changing version number, so you can configure a "
 "string to always block them."
@@ -605,11 +631,11 @@ msgstr ""
 msgid "Tables"
 msgstr ""
 
-#: admin/robots.php:256
+#: admin/robots.php:257
 msgid "Test"
 msgstr ""
 
-#: admin/robots.php:250
+#: admin/robots.php:251
 msgid "Test your configuration"
 msgstr ""
 
@@ -628,7 +654,7 @@ msgstr ""
 msgid "The following Browsers send this header:"
 msgstr ""
 
-#: php/wimb-options.php:211
+#: php/wimb-options.php:212
 msgid "The full IP is logged. (default)"
 msgstr ""
 
@@ -636,7 +662,7 @@ msgstr ""
 msgid "The information could not be retrieved."
 msgstr ""
 
-#: php/wimb-options.php:203
+#: php/wimb-options.php:204
 msgid "The IP address is not logged."
 msgstr ""
 
@@ -652,7 +678,7 @@ msgstr ""
 msgid "The IP addresses of %1$s are validated via JSON files."
 msgstr ""
 
-#: php/wimb-options.php:207
+#: php/wimb-options.php:208
 msgid "The last two digits are removed, IP 11.22.33.44 becomes 11.22.0.0"
 msgstr ""
 
@@ -678,19 +704,19 @@ msgid ""
 "configured and running."
 msgstr ""
 
-#: admin/robots.php:71
+#: admin/robots.php:76
 msgid "The plugin can modify the .htaccess file."
 msgstr ""
 
-#: admin/robots.php:165
+#: admin/robots.php:167
 msgid "The plugin cannot detect your server configuration."
 msgstr ""
 
-#: admin/robots.php:86
+#: admin/robots.php:91
 msgid "The plugin cannot modify the .htaccess file because it is read-only."
 msgstr ""
 
-#: admin/robots.php:157
+#: admin/robots.php:159
 msgid ""
 "The plugin cannot modify the .htaccess file in the server's root directory "
 "because the WordPress installation is located in a subdirectory."
@@ -711,14 +737,14 @@ msgid ""
 "The settings are the same as on the website configured with \"%s\" = yes."
 msgstr ""
 
-#: admin/versions.php:67
+#: admin/versions.php:68
 msgid ""
 "The user agent string of every browser accessing your website the first time "
 "is send to WhatIsMyBrowser and some data will be stored in the table:"
 msgstr ""
 
 #. %1$s is a value and %2$s is a column name
-#: admin/last24.php:251
+#: admin/last24.php:250
 #, php-format
 msgid ""
 "The value %1$s in the %2$s column means that you have explicitly unblocked "
@@ -726,7 +752,7 @@ msgid ""
 msgstr ""
 
 #. %1$s is "-1" and %2$s is "blocked", %3$s is "*" and %4$s is "software"
-#: admin/last24.php:260 admin/block-unblock.php:54
+#: admin/last24.php:259 admin/block-unblock.php:54
 #, php-format
 msgid ""
 "The value %1$s in the %2$s column or the value %3$s in %4$s column means "
@@ -734,7 +760,7 @@ msgid ""
 msgstr ""
 
 #. %s are browsers
-#: admin/versions.php:84
+#: admin/versions.php:86
 #, php-format
 msgid ""
 "The versions of %1$s and %2$s also affect browsers with their code base, for "
@@ -750,13 +776,13 @@ msgstr ""
 msgid "There is an error in your settings."
 msgstr ""
 
-#: admin/robots.php:222
+#: admin/robots.php:224
 msgid ""
 "There is no WordPress function to delete the rules completely. This means "
 "that the comments remain."
 msgstr ""
 
-#: admin/last24.php:176
+#: admin/last24.php:175
 msgid "There was an error:"
 msgstr ""
 
@@ -790,7 +816,7 @@ msgstr ""
 msgid "This is always logged:"
 msgstr ""
 
-#: admin/robots.php:285
+#: admin/robots.php:297
 msgid "This is the expected output."
 msgstr ""
 
@@ -850,12 +876,12 @@ msgstr ""
 msgid "WIMB table name"
 msgstr ""
 
-#: admin/robots.php:220
+#: admin/robots.php:222
 msgid "Write .htaccess file"
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:111
+#: admin/robots.php:116
 #, php-format
 msgid "Write in your .htaccess in the root directory of %s:"
 msgstr ""
@@ -876,7 +902,7 @@ msgstr ""
 msgid "You can change this setting on the %1$smain site%2$s."
 msgstr ""
 
-#: admin/robots.php:59
+#: admin/robots.php:64
 msgid ""
 "You can configure some rewrite rules, to provide a robots.txt to enable or "
 "to disable crawling for a browser. If crawling is disabled, access to your "
@@ -890,7 +916,7 @@ msgid "You can delete oldest month on the %1$smain site%2$s."
 msgstr ""
 
 #. %1$s and %2$s is a link.
-#: admin/robots.php:203
+#: admin/robots.php:205
 #, php-format
 msgid "You can do it on %1$sthis site%2$s."
 msgstr ""
@@ -906,7 +932,7 @@ msgid "You can search for entries here."
 msgstr ""
 
 #. %1$s is "robots.txt", %2$s and %3$s is a link.
-#: admin/robots.php:37
+#: admin/robots.php:42
 #, php-format
 msgid ""
 "You can set up and test your configuration for %1$s once you have configured "
@@ -919,19 +945,23 @@ msgstr ""
 msgid "You can sort the columns %1$s, %2$s, %3$s and %4$s."
 msgstr ""
 
-#: admin/robots.php:53
+#: admin/versions.php:101
+msgid "You cannot distinguish between regular and ESR versions."
+msgstr ""
+
+#: admin/robots.php:58
 msgid ""
 "You do not seem to have your own robots.txt file, so WordPress provides it. "
 "Therefore you can test the configuration without any changes of the ."
 "htaccess."
 msgstr ""
 
-#: admin/robots.php:183
+#: admin/robots.php:185
 msgid "You must configure these settings on each of your domains!"
 msgstr ""
 
-#: admin/logging.php:83 admin/exclude.php:73 admin/always-block.php:68
-#: admin/versions.php:80
+#: admin/logging.php:83 admin/exclude.php:73 admin/always-block.php:69
+#: admin/versions.php:81
 msgid ""
 "You must configure these settings on each of your websites that use this "
 "database!"

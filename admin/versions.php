@@ -70,9 +70,9 @@ function wimbblock_browsers_help() {
 		'wimb-and-block'
 	);
 	$text   .= '<p><table class="width450" border=1>
- 	 <tr><td class="width280 center-text"><code>browser</code></td>
-	 <td class="width85 center-text"><code>simple software string</code></td>
-	 <td class="width85 center-text"><code>operating system</code></td></tr></table></p>';
+ 	 <tr><td class="width280 center-text"><code>Browser</code></td>
+	 <td class="width85 center-text"><code>Software</code></td>
+	 <td class="width85 center-text"><code>System</code></td></tr></table></p>';
 	$text   .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/good.jpg" alt="example entries" width="450" ></p>';
 	$text   .= __( 'Browsers will be blocked, if the browser and/or the system is an old one:', 'wimb-and-block' );
 	$text   .= '<p><img src="' . plugin_dir_url( __FILE__ ) . '../pict/old.jpg" alt="example entries" width="450" ></p>';
@@ -124,7 +124,7 @@ function wimbblock_browsers_help() {
 	$text .= '</li></ul><p>' . wp_sprintf(
 		/* Translators: %s is "Software" */
 		__( 'Enter a unique substring of the string in the %s column.', 'wimb-and-block' ),
-		'<strong>Software</strong>'
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=last24' ) . '"><strong>Software</strong></a>'
 	) . '</p>';
 	return $text;
 }
