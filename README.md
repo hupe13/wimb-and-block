@@ -8,7 +8,7 @@ There are many ways to block unwanted access to your website. This plugin checks
 
 Every time a web browser sends a request to a website, then it sends a HTTP Header called the "User Agent". The User Agent string contains information about the web browser name, operating system, device type and lots of other useful bits of information.
 
-The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v2/user_agent_parse">https://api.whatismybrowser.com/api/v2/user_agent_parse</a> to obtain following information about the User Agent:
+The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v3/detect">https://api.whatismybrowser.com/api/v3/detect</a> to obtain following information about the User Agent:
 
 * Software Name & Version
 * Operating System Name & Version

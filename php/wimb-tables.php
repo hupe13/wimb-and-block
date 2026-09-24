@@ -225,9 +225,9 @@ if ( is_main_site() ) {
 										$wpdb_options['table_name'] . '_crawler',
 										$crawler,
 										$begin,
-										ip2long( $begin ),
+										ip2long( (string) $begin ),
 										$end,
-										ip2long( $end ),
+										ip2long( (string) $end ),
 									),
 								);
 							}

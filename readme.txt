@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad-bots, user-agent, crawlers, blocking, robots.txt
 Tested up to: 7.1
-Stable tag: 260906
+Stable tag: 260924
 Requires at least: 6.8
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -16,7 +16,7 @@ There are many ways to block unwanted access to your website. This plugin checks
 
 Every time a web browser sends a request to a website, then it sends a HTTP Header called the "User Agent". The User Agent string contains information about the web browser name, operating system, device type and lots of other useful bits of information.
 
-The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v2/user_agent_parse">https://api.whatismybrowser.com/api/v2/user_agent_parse</a> to obtain following information about the User Agent:
+The plugin sends with an API the User Agent string of every browser that accesses your website for the first time to <a href="https://api.whatismybrowser.com/api/v3/detect">https://api.whatismybrowser.com/api/v3/detect</a> to obtain following information about the User Agent:
 
 * Software Name & Version
 * Operating System Name & Version
@@ -63,6 +63,4 @@ Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc
 
 == Changelog ==
 
-= 260906
-
-* fixed an error in checking robots.txt
+see <a href="https://github.com/hupe13/wimb-and-block/blob/main/CHANGELOG.md">Changelog on Github</a>

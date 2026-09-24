@@ -1,4 +1,10 @@
-### 260906
+### 2609xx / 3.0
+
+* What is my browser API version 3
+* exclude Firefox ESR 140 and 153 versions from blocking
+* cleaned up some code
+
+### 260906 / 2.9.1
 
 * fixed an error in checking robots.txt
 

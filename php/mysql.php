@@ -58,18 +58,20 @@ function wimbblock_error_log( $reason, $loglevel = true ) {
 			$logfile = $wimbblock_logfile;
 		}
 		if ( $logfile === '' ) {
-			if ( true === WP_DEBUG && WP_DEBUG_LOG === true ) {
-				$logfile = WP_CONTENT_DIR . '/debug.log';
-			} elseif ( true === WP_DEBUG && WP_DEBUG_LOG !== false ) {
-				global $wp_filesystem;
-				if ( ! function_exists( 'WP_Filesystem' ) ) {
-					require_once ABSPATH . 'wp-admin/includes/file.php';
-				}
-				WP_Filesystem();
-				if ( $wp_filesystem->is_writable( dirname( WP_DEBUG_LOG ) ) ) {
-					$logfile = WP_DEBUG_LOG;
-				} else {
-					$logfile = '';
+			if ( true === WP_DEBUG ) {
+				if ( WP_DEBUG_LOG === true ) {
+					$logfile = WP_CONTENT_DIR . '/debug.log';
+				} elseif ( WP_DEBUG_LOG !== false ) {
+					global $wp_filesystem;
+					if ( ! function_exists( 'WP_Filesystem' ) ) {
+						require_once ABSPATH . 'wp-admin/includes/file.php';
+					}
+					WP_Filesystem();
+					if ( $wp_filesystem->is_writable( dirname( constant( 'WP_DEBUG_LOG' ) ) ) ) {
+						$logfile = constant( 'WP_DEBUG_LOG' );
+					} else {
+						$logfile = '';
+					}
 				}
 			}
 		}

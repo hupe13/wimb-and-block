@@ -29,6 +29,11 @@ function wimbblock_robots_htaccess() {
 	$site       = wp_parse_url( get_home_url() );
 	$serverroot = $site['host'];
 	echo '<h3>robots.txt - ' . wp_kses_post( $serverroot ) . '</h3>';
+
+	if ( file_exists( __DIR__ . '/robots-patch.php' ) ) {
+		require_once __DIR__ . '/robots-patch.php';
+	}
+
 	$wpdb_options = wimbblock_get_options_db();
 	if ( $wpdb_options['error'] !== '0' || $wpdb_options['wimb_api'] === '' ) {
 		echo wp_kses_post(
@@ -112,8 +117,7 @@ function wimbblock_htaccess_subdir_help() {
 		$site['host']
 	);
 	$text .= '</p>';
-	$text .= '<pre' . $codestyle . '><code' . $codestyle . '>RewriteCond %{HTTP_USER_AGENT} !WordPress [NC]
-RewriteRule ^robots.txt$ ' . $path . '/robots-check/ [flags]</code></pre>';
+	$text .= '<pre' . $codestyle . '><code' . $codestyle . '>RewriteRule ^robots.txt$ ' . $path . '/robots-check/ [flags]</code></pre>';
 	$text .= '<p>';
 	$text .= wp_sprintf(
 	/* translators: %1$s and %2$s is a link. */
@@ -143,14 +147,12 @@ function wimbblock_edit_rules_htaccess( $form ) {
 		);
 		$text .= ':</p>';
 	}
-	$text .= '<p><pre' . $codestyle . '><code' . $codestyle . '>RewriteCond %{HTTP_USER_AGENT} !WordPress [NC]
-RewriteRule ^robots.txt$ /robots-check/</code></pre></p>';
+	$text .= '<p><pre' . $codestyle . '><code' . $codestyle . '>RewriteRule ^robots.txt$ /robots-check/</code></pre></p>';
 	echo wp_kses_post( $text );
 }
 
 function wimbblock_test_subdir() {
-	$site       = wp_parse_url( get_home_url() );
-	$serverroot = $site['host'];
+	$site = wp_parse_url( get_home_url() );
 	if ( isset( $site['path'] ) ) {
 		echo '<p>' .
 		wp_kses_post(
@@ -233,7 +235,6 @@ function wimbblock_handle_htaccess_form() {
 	if ( ! empty( $_POST ) && check_admin_referer( 'wimbblock_robots', 'wimbblock_robots_nonce' ) ) {
 		if ( isset( $_POST['htaccess'] ) ) {
 			$lines   = array();
-			$lines[] = 'RewriteCond %{HTTP_USER_AGENT} !WordPress [NC]';
 			$lines[] = 'RewriteRule ^robots.txt$ /robots-check/';
 			insert_with_markers( ABSPATH . '.htaccess', 'wimb-and-block', implode( "\n", $lines ) );
 		}
@@ -273,20 +274,20 @@ function wimbblock_htaccess_handle_config_form() {
 				} else {
 					echo '<h3>' . wp_kses_post( __( 'Crawling is disabled:', 'wimb-and-block' ) ) . '</h3>';
 				}
+				$dest = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_DEST'] ?? '' ) );
+				$mode = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_MODE'] ?? '' ) );
+				$site = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_SITE'] ?? '' ) );
+				$args = array(
+					'headers' => array(
+						'user-agent'     => $agent,
+						'Sec-Fetch-Dest' => $dest,
+						'Sec-Fetch-Mode' => $mode,
+						'Sec-Fetch-Site' => $site,
+					),
+				);
 				foreach ( $urls as $url ) {
 					// var_dump( $url, $agent );
 					echo '<h4>' . wp_kses_post( $url ) . '</h4>';
-					$dest     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_DEST'] ?? '' ) );
-					$mode     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_MODE'] ?? '' ) );
-					$site     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_SITE'] ?? '' ) );
-					$args     = array(
-						'headers' => array(
-							'user-agent'     => $agent,
-							'Sec-Fetch-Dest' => $dest,
-							'Sec-Fetch-Mode' => $mode,
-							'Sec-Fetch-Site' => $site,
-						),
-					);
 					$response = wp_remote_get( $url, $args );
 					if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
 						echo '<pre>' . esc_html( $response['body'] ) . '</pre>'; // use the content
@@ -308,17 +309,6 @@ function wimbblock_htaccess_handle_config_form() {
 				}
 				$url = trailingslashit( get_home_url() );
 				echo '<h4>' . wp_kses_post( $url ) . '</h4>';
-				$dest     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_DEST'] ?? '' ) );
-				$mode     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_MODE'] ?? '' ) );
-				$site     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_SEC_FETCH_SITE'] ?? '' ) );
-				$args     = array(
-					'headers' => array(
-						'user-agent'     => $agent,
-						'Sec-Fetch-Dest' => $dest,
-						'Sec-Fetch-Mode' => $mode,
-						'Sec-Fetch-Site' => $site,
-					),
-				);
 				$response = wp_remote_get( $url, $args );
 				if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) === 200 && $agent !== 'wimb-and-block test agent' ) {
 					echo '<p>';

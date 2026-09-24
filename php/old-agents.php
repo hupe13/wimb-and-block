@@ -12,15 +12,20 @@ function wimbblock_check_modern_browser( $table_name, $agent, $software, $versio
 	// $software ist nie leer, wird vorher geblockt.
 	$checking            = wimbblock_get_all_browsers();
 	$versions_controlled = false;
+	if ( $version === '' && $software !== '' ) {
+		$version = preg_replace( '%.* ([0-9]+)[^0-9]?.* on .*%', '${1}', $software );
+	}
 	foreach ( $checking as $key => $value ) {
 		if ( stripos( $software, $key ) !== false ) {
 			if ( $version === '' ) {
 				$version = preg_replace( '%.*' . $key . ' ([0-9]+)[^0-9].*%', '${1}', $software );
 			}
 			if ( $version !== '' ) {
-				if ( (int) $version < (int) $value ) {
-					$why = 'Blocked - old browser: ' . $software;
-					wimbblock_return_error( $table_name, $agent, $blocked, $id, $robots, $why );
+				if ( ! ( $key === 'Firefox' && ( (int) $version === 140 || (int) $version === 153 ) ) ) {  // no Firefox ESR
+					if ( (int) $version < (int) $value ) {
+						$why = 'Blocked - old browser: ' . $software;
+						wimbblock_return_error( $table_name, $agent, $blocked, $id, $robots, $why );
+					}
 				}
 			}
 			$versions_controlled = true;
@@ -30,7 +35,6 @@ function wimbblock_check_modern_browser( $table_name, $agent, $software, $versio
 	// Browsers like Chromium / Chrome / Brave / Edge / and others
 	// Iceweasel, Fennec, and other Firefox derivates
 	if ( $versions_controlled === false ) {
-		$checking  = wimbblock_get_all_browsers();
 		$derivates = array( 'Chrome', 'Firefox' );
 		foreach ( $derivates as $derivate ) {
 			if ( strpos( $agent, $derivate . '/' ) !== false ) {

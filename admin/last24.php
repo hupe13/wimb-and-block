@@ -143,11 +143,10 @@ function wimbblock_display_table( $wimbblock_table_name ) {
 	$tablehdr .= '<th colspan=4>Browser Software</th>';
 	$tablehdr .= '<th colspan=2>Time</th>';
 	$tablehdr .= '<th colspan=1>&nbsp;</th>';
-	$thismonth = wp_date( 'Y-m' );
-	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth ) ) . '</th>';
-	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 1 month' ) ) . '</th>';
-	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 2 month' ) ) . '</th>';
-	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( $thismonth . ' - 3 month' ) ) . '</th>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( 'first day of this month' ) ) . '</th>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( 'first day of last month' ) ) . '</th>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( 'first day of today - 2 months' ) ) . '</th>';
+	$tablehdr .= '<th colspan=2>' . wp_date( 'F', strtotime( 'first day of today - 3 months' ) ) . '</th>';
 	$tablehdr .= '<th colspan=1>&nbsp;</th>';
 	$tablehdr .= '</tr>';
 	$tablehdr .= $colgroups;

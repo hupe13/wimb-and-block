@@ -18,6 +18,9 @@ function wimbblock_check_agent() {
 		return;
 	}
 
+	// https://developers.whatismybrowser.com/api/docs/v3/integration-guide/detect/requests/
+	header( 'accept-ch: Sec-Ch-Ua,Sec-Ch-Ua-Platform,Sec-Ch-Ua-Platform-Version' );
+
 	$server_ip = sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ?? '' ) );
 	$ip        = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
 	$agent     = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ?? '' ) );
@@ -55,7 +58,6 @@ function wimbblock_check_agent() {
 		&& $user_login === ''
 		&& ! wp_doing_ajax()
 		&& $ip !== '127.0.0.1'
-		&& '/favicon.ico' !== $uri
 		&& strpos( $agent, 'WordPress/Private' ) === false
 		&& boolval( preg_match( '#WordPress/.+' . get_home_url() . '#', $agent ) ) === false
 		&& strpos( $agent, 'WP-URLDetails' ) === false
@@ -64,11 +66,11 @@ function wimbblock_check_agent() {
 		&& strpos( $uri, 'robots-check' ) === false
 		&& ! is_404()
 	) {
+		$logging  = wimbblock_logging_levels_settings();
 		$excludes = wimbblock_get_option( 'wimbblock_exclude' );
 		if ( $excludes !== false ) {
 			foreach ( $excludes as $exclude ) {
 				if ( stripos( $agent, $exclude ) !== false ) {
-					$logging = wimbblock_logging_levels_settings();
 					wimbblock_error_log( 'Excluded: ' . $agent . ' * ' . $exclude, $logging['excluded'] ?? true );
 					return;
 				}
@@ -81,30 +83,29 @@ function wimbblock_check_agent() {
 		list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'block', $id );
-			$logging = wimbblock_logging_levels_settings();
 			// wimbblock_log_sec_headers( 'blocked' );
 			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ), $logging['blockagain'] ?? true );
 			status_header( 403 );
 			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );
 			exit();
 		}
-		if ( (int) $blocked < 0 ) { // unblocked
+		if ( (int) $blocked < 0 ) { // is unblocked
 			wimbblock_counter( $table_name, 'count', $id );
-			$logging = wimbblock_logging_levels_settings();
 			wimbblock_error_log( 'Unblocked: ' . $agent, $logging['excluded'] ?? true );
 			return;
 		}
 		wimbblock_always( $table_name, $agent, $blocked, $id, false );
 		wimbblock_faked_crawler( $table_name, $agent, $ip, false );
 		if ( $wimbblock_is_crawler === false ) {
-			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
-			if ( $version === '' && $software !== '' ) {
-				$version = preg_replace( '%.* ([0-9]+)[^0-9]?.* on .*%', '${1}', $software );
+			if ( function_exists( 'wimbblock_log_sec_headers' ) ) {
+				if ( strpos( $agent, 'CriOS' ) !== false ) {
+					wimbblock_log_sec_headers( 'CriOS' );
+				}
 			}
+			wimbblock_unknown_agent( $table_name, $agent, $software, $blocked, $id, false );
 			wimbblock_check_modern_browser( $table_name, $agent, $software, $version, $system, $blocked, $id, false );
 			wimbblock_old_system( $table_name, $agent, $system, $blocked, $id, false );
-			wimbblock_check_secheaders( $software, $system, $version );
-			// wimbblock_log_sec_headers( 'info' );
+			wimbblock_check_secheaders( $agent, $software, $system );
 		}
 		wimbblock_counter( $table_name, 'count', $id );
 		$wimbblock_software = $software;

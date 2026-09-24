@@ -80,7 +80,8 @@ function wimbblock_browsers_help() {
 	if ( $options['location'] === 'remote' ) {
 		$text .= '<p><div class="notice notice-info">' . __( 'You must configure these settings on each of your websites that use this database!', 'wimb-and-block' ) . '</div></p>';
 	}
-	$text .= wp_sprintf(
+	$text .= '<h3>' . __( 'Settings', 'wimb-and-block' ) . '</h3>';
+	$text .= '<ul><li class="adminli">' . wp_sprintf(
 		/* Translators: %s are browsers*/
 		__( 'The versions of %1$s and %2$s also affect browsers with their code base, for example %3$s, %4$s, %5$s, %6$s, %7$s.', 'wimb-and-block' ),
 		'Chrome',
@@ -91,8 +92,36 @@ function wimbblock_browsers_help() {
 		'Iceweasel',
 		'Fennec'
 	);
-	$text .= ' ' . __( 'Search engines are excluded from this.', 'wimb-and-block' );
-	$text .= '<p>' . wp_sprintf(
+	$text .= '</li><li class="adminli">' . wp_sprintf(
+		/* Translators: %s are version numbers */
+		__( 'Firefox ESR versions %1$s and %2$s are not blocked.', 'wimb-and-block' ),
+		'140',
+		'153'
+	);
+	$text .= ' ' . __( 'You cannot distinguish between regular and ESR versions.', 'wimb-and-block' );
+	$text .= ' ' . wp_sprintf(
+		/* Translators: %s are href */
+		__( 'If these versions of Firefox cause problems when accessing your website, you can block them %1$shere%2$s', 'wimb-and-block' ),
+		'<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMBBLOCK_NAME ) . '&tab=block">',
+		'</a>'
+	);
+	$text .= ' (' . wp_sprintf(
+		/* Translators: %s are search terms, %3$s is a field name */
+		__( 'search for %1$s or %2$s in %3$s field', 'wimb-and-block' ),
+		'<strong>Firefox/140</strong>',
+		'<strong>Firefox/153</strong>',
+		'<strong>browser</strong>'
+	) . ')';
+	$text .= ' ' . wp_sprintf(
+	/* Translators: first two %s are search terms, last two is a href */
+		__( 'or always block these strings (%1$s and/or %2$s) %3$shere%4$s.', 'wimb-and-block' ),
+		'<strong>Firefox/140</strong>',
+		'<strong>Firefox/153</strong>',
+		'<a href="' . esc_url( admin_url( 'options-general.php' ) . '?page=' . WIMBBLOCK_NAME ) . '&tab=exclude">',
+		'</a>'
+	);
+	$text .= '</li><li class="adminli">' . __( 'Search engines are excluded from this check.', 'wimb-and-block' );
+	$text .= '</li></ul><p>' . wp_sprintf(
 		/* Translators: %s is "Software" */
 		__( 'Enter a unique substring of the string in the %s column.', 'wimb-and-block' ),
 		'<strong>Software</strong>'
