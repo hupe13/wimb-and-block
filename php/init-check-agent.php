@@ -83,8 +83,9 @@ function wimbblock_check_agent() {
 		list ( $software, $system, $version, $blocked, $id ) = wimbblock_check_wimb( $agent, $table_name );
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'block', $id );
-			// wimbblock_log_sec_headers( 'blocked' );
-			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ), $logging['blockagain'] ?? true );
+			$why = '';
+			$why = wimbblock_no_ai( $table_name, $agent, $blocked, $id, 'ai_check' );
+			wimbblock_error_log( 'Blocked again: ' . ( ( $software === '' || stripos( $software, 'unknown' ) !== false ) ? $agent : $software ) . $why, $logging['blockagain'] ?? true );
 			status_header( 403 );
 			echo 'Blocked - agent is old or suspicious or forbidden: ' . esc_html( $agent );
 			exit();
@@ -94,6 +95,12 @@ function wimbblock_check_agent() {
 			wimbblock_error_log( 'Unblocked: ' . $agent, $logging['excluded'] ?? true );
 			return;
 		}
+
+		$no_ai = wimbblock_get_option( 'wimbblock_block_ai' );
+		if ( $no_ai ) {
+			wimbblock_no_ai( $table_name, $agent, $blocked, $id, false );
+		}
+
 		wimbblock_always( $table_name, $agent, $blocked, $id, false );
 		wimbblock_faked_crawler( $table_name, $agent, $ip, false );
 		if ( $wimbblock_is_crawler === false ) {

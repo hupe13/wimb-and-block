@@ -12,6 +12,7 @@ function wimbblock_get_robots_txt() {
 	$docroot = sanitize_text_field( wp_unslash( $_SERVER['DOCUMENT_ROOT'] ?? '' ) );
 	$robots  = $docroot . '/robots.txt';
 	if ( file_exists( $robots ) ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		$response = file_get_contents( $robots );
 		header( 'Content-Type: text/plain; charset=UTF-8' );
 		echo esc_html( (string) $response ); // use the content
@@ -59,7 +60,6 @@ function wimbblock_check_robots_txt( $posts ) {
 		if ( $wpdb_options['error'] !== '0' || $wpdb_options['wimb_api'] === '' ) {
 			wimbblock_get_robots_txt();
 		}
-
 		$excludes = wimbblock_get_option( 'wimbblock_exclude' );
 		if ( $excludes !== false ) {
 			foreach ( $excludes as $exclude ) {
@@ -69,7 +69,6 @@ function wimbblock_check_robots_txt( $posts ) {
 				}
 			}
 		}
-
 		global $wimb_datatable;
 		if ( is_null( $wimb_datatable ) ) {
 			wimbblock_open_wpdb();
@@ -86,7 +85,9 @@ function wimbblock_check_robots_txt( $posts ) {
 		}
 		if ( (int) $blocked > 0 ) {
 			wimbblock_counter( $table_name, 'robots', $id );
-			wimbblock_error_log( 'robots.txt forbidden: ' . ( $software !== '' ? $software : $agent ), $logging['robotsforbidden'] ?? true );
+			$why = '';
+			$why = wimbblock_no_ai( $table_name, $agent, $blocked, $id, 'ai_check' );
+			wimbblock_error_log( 'robots.txt forbidden: ' . ( $software !== '' ? $software : $agent ) . $why, $logging['robotsforbidden'] ?? true );
 			header( 'Content-Type: text/plain; charset=UTF-8' );
 			echo "User-agent: *\r\n" .
 			'Disallow: /' . "\r\n";
@@ -96,6 +97,10 @@ function wimbblock_check_robots_txt( $posts ) {
 			wimbblock_counter( $table_name, 'robots', $id );
 			wimbblock_error_log( 'Unblocked: ' . $agent, $logging['excluded'] ?? true );
 		} else {
+			$no_ai = wimbblock_get_option( 'wimbblock_block_ai' );
+			if ( $no_ai ) {
+				wimbblock_no_ai( $table_name, $agent, $blocked, $id, true );
+			}
 			wimbblock_always( $table_name, $agent, $blocked, $id, true );
 			wimbblock_faked_crawler( $table_name, $agent, $ip, true );
 			if ( $wimbblock_is_crawler === false ) {

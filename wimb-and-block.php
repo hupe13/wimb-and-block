@@ -3,7 +3,7 @@
  * Plugin Name:       Block old browser versions and suspicious browsers
  * Plugin URI:        https://leafext.de/hp/wimb/
  * Description:       The plugin uses the service of WhatIsMyBrowser.com to detect old and suspicious browsers and denies them access to your website. It provides a robots.txt file to prohibit crawling and blocks crawlers if they do so anyway.
- * Version:           260924
+ * Version:           261015
  * Requires at least: 6.8
  * Requires PHP:      8.2
  * Author:            hupe13
@@ -34,6 +34,7 @@ require_once __DIR__ . '/php/crawler-settings.php';
 require_once __DIR__ . '/php/faked-crawlers.php';
 require_once __DIR__ . '/php/init-check-agent.php';
 require_once __DIR__ . '/php/init-robots.php';
+require_once __DIR__ . '/php/no-ai.php';
 require_once __DIR__ . '/php/always-block.php';
 require_once __DIR__ . '/php/sec-fetch.php';
 if ( file_exists( __DIR__ . '/php/sec-fetch-test.php' ) ) {
@@ -51,6 +52,7 @@ if ( is_admin() ) {
 	require_once __DIR__ . '/admin/emergency.php';
 	require_once __DIR__ . '/admin/exclude.php';
 	require_once __DIR__ . '/admin/always-block.php';
+	require_once __DIR__ . '/admin/no-ai.php';
 	require_once __DIR__ . '/admin/crawler.php';
 	require_once __DIR__ . '/admin/deleting.php';
 	require_once __DIR__ . '/admin/logging.php';

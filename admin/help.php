@@ -9,15 +9,143 @@
 defined( 'ABSPATH' ) || die();
 
 function wimbblock_help_config() {
-	$text  = '<h2>' . __( 'Configuration and Settings', 'wimb-and-block' ) . '</h2>';
+	$text = "\n" . '<h2>' . __( 'Configuration and Settings', 'wimb-and-block' ) . '</h2>';
+
+	$text .= '<ul>';
+	$text .= '<li class="adminli">';
+	$text .= '<h4>' . __( 'Configuration', 'wimb-and-block' ) . '</h4>' . "\n";
+
+	$text .= '<ul>';
+	$text .= '<li class="adminli">';
 	$text .= wp_sprintf(
 		/* translators: %s are hrefs */
-		__( 'First configure the %1$sWIMB settings%2$s and then the settings for %3$ssearch engines%4$s.', 'wimb-and-block' ),
+		__( 'First configure the %1$sWIMB settings%2$s', 'wimb-and-block' ),
 		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=settings' ) . '">',
-		'</a>',
+		'</a>'
+	);
+	$text .= ' ' . wimbblock_has_key() . '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( '%1$sCheck settings for robots.txt%2$s', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=robots' ) . '">',
+		'</a>'
+	);
+	$text .= ' ' . wimbblock_default_robots_txt() . '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( 'If you would like to get logs, %1$sconfigure%2$s it.', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=logging' ) . '">',
+		'</a>'
+	);
+	$text .= ' ' . wimbblock_logfile_status() . '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= wp_sprintf(
+		/* translators: %s are hrefs */
+		__( 'Optionally, configure the %1$ssearch engines%2$s settings.', 'wimb-and-block' ),
 		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=crawlers' ) . '">',
 		'</a>'
 	);
+	$text .= '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( "If you don't like AI bots, just %1\$sblock%2\$s them.", 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=ai' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	$text .= '</ul>' . "\n";
+
+	### Statistik
+
+	$text .= '<li class="adminli">';
+	$text .= '<h4>' . __( 'You should check that out every now and then', 'wimb-and-block' ) . '</h4>';
+
+	$text .= '<ul>';
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( 'Statistics about %1$slast 24 hours%2$s', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=last24' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( 'Monthly %1$sstatistics%2$s and maintenace', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=monthly' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( "If you do not want to use the plugin's default settings, set up blocking of browsers with %1\$soutdated versions%2\$s.", 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=versions' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( '%1$sExclude%2$s browsers from checking / %1$salways block%2$s some browsers', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=exclude' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( '%1$sSearch / block / unblock%2$s entries and get some statistics about types of agents', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=block' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	$text .= '</ul>' . "\n";
+
+	### Doku
+
+	$text .= '<li class="adminli">';
+	$text .= '<h4>' . __( 'For advanced users', 'wimb-and-block' ) . '</h4>';
+
+	$text .= '<ul>';
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( '%1$sEffect%2$s of the rules', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=testing' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	$text .= '<li class="adminli">';
+	$text .= ' ' . wp_sprintf(
+		/* translators: %s are hrefs */
+		__( '%1$sDocumentation%2$s about header checks', 'wimb-and-block' ),
+		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=headers' ) . '">',
+		'</a>'
+	);
+	$text .= '</li>' . "\n";
+
+	###
+
+	$text .= '</ul>' . "\n";
+	$text .= '</ul>' . "\n";
 	return $text;
 }
 
@@ -131,4 +259,67 @@ function wimbblock_help_readme( $file ) {
 	);
 	$text        = preg_replace( $pattern, $replacement, $text );
 	return $text;
+}
+
+function wimbblock_has_key() {
+	$wpdb_options = wimbblock_get_options_db();
+	if ( ! ( $wpdb_options['error'] !== '0' || $wpdb_options['wimb_api'] === '' ) ) {
+		return '&#10004;';
+	}
+	return '';
+}
+
+function wimbblock_default_robots_txt() {
+	$site         = wp_parse_url( get_home_url() );
+	$serverroot   = $site['host'];
+	$wpdb_options = wimbblock_get_options_db();
+	if ( ! isset( $site['path'] ) && get_home_path() === ABSPATH ) {
+		global $wp_filesystem;
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+		if ( $wp_filesystem->exists( ABSPATH . '.htaccess' ) && $wp_filesystem->is_writable( ABSPATH . '.htaccess' ) ) {
+			if ( ! $wp_filesystem->exists( ABSPATH . 'robots.txt' ) ) {
+				return '&#10004;';
+			}
+		}
+	}
+	return ' -- ' . __( 'You should configure this. Ignore this warning if you have already done so.', 'wimb-and-block' );
+}
+
+function wimbblock_logfile_status() {
+
+		$logfile           = '';
+		$wimbblock_logfile = wimbblock_get_option( 'wimbblock_logfile' );
+	if ( isset( $wimbblock_logfile ) && $wimbblock_logfile !== '' && $wimbblock_logfile !== false ) {
+		$logfile = $wimbblock_logfile;
+	}
+	if ( $logfile === '' ) {
+		if ( true === WP_DEBUG ) {
+			if ( WP_DEBUG_LOG === true ) {
+				$logfile = WP_CONTENT_DIR . '/debug.log';
+			} elseif ( WP_DEBUG_LOG !== false ) {
+				global $wp_filesystem;
+				if ( ! function_exists( 'WP_Filesystem' ) ) {
+					require_once ABSPATH . 'wp-admin/includes/file.php';
+				}
+				WP_Filesystem();
+				if ( $wp_filesystem->is_writable( dirname( constant( 'WP_DEBUG_LOG' ) ) ) ) {
+					$logfile = constant( 'WP_DEBUG_LOG' );
+				} else {
+					$logfile = '';
+				}
+			}
+		}
+	}
+	if ( $logfile === '/dev/null' ) {
+		$logfile = '';
+	}
+
+	if ( $logfile === '' ) {
+		return esc_html( ' -- ' . __( 'Nothing is logged.', 'wimb-and-block' ) );
+	} else {
+		return esc_html( ' -- ' . __( 'Logging is performed according to your settings.', 'wimb-and-block' ) );
+	}
 }

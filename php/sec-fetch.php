@@ -149,7 +149,7 @@ function wimbblock_check_secheaders( $agent, $software, $system ) {
 		$message .= wimbblock_prefetch_block( $logging );
 	}
 	if ( function_exists( 'wimbblock_log_secchua' ) ) {
-		$message .= wimbblock_log_secchua( $agent, $logging );
+		$message .= wimbblock_log_secchua( $agent );
 	}
 	if ( $message !== '' ) {
 		wimbblock_error_log( 'Test Sec-CH Headers' . $message . ' * agent ' . $agent, $logging['tests'] ?? false );

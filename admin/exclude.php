@@ -67,11 +67,7 @@ function wimbblock_exclude_validate( $params ) {
 }
 
 function wimbblock_exclude_help() {
-	$text    = '<h3>' . __( 'Exclude these browsers from checking', 'wimb-and-block' ) . '</h3>';
-	$options = wimbblock_get_options_db();
-	if ( $options['location'] === 'remote' ) {
-		$text .= '<p><div class="notice notice-info">' . __( 'You must configure these settings on each of your websites that use this database!', 'wimb-and-block' ) . '</div></p>';
-	}
+	$text  = '<h3>' . __( 'Exclude these browsers from checking', 'wimb-and-block' ) . '</h3>';
 	$text .= '<p>' . __( 'Sometimes there are false positive, for example if the browser is from Mastodon. Then you can exclude these.', 'wimb-and-block' ) . '</p>';
 	echo wp_kses_post( $text );
 }

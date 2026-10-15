@@ -51,8 +51,8 @@ function wimbblock_get_default_browsers() {
 		// Edge = Chrome
 		'Edge'                     => 147,
 		// https://de.wikipedia.org/wiki/Versionsgeschichte_von_Mozilla_Firefox
-		// ESR 140.7.0
-		'Firefox'                  => 140,
+		// ESR 140.7.0 ist EOL,  ESR 153
+		'Firefox'                  => 150,
 		// https://developer.apple.com/documentation/safari-release-notes
 		// https://theapplewiki.com/wiki/Safari
 		'Safari'                   => 18,

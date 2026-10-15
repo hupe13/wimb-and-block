@@ -33,7 +33,7 @@ If you have concerns about data privacy: The user agent string is sent to this s
     ![example entries](.wordpress-org/good.jpg)
 
 * Browsers are blocked if the browser and/or system are outdated:
-    - Default: Chrome, Edge and Chrome based browsers < 147, Firefox browsers < 140, Safari < 18, Samsung Browser < 30, Internet Explorer, Netscape (!)
+    - Default: Chrome, Edge and Chrome based browsers < 147, Firefox browsers < 150, Safari < 18, Samsung Browser < 30, Internet Explorer, Netscape (!)
     - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 10 and Symbian.
 
         ![example entries](.wordpress-org/old.jpg)
@@ -42,6 +42,7 @@ If you have concerns about data privacy: The user agent string is sent to this s
 
     ![example entries](.wordpress-org/suspect.jpg)
 
+* You can block AI crawlers.
 * You can also set up other browsers.
 * Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
 * The plugin checks whether the crawlers really originate from Google, Bing, Yandex, Apple, Mojeek, Baidu, Seznam and others.

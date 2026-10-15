@@ -1,4 +1,10 @@
-### 2609xx / 3.0
+### 2610xx / 3.1
+
+* possibility to block AI
+* better organized backend
+* bumped minimum versions of agents Firefox: 150
+
+### 260925 / 3.0
 
 * What is my browser API version 3
 * exclude Firefox ESR 140 and 153 versions from blocking

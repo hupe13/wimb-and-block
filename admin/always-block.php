@@ -29,11 +29,17 @@ add_action( 'admin_init', 'wimbblock_always_init' );
 
 // Baue Abfrage der Params
 function wimbblock_always_form() {
-	$all = wimbblock_get_always();
-	$i   = 0;
+	$all       = wimbblock_get_always();
+	$to_delete = wimbblock_ai_always();
+	$i         = 0;
 	foreach ( $all as $browser ) {
+		if ( in_array( $browser, $to_delete, true ) ) {
+			$style = ' class="grey" ';
+		} else {
+			$style = '';
+		}
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<p><input type="text" size="15" name="wimbblock_always[' . $i . ']" value="' . esc_html( $browser ) . '" /> ' . "\n";
+		echo '<p><input ' . $style . ' type="text" size="15" name="wimbblock_always[' . $i . ']" value="' . esc_html( $browser ) . '" /> ' . "\n";
 		++$i;
 	}
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -63,11 +69,14 @@ function wimbblock_always_validate( $params ) {
 }
 
 function wimbblock_always_help() {
-	$text    = '<h3>' . __( 'Always block browsers with this strings', 'wimb-and-block' ) . '</h3>';
-	$options = wimbblock_get_options_db();
-	if ( $options['location'] === 'remote' ) {
-		$text .= '<p><div class="notice notice-info">' . __( 'You must configure these settings on each of your websites that use this database!', 'wimb-and-block' ) . '</div></p>';
-	}
+	$text  = '<h3>' . __( 'Always block browsers with this strings', 'wimb-and-block' ) . '</h3>';
 	$text .= '<p>' . __( 'Sometimes bad bots have a changing version number, so you can configure a string to always block them.', 'wimb-and-block' ) . '</p>';
+	$ai    = wimbblock_get_option( 'wimbblock_block_ai' ); // string 1 or 0
+	// var_dump( $ai );
+	if ( $ai === '1' ) {
+		$text .= '<p>' . __( 'You can delete the grey values, since they are detected by the AI crawler check.', 'wimb-and-block' );
+	} else {
+		$text .= '<p>' . __( 'If you enable to block AI crawlers, you can delete the grey values, since they are detected by the AI crawler check.', 'wimb-and-block' );
+	}
 	echo wp_kses_post( $text );
 }

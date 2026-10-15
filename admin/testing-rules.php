@@ -46,8 +46,11 @@ function wimbblock_test_rules( $query ) {
 		$last_access             = $entry['time'];
 		$id                      = $entry['i'];
 		$wimbblock_test_to_block = '';
-		$is_crawler              = false;
-		$params                  = wimbblock_crawlers_params();
+
+		wimbblock_no_ai( $table_name, $agent, $blocked, $id, 'testing' );
+
+		$is_crawler = false;
+		$params     = wimbblock_crawlers_params();
 		foreach ( $params as $crawler => $value ) {
 			foreach ( $value['agents'] as $brand ) {
 				if ( stripos( $agent, $brand ) !== false ) {

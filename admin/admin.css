@@ -6,6 +6,7 @@
 .red04{background-color:rgb(248 46 48/0.2)}
 
 .grey {background-color: rgba(128,128,128,.17)}
+input.grey {background-color: rgba(128,128,128,.17)}
 
 .wp-block-quote {
 	border-left: 0.25em solid currentColor;

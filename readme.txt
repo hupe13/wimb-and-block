@@ -1,9 +1,9 @@
 === Block old browser versions and suspicious browsers ===
 
 Contributors: hupe13
-Tags: bad-bots, user-agent, crawlers, blocking, robots.txt
+Tags: bad-bots, user-agent, crawlers, ai, robots.txt
 Tested up to: 7.1
-Stable tag: 260924
+Stable tag: 261015
 Requires at least: 6.8
 Requires PHP: 8.2
 License: GPLv2 or later
@@ -38,8 +38,9 @@ If you have concerns about data privacy: The user agent string is sent to this s
 
 * The plugin checks whether the browser is up to date; it does not check whether the requested page or post actually exists.
 * Browsers are blocked if the browser and/or system are outdated:
-    - Default: Chrome, Edge and Chrome based browsers < 147, Firefox browsers < 140, Safari < 18, Samsung Browser < 30, Internet Explorer, Netscape (!)
+    - Default: Chrome, Edge and Chrome based browsers < 147, Firefox browsers < 150, Safari < 18, Samsung Browser < 30, Internet Explorer, Netscape (!)
     - Old systems are all Windows versions prior to Windows 10, MacOS prior to Catalina and Android versions < 10 and Symbian.
+* You can block AI crawlers.
 * It will be blocked also if "Software" contains "unknown" or is empty.
 * You can also set up other browsers.
 * Sometimes there are false positive, for example, if the browser is from Mastodon. In this case, you can exclude it from the check.
