@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 18:40+0000\n"
+"POT-Creation-Date: 2026-10-15 19:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -73,7 +73,13 @@ msgstr ""
 msgid "Advanced information"
 msgstr ""
 
-#: admin.php:349 admin/no-ai.php:58 admin/no-ai.php:73
+#: admin/no-ai.php:70
+msgid ""
+"After each update to this repository, I will release a new version of the "
+"plugin."
+msgstr ""
+
+#: admin.php:349 admin/no-ai.php:58 admin/no-ai.php:74
 msgid "AI crawlers"
 msgstr ""
 
@@ -704,7 +710,7 @@ msgid "Settings, maintenace and checks"
 msgstr ""
 
 #. %s are numbers
-#: admin/no-ai.php:189
+#: admin/no-ai.php:190
 #, php-format
 msgid "So far, %1$s out of %2$s AI crawlers have not been blocked."
 msgstr ""
@@ -751,7 +757,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: admin/no-ai.php:199
+#: admin/no-ai.php:200
 msgid "Table AI"
 msgstr ""
 

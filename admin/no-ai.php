@@ -66,7 +66,8 @@ function wimbblock_no_ai_help() {
 		__( 'Take care about its %1$slicense%2$s.', 'wimb-and-block' ),
 		'<a href="https://github.com/ai-robots-txt/ai.robots.txt/blob/main/LICENSE">',
 		'</a>'
-	) . '</p>';
+	);
+	$text .= ' ' . __( 'After each update to this repository, I will release a new version of the plugin.', 'wimb-and-block' ) . '</p>';
 	echo wp_kses_post( $text );
 
 	echo '<details class="primer" style="display: inline-block; width: 100%;">
