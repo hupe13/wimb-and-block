@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-16 11:57+0000\n"
+"POT-Creation-Date: 2026-10-16 18:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -69,7 +69,7 @@ msgid ""
 "form."
 msgstr ""
 
-#: admin.php:392
+#: admin.php:391
 msgid "Advanced information"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgid ""
 "plugin."
 msgstr ""
 
-#: admin.php:349 admin/no-ai.php:58 admin/no-ai.php:74
+#: admin.php:348 admin/no-ai.php:58 admin/no-ai.php:74
 msgid "AI crawlers"
 msgstr ""
 
@@ -121,7 +121,7 @@ msgid "based browsers"
 msgstr ""
 
 #: admin/no-ai.php:14
-msgid "Block AI Bots"
+msgid "Block AI crawlers"
 msgstr ""
 
 #: admin/versions.php:14
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Block operating system versions smaller than"
 msgstr ""
 
-#: admin.php:380
+#: admin.php:379
 msgid "Block rules results"
 msgstr ""
 
@@ -158,7 +158,7 @@ msgstr ""
 msgid "By default, all IP addresses are checked via DNS."
 msgstr ""
 
-#: admin.php:390 admin/help.php:16
+#: admin.php:389 admin/help.php:16
 msgid "Configuration"
 msgstr ""
 
@@ -234,7 +234,7 @@ msgid ""
 "longer meet current requirements."
 msgstr ""
 
-#: admin.php:370
+#: admin.php:369
 msgid "Exclude / always block"
 msgstr ""
 
@@ -278,11 +278,11 @@ msgstr ""
 msgid "Get an API key for a %s."
 msgstr ""
 
-#: admin.php:385 admin/header-checks.php:14
+#: admin.php:384 admin/header-checks.php:14
 msgid "Header Checks"
 msgstr ""
 
-#: admin.php:319 admin.php:389
+#: admin.php:318 admin.php:388
 msgid "Help"
 msgstr ""
 
@@ -385,12 +385,6 @@ msgid ""
 "browsers with %1$soutdated versions%2$s."
 msgstr ""
 
-#. %s are hrefs
-#: admin/help.php:58
-#, php-format
-msgid "If you don't like AI bots, just %1$sblock%2$s them."
-msgstr ""
-
 #: admin/always-block.php:79
 msgid ""
 "If you enable to block AI crawlers, you can delete the grey values, since "
@@ -483,7 +477,7 @@ msgstr ""
 msgid "Log when the browser is excluded from checking."
 msgstr ""
 
-#: admin.php:256 admin.php:339
+#: admin.php:256 admin.php:338
 msgid "Logging"
 msgstr ""
 
@@ -556,7 +550,7 @@ msgstr ""
 msgid "Or you can click on a link from one of the tables."
 msgstr ""
 
-#: admin.php:359 admin/monthly.php:11
+#: admin.php:358 admin/monthly.php:11
 msgid "Overview and maintenance"
 msgstr ""
 
@@ -603,7 +597,7 @@ msgstr ""
 msgid "Plugins default:"
 msgstr ""
 
-#: admin.php:324
+#: admin.php:323
 msgid "README"
 msgstr ""
 
@@ -639,7 +633,7 @@ msgstr ""
 msgid "robots blocked in %"
 msgstr ""
 
-#: admin.php:334
+#: admin.php:333
 msgid "robots.txt"
 msgstr ""
 
@@ -651,11 +645,11 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: admin.php:155 admin.php:375
+#: admin.php:155 admin.php:374
 msgid "Search / block / unblock entries"
 msgstr ""
 
-#: admin.php:344 admin/block-unblock.php:195 admin/block-unblock.php:677
+#: admin.php:343 admin/block-unblock.php:195 admin/block-unblock.php:677
 msgid "Search Engines"
 msgstr ""
 
@@ -701,11 +695,11 @@ msgstr ""
 msgid "Settings Search Engines"
 msgstr ""
 
-#: admin.php:80 admin.php:329
+#: admin.php:80 admin.php:328
 msgid "Settings WIMB"
 msgstr ""
 
-#: admin.php:391
+#: admin.php:390
 msgid "Settings, maintenance and checks"
 msgstr ""
 
@@ -981,7 +975,7 @@ msgstr ""
 msgid "Unblock / block selected entries"
 msgstr ""
 
-#: admin.php:364
+#: admin.php:363
 msgid "Versions Control"
 msgstr ""
 
@@ -1013,7 +1007,7 @@ msgstr ""
 msgid "WIMB API key needed."
 msgstr ""
 
-#: admin.php:151 admin.php:354
+#: admin.php:151 admin.php:353
 msgid "WIMB last 24 hours"
 msgstr ""
 

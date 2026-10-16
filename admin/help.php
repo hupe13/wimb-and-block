@@ -55,7 +55,7 @@ function wimbblock_help_config() {
 	$text .= '<li class="adminli">';
 	$text .= ' ' . wp_sprintf(
 		/* translators: %s are hrefs */
-		__( "If you don't like AI bots, just %1\$sblock%2\$s them.", 'wimb-and-block' ),
+		__( "If you don't like AI crawlers, just %1$sblock%2$s them.", 'wimb-and-block' ),
 		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=ai' ) . '">',
 		'</a>'
 	);

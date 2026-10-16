@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die();
 // Init settings fuer block ai
 function wimbblock_block_ai_init() {
 	add_settings_section( 'wimbblock_block_ai', '', '__return_empty_string', 'wimbblock_block_ai' );
-	add_settings_field( 'wimbblock_block_ai', __( 'Block AI Bots', 'wimb-and-block' ), 'wimbblock_form_block_ai', 'wimbblock_block_ai', 'wimbblock_block_ai' );
+	add_settings_field( 'wimbblock_block_ai', __( 'Block AI crawlers', 'wimb-and-block' ), 'wimbblock_form_block_ai', 'wimbblock_block_ai', 'wimbblock_block_ai' );
 	register_setting(
 		'wimbblock_block_ai',
 		'wimbblock_block_ai',
