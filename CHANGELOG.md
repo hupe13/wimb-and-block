@@ -1,4 +1,4 @@
-### 2610xx / 3.1
+### 261016 / 3.1
 
 * possibility to block AI
 * better organized backend
