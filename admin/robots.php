@@ -30,9 +30,9 @@ function wimbblock_robots_htaccess() {
 	$serverroot = $site['host'];
 	echo '<h3>robots.txt - ' . wp_kses_post( $serverroot ) . '</h3>';
 
-	if ( file_exists( __DIR__ . '/robots-patch.php' ) ) {
-		require_once __DIR__ . '/robots-patch.php';
-	}
+	// if ( file_exists( __DIR__ . '/robots-patch.php' ) ) {
+		// require_once __DIR__ . '/robots-patch.php';
+	// }
 
 	$wpdb_options = wimbblock_get_options_db();
 	if ( $wpdb_options['error'] !== '0' || $wpdb_options['wimb_api'] === '' ) {

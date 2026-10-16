@@ -58,10 +58,11 @@ If you have concerns about data privacy: The user agent string is sent to this s
 
 ## Screenshots
 
-1. Database settings <br />![Database settings](.wordpress-org/screenshot-1.png)
-2. Exclude these browsers from checking / Always block browsers with this strings <br />![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-2.png)
-3. robots.txt settings <br />![robots.txt settings](.wordpress-org/screenshot-3.png)
-4. Access attempts from old browsers are blocked. <br />![Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly).](.wordpress-org/screenshot-4.png)
+1. How to <br />![How to](.wordpress-org/screenshot-1.png)
+2. Database settings <br />![Database settings](.wordpress-org/screenshot-2.png)
+3. Exclude these browsers from checking / Always block browsers with this strings <br />![Exclude these browsers from checking / Always block browsers with this strings](.wordpress-org/screenshot-3.png)
+4. robots.txt settings <br />![robots.txt settings](.wordpress-org/screenshot-4.png)
+5. Access attempts from old browsers are blocked. <br />![Access attempts from the same IP address are blocked within 4 seconds (this can also happen more quickly).](.wordpress-org/screenshot-5.png)
 
 ## Installation
 

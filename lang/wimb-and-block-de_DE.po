@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Block old browser versions and suspicious browsers - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-10-15 19:20+0000\n"
+"PO-Revision-Date: 2026-10-16 11:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -553,7 +553,8 @@ msgstr "Monat"
 #. %s are hrefs
 #: admin/help.php:85
 #, php-format
-msgid "Monthly %1$sstatistics%2$s and maintenace"
+#| msgid "Monthly %1$sstatistics%2$s and maintenace"
+msgid "Monthly %1$sstatistics%2$s and maintenance"
 msgstr "Monatliche %1$sStatistiken%2$s und Wartung"
 
 #: admin/monthly.php:17
@@ -773,7 +774,8 @@ msgid "Settings WIMB"
 msgstr "Einstellungen für WIMB"
 
 #: admin.php:391
-msgid "Settings, maintenace and checks"
+#| msgid "Settings, maintenace and checks"
+msgid "Settings, maintenance and checks"
 msgstr "Einstellungen, Wartung und Prüfungen"
 
 #. %s are numbers

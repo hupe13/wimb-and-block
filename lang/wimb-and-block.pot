@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 19:19+0000\n"
+"POT-Creation-Date: 2026-10-16 11:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -498,7 +498,7 @@ msgstr ""
 #. %s are hrefs
 #: admin/help.php:85
 #, php-format
-msgid "Monthly %1$sstatistics%2$s and maintenace"
+msgid "Monthly %1$sstatistics%2$s and maintenance"
 msgstr ""
 
 #: admin/monthly.php:17
@@ -706,7 +706,7 @@ msgid "Settings WIMB"
 msgstr ""
 
 #: admin.php:391
-msgid "Settings, maintenace and checks"
+msgid "Settings, maintenance and checks"
 msgstr ""
 
 #. %s are numbers

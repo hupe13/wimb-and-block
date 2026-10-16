@@ -82,7 +82,7 @@ function wimbblock_help_config() {
 	$text .= '<li class="adminli">';
 	$text .= ' ' . wp_sprintf(
 		/* translators: %s are hrefs */
-		__( 'Monthly %1$sstatistics%2$s and maintenace', 'wimb-and-block' ),
+		__( 'Monthly %1$sstatistics%2$s and maintenance', 'wimb-and-block' ),
 		'<a href="' . esc_url( '?page=' . WIMBBLOCK_NAME . '&tab=monthly' ) . '">',
 		'</a>'
 	);

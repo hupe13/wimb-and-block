@@ -388,7 +388,7 @@ function wimbblock_admin_tabs() {
 	$sections = array(
 		'help'     => __( 'Help', 'wimb-and-block' ),
 		'config'   => __( 'Configuration', 'wimb-and-block' ),
-		'check'    => __( 'Settings, maintenace and checks', 'wimb-and-block' ),
+		'check'    => __( 'Settings, maintenance and checks', 'wimb-and-block' ),
 		'advanced' => __( 'Advanced information', 'wimb-and-block' ),
 	);
 
