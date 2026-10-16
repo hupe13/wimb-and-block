@@ -298,7 +298,6 @@ function wimbblock_admin() {
 		}
 	} elseif ( $active_tab === 'readme' ) {
 		require_once __DIR__ . '/admin/help.php';
-		// echo wp_kses_post( wimbblock_help_config() );
 		// echo wp_kses_post( wimbblock_help() );
 		echo wp_kses_post( wimbblock_help_readme( '/wp-content/plugins/' . WIMBBLOCK_NAME . '/readme.txt' ) );
 	} else {

@@ -15,7 +15,7 @@ The plugin sends with an API the User Agent string of every browser that accesse
 
 With this information, the plugin attempts to detect old and bad browsers and denies them access to your website.
 
-### HowTo
+### How to
 
 * Go to <a href="https://developers.whatismybrowser.com/api/pricing/">What is my browser?</a> and sign up to the WhatIsMyBrowser.com API for a Basic (free) Application Plan.
 * Take care about the <a href="https://developers.whatismybrowser.com/api/about/legal/">WhatIsMyBrowser.com API Terms and Conditions</a>.
