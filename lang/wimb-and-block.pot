@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Browser access control via WhatIsMyBrowser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-16 18:32+0000\n"
+"POT-Creation-Date: 2026-10-17 06:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -383,6 +383,12 @@ msgstr ""
 msgid ""
 "If you do not want to use the plugin's default settings, set up blocking of "
 "browsers with %1$soutdated versions%2$s."
+msgstr ""
+
+#. %s are hrefs
+#: admin/help.php:58
+#, php-format
+msgid "If you don't like AI crawlers, just %1$sblock%2$s them."
 msgstr ""
 
 #: admin/always-block.php:79

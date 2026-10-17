@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Block old browser versions and suspicious browsers - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-10-16 18:39+0000\n"
+"PO-Revision-Date: 2026-10-17 06:17+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -426,6 +426,12 @@ msgid ""
 msgstr ""
 "Wenn du die Standardeinstellungen des Plugins nicht verwenden möchtest, "
 "konfiguriere die älteste akzeptierte %1$sVersion%2$s der Browser."
+
+#. %s are hrefs
+#: admin/help.php:58
+#, php-format
+msgid "If you don't like AI crawlers, just %1$sblock%2$s them."
+msgstr "Wenn du KI-Crawler nicht möchtest, %1$sblocke%2$s sie einfach."
 
 #: admin/always-block.php:79
 msgid ""

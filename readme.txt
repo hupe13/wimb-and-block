@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: bad-bots, user-agent, crawlers, ai, robots.txt
 Tested up to: 7.1
-Stable tag: 261016
+Stable tag: 261017
 Requires at least: 6.8
 Requires PHP: 8.2
 License: GPLv2 or later

@@ -1,3 +1,8 @@
+### 261017 / 3.1.1
+
+* ai.robots.txt 2.1
+* typo in ai
+
 ### 261016 / 3.1
 
 * possibility to block AI
